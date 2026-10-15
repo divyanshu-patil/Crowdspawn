@@ -1,0 +1,404 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import type { City, Plan, PartnerType } from "@repo/contracts";
+import { SpawnMap } from "./SpawnMap";
+import { Cite, ConfidenceBadge, CONFIDENCE_HELP, CountUp, Notice, RichText, Stat } from "./ui";
+import { lift, pct, planToMarkdown, rarity, skew, usd } from "../lib/format";
+
+const TABS: { key: PartnerType; label: string }[] = [
+  { key: "artist", label: "Artists" },
+  { key: "podcast", label: "Podcasts" },
+  { key: "movie", label: "Films" },
+  { key: "brand", label: "Brands" },
+];
+
+const TILTS = [-3, 2, -1.5, 3, -2.5, 1.5, -1, 2.5];
+
+export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string }) {
+  const [activeCity, setActiveCity] = useState<string | null>(null);
+  const top = plan.cities[0];
+  const maxLift = Math.max(...plan.cities.map((c) => c.lift), 1.01);
+  const counts = { high: 0, medium: 0, low: 0 };
+  plan.cities.forEach((c) => counts[c.confidence]++);
+
+  return (
+    <article className="stack">
+      {/* 1. Header */}
+      <header className="stack" style={{ paddingTop: 32 }}>
+        <span className="label muted">Launch plan · {plan.created_at.slice(0, 10)}</span>
+        <h1 className="h1">
+          <span className="marker">{plan.input.game.title}</span>
+        </h1>
+        <p className="lede" style={{ maxWidth: 820 }}>
+          Fans of {plan.comps.map((c) => c.name).join(", ")} over-index most in{" "}
+          <strong>{top ? top.name : "—"}</strong>
+          {top ? ` (lift ${lift(top.lift)})` : ""}.
+        </p>
+        <div className="hud">
+          <Stat label="Top spawn point">{top?.name ?? "—"}</Stat>
+          <Stat label="Cities scored">
+            <CountUp value={plan.cities.length} />
+          </Stat>
+          <Stat label="Confidence">
+            <span title={CONFIDENCE_HELP} style={{ fontSize: 24 }}>
+              {counts.high}H · {counts.medium}M · {counts.low}L
+            </span>
+          </Stat>
+          <Stat label="Qloo calls (live / cached)">
+            <CountUp value={plan.calls.live} /> / <CountUp value={plan.calls.cached} />
+          </Stat>
+          <Stat label="Brief by">
+            <span style={{ fontSize: 18 }}>
+              {plan.brief?.source === "llm" ? `${plan.brief.provider} · ${plan.brief.model}` : "Template"}
+            </span>
+          </Stat>
+        </div>
+      </header>
+
+      {plan.warnings.filter((w) => w.code !== "low_confidence_city").length > 0 && (
+        <Notice tone="warn">
+          <ul style={{ marginLeft: 16 }}>
+            {plan.warnings
+              .filter((w) => w.code !== "low_confidence_city")
+              .map((w, i) => (
+                <li key={i}>{w.message}</li>
+              ))}
+          </ul>
+        </Notice>
+      )}
+
+      {/* 3. Top cities */}
+      <section className="section stack" aria-labelledby="cities-h">
+        <div className="spread">
+          <h2 id="cities-h" className="h2">
+            Spawn points
+          </h2>
+          <span className="label muted">Affinity index vs mainstream gamers · not a sales forecast</span>
+        </div>
+        <SpawnMap
+          cities={plan.cities}
+          activeId={activeCity}
+          onSelect={(id) => {
+            setActiveCity(id);
+            const row = document.getElementById(`city-${id}`) as HTMLDetailsElement | null;
+            if (row) {
+              row.open = true;
+              row.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }}
+        />
+        <ol className="cities">
+          {plan.cities.map((c, i) => (
+            <CityRow
+              key={c.region_id}
+              c={c}
+              i={i}
+              maxLift={maxLift}
+              active={activeCity === c.region_id}
+              onToggle={() => setActiveCity(c.region_id)}
+              traceHref={traceHref}
+              hasBudget={plan.input.budget_usd != null}
+            />
+          ))}
+        </ol>
+      </section>
+
+      {/* Expanded comps with Qloo's explanations */}
+      <section className="section stack" aria-labelledby="comps-h">
+        <h2 id="comps-h" className="h2">
+          Your rivals, scouted
+        </h2>
+        <p className="muted">
+          Your comps, then the games Qloo says their fans also love, with why. <Cite id={plan.expanded[0]?.result_id ?? "q2"} traceHref={traceHref} />
+        </p>
+        <div className="scatter">
+          {plan.comps.map((c, i) => (
+            <figure
+              key={c.entity_id}
+              className="polaroid"
+              style={{ ["--r" as string]: `${TILTS[i % TILTS.length]}deg`, ["--i" as string]: i, ["--w" as string]: "190px" }}
+            >
+              {c.image_url ? <img src={c.image_url} alt="" loading="lazy" /> : <div className="ph">{c.name[0]}</div>}
+              <figcaption>
+                <span className="label muted">Your comp</span>
+                <br />
+                <b>{c.name}</b>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="loot-grid">
+          {plan.expanded.slice(0, 12).map((g, i) => (
+            <div key={g.entity_id} className="loot" style={{ ["--i" as string]: i }}>
+              <span className="label muted">Affinity {(g.affinity * 100).toFixed(1)}</span>
+              <span className="name">{g.name}</span>
+              <span className="why">{g.why}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Audience */}
+      {plan.audience && (
+        <section className="section two-col" aria-labelledby="aud-h">
+          <div className="stack">
+            <h2 id="aud-h" className="h2">
+              Who&apos;s in the party
+            </h2>
+            <p className="muted">
+              How this audience over- or under-indexes against the average, by age and gender. Source: Qloo
+              demographics <Cite id={plan.audience.result_id} traceHref={traceHref} />
+            </p>
+          </div>
+          <div className="card">
+            {[...plan.audience.age.map((b) => ({ k: b.band, v: b.index })), ...plan.audience.gender.map((g) => ({ k: g.label, v: g.index }))].map(
+              (row, i) => {
+                const w = Math.min(50, Math.abs(row.v) * 100);
+                return (
+                  <div className="skew" key={row.k}>
+                    <span className="label">{row.k}</span>
+                    <div className="skew-track" aria-hidden>
+                      <i className={row.v >= 0 ? "pos" : "neg"} style={{ width: `${w}%`, ["--i" as string]: i }} />
+                    </div>
+                    <span className="num" style={{ textAlign: "right" }}>
+                      {skew(row.v)}
+                    </span>
+                  </div>
+                );
+              },
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* 5. Partners */}
+      <Partners plan={plan} traceHref={traceHref} />
+
+      {/* 6. Gap view */}
+      {plan.gap && (
+        <section className="section stack" aria-labelledby="gap-h">
+          <h2 id="gap-h" className="h2">
+            The gap from your last game <Cite id={plan.gap.result_id} traceHref={traceHref} />
+          </h2>
+          <div className="two-col">
+            <div className="card stack">
+              <span className="label">New ground: only the target audience</span>
+              <div className="row">{plan.gap.target_only.map((t) => <span key={t} className="chip" style={{ paddingRight: 14 }}>{t}</span>)}</div>
+            </div>
+            <div className="card stack">
+              <span className="label">Shared with your current players</span>
+              <div className="row">{plan.gap.shared.map((t) => <span key={t} className="chip" style={{ paddingRight: 14 }}>{t}</span>)}</div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7. Brief */}
+      {plan.brief && (
+        <section className="section stack brief" aria-labelledby="brief-h">
+          <div className="spread">
+            <h2 id="brief-h" className="h2">
+              Battle plan
+            </h2>
+            <span className="label muted">
+              {plan.brief.source === "llm" ? `Written by ${plan.brief.model}, grounded on Qloo data` : "Template brief"}
+            </span>
+          </div>
+          {plan.brief.notice && <Notice>{plan.brief.notice}</Notice>}
+          <div className="card">
+            {plan.brief.sections.map((s) => (
+              <div key={s.heading}>
+                <h3 className="h3">{s.heading}</h3>
+                <p>
+                  <RichText text={s.body} traceHref={traceHref} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 8. Limits — always visible */}
+      <section className="section limits" aria-labelledby="limits-h">
+        <h2 id="limits-h" className="h3">
+          Read this before you spend
+        </h2>
+        <ul>
+          {plan.limits.map((l) => (
+            <li key={l}>{l}</li>
+          ))}
+          {plan.dropped_comps.length > 0 && <li>Comps not found in Qloo and left out: {plan.dropped_comps.join(", ")}.</li>}
+        </ul>
+      </section>
+
+      {/* 9. Actions */}
+      <Actions plan={plan} traceHref={traceHref} />
+    </article>
+  );
+}
+
+function CityRow({
+  c,
+  i,
+  maxLift,
+  active,
+  onToggle,
+  traceHref,
+  hasBudget,
+}: {
+  c: City;
+  i: number;
+  maxLift: number;
+  active: boolean;
+  onToggle: () => void;
+  traceHref: string;
+  hasBudget: boolean;
+}) {
+  const v = Math.max(0.04, (c.lift - 0.85) / (maxLift - 0.85));
+  return (
+    <li>
+      <details
+        id={`city-${c.region_id}`}
+        className={`city ${active ? "active" : ""}`}
+        style={{ ["--i" as string]: i }}
+        onToggle={(e) => e.currentTarget.open && onToggle()}
+      >
+        <summary>
+          <span className="rank c-rank">{i + 1}</span>
+          <span className="c-name">
+            <b>{c.name}</b> <span className="muted">{c.country}</span>
+          </span>
+          <span className={`power c-power ${i < 3 && c.lift > 1 ? "hot" : ""}`} aria-hidden>
+            <i style={{ ["--v" as string]: Math.min(1, v), ["--i" as string]: i }} />
+          </span>
+          <span className="num c-lift" aria-label={`lift ${lift(c.lift)}`}>
+            ×{lift(c.lift)}
+          </span>
+          <span className="c-conf">
+            <ConfidenceBadge level={c.confidence} />
+          </span>
+          <span className="num c-share" style={{ textAlign: "right" }}>
+            {pct(c.budget_share ?? 0)}
+            {hasBudget && c.budget_usd != null && (
+              <>
+                <br />
+                <span className="muted" style={{ fontSize: 13 }}>
+                  {usd(c.budget_usd)}
+                </span>
+              </>
+            )}
+          </span>
+          <span className="chev" aria-hidden>
+            ›
+          </span>
+        </summary>
+        <div className="why">
+          <p>
+            Fans of your comp set score <b className="num">{c.target_score.toFixed(3)}</b> on Qloo&apos;s affinity rank
+            here, against <b className="num">{c.baseline_score.toFixed(3)}</b> for fans of mainstream games (Minecraft,
+            Fortnite, GTA V, Warzone). Lift = {c.target_score.toFixed(3)} ÷ {c.baseline_score.toFixed(3)} ={" "}
+            {lift(c.lift)}.
+          </p>
+          <p className="muted">
+            Based on {c.cells} heatmap cells. {CONFIDENCE_HELP}
+          </p>
+          <p>
+            Sources: <Cite id={c.result_ids[0]!} traceHref={traceHref} /> target,{" "}
+            <Cite id={c.result_ids[1]!} traceHref={traceHref} /> baseline
+          </p>
+        </div>
+      </details>
+    </li>
+  );
+}
+
+function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
+  const [tab, setTab] = useState<PartnerType>("artist");
+  const items = plan.partners[tab] ?? [];
+  return (
+    <section className="section" aria-labelledby="partners-h">
+      <div className="spread">
+        <h2 id="partners-h" className="h2">
+          Allies to recruit
+        </h2>
+        <span className="label muted">Legendary ≥ 95 affinity · Rare ≥ 90</span>
+      </div>
+      <div className="tabs" role="tablist" style={{ marginTop: 20 }}>
+        {TABS.map((t) => (
+          <button
+            key={t.key}
+            role="tab"
+            id={`tab-${t.key}`}
+            aria-selected={tab === t.key}
+            aria-controls="partner-panel"
+            className="tab"
+            onClick={() => setTab(t.key)}
+          >
+            {t.label} ({plan.partners[t.key]?.length ?? 0})
+          </button>
+        ))}
+      </div>
+      <div id="partner-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} key={tab}>
+        {tab === "brand" && (
+          <p className="hint" style={{ marginTop: 14 }}>
+            Brands are global: Qloo&apos;s brand affinity does not vary by location.
+          </p>
+        )}
+        {items.length === 0 ? (
+          <p className="hint" style={{ marginTop: 14 }}>
+            Qloo returned no {tab}s for this audience.
+          </p>
+        ) : (
+          <div className="loot-grid">
+            {items.map((p, i) => {
+              const tier = rarity(p.affinity);
+              return (
+                <div key={`${p.entity_id}-${p.city}`} className={`loot ${tier}`} style={{ ["--i" as string]: i }}>
+                  <div className="spread">
+                    <span className="tier label">{tier}</span>
+                    <span className="label muted">{p.city ? `Local · ${p.city}` : "Global"}</span>
+                  </div>
+                  <span className="name">{p.name}</span>
+                  <span className="label">Affinity {(p.affinity * 100).toFixed(1)}</span>
+                  <span className="why">{p.why}</span>
+                  <span>
+                    <Cite id={p.result_id} traceHref={traceHref} />
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Actions({ plan, traceHref }: { plan: Plan; traceHref: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="row no-print section">
+      <button
+        className="ghost"
+        onClick={async () => {
+          await navigator.clipboard.writeText(planToMarkdown(plan));
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1800);
+        }}
+      >
+        {copied ? "Copied ✓" : "Copy as Markdown"}
+      </button>
+      <button className="ghost" onClick={() => window.print()}>
+        Print
+      </button>
+      <Link className="ghost" href={traceHref}>
+        Open Qloo trace
+      </Link>
+      <Link className="textlink" href="/plan/new">
+        Plan another game
+      </Link>
+    </div>
+  );
+}

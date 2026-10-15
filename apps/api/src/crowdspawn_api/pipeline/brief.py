@@ -31,7 +31,7 @@ def usd(x: float) -> str:
 
 
 def skew(x: float) -> str:
-    return f"{x * 100:+.0f}%"
+    return f"{x * 100:+.1f}%"
 
 
 def facts(plan: Plan) -> dict[str, Any]:
