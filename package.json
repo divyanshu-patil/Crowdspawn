@@ -2,11 +2,14 @@
   "name": "Crowdspawn",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
     "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
     "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "contracts": "pnpm --filter api openapi && pnpm --filter @repo/contracts generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "postinstall": "cd apps/api && uv sync"
   },
   "devDependencies": {
     "prettier": "3.9.6",
