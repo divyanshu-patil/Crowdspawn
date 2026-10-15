@@ -1,0 +1,19 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:locality",
+      "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+      "take": "5"
+    }
+  },
+  "status": 400,
+  "body": {
+    "errors": [
+      {
+        "message": "All of the provided signal.interests.entities were invalid. At least one valid signal or filter is required for entity insights.",
+        "path": "signal.interests.entities"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {"id": "nyc", "name": "New York", "country": "US", "lat": 40.73, "lon": -73.99, "radius_m": 30000, "default": true},
+  {"id": "lax", "name": "Los Angeles", "country": "US", "lat": 34.05, "lon": -118.25, "radius_m": 40000, "default": true},
+  {"id": "sfo", "name": "San Francisco", "country": "US", "lat": 37.77, "lon": -122.42, "radius_m": 25000, "default": true},
+  {"id": "sea", "name": "Seattle", "country": "US", "lat": 47.61, "lon": -122.33, "radius_m": 25000, "default": true},
+  {"id": "aus", "name": "Austin", "country": "US", "lat": 30.27, "lon": -97.74, "radius_m": 25000, "default": false},
+  {"id": "chi", "name": "Chicago", "country": "US", "lat": 41.88, "lon": -87.63, "radius_m": 30000, "default": false},
+  {"id": "yto", "name": "Toronto", "country": "CA", "lat": 43.65, "lon": -79.38, "radius_m": 30000, "default": true},
+  {"id": "lon", "name": "London", "country": "GB", "lat": 51.51, "lon": -0.13, "radius_m": 30000, "default": true},
+  {"id": "ber", "name": "Berlin", "country": "DE", "lat": 52.52, "lon": 13.40, "radius_m": 25000, "default": true},
+  {"id": "par", "name": "Paris", "country": "FR", "lat": 48.86, "lon": 2.35, "radius_m": 25000, "default": true},
+  {"id": "sto", "name": "Stockholm", "country": "SE", "lat": 59.33, "lon": 18.07, "radius_m": 20000, "default": false},
+  {"id": "waw", "name": "Warsaw", "country": "PL", "lat": 52.23, "lon": 21.01, "radius_m": 20000, "default": true},
+  {"id": "tyo", "name": "Tokyo", "country": "JP", "lat": 35.68, "lon": 139.69, "radius_m": 30000, "default": true},
+  {"id": "sel", "name": "Seoul", "country": "KR", "lat": 37.57, "lon": 126.98, "radius_m": 25000, "default": true},
+  {"id": "sao", "name": "Sao Paulo", "country": "BR", "lat": -23.55, "lon": -46.63, "radius_m": 30000, "default": true},
+  {"id": "mex", "name": "Mexico City", "country": "MX", "lat": 19.43, "lon": -99.13, "radius_m": 30000, "default": false},
+  {"id": "syd", "name": "Sydney", "country": "AU", "lat": -33.87, "lon": 151.21, "radius_m": 30000, "default": false},
+  {"id": "sin", "name": "Singapore", "country": "SG", "lat": 1.35, "lon": 103.82, "radius_m": 20000, "default": false}
+]

@@ -1,0 +1,281 @@
+{
+  "scores": {
+    "cozy": {
+      "nyc": {
+        "heatmap": 0.8829156565474648,
+        "heatmap_cells": 832,
+        "place": 0.8328608230197012
+      },
+      "lax": {
+        "heatmap": 0.8872710624556114,
+        "heatmap_cells": 1290,
+        "place": 0.7444043898843783
+      },
+      "sfo": {
+        "heatmap": 0.9009638100478572,
+        "heatmap_cells": 375,
+        "place": 0.7157670559755512
+      },
+      "sea": {
+        "heatmap": 0.9268013307991856,
+        "heatmap_cells": 299,
+        "place": 0.7021961556465479
+      },
+      "aus": {
+        "heatmap": 0.9408905908558207,
+        "heatmap_cells": 225,
+        "place": 0.7426467787717017
+      },
+      "chi": {
+        "heatmap": 0.9175180605244221,
+        "heatmap_cells": 364,
+        "place": 0.7923336852193187
+      },
+      "yto": {
+        "heatmap": 0.8942817200520109,
+        "heatmap_cells": 263,
+        "place": 0.7854583730434742
+      },
+      "lon": {
+        "heatmap": 0.8846403061111852,
+        "heatmap_cells": 820,
+        "place": 0.9129170822904227
+      },
+      "ber": {
+        "heatmap": 0.8835453748087392,
+        "heatmap_cells": 171,
+        "place": 0.8758274717741532
+      },
+      "par": {
+        "heatmap": 0.8171400129658523,
+        "heatmap_cells": 225,
+        "place": 0.8952248858973301
+      },
+      "sto": {
+        "heatmap": 0.8554987191495084,
+        "heatmap_cells": 116,
+        "place": 0.8325107253287879
+      },
+      "waw": {
+        "heatmap": 0.789587481799667,
+        "heatmap_cells": 49,
+        "place": 0.8454098362390468
+      },
+      "tyo": {
+        "heatmap": 0.8085412114015502,
+        "heatmap_cells": 449,
+        "place": 0.6763555423481116
+      },
+      "sel": {
+        "heatmap": 0.8534517642080395,
+        "heatmap_cells": 200,
+        "place": 0.6995062854937613
+      },
+      "sao": {
+        "heatmap": 0.7896063792757183,
+        "heatmap_cells": 260,
+        "place": 0.7493232894658475
+      }
+    },
+    "rogue": {
+      "nyc": {
+        "heatmap": 0.8304583742157299,
+        "heatmap_cells": 240,
+        "place": 0.8190525817839573
+      },
+      "lax": {
+        "heatmap": 0.84874509916288,
+        "heatmap_cells": 324,
+        "place": 0.7171512888281988
+      },
+      "sfo": {
+        "heatmap": 0.909691145245648,
+        "heatmap_cells": 177,
+        "place": 0.6949023644083214
+      },
+      "sea": {
+        "heatmap": 0.9029396339078224,
+        "heatmap_cells": 98,
+        "place": 0.6761670227469068
+      },
+      "aus": {
+        "heatmap": 0.866566031516371,
+        "heatmap_cells": 51,
+        "place": 0.7214930098003763
+      },
+      "chi": {
+        "heatmap": 0.851764403334954,
+        "heatmap_cells": 94,
+        "place": 0.7726424959425685
+      },
+      "yto": {
+        "heatmap": 0.8497601704830633,
+        "heatmap_cells": 73,
+        "place": 0.7719205757567977
+      },
+      "lon": {
+        "heatmap": 0.7565366237853105,
+        "heatmap_cells": 211,
+        "place": 0.9138406281290467
+      },
+      "ber": {
+        "heatmap": 0.8358464176647536,
+        "heatmap_cells": 71,
+        "place": 0.8901132573864652
+      },
+      "par": {
+        "heatmap": 0.8159050852931645,
+        "heatmap_cells": 100,
+        "place": 0.9042282289925689
+      },
+      "sto": {
+        "heatmap": 0.8129706567094401,
+        "heatmap_cells": 29,
+        "place": 0.8481613068291181
+      },
+      "waw": {
+        "heatmap": 0.7998097540743213,
+        "heatmap_cells": 22,
+        "place": 0.8610859562069137
+      },
+      "tyo": {
+        "heatmap": 0.7539596636098319,
+        "heatmap_cells": 155,
+        "place": 0.6725939627645944
+      },
+      "sel": {
+        "heatmap": 0.7865343374309559,
+        "heatmap_cells": 41,
+        "place": 0.6994172605130567
+      },
+      "sao": {
+        "heatmap": 0.8017958237492567,
+        "heatmap_cells": 125,
+        "place": 0.7290198655889344
+      }
+    },
+    "base": {
+      "nyc": {
+        "heatmap": 0.8010603196762418,
+        "heatmap_cells": 2206,
+        "place": 0.8196964421190771
+      },
+      "lax": {
+        "heatmap": 0.7737991349107477,
+        "heatmap_cells": 3139,
+        "place": 0.7446761716036494
+      },
+      "sfo": {
+        "heatmap": 0.7311176435100327,
+        "heatmap_cells": 809,
+        "place": 0.7022545075182516
+      },
+      "sea": {
+        "heatmap": 0.8137797806428598,
+        "heatmap_cells": 954,
+        "place": 0.6881363829454155
+      },
+      "aus": {
+        "heatmap": 0.739374472697866,
+        "heatmap_cells": 540,
+        "place": 0.736023986671798
+      },
+      "chi": {
+        "heatmap": 0.7833541001696899,
+        "heatmap_cells": 997,
+        "place": 0.7732327085303081
+      },
+      "yto": {
+        "heatmap": 0.7743009242567991,
+        "heatmap_cells": 920,
+        "place": 0.7761305591814964
+      },
+      "lon": {
+        "heatmap": 0.7526209227740509,
+        "heatmap_cells": 1915,
+        "place": 0.9182754707969888
+      },
+      "ber": {
+        "heatmap": 0.7633110366607698,
+        "heatmap_cells": 578,
+        "place": 0.8818049245754732
+      },
+      "par": {
+        "heatmap": 0.7932173340165352,
+        "heatmap_cells": 1061,
+        "place": 0.9016492406896569
+      },
+      "sto": {
+        "heatmap": 0.7079200025114472,
+        "heatmap_cells": 492,
+        "place": 0.8420569427340917
+      },
+      "waw": {
+        "heatmap": 0.7888628363890458,
+        "heatmap_cells": 396,
+        "place": 0.8586578588490005
+      },
+      "tyo": {
+        "heatmap": 0.4855031786602827,
+        "heatmap_cells": 955,
+        "place": 0.6881733741144506
+      },
+      "sel": {
+        "heatmap": 0.7531603733013104,
+        "heatmap_cells": 951,
+        "place": 0.7088101258027842
+      },
+      "sao": {
+        "heatmap": 0.8521176640569615,
+        "heatmap_cells": 2210,
+        "place": 0.736013752636812
+      }
+    }
+  },
+  "report": {
+    "heatmap": {
+      "spearman_cozy_vs_rogue_lift": 0.7678571428571429,
+      "spearman_cozy_raw_vs_base": -0.11785714285714285,
+      "spearman_rogue_raw_vs_base": 0.15357142857142858,
+      "spearman_cozy_lift_vs_base": -0.8607142857142858,
+      "spearman_rogue_lift_vs_base": -0.6357142857142857,
+      "cozy_top5": [
+        "tyo",
+        "aus",
+        "sfo",
+        "sto",
+        "lon"
+      ],
+      "rogue_top5": [
+        "tyo",
+        "sfo",
+        "aus",
+        "sto",
+        "sea"
+      ]
+    },
+    "place": {
+      "spearman_cozy_vs_rogue_lift": -0.13214285714285715,
+      "spearman_cozy_raw_vs_base": 0.9642857142857143,
+      "spearman_rogue_raw_vs_base": 0.9785714285714285,
+      "spearman_cozy_lift_vs_base": -0.29285714285714287,
+      "spearman_rogue_lift_vs_base": 0.7714285714285715,
+      "cozy_top5": [
+        "chi",
+        "sea",
+        "sfo",
+        "sao",
+        "nyc"
+      ],
+      "rogue_top5": [
+        "ber",
+        "sto",
+        "par",
+        "waw",
+        "chi"
+      ]
+    }
+  },
+  "resolved": 17,
+  "calls": 127
+}

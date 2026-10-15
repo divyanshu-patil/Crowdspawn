@@ -1,0 +1,1 @@
+{"request": {"path": "/search", "params": {"query": "Megabonk", "types": "urn:entity:videogame", "take": "5"}}, "status": 200, "body": {"results": []}}

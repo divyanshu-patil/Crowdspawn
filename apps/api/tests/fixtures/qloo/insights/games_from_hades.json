@@ -1,0 +1,1178 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:videogame",
+      "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+      "take": "3",
+      "feature.explainability": "true"
+    }
+  },
+  "status": 200,
+  "body": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Death's Door",
+          "entity_id": "E3883BFD-8B9F-4726-9F69-73A55930C9B5",
+          "type": "urn:entity",
+          "subtype": "urn:entity:videogame",
+          "properties": {
+            "akas": [
+              {
+                "value": "Death's Door",
+                "languages": [
+                  "pt_pt",
+                  "pl",
+                  "pt",
+                  "tr"
+                ]
+              }
+            ],
+            "slug": "deaths-door",
+            "genre": [
+              "Action",
+              "Adventure"
+            ],
+            "image": {},
+            "art_style": [
+              "3D",
+              "Stylized",
+              "Painterly"
+            ],
+            "developer": "Acid Nerve",
+            "platforms": [
+              "Xbox Series X",
+              "Xbox One",
+              "PC",
+              "PlayStation 5",
+              "PlayStation 4",
+              "Nintendo Switch"
+            ],
+            "publisher": "Devolver Digital",
+            "steam_tags": [
+              "Atmospheric",
+              "Action",
+              "Adventure",
+              "Singleplayer",
+              "Boss Fights",
+              "Exploration",
+              "Indie",
+              "Top-Down"
+            ],
+            "description": "You play as a Crow whose job is to reap souls; when an assigned soul is stolen you chase the thief into a realm untouched by death, battling overgrown beasts and tyrants while uncovering a somber, darkly comic mystery about the nature of the Doors and the flow of souls.",
+            "player_mode": [
+              "Single-player"
+            ],
+            "skill_level": [
+              "Moderate"
+            ],
+            "release_date": "2021-07-20",
+            "audience_tags": [
+              "beautiful worldbuilding",
+              "tight combat",
+              "memorable bosses",
+              "polished indie",
+              "moody soundtrack"
+            ],
+            "gameplay_type": [
+              "Single-player",
+              "Action-Adventure"
+            ],
+            "content_rating": "",
+            "emotional_tone": [
+              "melancholic",
+              "darkly comic",
+              "somber",
+              "wistful"
+            ],
+            "progression_type": [
+              "Fixed Difficulty",
+              "Ability-Based Progression"
+            ],
+            "camera_perspective": [
+              "Top-Down",
+              "Isometric"
+            ],
+            "short_descriptions": [
+              {
+                "value": "A Crow reaper tracks a stolen soul into a strange realm of overgrown beasts and greedy tyrants, uncovering a somber, darkly comic mystery about death and the Doors.",
+                "languages": [
+                  "en"
+                ]
+              },
+              {
+                "value": "Eine Krähe, die Seelen erntet, verfolgt eine gestohlene Seele in ein seltsames Reich übergroßer Bestien und gieriger Tyrannen und enthüllt ein düsteres, schwarzkomisches Geheimnis über den Tod und die Türen.",
+                "languages": [
+                  "de"
+                ]
+              },
+              {
+                "value": "Un cuervo segador persigue un alma robada hasta un reino extraño de bestias desmesuradas y tiranos codiciosos, descubriendo un misterio sombrío y oscuro sobre la muerte y las Puertas.",
+                "languages": [
+                  "es"
+                ]
+              },
+              {
+                "value": "Un corbeau faucheur poursuit une âme volée dans un royaume étrange d'énormes bêtes et de tyrans avides, découvrant un mystère sombre et souvent noir sur la mort et les Portes.",
+                "languages": [
+                  "fr"
+                ]
+              }
+            ],
+            "player_demographics": {
+              "primarygender": "All",
+              "popularregions": [
+                "North America",
+                "Europe",
+                "Asia"
+              ],
+              "targetagegroup": "Teens"
+            }
+          },
+          "popularity": 0.9618751081127832,
+          "tags": [
+            {
+              "id": "urn:tag:art_style:qloo:3d",
+              "name": "3D",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:stylized",
+              "name": "Stylized",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:painterly",
+              "name": "Painterly",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:beautiful_worldbuilding",
+              "name": "beautiful worldbuilding",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:tight_combat",
+              "name": "tight combat",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:memorable_bosses",
+              "name": "memorable bosses",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:polished_indie",
+              "name": "polished indie",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:moody_soundtrack",
+              "name": "moody soundtrack",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:melancholic",
+              "name": "melancholic",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:darkly_comic",
+              "name": "darkly comic",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:somber",
+              "name": "somber",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:wistful",
+              "name": "wistful",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:single_player",
+              "name": "Single-player",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:action_adventure",
+              "name": "Action-Adventure",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:action",
+              "name": "Action",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:adventure",
+              "name": "Adventure",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_series_x",
+              "name": "Xbox Series X",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_one",
+              "name": "Xbox One",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:pc",
+              "name": "PC",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:playstation_5",
+              "name": "PlayStation 5",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:playstation_4",
+              "name": "PlayStation 4",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:nintendo_switch",
+              "name": "Nintendo Switch",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:player_mode:qloo:single_player",
+              "name": "Single-player",
+              "type": "urn:tag:player_mode:qloo"
+            },
+            {
+              "id": "urn:tag:skill_level:qloo:moderate",
+              "name": "Moderate",
+              "type": "urn:tag:skill_level:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:atmospheric",
+              "name": "Atmospheric",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:action",
+              "name": "Action",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:adventure",
+              "name": "Adventure",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:singleplayer",
+              "name": "Singleplayer",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:boss_fights",
+              "name": "Boss Fights",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:exploration",
+              "name": "Exploration",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:indie",
+              "name": "Indie",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:top_down",
+              "name": "Top-Down",
+              "type": "urn:tag:category:qloo"
+            }
+          ],
+          "query": {
+            "affinity": 0.8751683805854009,
+            "explainability": {
+              "signal.interests.entities": [
+                {
+                  "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+                  "score": 1
+                }
+              ]
+            }
+          },
+          "disambiguation": "2021-07-20, Acid Nerve",
+          "external": {
+            "igdb": [
+              {
+                "id": "deaths-door"
+              }
+            ],
+            "imdb": [],
+            "steam": [
+              {
+                "id": "894020"
+              }
+            ],
+            "itunes": [],
+            "twitch": [
+              {
+                "id": "death's door"
+              }
+            ],
+            "netflix": [],
+            "twitter": [],
+            "facebook": [],
+            "wikidata": [
+              {
+                "id": "q107376501"
+              }
+            ],
+            "instagram": [],
+            "letterboxd": [],
+            "metacritic": [
+              {
+                "id": "1400641140",
+                "critic_rating": 85
+              }
+            ],
+            "google_play": [],
+            "rottentomatoes": []
+          }
+        },
+        {
+          "name": "Outer Wilds",
+          "entity_id": "EA0D6B19-199B-439B-809D-B60B4412E405",
+          "type": "urn:entity",
+          "subtype": "urn:entity:videogame",
+          "properties": {
+            "akas": [
+              {
+                "value": "Outer Wilds",
+                "languages": [
+                  "pt_pt",
+                  "pl",
+                  "pt",
+                  "tr"
+                ]
+              },
+              {
+                "value": "アウター・ワイルズ",
+                "languages": [
+                  "ja"
+                ]
+              }
+            ],
+            "slug": "outer-wilds",
+            "genre": [
+              "Adventure",
+              "Exploration",
+              "Puzzle",
+              "Open World",
+              "Action",
+              "Indie"
+            ],
+            "image": {
+              "url": "https://images.qloo.com/i/EA0D6B19-199B-439B-809D-B60B4412E405-420x-auto.jpg"
+            },
+            "art_style": [
+              "3D",
+              "Stylized",
+              "Low-Poly"
+            ],
+            "developer": "Mobius Digital, LLC",
+            "platforms": [
+              "PC",
+              "PlayStation 4",
+              "Xbox One",
+              "PlayStation 5",
+              "Xbox Series X",
+              "Nintendo Switch"
+            ],
+            "publisher": "Annapurna Interactive",
+            "steam_tags": [
+              "Open World",
+              "Exploration",
+              "Puzzle",
+              "Singleplayer",
+              "Atmospheric",
+              "Story Rich",
+              "Sci-fi",
+              "Mystery",
+              "Adventure"
+            ],
+            "description": "Outer Wilds is an open-world exploration mystery in which the player explores a small solar system trapped in a repeating time loop, investigating extinct civilizations, planetary hazards, and hidden secrets to uncover why the loop exists.",
+            "player_mode": [
+              "single-player"
+            ],
+            "skill_level": [
+              "moderate"
+            ],
+            "release_date": "2019-05-28",
+            "audience_tags": [
+              "time-loop",
+              "thought-provoking",
+              "beautiful soundtrack",
+              "exploration-focused",
+              "non-linear narrative",
+              "mystery-driven"
+            ],
+            "gameplay_type": [
+              "single-player",
+              "open-world",
+              "exploration",
+              "puzzle",
+              "narrative"
+            ],
+            "content_rating": "E10+",
+            "emotional_tone": [
+              "wonder",
+              "melancholic",
+              "curious",
+              "mysterious",
+              "contemplative"
+            ],
+            "progression_type": [
+              "non-linear",
+              "time-loop",
+              "exploration-based"
+            ],
+            "camera_perspective": [
+              "first-person"
+            ],
+            "short_descriptions": [
+              {
+                "value": "Explore a solar system trapped in an endless 22-minute time loop to uncover its mysteries before time resets.",
+                "languages": [
+                  "en"
+                ]
+              },
+              {
+                "value": "Explorez un système solaire pris dans une boucle temporelle de 22 minutes pour percer son mystère avant que le temps ne se réinitialise.",
+                "languages": [
+                  "fr"
+                ]
+              },
+              {
+                "value": "Erkunde ein Sonnensystem, das in einer 22-minütigen Zeitschleife gefangen ist, und enthülle sein Geheimnis, bevor die Zeit zurückgesetzt wird.",
+                "languages": [
+                  "de"
+                ]
+              },
+              {
+                "value": "Explora un sistema solar atrapado en un bucle temporal de 22 minutos para desvelar su misterio antes de que el tiempo se reinicie.",
+                "languages": [
+                  "es"
+                ]
+              }
+            ],
+            "player_demographics": {
+              "primarygender": "All",
+              "popularregions": [
+                "North America",
+                "Europe",
+                "Asia"
+              ],
+              "targetagegroup": "All Ages"
+            }
+          },
+          "popularity": 0.9795537104307214,
+          "tags": [
+            {
+              "id": "urn:tag:art_style:qloo:3d",
+              "name": "3D",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:stylized",
+              "name": "Stylized",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:low_poly",
+              "name": "Low-Poly",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:time_loop",
+              "name": "time-loop",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:thought_provoking",
+              "name": "thought-provoking",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:beautiful_soundtrack",
+              "name": "beautiful soundtrack",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:exploration_focused",
+              "name": "exploration-focused",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:non_linear_narrative",
+              "name": "non-linear narrative",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:mystery_driven",
+              "name": "mystery-driven",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:wonder",
+              "name": "wonder",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:melancholic",
+              "name": "melancholic",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:curious",
+              "name": "curious",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:mysterious",
+              "name": "mysterious",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:contemplative",
+              "name": "contemplative",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:single_player",
+              "name": "single-player",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:open_world",
+              "name": "open-world",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:exploration",
+              "name": "exploration",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:puzzle",
+              "name": "puzzle",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:narrative",
+              "name": "narrative",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:adventure",
+              "name": "Adventure",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:exploration",
+              "name": "Exploration",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:puzzle",
+              "name": "Puzzle",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:open_world",
+              "name": "Open World",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:action",
+              "name": "Action",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:indie",
+              "name": "Indie",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:pc",
+              "name": "PC",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:playstation_4",
+              "name": "PlayStation 4",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_one",
+              "name": "Xbox One",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:playstation_5",
+              "name": "PlayStation 5",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_series_x",
+              "name": "Xbox Series X",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:nintendo_switch",
+              "name": "Nintendo Switch",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:player_mode:qloo:single_player",
+              "name": "single-player",
+              "type": "urn:tag:player_mode:qloo"
+            },
+            {
+              "id": "urn:tag:skill_level:qloo:moderate",
+              "name": "moderate",
+              "type": "urn:tag:skill_level:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:open_world",
+              "name": "Open World",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:exploration",
+              "name": "Exploration",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:puzzle",
+              "name": "Puzzle",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:singleplayer",
+              "name": "Singleplayer",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:atmospheric",
+              "name": "Atmospheric",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:story_rich",
+              "name": "Story Rich",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:sci_fi",
+              "name": "Sci-fi",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:mystery",
+              "name": "Mystery",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:adventure",
+              "name": "Adventure",
+              "type": "urn:tag:category:qloo"
+            }
+          ],
+          "query": {
+            "affinity": 0.8721993675119952,
+            "explainability": {
+              "signal.interests.entities": [
+                {
+                  "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+                  "score": 1
+                }
+              ]
+            }
+          },
+          "disambiguation": "2019-05-28, Mobius Digital, LLC",
+          "external": {
+            "igdb": [
+              {
+                "id": "outer-wilds"
+              }
+            ],
+            "imdb": [
+              {
+                "id": "tt10949454"
+              }
+            ],
+            "steam": [
+              {
+                "id": "753640"
+              }
+            ],
+            "itunes": [],
+            "twitch": [
+              {
+                "id": "outer wilds"
+              }
+            ],
+            "netflix": [],
+            "twitter": [],
+            "facebook": [],
+            "wikidata": [
+              {
+                "id": "q19631660"
+              }
+            ],
+            "instagram": [],
+            "letterboxd": [],
+            "metacritic": [
+              {
+                "id": "1400744100",
+                "critic_rating": 85
+              }
+            ],
+            "google_play": [],
+            "rottentomatoes": []
+          }
+        },
+        {
+          "name": "Loop Hero",
+          "entity_id": "473F5DEF-A206-4958-BC9A-FA03A6E7658C",
+          "type": "urn:entity",
+          "subtype": "urn:entity:videogame",
+          "properties": {
+            "akas": [
+              {
+                "value": "ループ・ヒーロー",
+                "languages": [
+                  "ja"
+                ]
+              },
+              {
+                "value": "Loop Hero",
+                "languages": [
+                  "pt_pt",
+                  "pl",
+                  "pt",
+                  "tr"
+                ]
+              }
+            ],
+            "slug": "loop-hero",
+            "genre": [
+              "Role-Playing",
+              "Strategy",
+              "Roguelike",
+              "Card Game"
+            ],
+            "image": {},
+            "art_style": [
+              "2D",
+              "Pixel Art",
+              "Retro",
+              "Minimalist UI"
+            ],
+            "developer": "Four Quarters",
+            "platforms": [
+              "PC (Windows)",
+              "Nintendo Switch",
+              "Xbox One",
+              "Xbox Series X",
+              "iOS (iPhone/iPad)"
+            ],
+            "publisher": "Devolver Digital",
+            "steam_tags": [
+              "Roguelike",
+              "Indie",
+              "Strategy",
+              "RPG",
+              "Deckbuilding",
+              "Card Game",
+              "Pixel Graphics",
+              "Singleplayer",
+              "Difficult",
+              "Procedural Generation"
+            ],
+            "description": "Loop Hero is an indie roguelike deck-building RPG in which a cursed world is trapped in a repeating loop; players place cards to create terrain, buildings and enemies along the hero's autonomous path, then watch runs play out and use resources to expand the camp and unlock long-term upgrades.",
+            "player_mode": [
+              "single-player"
+            ],
+            "skill_level": [
+              "Casual to Moderate (strategy-focused)"
+            ],
+            "release_date": "2021-03-04",
+            "audience_tags": [
+              "addictive",
+              "strategic",
+              "innovative mechanics",
+              "high replayability",
+              "system-driven"
+            ],
+            "gameplay_type": [
+              "Single-player",
+              "Roguelike",
+              "Deck-building",
+              "Strategy",
+              "Role-Playing",
+              "Auto-battler",
+              "Procedural Generation"
+            ],
+            "content_rating": "",
+            "emotional_tone": [
+              "Dark",
+              "Melancholic",
+              "Mysterious",
+              "Tactical"
+            ],
+            "progression_type": [
+              "Roguelike",
+              "Run-based",
+              "Meta-progression"
+            ],
+            "camera_perspective": [
+              "Top-down"
+            ],
+            "short_descriptions": [
+              {
+                "value": "Ein einsamer Held durchläuft eine endlose Schleife, während der Spieler Karten legt, um Gelände zu verändern, Feinde zu beschwören und die Welt zu retten, um den Fluch des Lichs zu brechen.",
+                "languages": [
+                  "de"
+                ]
+              },
+              {
+                "value": "Un héroe recorre un bucle eterno mientras el jugador usa cartas para alterar el terreno, invocar enemigos y reconstruir el mundo para romper la maldición del lich.",
+                "languages": [
+                  "es"
+                ]
+              },
+              {
+                "value": "A lone hero repeatedly traverses an endless loop while the player places cards to alter terrain, summon foes, and rebuild the world to break a lich's timeless curse.",
+                "languages": [
+                  "en"
+                ]
+              },
+              {
+                "value": "Un héros parcourt une boucle éternelle tandis que le joueur place des cartes pour modifier le terrain, invoquer des ennemis et reconstruire le monde afin de briser la malédiction du lich.",
+                "languages": [
+                  "fr"
+                ]
+              }
+            ],
+            "player_demographics": {
+              "primarygender": "All",
+              "popularregions": [
+                "North America",
+                "Europe",
+                "Asia"
+              ],
+              "targetagegroup": "Teens"
+            }
+          },
+          "popularity": 0.9483134405812144,
+          "tags": [
+            {
+              "id": "urn:tag:art_style:qloo:2d",
+              "name": "2D",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:pixel_art",
+              "name": "Pixel Art",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:retro",
+              "name": "Retro",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:art_style:qloo:minimalist_ui",
+              "name": "Minimalist UI",
+              "type": "urn:tag:art_style:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:addictive",
+              "name": "addictive",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:strategic",
+              "name": "strategic",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:innovative_mechanics",
+              "name": "innovative mechanics",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:high_replayability",
+              "name": "high replayability",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:audience:qloo:system_driven",
+              "name": "system-driven",
+              "type": "urn:tag:audience:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:dark",
+              "name": "Dark",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:melancholic",
+              "name": "Melancholic",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:mysterious",
+              "name": "Mysterious",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:emotional_tone:qloo:tactical",
+              "name": "Tactical",
+              "type": "urn:tag:emotional_tone:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:single_player",
+              "name": "Single-player",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:roguelike",
+              "name": "Roguelike",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:deck_building",
+              "name": "Deck-building",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:strategy",
+              "name": "Strategy",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:role_playing",
+              "name": "Role-Playing",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:auto_battler",
+              "name": "Auto-battler",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:gameplay_type:qloo:procedural_generation",
+              "name": "Procedural Generation",
+              "type": "urn:tag:gameplay_type:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:role_playing",
+              "name": "Role-Playing",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:strategy",
+              "name": "Strategy",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:roguelike",
+              "name": "Roguelike",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:genre:qloo:card_game",
+              "name": "Card Game",
+              "type": "urn:tag:genre:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:pc_windows_",
+              "name": "PC (Windows)",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:nintendo_switch",
+              "name": "Nintendo Switch",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_one",
+              "name": "Xbox One",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:xbox_series_x",
+              "name": "Xbox Series X",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:platform:qloo:ios_iphone_ipad_",
+              "name": "iOS (iPhone/iPad)",
+              "type": "urn:tag:platform:qloo"
+            },
+            {
+              "id": "urn:tag:player_mode:qloo:single_player",
+              "name": "single-player",
+              "type": "urn:tag:player_mode:qloo"
+            },
+            {
+              "id": "urn:tag:skill_level:qloo:casual_to_moderate_strategy_focused_",
+              "name": "Casual to Moderate (strategy-focused)",
+              "type": "urn:tag:skill_level:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:roguelike",
+              "name": "Roguelike",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:indie",
+              "name": "Indie",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:strategy",
+              "name": "Strategy",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:rpg",
+              "name": "RPG",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:deckbuilding",
+              "name": "Deckbuilding",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:card_game",
+              "name": "Card Game",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:pixel_graphics",
+              "name": "Pixel Graphics",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:singleplayer",
+              "name": "Singleplayer",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:difficult",
+              "name": "Difficult",
+              "type": "urn:tag:category:qloo"
+            },
+            {
+              "id": "urn:tag:category:qloo:procedural_generation",
+              "name": "Procedural Generation",
+              "type": "urn:tag:category:qloo"
+            }
+          ],
+          "query": {
+            "affinity": 0.8585989464807253,
+            "explainability": {
+              "signal.interests.entities": [
+                {
+                  "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+                  "score": 1
+                }
+              ]
+            }
+          },
+          "disambiguation": "2021-03-04, Four Quarters",
+          "external": {
+            "igdb": [
+              {
+                "id": "loop-hero"
+              }
+            ],
+            "imdb": [
+              {
+                "id": "tt14355870"
+              }
+            ],
+            "steam": [
+              {
+                "id": "1282730"
+              }
+            ],
+            "itunes": [],
+            "twitch": [
+              {
+                "id": "loop hero"
+              }
+            ],
+            "netflix": [],
+            "twitter": [],
+            "facebook": [],
+            "wikidata": [
+              {
+                "id": "q105683340"
+              }
+            ],
+            "instagram": [],
+            "letterboxd": [],
+            "metacritic": [
+              {
+                "id": "1400752975",
+                "critic_rating": 82
+              }
+            ],
+            "google_play": [],
+            "rottentomatoes": []
+          }
+        }
+      ]
+    },
+    "query": {
+      "explainability": {
+        "signal.interests.entities": {
+          "effect_on_top3_recs": [
+            {
+              "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+              "avg_score": 1
+            }
+          ],
+          "effect_on_top5_recs": [
+            {
+              "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+              "avg_score": 1
+            }
+          ],
+          "effect_on_top10_recs": [
+            {
+              "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+              "avg_score": 1
+            }
+          ],
+          "effect_on_all_recs": [
+            {
+              "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+              "avg_score": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}
