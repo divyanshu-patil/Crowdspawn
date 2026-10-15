@@ -1,0 +1,109 @@
+"""Validates a brief against the plan's Qloo results (L7). Returns a list of human-readable errors."""
+
+import re
+
+from .pipeline.cities import regions
+from .pipeline.resolve import normalize
+from .schemas import BriefSection
+
+CITE = re.compile(r"\[(q\d+(?:\s*,\s*q\d+)*)\]")  # [q3] or [q3, q4]
+BOLD = re.compile(r"\*\*(.+?)\*\*")
+NUMBER = re.compile(r"\$?\d+(?:,\d{3})*(?:\.\d+)?%?")
+# Cities outside the candidate list, so an invented one is caught even if not bolded.
+EXTRA_CITIES = (
+    "Amsterdam",
+    "Atlanta",
+    "Bangkok",
+    "Barcelona",
+    "Beijing",
+    "Boston",
+    "Buenos Aires",
+    "Cairo",
+    "Copenhagen",
+    "Dallas",
+    "Delhi",
+    "Denver",
+    "Dubai",
+    "Dublin",
+    "Helsinki",
+    "Hong Kong",
+    "Houston",
+    "Istanbul",
+    "Jakarta",
+    "Kyiv",
+    "Lagos",
+    "Lima",
+    "Lisbon",
+    "Madrid",
+    "Manila",
+    "Melbourne",
+    "Miami",
+    "Milan",
+    "Montreal",
+    "Moscow",
+    "Mumbai",
+    "Munich",
+    "Osaka",
+    "Oslo",
+    "Philadelphia",
+    "Portland",
+    "Prague",
+    "Rome",
+    "San Diego",
+    "Santiago",
+    "Shanghai",
+    "Taipei",
+    "Vancouver",
+    "Vienna",
+    "Zurich",
+    "Bogota",
+    "Brisbane",
+    "Auckland",
+    "Kuala Lumpur",
+    "Hamburg",
+)
+
+
+def _to_float(token: str) -> float:
+    return float(token.replace("$", "").replace(",", "").replace("%", ""))
+
+
+def validate(
+    sections: list[BriefSection],
+    *,
+    trace_ids: set[str],
+    plan_cities: set[str],
+    known_names: set[str],
+    allowed_numbers: set[float],
+) -> list[str]:
+    errors: list[str] = []
+    known = {normalize(n) for n in known_names | plan_cities}
+    plan_city_norm = {normalize(c) for c in plan_cities}
+    gazetteer = {normalize(r.name) for r in regions().values()} | {
+        normalize(c) for c in EXTRA_CITIES
+    }
+
+    for s in sections:
+        text = f"{s.heading}\n{s.body}"
+        cites = [c.strip() for g in CITE.findall(text) for c in g.split(",")]
+        errors += [f"unknown citation [{c}]" for c in cites if c not in trace_ids]
+        bolds = BOLD.findall(text)
+        errors += [f"unknown name **{b}**" for b in bolds if normalize(b) not in known]
+
+        plain = normalize(BOLD.sub(" ", CITE.sub(" ", text)))
+        for city in gazetteer - plan_city_norm:
+            if re.search(rf"\b{re.escape(city)}\b", plain):
+                errors.append(f"city not in results: {city}")
+
+        numbers = NUMBER.findall(BOLD.sub(" ", CITE.sub(" ", text)))
+        for n in numbers:
+            v = _to_float(n)
+            small_count = v.is_integer() and v <= 10 and "%" not in n and "$" not in n
+            if not small_count and not any(abs(v - a) < 0.006 for a in allowed_numbers):
+                errors.append(f"number not in results: {n}")
+
+        if (
+            bolds or any(not _to_float(n).is_integer() or _to_float(n) > 10 for n in numbers)
+        ) and not cites:
+            errors.append(f"section '{s.heading}' makes claims without a citation")
+    return errors

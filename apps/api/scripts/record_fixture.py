@@ -43,8 +43,11 @@ def save(name: str, path: str, params: dict[str, str], status: int, body: object
     out = FIXTURES / f"{name}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(
-        json.dumps({"request": {"path": path, "params": params}, "status": status, "body": body},
-                   indent=2, ensure_ascii=False)
+        json.dumps(
+            {"request": {"path": path, "params": params}, "status": status, "body": body},
+            indent=2,
+            ensure_ascii=False,
+        )
     )
     return out
 

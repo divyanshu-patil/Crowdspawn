@@ -1,0 +1,1131 @@
+{
+ "id": "sample",
+ "status": "done",
+ "input": {
+  "game": {
+   "title": "Ember Crypt",
+   "description": "Roguelike dungeon crawler",
+   "tags": [
+    "roguelike"
+   ]
+  },
+  "comp_entity_ids": [
+   "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+   "870FBF81-80F8-401A-9621-63DBF6AB6C07",
+   "20BEE4A4-44C1-49CC-962D-CC0B4EE80102"
+  ],
+  "regions": [
+   "nyc",
+   "lax",
+   "sfo",
+   "sea",
+   "yto",
+   "lon",
+   "ber",
+   "par",
+   "waw",
+   "tyo",
+   "sel",
+   "sao"
+  ],
+  "budget_usd": 5000.0,
+  "previous_game_entity_ids": [],
+  "mode": "fast"
+ },
+ "comps": [
+  {
+   "entity_id": "BA00D00A-E4CD-48C0-A22E-CFC52039D618",
+   "name": "Hades",
+   "image_url": "https://images.qloo.com/i/BA00D00A-E4CD-48C0-A22E-CFC52039D618-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q1"
+  },
+  {
+   "entity_id": "870FBF81-80F8-401A-9621-63DBF6AB6C07",
+   "name": "Dead Cells",
+   "image_url": "https://images.qloo.com/i/870FBF81-80F8-401A-9621-63DBF6AB6C07-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q1"
+  },
+  {
+   "entity_id": "20BEE4A4-44C1-49CC-962D-CC0B4EE80102",
+   "name": "Slay the Spire",
+   "image_url": "https://images.qloo.com/i/20BEE4A4-44C1-49CC-962D-CC0B4EE80102-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q1"
+  }
+ ],
+ "dropped_comps": [],
+ "expanded": [
+  {
+   "entity_id": "473F5DEF-A206-4958-BC9A-FA03A6E7658C",
+   "name": "Loop Hero",
+   "affinity": 0.8867,
+   "why": "Driven by fans of Hades 34%, Slay the Spire 34%, Dead Cells 32%. Qloo tags: addictive, strategic, innovative mechanics, high replayability.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "F48CC177-4419-4290-8048-3A58A24FDDE9",
+   "name": "Monster Train",
+   "affinity": 0.8829,
+   "why": "Driven by fans of Slay the Spire 34%, Hades 34%, Dead Cells 33%. Qloo tags: Addictive, High Replayability, Strategic Depth, Challenging.",
+   "image_url": "https://images.qloo.com/i/F48CC177-4419-4290-8048-3A58A24FDDE9-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "D99CD55E-6858-4212-9C2F-94F1100CEE86",
+   "name": "Wizard of Legend",
+   "affinity": 0.8774,
+   "why": "Driven by fans of Dead Cells 35%, Slay the Spire 34%, Hades 31%. Qloo tags: skill-based, tight combat, addictive, spell customization.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "81A38BCC-EC90-4496-95B6-190989947C04",
+   "name": "Blasphemous",
+   "affinity": 0.8757,
+   "why": "Driven by fans of Dead Cells 35%, Hades 33%, Slay the Spire 32%. Qloo tags: challenging, rewarding, artful pixel art, deep lore.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "69095EB6-D3D5-4663-9D21-A52892260985",
+   "name": "Risk of Rain 2",
+   "affinity": 0.8751,
+   "why": "Driven by fans of Slay the Spire 34%, Dead Cells 33%, Hades 33%. Qloo tags: High replayability, Challenging, Team-oriented, Loot-driven.",
+   "image_url": "https://images.qloo.com/i/69095EB6-D3D5-4663-9D21-A52892260985-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "62BF1BB3-1335-40BB-8E9D-000FABEFB7D5",
+   "name": "Into the Breach",
+   "affinity": 0.8694,
+   "why": "Driven by fans of Slay the Spire 35%, Dead Cells 34%, Hades 31%. Qloo tags: tight gameplay, strategic depth, replayable, short play sessions.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "name": "Hollow Knight",
+   "affinity": 0.869,
+   "why": "Driven by fans of Dead Cells 35%, Slay the Spire 33%, Hades 33%. Qloo tags: tight controls, deep lore, challenging gameplay, exploration-heavy.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "7E2607D2-7287-40DA-8D4E-CC46E03CA1DF",
+   "name": "Noita",
+   "affinity": 0.8685,
+   "why": "Driven by fans of Slay the Spire 34%, Dead Cells 34%, Hades 33%. Qloo tags: challenging, high replayability, emergent interactions, creative spellcraft.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "DC69C093-7554-4744-9B4C-14EF5680FFFC",
+   "name": "Spelunky 2",
+   "affinity": 0.8655,
+   "why": "Driven by fans of Dead Cells 34%, Hades 33%, Slay the Spire 33%. Qloo tags: high difficulty, replayable, skill-based, procedural.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "92EFB28F-15B4-4635-95D2-25920023BD75",
+   "name": "Curse of the Dead Gods",
+   "affinity": 0.8631,
+   "why": "Driven by fans of Dead Cells 34%, Hades 33%, Slay the Spire 33%. Qloo tags: challenging combat, addictive run-based progression, loot-hunting, metaprogression.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "49714F7A-DBE4-49B8-9722-0493F09C894D",
+   "name": "Moonlighter",
+   "affinity": 0.8508,
+   "why": "Driven by fans of Dead Cells 35%, Slay the Spire 33%, Hades 32%. Qloo tags: addictive loop, shopkeeping mechanics, loot-driven, retro aesthetics.",
+   "image_url": "https://images.qloo.com/i/49714F7A-DBE4-49B8-9722-0493F09C894D-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "A9B106D7-4225-40A4-9E84-E49D8195B750",
+   "name": "Darkest Dungeon",
+   "affinity": 0.8479,
+   "why": "Driven by fans of Slay the Spire 37%, Dead Cells 33%, Hades 30%. Qloo tags: challenging, punishing difficulty, dark atmosphere, unique mechanics.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "E3883BFD-8B9F-4726-9F69-73A55930C9B5",
+   "name": "Death's Door",
+   "affinity": 0.8444,
+   "why": "Driven by fans of Hades 36%, Dead Cells 33%, Slay the Spire 31%. Qloo tags: beautiful worldbuilding, tight combat, memorable bosses, polished indie.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "B2F3AA50-DBF1-4723-9639-DA0B9C1792EE",
+   "name": "Void Bastards",
+   "affinity": 0.8429,
+   "why": "Driven by fans of Dead Cells 34%, Hades 33%, Slay the Spire 33%. Qloo tags: challenging, stylized visuals, strategy-focused shooter, replayable.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "78632E08-6109-4FA6-A232-8312F8B44E79",
+   "name": "Enter the Gungeon",
+   "affinity": 0.8416,
+   "why": "Driven by fans of Dead Cells 36%, Slay the Spire 34%, Hades 30%. Qloo tags: high replayability, skill-based, addictive, loot-focused.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "007E699A-5489-470B-BE1D-D5276FA94302",
+   "name": "The Messenger",
+   "affinity": 0.8387,
+   "why": "Driven by fans of Dead Cells 35%, Hades 32%, Slay the Spire 32%. Qloo tags: challenging, story-rich, throwback, nostalgic.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "DBBE97B5-C1BD-42E2-B63F-359096C40AC3",
+   "name": "CrossCode",
+   "affinity": 0.8379,
+   "why": "Driven by fans of Hades 34%, Dead Cells 33%, Slay the Spire 33%. Qloo tags: tight controls, challenging puzzles, excellent soundtrack, deep combat.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "59A867E7-F6E1-4D98-986A-82586FB3109F",
+   "name": "Inscryption",
+   "affinity": 0.8372,
+   "why": "Driven by fans of Hades 36%, Slay the Spire 33%, Dead Cells 31%. Qloo tags: innovative mechanics, replayable, cryptic puzzles, meta storytelling.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "FC14952D-5C27-48D8-908A-044ABD07FEAF",
+   "name": "Celeste",
+   "affinity": 0.8366,
+   "why": "Driven by fans of Dead Cells 35%, Hades 32%, Slay the Spire 32%. Qloo tags: addictive, rewarding, thought-provoking, motivational.",
+   "image_url": "https://images.qloo.com/i/FC14952D-5C27-48D8-908A-044ABD07FEAF-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "CF0BD4F2-DDFB-4D84-9E32-8FD4731F20C8",
+   "name": "Carrion",
+   "affinity": 0.8355,
+   "why": "Driven by fans of Hades 35%, Dead Cells 34%, Slay the Spire 32%. Qloo tags: unique premise, reverse horror, gory, fast-paced.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  }
+ ],
+ "cities": [
+  {
+   "region_id": "tyo",
+   "name": "Tokyo",
+   "country": "JP",
+   "lat": 35.68,
+   "lon": 139.69,
+   "lift": 1.706,
+   "target_score": 0.8282,
+   "baseline_score": 0.4855,
+   "cells": 339,
+   "confidence": "high",
+   "budget_share": 25.35,
+   "budget_usd": 1267.67,
+   "source": "qloo",
+   "result_ids": [
+    "q21",
+    "q22"
+   ]
+  },
+  {
+   "region_id": "sfo",
+   "name": "San Francisco",
+   "country": "US",
+   "lat": 37.77,
+   "lon": -122.42,
+   "lift": 1.185,
+   "target_score": 0.8663,
+   "baseline_score": 0.7311,
+   "cells": 179,
+   "confidence": "high",
+   "budget_share": 17.61,
+   "budget_usd": 880.53,
+   "source": "qloo",
+   "result_ids": [
+    "q7",
+    "q8"
+   ]
+  },
+  {
+   "region_id": "sel",
+   "name": "Seoul",
+   "country": "KR",
+   "lat": 37.57,
+   "lon": 126.98,
+   "lift": 1.132,
+   "target_score": 0.8522,
+   "baseline_score": 0.7532,
+   "cells": 92,
+   "confidence": "medium",
+   "budget_share": 10.1,
+   "budget_usd": 504.69,
+   "source": "qloo",
+   "result_ids": [
+    "q23",
+    "q24"
+   ]
+  },
+  {
+   "region_id": "ber",
+   "name": "Berlin",
+   "country": "DE",
+   "lat": 52.52,
+   "lon": 13.4,
+   "lift": 1.104,
+   "target_score": 0.8427,
+   "baseline_score": 0.7633,
+   "cells": 90,
+   "confidence": "medium",
+   "budget_share": 9.85,
+   "budget_usd": 492.21,
+   "source": "qloo",
+   "result_ids": [
+    "q15",
+    "q16"
+   ]
+  },
+  {
+   "region_id": "sea",
+   "name": "Seattle",
+   "country": "US",
+   "lat": 47.61,
+   "lon": -122.33,
+   "lift": 1.059,
+   "target_score": 0.8617,
+   "baseline_score": 0.8138,
+   "cells": 99,
+   "confidence": "medium",
+   "budget_share": 9.44,
+   "budget_usd": 472.14,
+   "source": "qloo",
+   "result_ids": [
+    "q9",
+    "q10"
+   ]
+  },
+  {
+   "region_id": "lax",
+   "name": "Los Angeles",
+   "country": "US",
+   "lat": 34.05,
+   "lon": -118.25,
+   "lift": 1.049,
+   "target_score": 0.8117,
+   "baseline_score": 0.7738,
+   "cells": 381,
+   "confidence": "medium",
+   "budget_share": 9.35,
+   "budget_usd": 467.68,
+   "source": "qloo",
+   "result_ids": [
+    "q5",
+    "q6"
+   ]
+  },
+  {
+   "region_id": "yto",
+   "name": "Toronto",
+   "country": "CA",
+   "lat": 43.65,
+   "lon": -79.38,
+   "lift": 1.034,
+   "target_score": 0.8005,
+   "baseline_score": 0.7743,
+   "cells": 78,
+   "confidence": "medium",
+   "budget_share": 9.22,
+   "budget_usd": 461.0,
+   "source": "qloo",
+   "result_ids": [
+    "q11",
+    "q12"
+   ]
+  },
+  {
+   "region_id": "par",
+   "name": "Paris",
+   "country": "FR",
+   "lat": 48.86,
+   "lon": 2.35,
+   "lift": 1.019,
+   "target_score": 0.8086,
+   "baseline_score": 0.7932,
+   "cells": 118,
+   "confidence": "low",
+   "budget_share": 4.54,
+   "budget_usd": 227.15,
+   "source": "qloo",
+   "result_ids": [
+    "q17",
+    "q18"
+   ]
+  },
+  {
+   "region_id": "waw",
+   "name": "Warsaw",
+   "country": "PL",
+   "lat": 52.23,
+   "lon": 21.01,
+   "lift": 1.018,
+   "target_score": 0.8033,
+   "baseline_score": 0.7889,
+   "cells": 29,
+   "confidence": "low",
+   "budget_share": 4.54,
+   "budget_usd": 226.93,
+   "source": "qloo",
+   "result_ids": [
+    "q19",
+    "q20"
+   ]
+  },
+  {
+   "region_id": "nyc",
+   "name": "New York",
+   "country": "US",
+   "lat": 40.73,
+   "lon": -73.99,
+   "lift": 1.0,
+   "target_score": 0.801,
+   "baseline_score": 0.8011,
+   "cells": 260,
+   "confidence": "low",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q3",
+    "q4"
+   ]
+  },
+  {
+   "region_id": "lon",
+   "name": "London",
+   "country": "GB",
+   "lat": 51.51,
+   "lon": -0.13,
+   "lift": 0.997,
+   "target_score": 0.7505,
+   "baseline_score": 0.7526,
+   "cells": 241,
+   "confidence": "low",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q13",
+    "q14"
+   ]
+  },
+  {
+   "region_id": "sao",
+   "name": "Sao Paulo",
+   "country": "BR",
+   "lat": -23.55,
+   "lon": -46.63,
+   "lift": 0.931,
+   "target_score": 0.7932,
+   "baseline_score": 0.8521,
+   "cells": 178,
+   "confidence": "medium",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q25",
+    "q26"
+   ]
+  }
+ ],
+ "audience": {
+  "age": [
+   {
+    "band": "24 and under",
+    "index": -0.17
+   },
+   {
+    "band": "25-29",
+    "index": -0.022
+   },
+   {
+    "band": "30-34",
+    "index": -0.275
+   },
+   {
+    "band": "35-44",
+    "index": 0.081
+   },
+   {
+    "band": "45-54",
+    "index": -0.246
+   },
+   {
+    "band": "55+",
+    "index": -0.007
+   }
+  ],
+  "gender": [
+   {
+    "label": "male",
+    "index": 0.185
+   },
+   {
+    "label": "female",
+    "index": -0.185
+   }
+  ],
+  "source": "qloo",
+  "result_id": "q27"
+ },
+ "partners": {
+  "artist": [
+   {
+    "entity_id": "52DA05FF-7621-4225-8251-4F289481751E",
+    "name": "SEGA Sound Team",
+    "affinity": 0.9517,
+    "why": "Driven by fans of Risk of Rain 2 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Chiptune, Synthesizers, Synthwave, Melodic.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/52DA05FF-7621-4225-8251-4F289481751E-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "4EA49AA6-ED23-4A8E-AC03-324017E6AF09",
+    "name": "Lena Raine",
+    "affinity": 0.9508,
+    "why": "Driven by fans of Risk of Rain 2 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Emotional, Narrative-Focused, Synth-Textured, Synthwave.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/4EA49AA6-ED23-4A8E-AC03-324017E6AF09-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "8E2F56FC-71D6-4887-B06E-87FE19279ADF",
+    "name": "2 Mello",
+    "affinity": 0.9498,
+    "why": "Driven by fans of Wizard of Legend 11%, Monster Train 11%, Risk of Rain 2 11%. Qloo tags: Drum Machine, Electronic, Ambient, Gaming.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/8E2F56FC-71D6-4887-B06E-87FE19279ADF-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "7E4732D5-7B8C-4A5D-87EE-D286CE39A00D",
+    "name": "C418",
+    "affinity": 0.9492,
+    "why": "Driven by fans of Risk of Rain 2 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Ambient, Passionate, Introspective, Ambient Electronic.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/7E4732D5-7B8C-4A5D-87EE-D286CE39A00D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "9C11B35A-CA89-4C10-B6AC-DB15E689A247",
+    "name": "\u30a2\u30c8\u30e9\u30b9\u30b5\u30a6\u30f3\u30c9\u30c1\u30fc\u30e0",
+    "affinity": 0.9485,
+    "why": "Driven by fans of Hades 11%, Risk of Rain 2 11%, Wizard of Legend 11%. Qloo tags: Orchestral Rock, Electronic Rock, Atmospheric, Electronic Rock Fusion.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/9C11B35A-CA89-4C10-B6AC-DB15E689A247-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "FD4563F4-446D-4B2A-9EDF-3BE160C913D8",
+    "name": "DM DOKURO",
+    "affinity": 0.9442,
+    "why": "Driven by fans of Wizard of Legend 12%, Monster Train 12%, Risk of Rain 2 12%. Qloo tags: Melodic, Synthwave, Video Game Music Composers.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/FD4563F4-446D-4B2A-9EDF-3BE160C913D8-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "7B44C9BC-FEB8-4956-B0C8-544C419F6FBA",
+    "name": "Pascal Michael Stiefel",
+    "affinity": 0.9438,
+    "why": "Driven by fans of Wizard of Legend 12%, Monster Train 11%, Risk of Rain 2 11%. Qloo tags: Expressive, Game, Introspection, Engaging.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/7B44C9BC-FEB8-4956-B0C8-544C419F6FBA-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "4E1F49D5-1466-40BF-8AF8-B9D649A058E4",
+    "name": "Garoad",
+    "affinity": 0.9432,
+    "why": "Driven by fans of Risk of Rain 2 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Drums, 6, Emotional, Passionate.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/4E1F49D5-1466-40BF-8AF8-B9D649A058E4-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q28"
+   },
+   {
+    "entity_id": "79BF19C9-7674-44CC-80E7-7B9A9A03D024",
+    "name": "Kero Kero Bonito",
+    "affinity": 0.9612,
+    "why": "Driven by fans of Hades 12%, Hollow Knight 11%, Risk of Rain 2 11%. Qloo tags: Experimental Pop, Catchy, Keyboards.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/79BF19C9-7674-44CC-80E7-7B9A9A03D024-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q32"
+   },
+   {
+    "entity_id": "A12CDA85-4757-485C-ABAF-1418A1C71FDC",
+    "name": "Polkadot Stingray",
+    "affinity": 0.9589,
+    "why": "Driven by fans of Hades 12%, Risk of Rain 2 11%, Wizard of Legend 11%. Qloo tags: J-Rock, Alternative Rock, Red Hot Chili Peppers, Catchy.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/A12CDA85-4757-485C-ABAF-1418A1C71FDC-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q32"
+   },
+   {
+    "entity_id": "66896BD9-26BA-44B5-80E2-3294214BB9A6",
+    "name": "Kensuke Ushio",
+    "affinity": 0.9568,
+    "why": "Driven by fans of Risk of Rain 2 11%, Monster Train 11%, Wizard of Legend 11%. Qloo tags: Appreciative, Electronic, Minimalist, Emotional.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/66896BD9-26BA-44B5-80E2-3294214BB9A6-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q32"
+   },
+   {
+    "entity_id": "F0A5AF91-A85F-4978-8092-A622A7B8E318",
+    "name": "Otoboke beaver",
+    "affinity": 0.9564,
+    "why": "Driven by fans of Hades 12%, Hollow Knight 12%, Risk of Rain 2 11%. Qloo tags: Dedicated, The Ramones, 4, Japanese Punk.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/F0A5AF91-A85F-4978-8092-A622A7B8E318-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q32"
+   },
+   {
+    "entity_id": "8E59B881-FDE9-462C-B526-136276428C95",
+    "name": "Jack Stauber's Micropop",
+    "affinity": 0.9573,
+    "why": "Driven by fans of Hades 12%, Risk of Rain 2 11%, Hollow Knight 11%. Qloo tags: Synthpop, Vocals, Micropop, Guitar.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/8E59B881-FDE9-462C-B526-136276428C95-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q35"
+   },
+   {
+    "entity_id": "28B00DC3-6EA4-482D-9458-C0A9BED18EF6",
+    "name": "Shawn Wasabi",
+    "affinity": 0.9549,
+    "why": "Driven by fans of Monster Train 11%, Wizard of Legend 11%, Loop Hero 11%. Qloo tags: Energetic, Finger Drumming, Innovative, Drum Machine.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/28B00DC3-6EA4-482D-9458-C0A9BED18EF6-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q35"
+   },
+   {
+    "entity_id": "63F483EE-9961-4B60-8272-A67FA56233C9",
+    "name": "Andrew Huang",
+    "affinity": 0.9545,
+    "why": "Driven by fans of Wizard of Legend 11%, Monster Train 11%, Risk of Rain 2 11%. Qloo tags: Experimental Pop, Synthesizer, Rock, Dynamic.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/63F483EE-9961-4B60-8272-A67FA56233C9-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q35"
+   },
+   {
+    "entity_id": "CB3B606A-BC3B-4015-B131-88FA31B8D6E0",
+    "name": "YUNG BAE",
+    "affinity": 0.9518,
+    "why": "Driven by fans of Hades 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Electronic, Future Funk, Upbeat, Drum Machine.",
+    "city": "Seoul",
+    "image_url": "https://images.qloo.com/i/CB3B606A-BC3B-4015-B131-88FA31B8D6E0-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q38"
+   },
+   {
+    "entity_id": "78EF960F-5233-4574-BA3E-D21A7E0EA499",
+    "name": "Night Tempo",
+    "affinity": 0.9508,
+    "why": "Driven by fans of Hades 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Drum Machine, Nostalgic, Future Funk, City Pop.",
+    "city": "Seoul",
+    "image_url": "https://images.qloo.com/i/78EF960F-5233-4574-BA3E-D21A7E0EA499-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q38"
+   }
+  ],
+  "podcast": [
+   {
+    "entity_id": "79012B13-F952-486D-A680-36D72A84BB53",
+    "name": "Giant Bombcast",
+    "affinity": 0.943,
+    "why": "Driven by fans of Monster Train 11%, Wizard of Legend 11%, Dead Cells 11%. Qloo tags: Technology, Leisure, Video Games, Podcasts.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/79012B13-F952-486D-A680-36D72A84BB53-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "82D62B97-EF09-4823-91D2-042DEBCA6AAD",
+    "name": "The Polygon Show",
+    "affinity": 0.9346,
+    "why": "Driven by fans of Slay the Spire 11%, Risk of Rain 2 11%, Loop Hero 11%. Qloo tags: Games, Video Games, Podcasts, Leisure.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/82D62B97-EF09-4823-91D2-042DEBCA6AAD-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "B5DACD44-0266-4147-8CA5-8C29A0C4B8F4",
+    "name": "The Besties",
+    "affinity": 0.9337,
+    "why": "Driven by fans of Slay the Spire 11%, Risk of Rain 2 11%, Loop Hero 11%. Qloo tags: Leisure, Podcasts, Video Games.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/B5DACD44-0266-4147-8CA5-8C29A0C4B8F4-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "3898806A-86B8-4D7E-9C42-9CCCC812979B",
+    "name": "Polygon Minimap",
+    "affinity": 0.9327,
+    "why": "Driven by fans of Into the Breach 11%, Wizard of Legend 10%, Monster Train 10%.",
+    "city": null,
+    "image_url": null,
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "ABAAFAF7-BAE4-4199-B368-0AA68117574E",
+    "name": "Retronauts",
+    "affinity": 0.9311,
+    "why": "Driven by fans of Dead Cells 11%, Blasphemous 11%, Hades 11%. Qloo tags: Leisure, Technology, Podcasts, Video Games.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/ABAAFAF7-BAE4-4199-B368-0AA68117574E-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "A6FF6C9E-59CD-4AE0-B5ED-1AD672189261",
+    "name": "CoolGames Inc",
+    "affinity": 0.9276,
+    "why": "Driven by fans of Slay the Spire 11%, Risk of Rain 2 11%, Loop Hero 11%. Qloo tags: Improv, Leisure, Comedy, Podcasts.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/A6FF6C9E-59CD-4AE0-B5ED-1AD672189261-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "A75AB35C-5F70-4465-A1F0-F495811B270C",
+    "name": "The Adventure Zone",
+    "affinity": 0.9254,
+    "why": "Driven by fans of Slay the Spire 12%, Risk of Rain 2 11%, Loop Hero 11%. Qloo tags: Games, Comedy Fiction, Leisure, Fiction.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/A75AB35C-5F70-4465-A1F0-F495811B270C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "A663214F-742B-49EF-9E96-1235D6BCEA56",
+    "name": "The Giant Beastcast",
+    "affinity": 0.9239,
+    "why": "Driven by fans of Monster Train 11%, Dead Cells 11%, Wizard of Legend 11%. Qloo tags: Video Games, Leisure, Technology, Podcasts.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/A663214F-742B-49EF-9E96-1235D6BCEA56-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q29"
+   },
+   {
+    "entity_id": "6BF4899A-BA42-4702-8F25-A5DF71072F24",
+    "name": "Nintendo Voice Chat",
+    "affinity": 0.9561,
+    "why": "Driven by fans of Wizard of Legend 12%, Into the Breach 12%, Blasphemous 11%. Qloo tags: Video Games, Leisure, Podcasts, Technology.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/6BF4899A-BA42-4702-8F25-A5DF71072F24-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q33"
+   },
+   {
+    "entity_id": "0C27CB6C-BE83-4120-AF59-78BF0FC0C888",
+    "name": "The Indoor Kids with Kumail Nanjiani and Emily V. Gordon",
+    "affinity": 0.9296,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 11%, Dead Cells 10%.",
+    "city": "San Francisco",
+    "image_url": null,
+    "source": "qloo",
+    "result_id": "q36"
+   },
+   {
+    "entity_id": "83E54B93-1621-4D54-9EB2-9057EFC4F002",
+    "name": "Kumail Nanjiani's The X-Files Files",
+    "affinity": 0.9208,
+    "why": "Driven by fans of Risk of Rain 2 10%, Loop Hero 10%, Monster Train 10%. Qloo tags: TV & Film, Podcasts.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/83E54B93-1621-4D54-9EB2-9057EFC4F002-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q36"
+   },
+   {
+    "entity_id": "8D260DCF-E18C-46AF-8E34-5FA57BCD3A9D",
+    "name": "SModcast",
+    "affinity": 0.9092,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 10%, Wizard of Legend 10%. Qloo tags: Comedy, TV & Film, Podcasts.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/8D260DCF-E18C-46AF-8E34-5FA57BCD3A9D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q36"
+   },
+   {
+    "entity_id": "90E97AE7-0286-46DF-A60F-D9F752684769",
+    "name": "My Brother, My Brother And Me",
+    "affinity": 0.9232,
+    "why": "Driven by fans of Slay the Spire 12%, Risk of Rain 2 11%, Loop Hero 11%. Qloo tags: Podcasts, Comedy.",
+    "city": "Seoul",
+    "image_url": "https://images.qloo.com/i/90E97AE7-0286-46DF-A60F-D9F752684769-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q39"
+   }
+  ],
+  "movie": [
+   {
+    "entity_id": "8B59401A-E088-4BF3-89EF-2FEB65ECE178",
+    "name": "The Act of Killing",
+    "affinity": 0.9168,
+    "why": "Driven by fans of Hollow Knight 12%, Dead Cells 12%, Wizard of Legend 12%. Qloo tags: Retching, The victim, Propaganda, Political theory.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/8B59401A-E088-4BF3-89EF-2FEB65ECE178-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "2FE44C13-39D4-412E-A962-AC8F1528BAFC",
+    "name": "The Look of Silence",
+    "affinity": 0.9126,
+    "why": "Driven by fans of Dead Cells 12%, Wizard of Legend 11%, Loop Hero 11%. Qloo tags: Biography, History documentary, Determined, Quietly persistent.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/2FE44C13-39D4-412E-A962-AC8F1528BAFC-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "9083954F-E8E8-4BBA-8552-AAF23BC170A5",
+    "name": "The Wolfpack",
+    "affinity": 0.907,
+    "why": "Driven by fans of Dead Cells 11%, Wizard of Legend 11%, Loop Hero 11%. Qloo tags: Apartment, Brothers, Film lovers, Film obsessed viewers.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/9083954F-E8E8-4BBA-8552-AAF23BC170A5-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "EC442582-C492-4F22-8BDE-CB9CB05181F5",
+    "name": "HyperNormalisation",
+    "affinity": 0.9045,
+    "why": "Driven by fans of Dead Cells 11%, Into the Breach 11%, Wizard of Legend 11%. Qloo tags: Post politics, Software, Spying, Reference to tron.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/EC442582-C492-4F22-8BDE-CB9CB05181F5-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "73185DDB-6D17-4F6C-A1E9-1365044C8FB6",
+    "name": "The Salt of the Earth",
+    "affinity": 0.9039,
+    "why": "Driven by fans of Dead Cells 12%, Wizard of Legend 11%, Hollow Knight 11%. Qloo tags: Former yugoslavia, Socially conscious, Famine, Obsessive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/73185DDB-6D17-4F6C-A1E9-1365044C8FB6-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "CD7ADB22-3AE8-4F61-B69F-9159301C2C1D",
+    "name": "Dear Zachary: A Letter to a Son About His Father",
+    "affinity": 0.9018,
+    "why": "Driven by fans of Wizard of Legend 11%, Dead Cells 11%, Loop Hero 11%. Qloo tags: Photograph, Shot to death, Death of son, Family.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/CD7ADB22-3AE8-4F61-B69F-9159301C2C1D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "4C3264C1-893B-41E0-AF68-36089B40BB45",
+    "name": "AlphaGo",
+    "affinity": 0.9003,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 10%, Wizard of Legend 10%. Qloo tags: Behind the scenes intimate, Humanity, Brain experiment, The innovator.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/4C3264C1-893B-41E0-AF68-36089B40BB45-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "D12F4C38-AED7-428B-B38F-A0B0CC9C568C",
+    "name": "Dick Johnson Is Dead",
+    "affinity": 0.9003,
+    "why": "Driven by fans of Loop Hero 11%, Monster Train 10%, Wizard of Legend 10%. Qloo tags: Documentary filmmaker, Clinical depression, Dementia, Mature.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/D12F4C38-AED7-428B-B38F-A0B0CC9C568C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q30"
+   },
+   {
+    "entity_id": "9AABDCA0-BBC1-4A14-8071-FBF31EA488D6",
+    "name": "Shoplifters",
+    "affinity": 0.9315,
+    "why": "Driven by fans of Monster Train 11%, Wizard of Legend 11%, Loop Hero 11%. Qloo tags: Customer, Earplugs, Family meal, Day laborer.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/9AABDCA0-BBC1-4A14-8071-FBF31EA488D6-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q34"
+   },
+   {
+    "entity_id": "406F3F9D-07C7-4A48-BD51-833C9E3E08E7",
+    "name": "Evangelion: 3.0+1.0 Thrice Upon a Time",
+    "affinity": 0.9178,
+    "why": "Driven by fans of Slay the Spire 11%, Hades 11%, Risk of Rain 2 11%. Qloo tags: Apocalypse, Empathetic, Eiffel tower paris, The mentor.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/406F3F9D-07C7-4A48-BD51-833C9E3E08E7-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q34"
+   },
+   {
+    "entity_id": "76B265B7-542F-431F-962F-3257E9644623",
+    "name": "Burning",
+    "affinity": 0.9136,
+    "why": "Driven by fans of Hollow Knight 11%, Loop Hero 10%, Wizard of Legend 10%. Qloo tags: Emotionally engaged, Stoic, Socioeconomic critique, Vulnerable.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/76B265B7-542F-431F-962F-3257E9644623-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q34"
+   },
+   {
+    "entity_id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
+    "name": "Parasite",
+    "affinity": 0.9059,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 11%, Risk of Rain 2 10%. Qloo tags: Privilege, Reading someone elses diary, Smell, Moody.",
+    "city": "Tokyo",
+    "image_url": "https://images.qloo.com/i/A499EC25-7FF6-46DE-9DA5-3E78E99B9E26-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q34"
+   },
+   {
+    "entity_id": "60CCC3AF-D51F-4EFD-9DE4-01340FDEAB25",
+    "name": "Sorry to Bother You",
+    "affinity": 0.9374,
+    "why": "Driven by fans of Risk of Rain 2 11%, Loop Hero 10%, Hades 10%. Qloo tags: Telemarketing, Broken cellphone, Contemporary art, The faustian bargain.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/60CCC3AF-D51F-4EFD-9DE4-01340FDEAB25-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q37"
+   },
+   {
+    "entity_id": "19ECFF12-037A-40F5-ABF5-412FD6C96668",
+    "name": "Blindspotting",
+    "affinity": 0.9292,
+    "why": "Driven by fans of Risk of Rain 2 11%, Wizard of Legend 11%, Monster Train 11%. Qloo tags: Community minded, Oakland, Fast food restaurant, Guilt.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/19ECFF12-037A-40F5-ABF5-412FD6C96668-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q37"
+   },
+   {
+    "entity_id": "24A2FD28-FC76-4CCD-AC43-A015B539DBAA",
+    "name": "Uncut Gems",
+    "affinity": 0.9279,
+    "why": "Driven by fans of Monster Train 11%, Risk of Rain 2 11%, Blasphemous 11%. Qloo tags: Self destructive, Surprise, Psychological, Man bites a man.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/24A2FD28-FC76-4CCD-AC43-A015B539DBAA-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q37"
+   },
+   {
+    "entity_id": "F642A27B-906D-43E3-8F14-28E546F183BF",
+    "name": "Don't Worry, He Won't Get Far on Foot",
+    "affinity": 0.9263,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 11%, Loop Hero 11%. Qloo tags: Woman bathes a man, Quadriplegic, Alcoholics anonymous, Vulnerable.",
+    "city": "San Francisco",
+    "image_url": "https://images.qloo.com/i/F642A27B-906D-43E3-8F14-28E546F183BF-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q37"
+   },
+   {
+    "entity_id": "BD133580-4DF6-4B3C-9B41-7BEE4C8BE5B7",
+    "name": "Minari",
+    "affinity": 0.9232,
+    "why": "Driven by fans of Monster Train 11%, Blasphemous 11%, Loop Hero 11%. Qloo tags: Bathroom, Empathetic, Carrying a cross, Urination.",
+    "city": "Seoul",
+    "image_url": "https://images.qloo.com/i/BD133580-4DF6-4B3C-9B41-7BEE4C8BE5B7-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q40"
+   }
+  ],
+  "brand": [
+   {
+    "entity_id": "446F9D68-0CF3-4301-BAA0-509E38349A31",
+    "name": "Unreal Engine",
+    "affinity": 0.9778,
+    "why": "Driven by fans of Hades 10%, Slay the Spire 10%, Blasphemous 10%. Qloo tags: Empowering, Innovative, Sophisticated, Technical.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/446F9D68-0CF3-4301-BAA0-509E38349A31-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "13C23581-CFEB-4865-8878-79109D14BAD3",
+    "name": "Twitch",
+    "affinity": 0.9733,
+    "why": "Driven by fans of Hades 10%, Slay the Spire 10%, Hollow Knight 10%. Qloo tags: Energetic, Inclusive, Interactive, Authentic.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/13C23581-CFEB-4865-8878-79109D14BAD3-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
+    "name": "Elgato",
+    "affinity": 0.9712,
+    "why": "Driven by fans of Risk of Rain 2 10%, Loop Hero 10%, Wizard of Legend 10%. Qloo tags: Technical, Efficient, Creative, Precise.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "AF555F4C-A4A6-43BF-B431-938FC59BD20C",
+    "name": "Origin PC",
+    "affinity": 0.9703,
+    "why": "Driven by fans of Loop Hero 10%, Risk of Rain 2 10%, Wizard of Legend 10%. Qloo tags: Empowering, Reliable, Technical, Ambitious.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/AF555F4C-A4A6-43BF-B431-938FC59BD20C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "E0C26132-AD45-4583-99EC-4E01F7430E72",
+    "name": "NZXT",
+    "affinity": 0.9691,
+    "why": "Driven by fans of Loop Hero 10%, Risk of Rain 2 10%, Wizard of Legend 10%. Qloo tags: Reliable, Sophisticated, Passionate, Clean.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/E0C26132-AD45-4583-99EC-4E01F7430E72-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+    "name": "Steel Series",
+    "affinity": 0.9667,
+    "why": "Driven by fans of Loop Hero 10%, Wizard of Legend 10%, Monster Train 10%. Qloo tags: Technical, Precise, Competitive, Modern.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "2112ADD3-D05E-4CA3-B894-03F8FA6B6C4D",
+    "name": "Alienware",
+    "affinity": 0.9659,
+    "why": "Driven by fans of Loop Hero 10%, Risk of Rain 2 10%, Wizard of Legend 10%. Qloo tags: Bold, Futuristic, Intense, Innovative.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/2112ADD3-D05E-4CA3-B894-03F8FA6B6C4D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   },
+   {
+    "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+    "name": "Razer",
+    "affinity": 0.9611,
+    "why": "Driven by fans of Loop Hero 10%, Wizard of Legend 10%, Hollow Knight 10%. Qloo tags: Bold, Aggressive, High-Tech, Immersive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q31"
+   }
+  ]
+ },
+ "gap": null,
+ "brief": {
+  "sections": [
+   {
+    "heading": "Where to Launch",
+    "body": "The affinity index identifies **Tokyo** as the top location with a lift of 1.71 and high confidence [q21, q22]. **San Francisco** follows with a lift of 1.19 and high confidence [q7, q8]. **Seoul** ranks third with a lift of 1.13 and medium confidence [q23, q24]."
+   },
+   {
+    "heading": "Who the Players Are",
+    "body": "The audience for **Ember Crypt** skews male by +18% and female by -18% [q27]. Age skews show a +8% increase for the 35-44 bracket, while those 30-34 are -28% [q27]."
+   },
+   {
+    "heading": "Who to Partner With",
+    "body": "Potential brand partners include **Twitch** and **Unreal Engine** [q31]. For audio and media, consider **Lena Raine** [q28] or the **Giant Bombcast** podcast [q29]."
+   },
+   {
+    "heading": "How to Split the Budget",
+    "body": "From a total budget of $5,000.00, allocate 25.35% ($1,267.67) to **Tokyo** [q21, q22]. Assign 17.61% ($880.53) to **San Francisco** [q7, q8] and 10.10% ($504.69) to **Seoul** [q23, q24]."
+   },
+   {
+    "heading": "Caveats",
+    "body": "The affinity index for **New York** and **London** is 1.00 with low confidence [q3, q4, q13, q14]. **Sao Paulo** shows a lift of 0.93 with medium confidence [q25, q26]."
+   }
+  ],
+  "source": "llm",
+  "provider": "ollama_cloud",
+  "model": "gemma4:31b",
+  "notice": null
+ },
+ "warnings": [
+  {
+   "code": "low_confidence_city",
+   "message": "Paris: low confidence"
+  },
+  {
+   "code": "low_confidence_city",
+   "message": "Warsaw: low confidence"
+  },
+  {
+   "code": "low_confidence_city",
+   "message": "New York: low confidence"
+  },
+  {
+   "code": "low_confidence_city",
+   "message": "London: low confidence"
+  }
+ ],
+ "limits": [
+  "Affinity index, not a sales forecast.",
+  "Qloo measures taste affinity from consumption data, not sales or wishlists.",
+  "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
+  "City-level results cannot be validated with free public data.",
+  "Brands are global: Qloo brand affinity ignores location."
+ ],
+ "error": null,
+ "created_at": "2026-10-15T20:10:18.674652+00:00",
+ "calls": {
+  "live": 0,
+  "cached": 40
+ }
+}

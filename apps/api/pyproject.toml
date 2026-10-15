@@ -41,9 +41,13 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "ASYNC"]
+ignore = ["E501", "ASYNC109"]  # formatter owns line length; timeout param is the documented LLMProvider API
 
 [tool.mypy]
 python_version = "3.12"
 strict = true
 packages = ["crowdspawn_api"]
 mypy_path = "src"
+
+[tool.uv]
+link-mode = "copy"  # the repo lives on an external volume; hardlinks fail there

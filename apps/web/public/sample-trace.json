@@ -1,0 +1,615 @@
+[
+ {
+  "result_id": "q1",
+  "step": "S1",
+  "endpoint": "/entities",
+  "params": {
+   "entity_ids": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 0,
+  "at": "2026-10-15T20:10:18.679840+00:00"
+ },
+ {
+  "result_id": "q2",
+  "step": "S2",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:videogame",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102",
+   "take": "20",
+   "feature.explainability": "true"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 0,
+  "at": "2026-10-15T20:10:18.683632+00:00"
+ },
+ {
+  "result_id": "q3",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-73.99 40.73)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 2,
+  "at": "2026-10-15T20:10:18.690386+00:00"
+ },
+ {
+  "result_id": "q4",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-73.99 40.73)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 7,
+  "at": "2026-10-15T20:10:18.694446+00:00"
+ },
+ {
+  "result_id": "q5",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-118.25 34.05)",
+   "filter.location.radius": "40000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 7,
+  "at": "2026-10-15T20:10:18.695138+00:00"
+ },
+ {
+  "result_id": "q6",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-118.25 34.05)",
+   "filter.location.radius": "40000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 13,
+  "at": "2026-10-15T20:10:18.701242+00:00"
+ },
+ {
+  "result_id": "q7",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-122.42 37.77)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 14,
+  "at": "2026-10-15T20:10:18.701580+00:00"
+ },
+ {
+  "result_id": "q8",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-122.42 37.77)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 15,
+  "at": "2026-10-15T20:10:18.702972+00:00"
+ },
+ {
+  "result_id": "q9",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-122.33 47.61)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 15,
+  "at": "2026-10-15T20:10:18.703144+00:00"
+ },
+ {
+  "result_id": "q10",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-122.33 47.61)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 17,
+  "at": "2026-10-15T20:10:18.704868+00:00"
+ },
+ {
+  "result_id": "q11",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-79.38 43.65)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 17,
+  "at": "2026-10-15T20:10:18.705016+00:00"
+ },
+ {
+  "result_id": "q12",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-79.38 43.65)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 19,
+  "at": "2026-10-15T20:10:18.706705+00:00"
+ },
+ {
+  "result_id": "q13",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-0.13 51.51)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 19,
+  "at": "2026-10-15T20:10:18.707263+00:00"
+ },
+ {
+  "result_id": "q14",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-0.13 51.51)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 23,
+  "at": "2026-10-15T20:10:18.710609+00:00"
+ },
+ {
+  "result_id": "q15",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(13.4 52.52)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 23,
+  "at": "2026-10-15T20:10:18.710784+00:00"
+ },
+ {
+  "result_id": "q16",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(13.4 52.52)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 24,
+  "at": "2026-10-15T20:10:18.711780+00:00"
+ },
+ {
+  "result_id": "q17",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(2.35 48.86)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 24,
+  "at": "2026-10-15T20:10:18.711982+00:00"
+ },
+ {
+  "result_id": "q18",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(2.35 48.86)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 26,
+  "at": "2026-10-15T20:10:18.713866+00:00"
+ },
+ {
+  "result_id": "q19",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(21.01 52.23)",
+   "filter.location.radius": "20000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 26,
+  "at": "2026-10-15T20:10:18.713918+00:00"
+ },
+ {
+  "result_id": "q20",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(21.01 52.23)",
+   "filter.location.radius": "20000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 27,
+  "at": "2026-10-15T20:10:18.714584+00:00"
+ },
+ {
+  "result_id": "q21",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(139.69 35.68)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 27,
+  "at": "2026-10-15T20:10:18.715191+00:00"
+ },
+ {
+  "result_id": "q22",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(139.69 35.68)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 29,
+  "at": "2026-10-15T20:10:18.716865+00:00"
+ },
+ {
+  "result_id": "q23",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(126.98 37.57)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 29,
+  "at": "2026-10-15T20:10:18.717055+00:00"
+ },
+ {
+  "result_id": "q24",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(126.98 37.57)",
+   "filter.location.radius": "25000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 31,
+  "at": "2026-10-15T20:10:18.718683+00:00"
+ },
+ {
+  "result_id": "q25",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "filter.location": "POINT(-46.63 -23.55)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 31,
+  "at": "2026-10-15T20:10:18.718997+00:00"
+ },
+ {
+  "result_id": "q26",
+  "step": "S3",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:heatmap",
+   "signal.interests.entities": "CDBDE254-71F0-4640-8D04-5373BEAE5278,B335BB51-7158-4C34-89D1-4F1DB7CB5C01,FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD,B9318203-796E-4327-B161-5EEC584C382F",
+   "filter.location": "POINT(-46.63 -23.55)",
+   "filter.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 36,
+  "at": "2026-10-15T20:10:18.724475+00:00"
+ },
+ {
+  "result_id": "q27",
+  "step": "S4",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:demographics",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 0,
+  "at": "2026-10-15T20:10:18.793902+00:00"
+ },
+ {
+  "result_id": "q28",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:artist",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "8",
+   "feature.explainability": "true"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 1,
+  "at": "2026-10-15T20:10:18.798014+00:00"
+ },
+ {
+  "result_id": "q29",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:podcast",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "8",
+   "feature.explainability": "true"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 1,
+  "at": "2026-10-15T20:10:18.798125+00:00"
+ },
+ {
+  "result_id": "q30",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:movie",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "8",
+   "feature.explainability": "true"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 1,
+  "at": "2026-10-15T20:10:18.798905+00:00"
+ },
+ {
+  "result_id": "q31",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:brand",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "8",
+   "feature.explainability": "true"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 2,
+  "at": "2026-10-15T20:10:18.799384+00:00"
+ },
+ {
+  "result_id": "q32",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:artist",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(139.69 35.68)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 2,
+  "at": "2026-10-15T20:10:18.799535+00:00"
+ },
+ {
+  "result_id": "q33",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:podcast",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(139.69 35.68)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 2,
+  "at": "2026-10-15T20:10:18.799600+00:00"
+ },
+ {
+  "result_id": "q34",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:movie",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(139.69 35.68)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 3,
+  "at": "2026-10-15T20:10:18.800176+00:00"
+ },
+ {
+  "result_id": "q35",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:artist",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(-122.42 37.77)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 3,
+  "at": "2026-10-15T20:10:18.800332+00:00"
+ },
+ {
+  "result_id": "q36",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:podcast",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(-122.42 37.77)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 3,
+  "at": "2026-10-15T20:10:18.800390+00:00"
+ },
+ {
+  "result_id": "q37",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:movie",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(-122.42 37.77)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 3,
+  "at": "2026-10-15T20:10:18.800904+00:00"
+ },
+ {
+  "result_id": "q38",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:artist",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(126.98 37.57)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 4,
+  "at": "2026-10-15T20:10:18.801058+00:00"
+ },
+ {
+  "result_id": "q39",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:podcast",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(126.98 37.57)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 4,
+  "at": "2026-10-15T20:10:18.801155+00:00"
+ },
+ {
+  "result_id": "q40",
+  "step": "S5",
+  "endpoint": "/v2/insights",
+  "params": {
+   "filter.type": "urn:entity:movie",
+   "signal.interests.entities": "BA00D00A-E4CD-48C0-A22E-CFC52039D618,870FBF81-80F8-401A-9621-63DBF6AB6C07,20BEE4A4-44C1-49CC-962D-CC0B4EE80102,473F5DEF-A206-4958-BC9A-FA03A6E7658C,F48CC177-4419-4290-8048-3A58A24FDDE9,D99CD55E-6858-4212-9C2F-94F1100CEE86,81A38BCC-EC90-4496-95B6-190989947C04,69095EB6-D3D5-4663-9D21-A52892260985,62BF1BB3-1335-40BB-8E9D-000FABEFB7D5,F4370AF5-3171-48C7-95DB-38ED25B1F80C",
+   "take": "4",
+   "feature.explainability": "true",
+   "signal.location": "POINT(126.98 37.57)",
+   "signal.location.radius": "30000"
+  },
+  "cache_hit": true,
+  "status": 200,
+  "duration_ms": 4,
+  "at": "2026-10-15T20:10:18.801776+00:00"
+ }
+]

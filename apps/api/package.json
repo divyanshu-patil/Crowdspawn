@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uv run uvicorn crowdspawn_api.main:app --reload --reload-dir src --port 8000",
+    "build": "uv run python scripts/export_openapi.py",
+    "openapi": "uv run python scripts/export_openapi.py",
+    "test": "uv run pytest --cov=crowdspawn_api --cov-report=term-missing:skip-covered --cov-fail-under=80",
+    "test:live": "uv run pytest -m live -o addopts=''",
+    "lint": "uv run ruff check src scripts tests && uv run ruff format --check src scripts tests",
+    "check-types": "uv run mypy"
+  }
+}

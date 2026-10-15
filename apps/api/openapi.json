@@ -1,0 +1,1416 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Crowdspawn API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/regions": {
+      "get": {
+        "summary": "List Regions",
+        "operationId": "list_regions_v1_regions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  },
+                  "type": "array",
+                  "title": "Response List Regions V1 Regions Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/entities/search": {
+      "get": {
+        "summary": "Search Entities",
+        "operationId": "search_entities_v1_entities_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^videogame$",
+              "default": "videogame",
+              "title": "Type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntityOut"
+                  },
+                  "title": "Response Search Entities V1 Entities Search Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/comps/suggest": {
+      "post": {
+        "summary": "Suggest Comps",
+        "operationId": "suggest_comps_v1_comps_suggest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plans": {
+      "post": {
+        "summary": "Create Plan",
+        "operationId": "create_plan_v1_plans_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanCreated"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plans/{plan_id}": {
+      "get": {
+        "summary": "Get Plan",
+        "operationId": "get_plan_v1_plans__plan_id__get",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plan"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plans/{plan_id}/trace": {
+      "get": {
+        "summary": "Get Trace",
+        "operationId": "get_trace_v1_plans__plan_id__trace_get",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TraceRow"
+                  },
+                  "title": "Response Get Trace V1 Plans  Plan Id  Trace Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plans/{plan_id}/stream": {
+      "get": {
+        "summary": "Stream Plan",
+        "operationId": "stream_plan_v1_plans__plan_id__stream_get",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/event-stream": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Audience": {
+        "properties": {
+          "age": {
+            "items": {
+              "$ref": "#/components/schemas/Band"
+            },
+            "type": "array",
+            "title": "Age"
+          },
+          "gender": {
+            "items": {
+              "$ref": "#/components/schemas/GenderSkew"
+            },
+            "type": "array",
+            "title": "Gender"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "age",
+          "gender",
+          "result_id"
+        ],
+        "title": "Audience"
+      },
+      "Band": {
+        "properties": {
+          "band": {
+            "type": "string",
+            "title": "Band"
+          },
+          "index": {
+            "type": "number",
+            "title": "Index"
+          }
+        },
+        "type": "object",
+        "required": [
+          "band",
+          "index"
+        ],
+        "title": "Band"
+      },
+      "Brief": {
+        "properties": {
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/BriefSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "llm",
+              "template"
+            ],
+            "title": "Source"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "notice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notice"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sections",
+          "source"
+        ],
+        "title": "Brief"
+      },
+      "BriefSection": {
+        "properties": {
+          "heading": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Heading"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "heading",
+          "body"
+        ],
+        "title": "BriefSection"
+      },
+      "Calls": {
+        "properties": {
+          "live": {
+            "type": "integer",
+            "title": "Live"
+          },
+          "cached": {
+            "type": "integer",
+            "title": "Cached"
+          }
+        },
+        "type": "object",
+        "required": [
+          "live",
+          "cached"
+        ],
+        "title": "Calls"
+      },
+      "City": {
+        "properties": {
+          "region_id": {
+            "type": "string",
+            "title": "Region Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "lift": {
+            "type": "number",
+            "title": "Lift"
+          },
+          "target_score": {
+            "type": "number",
+            "title": "Target Score"
+          },
+          "baseline_score": {
+            "type": "number",
+            "title": "Baseline Score"
+          },
+          "cells": {
+            "type": "integer",
+            "title": "Cells"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "budget_share": {
+            "type": "number",
+            "title": "Budget Share",
+            "default": 0.0
+          },
+          "budget_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Usd"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Result Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "region_id",
+          "name",
+          "country",
+          "lat",
+          "lon",
+          "lift",
+          "target_score",
+          "baseline_score",
+          "cells",
+          "confidence",
+          "result_ids"
+        ],
+        "title": "City"
+      },
+      "Comp": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "result_id"
+        ],
+        "title": "Comp"
+      },
+      "EntityOut": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "type"
+        ],
+        "title": "EntityOut"
+      },
+      "ExpandedGame": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "affinity": {
+            "type": "number",
+            "title": "Affinity"
+          },
+          "why": {
+            "type": "string",
+            "title": "Why"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "affinity",
+          "why",
+          "result_id"
+        ],
+        "title": "ExpandedGame"
+      },
+      "GameIn": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600,
+            "title": "Description",
+            "default": ""
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Tags",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "GameIn"
+      },
+      "Gap": {
+        "properties": {
+          "shared": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Shared"
+          },
+          "target_only": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Target Only"
+          },
+          "studio_only": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Studio Only"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "shared",
+          "target_only",
+          "studio_only",
+          "result_id"
+        ],
+        "title": "Gap"
+      },
+      "GenderSkew": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "index": {
+            "type": "number",
+            "title": "Index"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "index"
+        ],
+        "title": "GenderSkew"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Health": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status"
+          },
+          "qloo": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "unconfigured",
+              "error"
+            ],
+            "title": "Qloo"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/LLMStatus"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "qloo",
+          "llm",
+          "version"
+        ],
+        "title": "Health"
+      },
+      "LLMStatus": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "configured",
+              "unconfigured"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider",
+          "model",
+          "status"
+        ],
+        "title": "LLMStatus"
+      },
+      "Partner": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "affinity": {
+            "type": "number",
+            "title": "Affinity"
+          },
+          "why": {
+            "type": "string",
+            "title": "Why"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "affinity",
+          "why",
+          "result_id"
+        ],
+        "title": "Partner"
+      },
+      "Partners": {
+        "properties": {
+          "artist": {
+            "items": {
+              "$ref": "#/components/schemas/Partner"
+            },
+            "type": "array",
+            "title": "Artist",
+            "default": []
+          },
+          "podcast": {
+            "items": {
+              "$ref": "#/components/schemas/Partner"
+            },
+            "type": "array",
+            "title": "Podcast",
+            "default": []
+          },
+          "movie": {
+            "items": {
+              "$ref": "#/components/schemas/Partner"
+            },
+            "type": "array",
+            "title": "Movie",
+            "default": []
+          },
+          "brand": {
+            "items": {
+              "$ref": "#/components/schemas/Partner"
+            },
+            "type": "array",
+            "title": "Brand",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Partners"
+      },
+      "Plan": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanIn"
+          },
+          "comps": {
+            "items": {
+              "$ref": "#/components/schemas/Comp"
+            },
+            "type": "array",
+            "title": "Comps",
+            "default": []
+          },
+          "dropped_comps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dropped Comps",
+            "default": []
+          },
+          "expanded": {
+            "items": {
+              "$ref": "#/components/schemas/ExpandedGame"
+            },
+            "type": "array",
+            "title": "Expanded",
+            "default": []
+          },
+          "cities": {
+            "items": {
+              "$ref": "#/components/schemas/City"
+            },
+            "type": "array",
+            "title": "Cities",
+            "default": []
+          },
+          "audience": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Audience"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "partners": {
+            "$ref": "#/components/schemas/Partners",
+            "default": {
+              "artist": [],
+              "podcast": [],
+              "movie": [],
+              "brand": []
+            }
+          },
+          "gap": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Gap"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "brief": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Brief"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warning_"
+            },
+            "type": "array",
+            "title": "Warnings",
+            "default": []
+          },
+          "limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limits",
+            "default": []
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Problem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls",
+            "default": {
+              "live": 0,
+              "cached": 0
+            }
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "input",
+          "created_at"
+        ],
+        "title": "Plan"
+      },
+      "PlanCreated": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "failed"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status"
+        ],
+        "title": "PlanCreated"
+      },
+      "PlanIn": {
+        "properties": {
+          "game": {
+            "$ref": "#/components/schemas/GameIn"
+          },
+          "comp_entity_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Comp Entity Ids"
+          },
+          "regions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 15,
+            "minItems": 3,
+            "title": "Regions"
+          },
+          "budget_usd": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 10000000.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Usd"
+          },
+          "previous_game_entity_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Previous Game Entity Ids",
+            "default": []
+          },
+          "mode": {
+            "type": "string",
+            "const": "fast",
+            "title": "Mode",
+            "default": "fast"
+          }
+        },
+        "type": "object",
+        "required": [
+          "game",
+          "comp_entity_ids",
+          "regions"
+        ],
+        "title": "PlanIn"
+      },
+      "Problem": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Problem"
+      },
+      "Region": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "radius_m": {
+            "type": "integer",
+            "title": "Radius M"
+          },
+          "default": {
+            "type": "boolean",
+            "title": "Default",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "country",
+          "lat",
+          "lon",
+          "radius_m"
+        ],
+        "title": "Region"
+      },
+      "SuggestIn": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600,
+            "title": "Description",
+            "default": ""
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Tags",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "SuggestIn"
+      },
+      "SuggestOut": {
+        "properties": {
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/Suggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          },
+          "dropped": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dropped"
+          }
+        },
+        "type": "object",
+        "required": [
+          "suggestions",
+          "dropped"
+        ],
+        "title": "SuggestOut"
+      },
+      "Suggestion": {
+        "properties": {
+          "input_name": {
+            "type": "string",
+            "title": "Input Name"
+          },
+          "resolved": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "input_name",
+          "resolved"
+        ],
+        "title": "Suggestion"
+      },
+      "TraceRow": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          },
+          "step": {
+            "type": "string",
+            "title": "Step"
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "params": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Params"
+          },
+          "cache_hit": {
+            "type": "boolean",
+            "title": "Cache Hit"
+          },
+          "status": {
+            "type": "integer",
+            "title": "Status"
+          },
+          "duration_ms": {
+            "type": "integer",
+            "title": "Duration Ms"
+          },
+          "at": {
+            "type": "string",
+            "title": "At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "result_id",
+          "step",
+          "endpoint",
+          "params",
+          "cache_hit",
+          "status",
+          "duration_ms",
+          "at"
+        ],
+        "title": "TraceRow"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "Warning_": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Warning_"
+      }
+    }
+  }
+}
