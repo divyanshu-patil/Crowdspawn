@@ -32,8 +32,9 @@ export default function Home() {
       <section className="section stack">
         <SpawnMap cities={plan.cities} />
         <p className="muted" style={{ maxWidth: 720 }}>
-          Sample run for a roguelike with comps {plan.comps.map((c) => c.name).join(", ")}. Each crowd is how much more
-          fans of those games show up in a city than fans of mainstream hits like Minecraft and Fortnite.
+          Sample run for <b>{plan.input.game.title}</b>, with comps {plan.comps.map((c) => c.name).join(", ")}. Each crowd
+          shows how much more fans of those games show up in a city than fans of mainstream hits like Minecraft and
+          Fortnite.
         </p>
       </section>
 

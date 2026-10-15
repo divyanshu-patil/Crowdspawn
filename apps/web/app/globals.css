@@ -749,9 +749,9 @@ img {
   height: auto;
 }
 
-.map .gridline {
-  stroke: var(--mist);
-  stroke-width: 1;
+/* Continents: quiet pixel tiles on the paper "ocean". */
+.map .land {
+  fill: var(--mist);
 }
 
 .map .equator {
@@ -759,6 +759,7 @@ img {
   stroke-dasharray: 4 6;
 }
 
+/* Crowds: lit tiles that spawn one by one. */
 .map .crowd rect {
   fill: var(--ink);
   transform-box: fill-box;
@@ -770,14 +771,19 @@ img {
   fill: var(--ember);
 }
 
-.map .pin {
-  cursor: pointer;
+.map .crowd.cold rect {
+  fill: var(--paper);
+  stroke: var(--ink-soft);
+  stroke-width: 1;
 }
 
 .map .pin circle.core {
   fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 2;
   transform-box: fill-box;
   transform-origin: center;
+  transition: transform 200ms var(--ease-spring);
   animation: spawn 600ms var(--ease-spring) both;
 }
 
@@ -791,34 +797,45 @@ img {
 
 .map .pin.top circle.core {
   fill: var(--ember);
+  stroke: var(--ink);
 }
 
 .map .pin.top circle.ring {
   stroke: var(--ember);
 }
 
-.map .pin text {
-  font: 400 12px var(--font-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  fill: var(--ink);
-  paint-order: stroke;
-  stroke: var(--paper);
-  stroke-width: 4px;
-  animation: rise 500ms var(--ease-out) both;
+.map .pin .leader {
+  stroke: var(--ink);
+  stroke-width: 1;
 }
 
-.map .pin.dim {
-  opacity: 0.45;
+.map .pin .anchor {
+  fill: var(--ink);
+}
+
+.map .pin text {
+  font: 700 9px var(--font-mono);
+  fill: var(--paper);
+  pointer-events: none;
+  animation: pop 400ms var(--ease-spring) both;
+}
+
+.map .pin.top text {
+  fill: var(--ink);
+  font-size: 10px;
+}
+
+.map .pin.dim circle.core {
+  fill: var(--ink-soft);
+}
+
+.map .pin.dim circle.ring {
+  display: none;
 }
 
 .map .pin:hover circle.core,
 .map .pin.active circle.core {
   transform: scale(1.35);
-}
-
-.map .pin circle.core {
-  transition: transform 200ms var(--ease-spring);
 }
 
 @keyframes spawn {
@@ -832,7 +849,7 @@ img {
 
 @keyframes spawn-pixel {
   from {
-    transform: scale(0) translateY(-6px);
+    transform: scale(0);
     opacity: 0;
   }
 }
@@ -848,13 +865,121 @@ img {
   }
 }
 
-.map-legend {
+/* HUD: leaderboard + key, floating over the empty South Pacific. */
+.map-hud {
   position: absolute;
   left: 16px;
   bottom: 14px;
-  display: flex;
-  gap: 16px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  pointer-events: none;
+}
+
+.map-board {
+  pointer-events: auto;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-btn);
+  padding: 10px 12px;
+  min-width: 220px;
+  display: grid;
+  gap: 8px;
+}
+
+.map-board ol {
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.map-board li {
+  animation: rise 400ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 120ms + 500ms);
+}
+
+.map-board button {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 3px 4px;
+  border-radius: var(--r-link);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 140ms;
+}
+
+.map-board button:disabled {
+  cursor: default;
+}
+
+.map-board button:not(:disabled):hover {
+  background: var(--mist);
+}
+
+.board-name {
+  font: 500 17px/1 var(--font-display);
+}
+
+.rank-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 11px/1 var(--font-mono);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.rank-badge.hot {
+  background: var(--ember);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+
+.map-key {
+  background: var(--paper);
+  padding: 4px 6px;
+  border-radius: var(--r-link);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   flex-wrap: wrap;
+}
+
+.key-tile {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: var(--ink);
+}
+
+.key-tile.hot {
+  background: var(--ember);
+}
+
+.key-tile.cold {
+  background: var(--paper);
+  outline: 1px solid var(--ink-soft);
+  outline-offset: -1px;
+}
+
+@media (max-width: 700px) {
+  .map-hud {
+    position: static;
+    padding: 12px;
+    border-top: 1px solid var(--hairline);
+  }
+  .map-board {
+    width: 100%;
+  }
 }
 
 /* ---------- city list ---------- */
@@ -1314,8 +1439,7 @@ footer.foot {
     background: #fff;
   }
   .nav,
-  .no-print,
-  .map-legend {
+  .no-print {
     display: none !important;
   }
   .city,
