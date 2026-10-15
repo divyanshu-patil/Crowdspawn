@@ -945,7 +945,8 @@ img {
   transition: background 160ms;
 }
 
-.tab[aria-selected="true"] {
+.tab[aria-selected="true"],
+.tab[aria-pressed="true"] {
   background: var(--ink);
   color: var(--paper);
 }

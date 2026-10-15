@@ -1,159 +1,88 @@
-# Turborepo starter
+# Crowdspawn
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Find where your players already are, and who else they love, before launch day.**
 
-## Using this example
+Crowdspawn gives indie game studios a launch plan built from [Qloo Taste AI](https://qloo.com) data: the cities where fans of comparable games over-index against mainstream gamers, the audience's age and gender skew, the artists, podcasts, films and brands those fans love, and a budget split. An LLM writes the brief from that data only, and every claim links back to the Qloo call that produced it.
 
-Run the following command:
+Built for the Qloo Agentic Hackathon 2026.
 
-```sh
-npx create-turbo@latest
-```
+## Quick start
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `@next/eslint-plugin-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+Requirements: Node 24+, pnpm 11, [uv](https://docs.astral.sh/uv/) (Python 3.12 is fetched by uv).
 
 ```sh
-cd my-turborepo
-turbo build
+pnpm install          # also runs `uv sync` for the API (postinstall)
+cp apps/api/.env.example apps/api/.env          # then fill in QLOO_API_KEY and OLLAMA_API_KEY
+cp apps/web/.env.example apps/web/.env.local
+pnpm dev              # starts web (http://localhost:3000) and API (http://localhost:8000) together
 ```
 
-Without global `turbo`, use your package manager:
+`/sample` works with no keys at all. Without `OLLAMA_API_KEY` plans still work and the brief falls back to a grounded template. Without `QLOO_API_KEY` no plan is produced (see the kill-switch test).
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm exec turbo build
-pnpm exec turbo build
+| Command | What it does |
+|---|---|
+| `pnpm dev` | Web + API with hot reload (`turbo run dev`) |
+| `pnpm test` | API pytest (fixtures, no network, coverage gate 80%) + web Vitest |
+| `pnpm lint` / `pnpm check-types` | ruff + ESLint / mypy --strict + tsc |
+| `pnpm build` | Exports `openapi.json` and builds the Next.js app |
+| `pnpm contracts` | Regenerates `packages/contracts` TypeScript types from the API |
+| `pnpm --filter api test:live` | One live smoke test against real Qloo (spends a few calls) |
+
+## Architecture
+
+```
+Browser (Next.js 16, apps/web)
+   |  fetch + Server-Sent Events          no keys ever reach the browser
+   v
+FastAPI (apps/api)
+   |-- routes --> orchestrator S1..S8 ---- progress events --> SQLite event log --> SSE
+   |       |-- QlooClient --(X-Api-Key)--> hackathon.api.qloo.com
+   |       |       token bucket (4 rps), retries, SQLite cache, per-run call cap, call trace
+   |       '-- LLMProvider --> Ollama Cloud | Gemini | any OpenAI-compatible | Fake
+   '-- SQLite: plans, events, traces, cache
+packages/contracts: TS types generated from apps/api/openapi.json
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## The Qloo call chain
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Each step depends on the one before it. All parameters were verified live and recorded in [`docs/qloo-contract.md`](docs/qloo-contract.md).
 
-```sh
-turbo build --filter=docs
+| Step | Qloo call | Output |
+|---|---|---|
+| S1 Resolve comps | `/entities` (plan) or `/search` (picker, LLM suggestions) | Real Qloo video game ids; unknown names are dropped, never invented |
+| S2 Expand | `/v2/insights` `filter.type=urn:entity:videogame` + explainability | 20 similar games with the comps that drive each one |
+| S3 Cities | `urn:heatmap` per city, for the comp set **and** a mainstream baseline (Minecraft, Fortnite, GTA V, Warzone) | Lift = mean `affinity_rank` of comp fans ÷ baseline, with confidence |
+| S4 Audience | `urn:demographics` | Age and gender over/under-index |
+| S5 Partners | `/v2/insights` for artist, podcast, movie, brand (+ `signal.location` for the top 3 cities) | Partners with affinity and Qloo's reasons |
+| S6 Gap (optional) | `/v2/analysis/compare` | Tastes shared with your last game vs new ground |
+| S7 Budget | none, deterministic | Split by lift × confidence, sums to exactly 100% |
+| S8 Brief | none, LLM over S1–S7 facts | Prose that cites `[q12]` result ids; validated before display |
+
+A typical plan with 5 comps and 12 cities uses 40 Qloo calls: 21.8 s on a cold cache, 2.2 s warm, 0 live calls on repeat.
+
+### Why it can't exist without Qloo (the swap test)
+
+Every city, entity, score and audience figure carries `source: "qloo"` and a `result_id` in the trace (tested: Q1). The LLM only suggests comp *names* (which Qloo must resolve) and words the brief. A grounding validator rejects any city, bold name, number or citation not present in the Qloo results, regenerates once, then falls back to a template (L7).
+
+**Kill-switch test:** with `QLOO_API_KEY` empty or wrong, a plan ends `failed` with `qloo_unconfigured` / `qloo_auth`, no cities or brief are produced, and no LLM call is made (`tests/test_api.py::test_kill_switch_*`, and the error screen in the UI).
+
+**LLM-swap test:** switching `LLM_PROVIDER` between `ollama_cloud`, `gemini`, `openai_compat` and `fake` changes only the brief; the rest of the plan JSON is identical (`test_provider_swap_changes_only_brief`). Only `apps/api/src/crowdspawn_api/llm/` names a provider (grep test).
+
+## Honest limits
+
+- It's an **affinity index** from taste data, not a sales or wishlist forecast.
+- New indie games are rarely in Qloo, so plans work through comparable games (16 of 20 recent indie titles resolved in Phase 0).
+- **Backtest:** against Steam review languages for 6 shipped games, the lift ranking beat a popularity baseline in **1 of 6** (mean Spearman −0.21 vs 0.40). Lift is inflated where mainstream gamers are scarce in Qloo's data (Tokyo, Seoul). Read it as a taste-informed starting hypothesis, and test with small campaigns. Full table: [`docs/backtest-results.md`](docs/backtest-results.md).
+- City-level accuracy cannot be validated with free public data.
+- Brands are global: Qloo's brand affinity ignores location.
+
+## Repo map
+
+```
+apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8), llm/ (providers, prompts), grounding.py
+apps/web      Next.js: app/ routes, components/ (SpawnMap, PlanView, LivePlan, TraceView, NewPlanForm), lib/
+packages/contracts   generated API types
+docs/         product spec, verified Qloo contract, progress, decisions, backtest results
 ```
 
-Without global `turbo`:
-
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+Progress against every acceptance criterion is tracked in [`docs/progress.md`](docs/progress.md); decisions in [`docs/10-risks-decisions.md`](docs/10-risks-decisions.md).

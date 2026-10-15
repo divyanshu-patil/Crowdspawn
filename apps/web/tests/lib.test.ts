@@ -73,8 +73,10 @@ describe("formatting", () => {
     expect([rarity(0.951), rarity(0.948), rarity(0.8)]).toEqual(["legendary", "rare", "common"]);
   });
   it("exports the plan as Markdown with limits", () => {
-    const md = planToMarkdown(sample as unknown as Plan);
-    expect(md).toContain("| 1 | Tokyo, JP | 1.71 | high |");
+    const plan = sample as unknown as Plan;
+    const top = plan.cities[0]!;
+    const md = planToMarkdown(plan);
+    expect(md).toContain(`| 1 | ${top.name}, ${top.country} | ${top.lift.toFixed(2)} | ${top.confidence} |`);
     expect(md).toContain("Affinity index, not a sales forecast.");
   });
 });

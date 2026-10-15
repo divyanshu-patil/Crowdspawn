@@ -69,6 +69,10 @@ export default function Home() {
           <li>It&apos;s an affinity index from taste data, not a sales or wishlist forecast.</li>
           <li>New indie games are usually not in Qloo yet, so everything runs through comparable games.</li>
           <li>If Qloo is unavailable, Crowdspawn refuses to make a plan rather than guess.</li>
+          <li>
+            In a backtest against Steam review languages for 6 shipped games, the city ranking beat a popularity
+            baseline in only 1. Use it as a starting hypothesis and test with small campaigns.
+          </li>
         </ul>
       </section>
     </>

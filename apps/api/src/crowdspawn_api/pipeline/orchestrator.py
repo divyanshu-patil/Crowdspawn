@@ -35,6 +35,8 @@ LIMITS = [
     "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
     "City-level results cannot be validated with free public data.",
     "Brands are global: Qloo brand affinity ignores location.",
+    "In our language-level backtest (6 shipped games vs Steam review languages), this ranking beat a "
+    "popularity baseline in only 1 of 6 games. Treat it as a taste-informed starting hypothesis.",
 ]
 
 

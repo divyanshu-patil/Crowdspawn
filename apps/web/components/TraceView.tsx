@@ -62,7 +62,7 @@ export function TraceView({ id, initial, backHref }: { id: string; initial?: Tra
       )}
       <div className="row" role="group" aria-label="Filter by step">
         {steps.map((s) => (
-          <button key={s} className="tab" aria-selected={step === s} onClick={() => setStep(s)} style={{ border: "1px solid var(--ink)", borderRadius: 8 }}>
+          <button key={s} className="tab" aria-pressed={step === s} onClick={() => setStep(s)} style={{ border: "1px solid var(--ink)", borderRadius: 8 }}>
             {s === "all" ? "All steps" : `${s} · ${STEPS.find((x) => x.key === s)?.label ?? s}`}
           </button>
         ))}
