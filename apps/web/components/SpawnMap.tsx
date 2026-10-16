@@ -118,23 +118,46 @@ export function SpawnMap({
   const drag = useRef<{ id: number; px: number; py: number; v: View; moved: boolean } | null>(null);
   const justDragged = useRef(false);
   const tween = useRef(0);
+  const goal = useRef<View>(HOME);
   const [dragging, setDragging] = useState(false);
-
-  // Fly smoothly to a view (shortest way round the wrapped world).
-  function flyTo(target: View) {
-    cancelAnimationFrame(tween.current);
-    const from = viewRef.current;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setView(norm(target));
-    let dx = target.x - from.x;
-    if (dx > W / 2) dx -= W;
-    if (dx < -W / 2) dx += W;
-    const t0 = performance.now();
+  // Smooth camera: `goal` is where the view is heading; each frame closes part of the gap.
+  // Interpolating the visible width (not k) keeps a zoom's anchor point fixed on screen, and
+  // x moves the short way round the wrapped world.
+  function goTo(target: View, instant = false) {
+    goal.current = norm({ ...target, k: Math.min(Math.max(target.k, 1), MAX_K) });
+    if (instant || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      cancelAnimationFrame(tween.current);
+      tween.current = 0;
+      return setView(goal.current);
+    }
+    if (tween.current) return;
+    let last = performance.now();
     const step = (t: number) => {
-      const e = 1 - Math.pow(1 - Math.min(1, (t - t0) / 550), 3);
-      setView(norm({ k: from.k + (target.k - from.k) * e, x: from.x + dx * e, y: from.y + (target.y - from.y) * e }));
-      if (e < 1) tween.current = requestAnimationFrame(step);
+      const a = 1 - Math.exp(-(t - last) / 110); // frame-rate independent easing
+      last = t;
+      const c = viewRef.current;
+      const g = goal.current;
+      let dx = g.x - c.x;
+      if (dx > W / 2) dx -= W;
+      if (dx < -W / 2) dx += W;
+      const cw = W / c.k;
+      const w = cw + (W / g.k - cw) * a;
+      const done = Math.abs(w - W / g.k) < 0.05 && Math.abs(dx) < 0.05 && Math.abs(g.y - c.y) < 0.05;
+      const next = done ? g : norm({ k: W / w, x: c.x + dx * a, y: c.y + (g.y - c.y) * a });
+      viewRef.current = next;
+      setView(next);
+      tween.current = done ? 0 : requestAnimationFrame(step);
     };
     tween.current = requestAnimationFrame(step);
+  }
+  const flyTo = (target: View) => goTo(target);
+
+  /** Zoom by a factor around a screen fraction (rx, ry); builds on the goal so repeated input adds up. */
+  function zoomAround(f: number, rx = 0.5, ry = 0.5) {
+    const g = goal.current;
+    const gx = g.x + rx * (W / g.k);
+    const gy = g.y + ry * (H / g.k);
+    goTo(zoomAt(g, g.k * f, gx, gy));
   }
 
   // Selecting a city (leaderboard or list) centres the map on it.
@@ -148,15 +171,26 @@ export function SpawnMap({
 
   useEffect(() => () => cancelAnimationFrame(tween.current), []);
 
-  const toWorld = (clientX: number, clientY: number) => {
-    const r = svgRef.current!.getBoundingClientRect();
-    const v = viewRef.current;
-    return { x: v.x + ((clientX - r.left) / r.width) * (W / v.k), y: v.y + ((clientY - r.top) / r.height) * (H / v.k) };
-  };
+  // Trackpad pinch (sent as ctrl+wheel) and ctrl/cmd+wheel zoom; a plain scroll keeps scrolling the page.
+  const zoomRef = useRef(zoomAround);
+  zoomRef.current = zoomAround;
+  useEffect(() => {
+    const el = svgRef.current!;
+    const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const r = el.getBoundingClientRect();
+      const lines = e.deltaMode === 1 ? 16 : 1;
+      zoomRef.current(Math.exp(-e.deltaY * lines * 0.006), (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
 
   const onPointerDown = (e: PointerEvent<SVGSVGElement>) => {
     if (e.button !== 0) return;
     cancelAnimationFrame(tween.current);
+    tween.current = 0;
     drag.current = { id: e.pointerId, px: e.clientX, py: e.clientY, v: viewRef.current, moved: false };
   };
   const onPointerMove = (e: PointerEvent<SVGSVGElement>) => {
@@ -171,7 +205,7 @@ export function SpawnMap({
       setDragging(true);
       svgRef.current!.setPointerCapture(e.pointerId); // capture only once it's a drag, so pin clicks still work
     }
-    setView(norm({ k: d.v.k, x: d.v.x - (dx / r.width) * (W / d.v.k), y: d.v.y - (dy / r.height) * (H / d.v.k) }));
+    goTo({ k: d.v.k, x: d.v.x - (dx / r.width) * (W / d.v.k), y: d.v.y - (dy / r.height) * (H / d.v.k) }, true);
   };
   const endDrag = () => {
     justDragged.current = !!drag.current?.moved;
@@ -179,14 +213,11 @@ export function SpawnMap({
     setDragging(false);
   };
 
-  const zoomBy = (f: number) => {
-    const v = viewRef.current;
-    flyTo(zoomAt(v, v.k * f, v.x + W / (2 * v.k), v.y + H / (2 * v.k)));
-  };
+  const zoomBy = (f: number) => zoomAround(f);
   const onKeyDown = (e: KeyboardEvent<SVGSVGElement>) => {
-    const v = viewRef.current;
     const pan = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
-    if (pan) setView(norm({ k: v.k, x: v.x + (pan[0]! * W) / (8 * v.k), y: v.y + (pan[1]! * H) / (8 * v.k) }));
+    const g = goal.current;
+    if (pan) goTo({ k: g.k, x: g.x + (pan[0]! * W) / (8 * g.k), y: g.y + (pan[1]! * H) / (8 * g.k) });
     else if (e.key === "+" || e.key === "=") zoomBy(1.6);
     else if (e.key === "-") zoomBy(1 / 1.6);
     else if (e.key === "0") flyTo(HOME);
@@ -196,18 +227,17 @@ export function SpawnMap({
 
   const tiles = useMemo(() => crowds(cities), [cities]);
   const isTop = (rank: number, c: City) => rank < 3 && c.score > 1;
-  // Pins keep a constant on-screen size, so re-run the de-overlap at each zoom level:
-  // zooming in lets nudged pins settle back onto their true locations.
-  const zoomKey = Math.round(view.k * 4) / 4;
-  const s = 1 / zoomKey;
+  // Pins keep a constant on-screen size, so the de-overlap re-runs on every zoom frame (18 pins: cheap);
+  // zooming in lets nudged pins glide back onto their true locations instead of snapping in steps.
+  const s = Math.round(1000 / view.k) / 1000;
   const pins = useMemo(
     () => layoutPins(cities, (i) => (isTop(i, cities[i]!) ? PIN_R_TOP : PIN_R) * s, 2 * s),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [cities, s],
   );
 
-  // The world content is static during a drag (only the viewBox moves), so build it once per zoom level.
-  const world = useMemo(
+  // Land and crowds never change with the camera: built once.
+  const base = useMemo(
     () => (
       <>
         <path className="land" d={LAND_PATH} />
@@ -226,6 +256,16 @@ export function SpawnMap({
             ))}
           </g>
         ))}
+      </>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cities, tiles],
+  );
+
+  // Pins follow the zoom continuously; only this small layer re-renders while the camera moves.
+  const pinLayer = useMemo(
+    () => (
+      <>
         {/* Pins drawn last so no crowd covers a rank number; better ranks on top. */}
         {[...cities.entries()].reverse().map(([rank, c]) => {
           const p = pins[rank]!;
@@ -261,7 +301,13 @@ export function SpawnMap({
       </>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [cities, tiles, pins, s, activeId],
+    [cities, pins, s, activeId],
+  );
+  const world = (
+    <>
+      {base}
+      {pinLayer}
+    </>
   );
 
   return (
@@ -278,8 +324,8 @@ export function SpawnMap({
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onDoubleClick={(e) => {
-          const w = toWorld(e.clientX, e.clientY);
-          flyTo(zoomAt(viewRef.current, viewRef.current.k * 2, w.x, w.y));
+          const r = svgRef.current!.getBoundingClientRect();
+          zoomAround(2, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
         }}
         onKeyDown={onKeyDown}
       >
