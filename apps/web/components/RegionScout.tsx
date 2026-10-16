@@ -28,7 +28,7 @@ type AreaView = Omit<ScoutArea, "games" | "calls"> & {
 type SnapArea = AreaView & { id: string; name: string; country: string };
 
 // "What works here" for 50 popular places, generated from Qloo by apps/api/scripts/snapshot_scout.py.
-const SNAPSHOT = snapshotJson as unknown as { generated: string; areas: SnapArea[] };
+const SNAPSHOT = snapshotJson as unknown as { generated: string; activity: AreaActivity[]; areas: SnapArea[] };
 const POPULAR = ["New York", "London", "Tokyo", "Seoul", "Sao Paulo", "Mumbai", "Istanbul", "Jakarta", "Lagos", "Berlin"];
 
 function snapshotNear(lat: number, lon: number): SnapArea | null {
@@ -43,6 +43,10 @@ function snapshotNear(lat: number, lon: number): SnapArea | null {
 
 /** English country name at a coordinate, from the generated tile grid (nearest land tile for coasts). */
 function countryAt(lat: number, lon: number): string | null {
+  return countryShapeAt(lat, lon)?.name ?? null;
+}
+
+function countryShapeAt(lat: number, lon: number): CountryShape | null {
   const r0 = Math.floor((GRID.latTop - lat) / GRID.step);
   const c0 = Math.floor((lon + 180) / GRID.step);
   for (let ring = 0; ring <= 2; ring++)
@@ -50,7 +54,7 @@ function countryAt(lat: number, lon: number): string | null {
       for (let dc = -ring; dc <= ring; dc++) {
         if (Math.max(Math.abs(dr), Math.abs(dc)) !== ring) continue;
         const ch = OWNER[r0 + dr]?.[(c0 + dc + GRID.cols) % GRID.cols];
-        if (ch && ch !== ".") return COUNTRIES[ch.charCodeAt(0) - 48]?.name ?? null;
+        if (ch && ch !== ".") return COUNTRIES[ch.charCodeAt(0) - 48] ?? null;
       }
   return null;
 }
@@ -89,8 +93,9 @@ function km(a: { lat: number; lon: number }, b: { lat: number; lon: number }) {
 }
 
 export function RegionScout() {
-  const [readings, setReadings] = useState<Map<string, CountryReading> | null>(null);
-  const [points, setPoints] = useState<AreaActivity[]>([]);
+  // Start from the bundled snapshot so the map is coloured at once; live readings replace it when they arrive.
+  const [readings, setReadings] = useState<Map<string, CountryReading> | null>(() => byCountry(SNAPSHOT.activity));
+  const [points, setPoints] = useState<AreaActivity[]>(SNAPSHOT.activity);
   const [snapNote, setSnapNote] = useState<string | null>(null);
   const [activityError, setActivityError] = useState<string | null>(null);
   const [pick, setPick] = useState<Pick | null>(null);
@@ -98,6 +103,7 @@ export function RegionScout() {
   const [areaError, setAreaError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState<"works" | "fit">("works");
+  const [spot, setSpot] = useState<Spot | null>(null); // a popular place being hovered in the chip row
 
   useEffect(() => {
     api
@@ -106,7 +112,7 @@ export function RegionScout() {
         setReadings(byCountry(a.points));
         setPoints(a.points);
       })
-      .catch((e: ApiError) => setActivityError(e.message));
+      .catch((e: ApiError) => setActivityError(`Showing the ${SNAPSHOT.generated} snapshot: ${e.message}`));
   }, []);
 
   async function scout(p: Pick, snapped = false) {
@@ -162,7 +168,16 @@ export function RegionScout() {
           {POPULAR.map((n) => {
             const a = SNAPSHOT.areas.find((x) => x.name === n)!;
             return (
-              <button key={n} type="button" className="chip-btn" onClick={() => scout({ lat: a.lat, lon: a.lon, label: n })}>
+              <button
+                key={n}
+                type="button"
+                className="chip-btn"
+                onClick={() => scout({ lat: a.lat, lon: a.lon, label: n })}
+                onPointerEnter={() => setSpot({ lat: a.lat, lon: a.lon, label: n })}
+                onPointerLeave={() => setSpot(null)}
+                onFocus={() => setSpot({ lat: a.lat, lon: a.lon, label: n })}
+                onBlur={() => setSpot(null)}
+              >
                 {n}
               </button>
             );
@@ -171,7 +186,7 @@ export function RegionScout() {
       </header>
 
       {activityError && <Notice tone="warn">{activityError}</Notice>}
-      <RegionMap readings={readings} pick={pick} onPick={scout} />
+      <RegionMap readings={readings} pick={pick} spot={spot} onPick={scout} />
 
       <section className="scout-panel" aria-live="polite" aria-busy={loading}>
         {!pick && (
@@ -285,13 +300,17 @@ type View = { k: number; x: number; y: number };
 const HOME: View = { k: 1, x: 0, y: 0 };
 const MAX_K = 6;
 
+type Spot = { lat: number; lon: number; label: string };
+
 function RegionMap({
   readings,
   pick,
+  spot,
   onPick,
 }: {
   readings: Map<string, CountryReading> | null;
   pick: Pick | null;
+  spot: Spot | null;
   onPick: (p: Pick) => void;
 }) {
   const svg = useRef<SVGSVGElement>(null);
@@ -422,7 +441,9 @@ function RegionMap({
     onPick({ lat, lon, label: c.name, country: c.name });
   };
 
-  const hoverId = hover?.c.id;
+  // A hovered popular-place chip lifts its country too.
+  const spotCountry = spot ? countryShapeAt(spot.lat, spot.lon) : null;
+  const hoverId = hover?.c.id ?? spotCountry?.id;
   // The country layer only changes with readings or hover, never with the camera, so frames stay cheap.
   const countryLayer = useMemo(
     () =>
@@ -478,6 +499,21 @@ function RegionMap({
           const p = toXY(a.lat, a.lon);
           return <circle key={a.id} className="spot" cx={p.x} cy={p.y} r={0.32 * unit * 1.6} pointerEvents="none" />;
         })}
+        {spot && (() => {
+          const p = toXY(spot.lat, spot.lon);
+          return (
+            <g className="spot-hl" transform={`translate(${p.x} ${p.y})`} pointerEvents="none">
+              <circle className="halo" r={2.6 * unit * 1.6} />
+              <circle className="halo two" r={2.6 * unit * 1.6} />
+              <circle className="core" r={0.75 * unit * 1.6} />
+              <g transform={`scale(${unit})`}>
+                <text x={0} y={-3.2} textAnchor="middle" className="spot-label">
+                  {spot.label}
+                </text>
+              </g>
+            </g>
+          );
+        })()}
         {at && (
           <g className="pick" transform={`translate(${at.x} ${at.y})`} pointerEvents="none">
             <circle className="aoe" r={2.2 * unit * 2} />

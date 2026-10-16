@@ -2199,3 +2199,38 @@ footer.foot {
 .verdict .hint {
   color: var(--ink); /* grey fails contrast on the orange and yellow verdict cards */
 }
+
+/* Hovering a popular-place chip marks it on the map. */
+.region-map .spot-hl .core {
+  fill: var(--ember);
+  stroke: var(--ink);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  animation: pop 260ms var(--ease-spring) both;
+}
+
+.region-map .spot-hl .halo {
+  fill: var(--ember);
+  fill-opacity: 0.25;
+  stroke: var(--ember);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-out 1300ms var(--ease-out) infinite;
+}
+
+.region-map .spot-hl .halo.two {
+  animation-delay: 650ms;
+}
+
+.region-map .spot-hl .spot-label {
+  font: 700 2.2px var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 0.6px;
+  animation: pop 260ms var(--ease-spring) both;
+}

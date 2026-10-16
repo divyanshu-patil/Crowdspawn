@@ -1,4 +1,4 @@
-"""Snapshot "what works here" for 50 popular places into the web app, so they scout instantly.
+"""Snapshot "what works here" for 50 popular places, plus the activity map, into the web app.
 
 Runs the real /v1/scout/area pipeline (Qloo heatmaps and located game insights) for each place and
 writes apps/web/lib/scout-snapshot.json. Live: about 19 Qloo calls per place on a cold cache.
@@ -31,6 +31,7 @@ async def main() -> None:
     ids = list(cities.regions()) + EXTRA
     areas, skipped = [], []
     try:
+        activity, _ = await scout.activity(qloo.run(max_calls=3 * len(points)))
         for pid in ids:
             p = points[pid]
             try:
@@ -49,7 +50,12 @@ async def main() -> None:
         await store.close()
     OUT.write_text(
         json.dumps(
-            {"generated": date.today().isoformat(), "source": "qloo", "areas": areas},
+            {
+                "generated": date.today().isoformat(),
+                "source": "qloo",
+                "activity": [a.model_dump(mode="json") for a in activity],
+                "areas": areas,
+            },
             separators=(",", ":"),
         )
         + "\n"

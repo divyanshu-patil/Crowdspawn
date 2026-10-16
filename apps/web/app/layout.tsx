@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${mono.variable}`}>
-      <body>
+      {/* Browser extensions add attributes to <body>; don't let that read as a hydration bug. */}
+      <body suppressHydrationWarning>
         <TileField />
         <SfxListener />
         <div className="shell">
