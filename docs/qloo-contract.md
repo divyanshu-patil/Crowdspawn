@@ -64,3 +64,10 @@ Culture anchors are resolved with `/search` per type (`urn:entity:movie`, `urn:e
 
 Spawn score = (target ÷ all-gamers) × (platform panels ÷ all-gamers) × ((culture ÷ all-gamers) ÷ mean over cities). Results against Google Trends: `docs/scenario-results.md`.
 
+## Region scout calls (verified live 2026-10-16)
+
+- `/search` with `types=urn:entity:locality` geocodes places: each result has top-level `location: {lat, lon}` and a `disambiguation` such as "Lagos, Nigeria". Non-Latin names come back in local script ("Київ").
+- `/v2/insights` with `filter.type=urn:entity:videogame` honours **`signal.location`** + `signal.location.radius`: Delhi returns PUBG, Minecraft, CoD Mobile, Clash of Clans, Free Fire; Tokyo returns Hello Kitty, Animal Crossing Pocket Camp, Naruto, Ys VIII. Without any signal it returns 400.
+- `urn:heatmap` works at any point with data (Lagos: 604 cells); open sea or empty land returns no cells, which the scout reports as `no_area_data` after widening the radius once.
+- Genre panels (15 × 3-4 games) and the activity snapshot for 67 cities are cached for 7 days.
+

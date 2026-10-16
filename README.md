@@ -30,6 +30,20 @@ pnpm dev              # starts web (http://localhost:3000) and API (http://local
 | `pnpm contracts` | Regenerates `packages/contracts` TypeScript types from the API |
 | `pnpm --filter api test:live` | One live smoke test against real Qloo (spends a few calls) |
 
+## Region scout (`/scout`)
+
+A second tool for the other question: *what works in a place?* A pixel-tile world map with real country borders, shaded by each country's Qloo **player activity index** (mean affinity rank of PC, console and mobile player panels in its main cities; an index, not a headcount). Hover a country to see its readings; click anywhere (or search a town through Qloo locality search) to drop an area-select ring and get:
+
+- **Genres that over-index there:** 15 genre panels (3-4 well-known games each) scored against all gamers in the area.
+- **Games locals love:** Qloo video game insights with `signal.location`.
+- **Will my game work here?** Pick comps and platforms; you get the same taste lift × platform fit as a plan, with a verdict (strong, promising, no edge, weak) and confidence.
+
+Areas with no Qloo cells widen to 120 km, then snap to the nearest city with a reading. Panels are cached for a week; a new area costs about 19 calls.
+
+## Feel
+
+Sketchpad grid squares rise into 3D blocks under the mouse (only where nothing sits on top of them). Sound effects are 8-bit blips synthesized at runtime with the Web Audio API, so there are no audio files and nothing to license; the nav toggle mutes them and remembers the choice.
+
 ## Architecture
 
 ```
@@ -82,7 +96,7 @@ Every city, entity, score and audience figure carries `source: "qloo"` and a `re
 
 ```
 apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8), llm/ (providers, prompts), grounding.py
-apps/web      Next.js: app/ routes, components/ (SpawnMap, PlanView, LivePlan, TraceView, NewPlanForm), lib/
+apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, PlanView, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
 packages/contracts   generated API types
 docs/         product spec, verified Qloo contract, progress, decisions, backtest results
 ```

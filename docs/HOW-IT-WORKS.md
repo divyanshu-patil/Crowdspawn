@@ -44,6 +44,14 @@ Big cities have lots of gamers of every kind, so a raw count would always put Ne
 
 We checked this against Google Trends for 10 shipped games (details in [`scenario-results.md`](scenario-results.md)): the real #1 country was our #1 in 6 and in our top 3 in 8. The old taste-only ranking managed 2 and 5.
 
+## The region scout
+
+`/scout` answers the reverse question: given a place, what works there?
+
+- **Hover a country** for its player activity index: how strongly people in its main cities match well-known PC, console and mobile games in Qloo's data. It's an index from 0 to 1, not a player count.
+- **Click a spot or search a town.** A ring marks a 40 km area (widened to 120 km between towns). You get the genres whose fans over-index there, the games locals love, and the platform mix.
+- **Check your game:** add comps and platforms to get a verdict for that exact spot.
+
 ## The rules that make it trustworthy
 
 - **Qloo is the only source of facts.** Every city, number and partner traces back to a specific Qloo call. Small chips like `q21` in the brief link to the trace page, which lists every call the plan made.
@@ -60,7 +68,7 @@ Your browser  ──>  Website (Next.js, port 3000)  ──>  API (Python FastAP
                                                          └─> SQLite (saves plans, cached Qloo answers)
 ```
 
-- **Website** (`apps/web`): the pages and the game look (pixel map, progress bar, rarity cards).
+- **Website** (`apps/web`): the pages and the game look (pixel maps, rising grid tiles, synthesized 8-bit sounds, progress bar, rarity cards).
 - **API** (`apps/api`): all the logic, plus your secret keys, which never reach the browser.
 - **Cache:** repeating a plan costs zero Qloo calls (the hackathon plan allows 10,000 a month).
 - **AI provider:** switch between Ollama, Gemini and others by changing `LLM_PROVIDER` in `apps/api/.env`; the facts stay the same, only the wording changes.
@@ -70,4 +78,5 @@ Your browser  ──>  Website (Next.js, port 3000)  ──>  API (Python FastAP
 - `pnpm dev` starts everything; open http://localhost:3000.
 - **/sample** shows a finished plan and works without any keys.
 - **New plan** runs the full live flow.
+- **/scout** explores any place on the map.
 - [`../README.md`](../README.md) has the setup; [`progress.md`](progress.md) tracks which requirements pass; [`qloo-contract.md`](qloo-contract.md) lists the verified Qloo calls.
