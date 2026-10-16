@@ -19,13 +19,16 @@ import {
 } from "../lib/validate";
 import { Notice, Skeleton } from "./ui";
 
-const KEY = "crowdspawn:draft";
+export const DRAFT_KEY = "crowdspawn:draft";
+const KEY = DRAFT_KEY;
 const LEVELS = ["Your game", "Rivals", "Spawn zones"];
 
 function useDraft(): [Draft, (d: Draft) => void, number, (s: number) => void] {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [step, setStep] = useState(0);
-  const loaded = useRef(false);
+  // State, not a ref: saving must wait until the restored draft has rendered, or the first save
+  // (still holding the empty draft) overwrites it, which React's dev double-mount makes visible.
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     try {
       const saved = JSON.parse(sessionStorage.getItem(KEY) ?? "null");
@@ -36,16 +39,16 @@ function useDraft(): [Draft, (d: Draft) => void, number, (s: number) => void] {
     } catch {
       /* storage unavailable: start fresh */
     }
-    loaded.current = true;
+    setReady(true);
   }, []);
   useEffect(() => {
-    if (!loaded.current) return;
+    if (!ready) return;
     try {
       sessionStorage.setItem(KEY, JSON.stringify({ draft, step }));
     } catch {
       /* ignore */
     }
-  }, [draft, step]);
+  }, [draft, step, ready]);
   return [draft, setDraft, step, setStep];
 }
 

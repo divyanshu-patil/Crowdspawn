@@ -10,13 +10,14 @@ back a compact observation. Guards keep the "Qloo is the only data source" rule:
 
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field, ValidationError
 
 from ..errors import AppError, QlooError
-from ..grounding import BOLD, NUMBER, _to_float
+from ..grounding import BOLD, EXTRA_CITIES, NUMBER, _to_float
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
 from ..qloo.client import QlooClient, QlooRun
@@ -267,8 +268,18 @@ def grounded(answer: str, mem: Memory, goal: str) -> list[str]:
         if _to_float(n) not in allowed
     ]
     low = seen.lower()
+    bad_bold = {b.lower() for b in BOLD.findall(answer) if b.lower() not in low}
     problems += [
-        f"name {b} not in any observation" for b in BOLD.findall(answer) if b.lower() not in low
+        f"name {b} not in any observation" for b in BOLD.findall(answer) if b.lower() in bad_bold
+    ]
+    # Places are the riskiest invention, so check known city names even when they are not bold.
+    places = {r.name for r in scout.scout_points().values()} | set(EXTRA_CITIES)
+    problems += [
+        f"city {p} not in any observation"
+        for p in sorted(places)
+        if p.lower() not in low
+        and p.lower() not in bad_bold
+        and re.search(rf"\b{re.escape(p)}\b", answer, re.IGNORECASE)
     ]
     return problems
 

@@ -180,6 +180,10 @@ def test_grounding_checks_numbers_and_bold_names() -> None:
     assert agent.grounded("**Tokyo** at 2.5, budget $5,000", mem, "budget $5,000") == [
         "number 2.5 not in any observation"
     ]
+    assert agent.grounded("Tokyo first, then Lagos.", mem, "goal") == [
+        "city Lagos not in any observation"
+    ]
+    assert agent.grounded("Tokyo first, then Paris.", mem, "a story set in Paris") == []
 
 
 def test_agent_route_runs_and_streams(client: TestClient, tools: dict[str, Any]) -> None:

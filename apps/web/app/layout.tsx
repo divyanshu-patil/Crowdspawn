@@ -29,6 +29,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <div className="nav-links">
               <SoundToggle />
+              <Link className="label" href="/agent">
+                Agent
+              </Link>
               <Link className="label" href="/scout">
                 Scout
               </Link>

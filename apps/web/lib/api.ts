@@ -1,5 +1,7 @@
 import type {
   ActivityOut,
+  AgentEvent,
+  AgentRun,
   EntityOut,
   PlaceHit,
   ScoutArea,
@@ -56,6 +58,9 @@ export const api = {
     request<SuggestOut>("/v1/culture/suggest", { method: "POST", body: JSON.stringify(game) }),
   createPlan: (body: PlanIn) => request<PlanCreated>("/v1/plans", { method: "POST", body: JSON.stringify(body) }),
   plan: (id: string) => request<Plan>(`/v1/plans/${id}`),
+  startAgent: (goal: string) =>
+    request<PlanCreated>("/v1/agent", { method: "POST", body: JSON.stringify({ goal }) }),
+  agent: (id: string) => request<AgentRun>(`/v1/agent/${id}`),
   places: (q: string) => request<PlaceHit[]>(`/v1/scout/places?q=${encodeURIComponent(q)}`),
   activity: () => request<ActivityOut>("/v1/scout/activity"),
   area: (lat: number, lon: number) =>
@@ -85,6 +90,29 @@ const EVENT_TYPES: PlanEvent["type"][] = [
   "done",
   "failed",
 ];
+
+const AGENT_EVENTS: AgentEvent["type"][] = ["queued", "step", "observation", "qloo_call", "answer", "done", "failed"];
+
+/** Follow an agent run's steps live (same SSE replay and resume as plans). */
+export function streamAgent(
+  id: string,
+  onEvent: (ev: AgentEvent & { id: number }) => void,
+  onConnection: (state: "open" | "retrying") => void,
+): () => void {
+  const es = new EventSource(`${API_URL}/v1/agent/${id}/stream`);
+  for (const type of AGENT_EVENTS) {
+    es.addEventListener(type, (e) => {
+      const msg = e as MessageEvent<string>;
+      onEvent({ type, data: JSON.parse(msg.data), id: Number(msg.lastEventId) } as AgentEvent & { id: number });
+      if (type === "done" || type === "failed") es.close();
+    });
+  }
+  es.onopen = () => onConnection("open");
+  es.onerror = () => {
+    if (es.readyState !== EventSource.CLOSED) onConnection("retrying");
+  };
+  return () => es.close();
+}
 
 /**
  * Subscribe to a plan's SSE stream. EventSource reconnects on its own and sends

@@ -30,6 +30,18 @@ export type GenreHeat = S["GenreHeat"];
 export type LocalGame = S["LocalGame"];
 export type ScoutJudge = S["ScoutJudge"];
 export type RankedPlace = S["RankedPlace"];
+export type AgentRun = S["AgentRun"];
+export type AgentStep = S["AgentStepOut"];
+export type PlanDraft = S["PlanDraft"];
+
+export type AgentEvent =
+  | { type: "queued"; data: { id: string } }
+  | { type: "step"; data: { n: number; thought: string; tool: string; args: Record<string, unknown> } }
+  | { type: "observation"; data: { n: number; text: string; ok: boolean } }
+  | { type: "qloo_call"; data: { cache_hit: boolean; endpoint: string } }
+  | { type: "answer"; data: { answer: string; source: "llm" | "template" } }
+  | { type: "done"; data: { id: string } }
+  | { type: "failed"; data: { code: string; message: string } };
 export type Confidence = City["confidence"];
 export type PartnerType = keyof Partners;
 
