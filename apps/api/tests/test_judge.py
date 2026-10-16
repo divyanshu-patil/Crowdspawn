@@ -31,11 +31,11 @@ def test_probability_is_capped_and_shrinks_with_weak_evidence(
 
 def test_tiers_and_number_check() -> None:
     assert [judge.tier(x) for x in (0.9, 0.8, 0.6, 0.5, 0.2)] == [
-        "Superb",
-        "Excellent",
-        "Yes",
-        "Maybe",
-        "No",
+        "Legendary",
+        "Epic",
+        "Rare",
+        "Uncommon",
+        "Common",
     ]
     facts = {"probability": "77%", "spawn score": "1.10"}
     assert judge.numbers_ok("Yes, 77% and 1.10.", facts)
@@ -103,8 +103,8 @@ def test_judge_scores_here_against_reference_cities(
     assert (
         d["ranking"][0]["here"] and len(d["ranking"]) == 8
     )  # Delhi itself is not its own reference
-    assert d["verdict"] == "Superb" and d["probability"] == 0.97
-    assert d["summary_source"] == "llm" and d["summary"].startswith("Superb with 97%")
+    assert d["verdict"] == "Legendary" and d["probability"] == 0.97
+    assert d["summary_source"] == "llm" and d["summary"].startswith("Legendary with 97%")
 
 
 def test_judge_summary_with_invented_numbers_falls_back_to_template(
@@ -115,7 +115,7 @@ def test_judge_summary_with_invented_numbers_falls_back_to_template(
     replies = [
         '{"names": ["GTA V"]}',
         '{"anchors": []}',
-        '{"summary": "Superb: sells 2,000,000 copies here for sure."}',
+        '{"summary": "Legendary: sells 2,000,000 copies here for sure."}',
     ]
     llm.replies = replies
     d = client.post("/v1/scout/judge", json=BODY).json()

@@ -26,13 +26,13 @@ from .confidence import confidence
 from .scoring import CityMetrics, spawn_scores
 
 REFERENCE = ("nyc", "lon", "tyo", "sao", "del", "ist", "jkt", "syd")  # one per major market
-# Verdict words by estimated probability (highest first). Change the words here.
+# Verdict words by estimated probability (highest first), as loot rarities. Change the words here.
 JUDGE_TIERS: tuple[tuple[float, str], ...] = (
-    (0.85, "Superb"),
-    (0.72, "Excellent"),
-    (0.58, "Yes"),
-    (0.42, "Maybe"),
-    (0.0, "No"),
+    (0.85, "Legendary"),
+    (0.72, "Epic"),
+    (0.58, "Rare"),
+    (0.42, "Uncommon"),
+    (0.0, "Common"),
 )
 SHRINK = {"high": 1.0, "medium": 0.75, "low": 0.5}  # pull weak evidence toward a coin flip
 SCALE = 0.08  # ln(score) / SCALE -> logit: 1.10 -> 77%, 1.25 -> 94%, 0.90 -> 21%

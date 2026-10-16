@@ -648,8 +648,14 @@ function WhatWorks({ area }: { area: AreaView }) {
   );
 }
 
-/** Verdict colours by word; the words themselves come from the API (JUDGE_TIERS in judge.py). */
-const TONE: Record<string, string> = { Superb: "superb", Excellent: "excellent", Yes: "yes", Maybe: "maybe", No: "no" };
+/** Verdict colours by rarity; the words themselves come from the API (JUDGE_TIERS in judge.py). */
+const TONE: Record<string, string> = {
+  Legendary: "legendary",
+  Epic: "epic",
+  Rare: "rare",
+  Uncommon: "uncommon",
+  Common: "common",
+};
 
 function Gauge({ p }: { p: number }) {
   const r = 52;
@@ -779,7 +785,7 @@ function JudgeResult({ r }: { r: ScoutJudge }) {
   const max = Math.max(...r.ranking.map((x) => x.score), 1.01);
   return (
     <div className="stack judge">
-      <div className={`verdict v-${TONE[r.verdict] ?? "maybe"}`}>
+      <div className={`verdict v-${TONE[r.verdict] ?? "uncommon"}`}>
         <div className="verdict-head">
           <div>
             <span className="label">Verdict</span>

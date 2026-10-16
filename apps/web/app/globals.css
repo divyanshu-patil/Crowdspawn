@@ -2128,20 +2128,26 @@ footer.foot {
   font-weight: 700;
 }
 
-.verdict.v-superb {
+/* Loot rarity colours: legendary and rare match the partner cards; epic purple and uncommon green are gamer convention. */
+.verdict.v-legendary {
   background: var(--ember);
 }
-.verdict.v-excellent {
+.verdict.v-epic {
+  background: #b493ff;
+}
+.verdict.v-rare {
   background: var(--marker);
 }
-.verdict.v-yes {
-  background: #fff3c4;
+.verdict.v-uncommon {
+  background: #cdeec4;
 }
-.verdict.v-maybe {
-  background: var(--paper);
-}
-.verdict.v-no {
+.verdict.v-common {
   background: var(--mist);
+}
+
+.verdict.v-legendary .verdict-title,
+.verdict.v-epic .verdict-title {
+  text-shadow: 3px 3px 0 var(--paper);
 }
 
 .judge-grid {
