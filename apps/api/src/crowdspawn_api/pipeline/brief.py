@@ -40,12 +40,17 @@ def facts(plan: Plan) -> dict[str, Any]:
     return {
         "game": plan.input.game.title,
         "comps": [{"name": c.name, "result_id": c.result_id} for c in plan.comps],
+        "platforms": list(plan.input.platforms),
+        "culture_anchors": [{"name": a.name, "result_id": a.result_id} for a in plan.culture],
         "similar_games": [{"name": g.name, "result_id": g.result_id} for g in plan.expanded[:8]],
         "cities": [
             {
                 "name": c.name,
                 "country": c.country,
-                "lift": lift(c.lift),
+                "spawn_score": lift(c.score),
+                "taste_lift": lift(c.lift),
+                "platform_fit": lift(c.platform_fit),
+                **({"culture_fit": lift(c.culture_fit)} if c.culture_fit is not None else {}),
                 "confidence": c.confidence,
                 "budget_share": pct(c.budget_share),
                 **({"budget_usd": usd(c.budget_usd)} if c.budget_usd is not None else {}),
@@ -87,6 +92,7 @@ def allowed_numbers(plan: Plan) -> set[float]:
 
 def known_names(plan: Plan) -> set[str]:
     names = {plan.input.game.title} | {c.name for c in plan.comps} | {g.name for g in plan.expanded}
+    names |= {a.name for a in plan.culture}
     for k in ("artist", "podcast", "movie", "brand"):
         names |= {p.name for p in getattr(plan.partners, k)}
     return names
@@ -105,8 +111,8 @@ def check(plan: Plan, sections: list[BriefSection], trace_ids: set[str]) -> list
 def template_brief(plan: Plan) -> list[BriefSection]:
     top = plan.cities[:3]
     where = " ".join(
-        f"**{c.name}** has an affinity lift of {lift(c.lift)} ({c.confidence} "
-        f"confidence) [{c.result_ids[0]}]."
+        f"**{c.name}** has a spawn score of {lift(c.score)} (taste lift {lift(c.lift)}, "
+        f"{c.confidence} confidence) [{c.result_ids[0]}]."
         for c in top
     )
     sections = [

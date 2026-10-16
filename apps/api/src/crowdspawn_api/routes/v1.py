@@ -12,11 +12,12 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from ..errors import NotFound, QlooUnconfigured, RateLimited
-from ..llm.base import LLMError
+from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import cities, resolve
+from ..pipeline import cities, culture, resolve
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
+    CultureSuggestion,
     EntityOut,
     Plan,
     PlanCreated,
@@ -24,6 +25,7 @@ from ..schemas import (
     Problem,
     Region,
     SuggestIn,
+    Suggestion,
     SuggestOut,
     TraceRow,
 )
@@ -43,6 +45,18 @@ class SuggestedNames(BaseModel):
     names: list[str] = Field(max_length=6)
 
 
+class SuggestedAnchors(BaseModel):
+    anchors: list[CultureSuggestion] = Field(max_length=6)
+
+
+def _ready(d: Deps) -> LLMProvider:
+    if not d.qloo.configured:
+        raise QlooUnconfigured("Set QLOO_API_KEY in apps/api/.env")
+    if d.llm is None:
+        raise LLMError("No LLM provider is configured")
+    return d.llm
+
+
 @router.get("/regions", response_model=list[Region])
 async def list_regions() -> list[Region]:
     return list(cities.regions().values())
@@ -52,18 +66,18 @@ async def list_regions() -> list[Region]:
 async def search_entities(
     request: Request,
     q: Annotated[str, Query(min_length=1, max_length=80)],
-    type: Annotated[str, Query(pattern="^videogame$")] = "videogame",
+    type: Annotated[str, Query(pattern="^(videogame|culture)$")] = "videogame",
 ) -> list[EntityOut]:
+    """`culture` searches films, TV shows and artists (culture anchors for a game's setting)."""
+    if type == "culture":
+        return await culture.search_culture(deps(request).qloo.run(max_calls=3), q)
     return await resolve.search_games(deps(request).qloo.run(max_calls=1), q)
 
 
 @router.post("/comps/suggest", response_model=SuggestOut)
 async def suggest_comps(request: Request, body: SuggestIn) -> SuggestOut:
     d = deps(request)
-    if not d.qloo.configured:
-        raise QlooUnconfigured("Set QLOO_API_KEY in apps/api/.env")
-    if d.llm is None:
-        raise LLMError("No LLM provider is configured")
+    llm = _ready(d)
     prompt = render(
         "suggest_comps",
         title=body.title,
@@ -71,7 +85,7 @@ async def suggest_comps(request: Request, body: SuggestIn) -> SuggestOut:
         tags=", ".join(body.tags) or "-",
     )
     out, _ = await complete_json(
-        d.llm,
+        llm,
         [{"role": "user", "content": prompt}],
         SuggestedNames,
         CallBudget(2),
@@ -80,6 +94,35 @@ async def suggest_comps(request: Request, body: SuggestIn) -> SuggestOut:
     names = [n for n in dict.fromkeys(n.strip() for n in out.names) if n][:6]
     found, dropped = await resolve.resolve_names(d.qloo.run(max_calls=6), names)
     return SuggestOut(suggestions=found, dropped=dropped)
+
+
+@router.post("/culture/suggest", response_model=SuggestOut)
+async def suggest_culture(request: Request, body: SuggestIn) -> SuggestOut:
+    """LLM proposes films, shows and artists from the game's setting; Qloo must resolve each one."""
+    d = deps(request)
+    llm = _ready(d)
+    prompt = render(
+        "suggest_culture",
+        title=body.title,
+        description=body.description or "-",
+        tags=", ".join(body.tags) or "-",
+    )
+    out, _ = await complete_json(
+        llm,
+        [{"role": "user", "content": prompt}],
+        SuggestedAnchors,
+        CallBudget(2),
+        timeout=d.settings.llm_timeout_seconds,
+    )
+    pairs = list(dict.fromkeys((a.name.strip(), f"urn:entity:{a.type}") for a in out.anchors))
+    found, dropped = await culture.resolve_culture(d.qloo.run(max_calls=6), pairs[:5])
+    names = {f.entity_id: n for f in found for n, _ in pairs if resolve.name_matches(n, f.name)}
+    return SuggestOut(
+        suggestions=[
+            Suggestion(input_name=names.get(f.entity_id, f.name), resolved=f) for f in found
+        ],
+        dropped=dropped,
+    )
 
 
 @router.post("/plans", status_code=202, response_model=PlanCreated)

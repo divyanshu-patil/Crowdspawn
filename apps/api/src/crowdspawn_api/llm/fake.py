@@ -32,20 +32,25 @@ class FakeProvider:
             text = self.replies.pop(0)
         else:
             joined = "\n".join(m["content"] for m in messages)
-            text = (
-                self._brief(joined)
-                if FACTS_START in joined
-                else json.dumps(
-                    {"names": ["Hades", "Dead Cells", "Slay the Spire", "Not A Real Game 9000"]}
-                )
-            )
+            if FACTS_START in joined:
+                text = self._brief(joined)
+            elif '"anchors"' in joined:
+                anchors = [
+                    {"name": "Gully Boy", "type": "movie"},
+                    {"name": "Not A Real Film 404", "type": "movie"},
+                ]
+                text = json.dumps({"anchors": anchors})
+            else:
+                names = ["Hades", "Dead Cells", "Slay the Spire", "Not A Real Game 9000"]
+                text = json.dumps({"names": names})
         return LLMResult(text=text, model=self.model, provider=self.name)
 
     def _brief(self, prompt: str) -> str:
         facts = json.loads(prompt.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
         top = facts["cities"][:3]
         body = " ".join(
-            f"**{c['name']}** has lift {c['lift']} [{c['result_ids'][0]}]." for c in top
+            f"**{c['name']}** has spawn score {c['spawn_score']} [{c['result_ids'][0]}]."
+            for c in top
         )
         return json.dumps(
             {

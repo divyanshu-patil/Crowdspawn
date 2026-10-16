@@ -7,15 +7,25 @@ export const LIMITS = {
   compsMin: 1,
   compsMax: 5,
   regionsMin: 3,
-  regionsMax: 15,
+  regionsMax: 20,
+  cultureMax: 5,
   budgetMax: 10_000_000,
 };
+
+export type Platform = "pc" | "mobile" | "console";
+export const PLATFORMS: { id: Platform; label: string }[] = [
+  { id: "pc", label: "PC" },
+  { id: "console", label: "Console" },
+  { id: "mobile", label: "Mobile" },
+];
 
 export type Draft = {
   title: string;
   description: string;
   tags: string[];
   comps: { entity_id: string; name: string; image_url?: string | null; year?: number | null }[];
+  culture: { entity_id: string; name: string; type: string; image_url?: string | null }[];
+  platforms: Platform[];
   regions: string[];
   budget: string;
   previous: { entity_id: string; name: string }[];
@@ -26,12 +36,16 @@ export const emptyDraft = (): Draft => ({
   description: "",
   tags: [],
   comps: [],
+  culture: [],
+  platforms: ["pc", "console", "mobile"],
   regions: [],
   budget: "",
   previous: [],
 });
 
-export type Errors = Partial<Record<"title" | "description" | "tags" | "comps" | "regions" | "budget", string>>;
+export type Errors = Partial<
+  Record<"title" | "description" | "tags" | "comps" | "culture" | "platforms" | "regions" | "budget", string>
+>;
 
 export function validateGame(d: Draft): Errors {
   const e: Errors = {};
@@ -49,6 +63,8 @@ export function validateComps(d: Draft): Errors {
   if (ids.length < LIMITS.compsMin) return { comps: "Pick at least one comparable game." };
   if (ids.length > LIMITS.compsMax) return { comps: `Pick at most ${LIMITS.compsMax} comparable games.` };
   if (new Set(ids).size !== ids.length) return { comps: "Each comparable game can only be picked once." };
+  if (d.culture.length > LIMITS.cultureMax) return { culture: `Pick at most ${LIMITS.cultureMax} culture anchors.` };
+  if (d.platforms.length === 0) return { platforms: "Pick at least one platform." };
   return {};
 }
 
@@ -72,6 +88,8 @@ export function toPlanIn(d: Draft) {
   return {
     game: { title: d.title.trim(), description: d.description.trim(), tags: d.tags },
     comp_entity_ids: d.comps.map((c) => c.entity_id),
+    culture_entity_ids: d.culture.map((c) => c.entity_id),
+    platforms: d.platforms,
     regions: d.regions,
     budget_usd: d.budget.trim() ? Number(d.budget) : null,
     previous_game_entity_ids: d.previous.map((p) => p.entity_id),

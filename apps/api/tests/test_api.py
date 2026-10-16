@@ -217,6 +217,60 @@ def test_suggest_drops_unresolvable_names(client: TestClient, fake_qloo: FakeQlo
     assert "Not A Real Game 9000" in body["dropped"]
 
 
+def test_culture_suggest_resolves_through_qloo(client: TestClient, fake_qloo: FakeQloo) -> None:
+    movie = "urn:entity:movie"
+    hit = {"results": [{"name": "Gully Boy", "entity_id": "G1", "types": [movie]}]}
+    miss = {"results": [{"name": "Gully Boys", "entity_id": "X", "types": [movie]}]}
+    for name, body in (("Gully Boy", hit), ("Not A Real Film 404", miss)):
+        fake_qloo.recorded[("/search", (("query", name), ("take", "5"), ("types", movie)))] = body
+    r = client.post("/v1/culture/suggest", json={"title": "Delhi Gullies", "tags": ["india"]})
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert [(s["input_name"], s["resolved"]["entity_id"]) for s in body["suggestions"]] == [
+        ("Gully Boy", "G1")
+    ]
+    assert body["dropped"] == ["Not A Real Film 404"]
+
+
+def test_culture_search_spans_films_shows_artists(client: TestClient, fake_qloo: FakeQloo) -> None:
+    for t in ("urn:entity:movie", "urn:entity:tv_show", "urn:entity:artist"):
+        name = "Sacred Games" if t.endswith("tv_show") else "Sacred Gamesters"
+        fake_qloo.recorded[
+            ("/search", (("query", "sacred games"), ("take", "4"), ("types", t)))
+        ] = {"results": [{"name": name, "entity_id": t[-5:], "types": [t]}]}
+    r = client.get("/v1/entities/search", params={"q": "sacred games", "type": "culture"})
+    assert r.status_code == 200, r.text
+    assert r.json()[0] == {
+        "entity_id": "_show",
+        "name": "Sacred Games",
+        "type": "urn:entity:tv_show",
+        "year": None,
+        "image_url": None,
+    }
+    assert client.get("/v1/entities/search", params={"q": "x", "type": "place"}).status_code == 422
+
+
+def test_old_plans_without_spawn_score_still_load() -> None:
+    from crowdspawn_api.schemas import City
+
+    c = City.model_validate(
+        {
+            "region_id": "nyc",
+            "name": "New York",
+            "country": "US",
+            "lat": 0,
+            "lon": 0,
+            "lift": 1.2,
+            "target_score": 0.8,
+            "baseline_score": 0.7,
+            "cells": 10,
+            "confidence": "low",
+            "result_ids": ["q1"],
+        }
+    )
+    assert (c.score, c.platform_fit, c.culture_fit) == (1.2, 1.0, None)
+
+
 def test_suggest_without_llm(client: TestClient) -> None:
     client.app.state.deps.llm = None
     r = client.post("/v1/comps/suggest", json={"title": "Ember Crypt"})

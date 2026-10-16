@@ -3,332 +3,383 @@
  "status": "done",
  "input": {
   "game": {
-   "title": "Moss Hollow",
-   "description": "A cozy farming and village life sim with hand-painted art and gentle crafting.",
-   "tags": []
+   "title": "Delhi Gullies",
+   "description": "A GTA-style open-world crime game set in the streets and gullies of Delhi.",
+   "tags": [
+    "india",
+    "open world",
+    "crime"
+   ]
   },
   "comp_entity_ids": [
-   "875DB771-9C4C-4DD0-9249-D2ABD95711F1",
-   "08663BD2-E267-4C7F-9895-86410F67867C",
-   "8076B778-011A-4E39-910D-77C78D07E1E5",
-   "927F2AED-1094-458E-B8B7-15499C1D79D3",
-   "7C70EC47-D4F8-432B-8E33-EDE9E5D5531B"
+   "FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD",
+   "9B7B8E8D-9122-4A62-88F7-45BC44A038C3",
+   "80564013-F33C-4F3A-A5E5-6B7264CD9091",
+   "43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3",
+   "9ADEC46A-AF2F-45D7-A076-BFC5F6341E52"
+  ],
+  "culture_entity_ids": [
+   "51A19BB0-E7C3-44AD-A740-22B0A05013BF",
+   "CE300FA0-0752-4DD3-B28F-FC4CFD2D8915",
+   "924C8504-4BD8-4615-AB2D-1C16880A8A62",
+   "F177EC76-D270-4E48-BB34-3180379CEA7A"
+  ],
+  "platforms": [
+   "pc",
+   "console"
   ],
   "regions": [
    "nyc",
    "lax",
-   "sfo",
-   "sea",
+   "chi",
    "yto",
+   "mex",
+   "sao",
    "lon",
-   "ber",
    "par",
+   "ber",
    "waw",
+   "ist",
+   "dxb",
+   "del",
+   "bom",
    "tyo",
    "sel",
-   "sao"
+   "jkt",
+   "syd"
   ],
-  "budget_usd": 3000.0,
-  "previous_game_entity_ids": [
-   "FE25ADF3-767A-405B-9DC3-69D52BC8C185"
-  ],
+  "budget_usd": 5000.0,
+  "previous_game_entity_ids": [],
   "mode": "fast"
  },
  "comps": [
   {
-   "entity_id": "875DB771-9C4C-4DD0-9249-D2ABD95711F1",
-   "name": "Stardew Valley",
-   "image_url": "https://images.qloo.com/i/875DB771-9C4C-4DD0-9249-D2ABD95711F1-420x-auto.jpg",
+   "entity_id": "FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD",
+   "name": "Grand Theft Auto V",
+   "image_url": "https://images.qloo.com/i/FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "08663BD2-E267-4C7F-9895-86410F67867C",
-   "name": "Animal Crossing: New Horizons",
-   "image_url": "https://images.qloo.com/i/08663BD2-E267-4C7F-9895-86410F67867C-420x-auto.jpg",
+   "entity_id": "9B7B8E8D-9122-4A62-88F7-45BC44A038C3",
+   "name": "Sleeping Dogs",
+   "image_url": "https://images.qloo.com/i/9B7B8E8D-9122-4A62-88F7-45BC44A038C3-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "8076B778-011A-4E39-910D-77C78D07E1E5",
-   "name": "Fields of Mistria",
-   "image_url": "https://images.qloo.com/i/8076B778-011A-4E39-910D-77C78D07E1E5-420x-auto.jpg",
+   "entity_id": "80564013-F33C-4F3A-A5E5-6B7264CD9091",
+   "name": "Watch Dogs 2",
+   "image_url": "https://images.qloo.com/i/80564013-F33C-4F3A-A5E5-6B7264CD9091-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "927F2AED-1094-458E-B8B7-15499C1D79D3",
-   "name": "Disney Dreamlight Valley",
-   "image_url": "https://images.qloo.com/i/927F2AED-1094-458E-B8B7-15499C1D79D3-420x-auto.jpg",
+   "entity_id": "43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3",
+   "name": "Mafia III",
+   "image_url": "https://images.qloo.com/i/43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "7C70EC47-D4F8-432B-8E33-EDE9E5D5531B",
-   "name": "Story of Seasons: Friends of Mineral Town",
-   "image_url": null,
+   "entity_id": "9ADEC46A-AF2F-45D7-A076-BFC5F6341E52",
+   "name": "Saints Row",
+   "image_url": "https://images.qloo.com/i/9ADEC46A-AF2F-45D7-A076-BFC5F6341E52-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   }
  ],
  "dropped_comps": [],
- "expanded": [
+ "culture": [
   {
-   "entity_id": "9370B1E9-0048-42EC-B14C-9FD3BF3B4710",
-   "name": "My Time At Portia",
-   "affinity": 0.9055,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: relaxing, time-management, relationship-building, creative.",
-   "image_url": "https://images.qloo.com/i/9370B1E9-0048-42EC-B14C-9FD3BF3B4710-420x-auto.jpg",
+   "entity_id": "51A19BB0-E7C3-44AD-A740-22B0A05013BF",
+   "name": "Gully Boy",
+   "type": "urn:entity:movie",
+   "image_url": "https://images.qloo.com/i/51A19BB0-E7C3-44AD-A740-22B0A05013BF-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q2"
   },
   {
-   "entity_id": "1D6C260D-9BF8-4F8B-9A73-06342EB30E5C",
-   "name": "Animal Crossing: Pocket Camp",
-   "affinity": 0.9012,
-   "why": "Driven by fans of Animal Crossing: New Horizons 52%, Stardew Valley 48%. Qloo tags: relaxing gameplay, customization, collection-driven, social interactions.",
-   "image_url": "https://images.qloo.com/i/1D6C260D-9BF8-4F8B-9A73-06342EB30E5C-420x-auto.jpg",
+   "entity_id": "CE300FA0-0752-4DD3-B28F-FC4CFD2D8915",
+   "name": "3 Idiots",
+   "type": "urn:entity:movie",
+   "image_url": "https://images.qloo.com/i/CE300FA0-0752-4DD3-B28F-FC4CFD2D8915-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q2"
   },
   {
-   "entity_id": "3699DAFA-BCC8-4A37-98C8-0B9BE5AFD40D",
-   "name": "Animal Crossing: New Leaf",
-   "affinity": 0.8981,
-   "why": "Driven by fans of Stardew Valley 50%, Animal Crossing: New Horizons 50%. Qloo tags: customization, time-based gameplay, social interaction, collection.",
-   "image_url": null,
+   "entity_id": "924C8504-4BD8-4615-AB2D-1C16880A8A62",
+   "name": "Arijit Singh",
+   "type": "urn:entity:artist",
+   "image_url": "https://images.qloo.com/i/924C8504-4BD8-4615-AB2D-1C16880A8A62-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q2"
   },
   {
-   "entity_id": "2225FC45-A2BE-454C-8527-6EAF3F4BF3DB",
-   "name": "The Sims 4",
-   "affinity": 0.8868,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: creative, customization, story-driven emergent gameplay, design-oriented.",
-   "image_url": "https://images.qloo.com/i/2225FC45-A2BE-454C-8527-6EAF3F4BF3DB-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "A25089FB-2AEF-4004-8EF1-F4B9A42FB82A",
-   "name": "Miitopia",
-   "affinity": 0.8846,
-   "why": "Driven by fans of Animal Crossing: New Horizons 52%, Stardew Valley 48%. Qloo tags: creative customization, cute cast, social dynamics, easy to pick up.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "6EAF9779-3FD1-4F2B-9CD6-8CB37C5FAF16",
-   "name": "Dream Daddy: A Dad Dating Simulator",
-   "affinity": 0.8814,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: story-rich, romantic, funny, light-hearted.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "0FAA0C22-CDA5-4481-8520-2C0CA35408D7",
-   "name": "Tomodachi Life",
-   "affinity": 0.8781,
-   "why": "Driven by fans of Stardew Valley 50%, Animal Crossing: New Horizons 50%. Qloo tags: silly, highly customizable, social interactions, situation comedy.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "E70AF8FE-0260-40DE-984A-FBB065C605A5",
-   "name": "Animal Crossing: Happy Home Designer",
-   "affinity": 0.8757,
-   "why": "Driven by fans of Animal Crossing: New Horizons 51%, Stardew Valley 49%. Qloo tags: Cozy, Relaxing, Creative, Cute Characters.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "AEA17BF8-1EAA-4AB3-AFCE-3D6A7AE96E98",
-   "name": "Cat Quest",
-   "affinity": 0.8604,
-   "why": "Driven by fans of Animal Crossing: New Horizons 52%, Stardew Valley 48%. Qloo tags: puns, cute characters, casual-friendly, easy-to-learn.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "37119ED3-29D5-4B94-8DC2-6B2251B0D54F",
-   "name": "Untitled Goose Game",
-   "affinity": 0.8595,
-   "why": "Driven by fans of Stardew Valley 50%, Animal Crossing: New Horizons 50%. Qloo tags: viral, memetic, quirky, family-friendly.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "33F8BDCD-176C-427F-ACA6-5A8C4131A939",
-   "name": "Animal Crossing: Wild World",
-   "affinity": 0.8511,
-   "why": "Driven by fans of Animal Crossing: New Horizons 50%, Stardew Valley 50%. Qloo tags: Cozy, Relaxing, Social, Creative.",
-   "image_url": "https://images.qloo.com/i/33F8BDCD-176C-427F-ACA6-5A8C4131A939-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "ADE59476-AA98-4A38-8F5C-1266E7320036",
-   "name": "Youtubers Life",
-   "affinity": 0.8468,
-   "why": "Driven by fans of Stardew Valley 52%, Animal Crossing: New Horizons 48%. Qloo tags: casual gamers, simulation fans, whimsical, light-hearted.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "4CCDCF88-C6C7-42A7-8F09-09ACD802CC45",
-   "name": "House Flipper",
-   "affinity": 0.8432,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: addictive, satisfying, creative, relaxing.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "3E8C4863-C81A-4646-816A-63E9EB6481A2",
-   "name": "Omori",
-   "affinity": 0.8362,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: emotional narrative, cult following, unique art style, mental health themes.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "DE584C3E-25B7-4B25-9BD8-30A12D4B686F",
-   "name": "Genshin Impact",
-   "affinity": 0.8334,
-   "why": "Driven by fans of Animal Crossing: New Horizons 51%, Stardew Valley 49%. Qloo tags: Gacha mechanics, Character collection, Beautiful art, Exploration.",
-   "image_url": "https://images.qloo.com/i/DE584C3E-25B7-4B25-9BD8-30A12D4B686F-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "522A4716-0A5A-4A97-B4A7-CA13ACA36C11",
-   "name": "Spiritfarer",
-   "affinity": 0.8304,
-   "why": "Driven by fans of Stardew Valley 50%, Animal Crossing: New Horizons 50%. Qloo tags: tearjerker, therapeutic, narrative-driven, uplifting sorrow.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "A7CECB2A-3573-4A28-910D-CF6A355A710D",
-   "name": "Deltarune: Chapter 1",
-   "affinity": 0.829,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: Engaging, Nostalgic, Humorous, Mysterious.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "554397CB-81BE-4E04-A7B2-5A9834859F64",
-   "name": "The Sims 2: Castaway",
-   "affinity": 0.829,
-   "why": "Driven by fans of Stardew Valley 52%, Animal Crossing: New Horizons 48%. Qloo tags: Creative, Exploration, Adventurous, Resourceful.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "9E184634-7021-46A9-9DB1-3AE2D223811D",
-   "name": "The Sims Medieval",
-   "affinity": 0.8261,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: creative gameplay, role-playing, quest-driven, accessible.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "3D98935C-BC87-4A2B-B57E-667874445DF2",
-   "name": "Fantasy Life",
-   "affinity": 0.8256,
-   "why": "Driven by fans of Stardew Valley 51%, Animal Crossing: New Horizons 49%. Qloo tags: charming, addictive progression, social, casual-friendly.",
-   "image_url": null,
+   "entity_id": "F177EC76-D270-4E48-BB34-3180379CEA7A",
+   "name": "Sacred Games",
+   "type": "urn:entity:tv_show",
+   "image_url": "https://images.qloo.com/i/F177EC76-D270-4E48-BB34-3180379CEA7A-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q2"
   }
  ],
+ "expanded": [
+  {
+   "entity_id": "595097F8-A605-422E-AEB3-C1B124B8A3B9",
+   "name": "Grand Theft Auto Online",
+   "affinity": 0.884,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Watch Dogs 2 22%, Mafia III 21%. Qloo tags: Social, Competitive, Emergent gameplay, Long-term progression.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "C64B1C7F-EE8E-4C32-ABE4-8C98061C9B06",
+   "name": "Grand Theft Auto: Vice City Stories",
+   "affinity": 0.8745,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: 1980s Setting, Crime Fiction, Nostalgia, Soundtrack Driven.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "258BE527-A070-419A-B26B-8D151E2D0BA6",
+   "name": "Mafia II",
+   "affinity": 0.8743,
+   "why": "Driven by fans of Sleeping Dogs 23%, Grand Theft Auto V 21%, Mafia III 20%. Qloo tags: story-rich, period atmosphere, realistic, strong characters.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "7171B6D2-EE3E-4EEC-921F-EC8C108FBCFA",
+   "name": "Tom Clancy's Ghost Recon: Wildlands",
+   "affinity": 0.874,
+   "why": "Driven by fans of Watch Dogs 2 24%, Mafia III 23%, Grand Theft Auto V 20%. Qloo tags: co-op focused, action-packed, teamplay, open-world exploration.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "D806380D-2A95-47F8-85B1-84160EA2466D",
+   "name": "Grand Theft Auto: Chinatown Wars",
+   "affinity": 0.8739,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 20%, Saints Row 19%. Qloo tags: addictive, engaging, intense, suspenseful.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "8A46CAEF-603E-4FF5-A85D-2BBC07F4B5D9",
+   "name": "Grand Theft Auto: Liberty City Stories",
+   "affinity": 0.8685,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Mafia III 19%. Qloo tags: crime-themed, sandbox gameplay, nostalgic, memorable soundtrack.",
+   "image_url": "https://images.qloo.com/i/8A46CAEF-603E-4FF5-A85D-2BBC07F4B5D9-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "B9F9C5FB-FEEE-4405-83BF-DE51624800C1",
+   "name": "Mafia",
+   "affinity": 0.8508,
+   "why": "Driven by fans of Sleeping Dogs 22%, Grand Theft Auto V 22%, Mafia III 21%. Qloo tags: immersive, gritty, narrative-driven, tense.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "18C0FF0D-4582-41E7-93D6-221A6D6301D6",
+   "name": "Grand Theft Auto IV",
+   "affinity": 0.8502,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: realistic city, mature narrative, social satire, complex characters.",
+   "image_url": "https://images.qloo.com/i/18C0FF0D-4582-41E7-93D6-221A6D6301D6-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "3B78563F-7FDD-4672-8652-1DB70624E74E",
+   "name": "Mafia: Definitive Edition",
+   "affinity": 0.8495,
+   "why": "Driven by fans of Mafia III 24%, Watch Dogs 2 23%, Grand Theft Auto V 21%. Qloo tags: mob movie, period setting, authentic 1930s, strong narrative.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "590C5023-F298-4F4A-9EF6-AF10056EAB3D",
+   "name": "Watch Dogs",
+   "affinity": 0.8449,
+   "why": "Driven by fans of Grand Theft Auto V 22%, Watch Dogs 2 20%, Saints Row 20%. Qloo tags: hacking mechanics, revenge narrative, urban atmosphere, open-world freedom.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "F53785DA-79EB-41F7-80E5-130C3AD9D079",
+   "name": "Max Payne 3",
+   "affinity": 0.8449,
+   "why": "Driven by fans of Sleeping Dogs 24%, Grand Theft Auto V 21%, Mafia III 19%. Qloo tags: bullet-time gameplay, cinematic presentation, gritty noir storytelling, action-packed.",
+   "image_url": "https://images.qloo.com/i/F53785DA-79EB-41F7-80E5-130C3AD9D079-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "788936CC-C07A-4D82-866E-AC0995BC6F15",
+   "name": "Mad Max",
+   "affinity": 0.8432,
+   "why": "Driven by fans of Watch Dogs 2 22%, Mafia III 22%, Grand Theft Auto V 20%. Qloo tags: explosive car combat, satisfying customization, gritty world, fan service to films.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "3A6CB953-75A9-4366-81A0-67597DC25D5A",
+   "name": "Saints Row IV",
+   "affinity": 0.8431,
+   "why": "Driven by fans of Sleeping Dogs 25%, Saints Row 19%, Grand Theft Auto V 19%. Qloo tags: over-the-top action, funny, absurdist humor, high customization.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "B8E019C6-4BFC-4B3C-985D-C188FB0A49F4",
+   "name": "Bully: Scholarship Edition",
+   "affinity": 0.8429,
+   "why": "Driven by fans of Sleeping Dogs 22%, Grand Theft Auto V 22%, Mafia III 21%. Qloo tags: school setting, teen comedy, pranks, clique dynamics.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "7AD1B6EC-A833-4D47-A4F4-55156B1083D3",
+   "name": "Just Cause 3",
+   "affinity": 0.8383,
+   "why": "Driven by fans of Watch Dogs 2 25%, Mafia III 23%, Grand Theft Auto V 21%. Qloo tags: explosive sandbox, freedom to create chaos, over-the-top action, stunt playground.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "BF947F01-368A-45AD-8083-CE7BF0C92685",
+   "name": "Bully",
+   "affinity": 0.8376,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: Cult Classic, Controversial, Character-driven, Replayable.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "514DCDCF-4E91-4D0D-ACED-74C96E3E7037",
+   "name": "Grand Theft Auto: San Andreas",
+   "affinity": 0.8363,
+   "why": "Driven by fans of Grand Theft Auto V 24%, Mafia III 19%, Sleeping Dogs 19%. Qloo tags: cult classic, iconic soundtrack, freedom, moddable.",
+   "image_url": "https://images.qloo.com/i/514DCDCF-4E91-4D0D-ACED-74C96E3E7037-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "C0CC10B0-77E7-426C-8664-78D6A502878C",
+   "name": "Grand Theft Auto III",
+   "affinity": 0.8338,
+   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 20%, Mafia III 19%. Qloo tags: groundbreaking, influential, open-world pioneer, story-driven sandbox.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "D85221EF-80C6-4057-A104-734CDB76FDFE",
+   "name": "L.A. Noire: The Complete Edition",
+   "affinity": 0.8337,
+   "why": "Driven by fans of Sleeping Dogs 23%, Mafia III 23%, Watch Dogs 2 21%. Qloo tags: immersive, detective, noir, story-driven.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q3"
+  },
+  {
+   "entity_id": "A037A3D7-652E-4009-9F11-42135FA99CE0",
+   "name": "The Godfather",
+   "affinity": 0.8336,
+   "why": "Driven by fans of Sleeping Dogs 23%, Grand Theft Auto V 22%, Saints Row 21%. Qloo tags: crime, gangster, story-driven, dark.",
+   "image_url": "https://images.qloo.com/i/A037A3D7-652E-4009-9F11-42135FA99CE0-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q3"
+  }
+ ],
  "cities": [
   {
-   "region_id": "tyo",
-   "name": "Tokyo",
-   "country": "JP",
-   "lat": 35.68,
-   "lon": 139.69,
-   "lift": 1.865,
-   "target_score": 0.9053,
-   "baseline_score": 0.4855,
-   "cells": 2057,
+   "region_id": "bom",
+   "name": "Mumbai",
+   "country": "IN",
+   "lat": 19.08,
+   "lon": 72.88,
+   "score": 2.49,
+   "lift": 1.051,
+   "platform_fit": 0.969,
+   "culture_fit": 2.446,
+   "target_score": 0.9309,
+   "baseline_score": 0.8859,
+   "cells": 822,
    "confidence": "high",
-   "budget_share": 14.76,
-   "budget_usd": 442.89,
+   "budget_share": 25.71,
+   "budget_usd": 1285.73,
    "source": "qloo",
    "result_ids": [
-    "q21",
-    "q22"
+    "q69",
+    "q70",
+    "q71",
+    "q72",
+    "q73"
    ]
   },
   {
-   "region_id": "sfo",
-   "name": "San Francisco",
-   "country": "US",
-   "lat": 37.77,
-   "lon": -122.42,
-   "lift": 1.284,
-   "target_score": 0.9389,
-   "baseline_score": 0.7311,
-   "cells": 864,
+   "region_id": "del",
+   "name": "Delhi",
+   "country": "IN",
+   "lat": 28.61,
+   "lon": 77.21,
+   "score": 2.118,
+   "lift": 1.056,
+   "platform_fit": 0.957,
+   "culture_fit": 2.095,
+   "target_score": 0.9238,
+   "baseline_score": 0.8746,
+   "cells": 1379,
    "confidence": "high",
-   "budget_share": 10.16,
-   "budget_usd": 304.92,
+   "budget_share": 21.87,
+   "budget_usd": 1093.65,
    "source": "qloo",
    "result_ids": [
-    "q7",
-    "q8"
+    "q64",
+    "q65",
+    "q66",
+    "q67",
+    "q68"
    ]
   },
   {
-   "region_id": "lax",
-   "name": "Los Angeles",
-   "country": "US",
-   "lat": 34.05,
-   "lon": -118.25,
-   "lift": 1.226,
-   "target_score": 0.9485,
-   "baseline_score": 0.7738,
-   "cells": 3326,
+   "region_id": "dxb",
+   "name": "Dubai",
+   "country": "AE",
+   "lat": 25.2,
+   "lon": 55.27,
+   "score": 2.064,
+   "lift": 1.047,
+   "platform_fit": 0.987,
+   "culture_fit": 1.997,
+   "target_score": 0.939,
+   "baseline_score": 0.8966,
+   "cells": 672,
    "confidence": "high",
-   "budget_share": 9.7,
-   "budget_usd": 291.15,
+   "budget_share": 21.32,
+   "budget_usd": 1065.76,
    "source": "qloo",
    "result_ids": [
-    "q5",
-    "q6"
-   ]
-  },
-  {
-   "region_id": "yto",
-   "name": "Toronto",
-   "country": "CA",
-   "lat": 43.65,
-   "lon": -79.38,
-   "lift": 1.211,
-   "target_score": 0.9378,
-   "baseline_score": 0.7743,
-   "cells": 929,
-   "confidence": "high",
-   "budget_share": 9.59,
-   "budget_usd": 287.59,
-   "source": "qloo",
-   "result_ids": [
-    "q11",
-    "q12"
+    "q59",
+    "q60",
+    "q61",
+    "q62",
+    "q63"
    ]
   },
   {
@@ -337,93 +388,73 @@
    "country": "GB",
    "lat": 51.51,
    "lon": -0.13,
-   "lift": 1.181,
-   "target_score": 0.889,
-   "baseline_score": 0.7526,
-   "cells": 1981,
+   "score": 1.216,
+   "lift": 1.091,
+   "platform_fit": 0.985,
+   "culture_fit": 1.132,
+   "target_score": 0.8282,
+   "baseline_score": 0.7595,
+   "cells": 2226,
    "confidence": "high",
-   "budget_share": 9.35,
-   "budget_usd": 280.46,
+   "budget_share": 12.56,
+   "budget_usd": 627.89,
    "source": "qloo",
    "result_ids": [
-    "q13",
-    "q14"
+    "q34",
+    "q35",
+    "q36",
+    "q37",
+    "q38"
    ]
   },
   {
-   "region_id": "nyc",
-   "name": "New York",
-   "country": "US",
-   "lat": 40.73,
-   "lon": -73.99,
-   "lift": 1.178,
-   "target_score": 0.9435,
-   "baseline_score": 0.8011,
-   "cells": 2290,
+   "region_id": "yto",
+   "name": "Toronto",
+   "country": "CA",
+   "lat": 43.65,
+   "lon": -79.38,
+   "score": 1.158,
+   "lift": 0.924,
+   "platform_fit": 1.025,
+   "culture_fit": 1.223,
+   "target_score": 0.7649,
+   "baseline_score": 0.8282,
+   "cells": 963,
    "confidence": "high",
-   "budget_share": 9.32,
-   "budget_usd": 279.75,
+   "budget_share": 11.96,
+   "budget_usd": 597.94,
    "source": "qloo",
    "result_ids": [
-    "q3",
-    "q4"
+    "q19",
+    "q20",
+    "q21",
+    "q22",
+    "q23"
    ]
   },
   {
-   "region_id": "sea",
-   "name": "Seattle",
-   "country": "US",
-   "lat": 47.61,
-   "lon": -122.33,
-   "lift": 1.177,
-   "target_score": 0.9578,
-   "baseline_score": 0.8138,
-   "cells": 966,
-   "confidence": "high",
-   "budget_share": 9.32,
-   "budget_usd": 279.51,
+   "region_id": "syd",
+   "name": "Sydney",
+   "country": "AU",
+   "lat": -33.87,
+   "lon": 151.21,
+   "score": 1.062,
+   "lift": 0.971,
+   "platform_fit": 1.003,
+   "culture_fit": 1.09,
+   "target_score": 0.8174,
+   "baseline_score": 0.8414,
+   "cells": 932,
+   "confidence": "medium",
+   "budget_share": 6.58,
+   "budget_usd": 329.03,
    "source": "qloo",
    "result_ids": [
-    "q9",
-    "q10"
-   ]
-  },
-  {
-   "region_id": "sel",
-   "name": "Seoul",
-   "country": "KR",
-   "lat": 37.57,
-   "lon": 126.98,
-   "lift": 1.149,
-   "target_score": 0.8653,
-   "baseline_score": 0.7532,
-   "cells": 890,
-   "confidence": "high",
-   "budget_share": 9.1,
-   "budget_usd": 272.86,
-   "source": "qloo",
-   "result_ids": [
-    "q23",
-    "q24"
-   ]
-  },
-  {
-   "region_id": "ber",
-   "name": "Berlin",
-   "country": "DE",
-   "lat": 52.52,
-   "lon": 13.4,
-   "lift": 1.106,
-   "target_score": 0.8442,
-   "baseline_score": 0.7633,
-   "cells": 487,
-   "confidence": "high",
-   "budget_share": 8.76,
-   "budget_usd": 262.65,
-   "source": "qloo",
-   "result_ids": [
-    "q15",
-    "q16"
+    "q89",
+    "q90",
+    "q91",
+    "q92",
+    "q93"
    ]
   },
   {
@@ -432,15 +463,196 @@
    "country": "FR",
    "lat": 48.86,
    "lon": 2.35,
-   "lift": 1.062,
-   "target_score": 0.8421,
-   "baseline_score": 0.7932,
-   "cells": 850,
-   "confidence": "medium",
-   "budget_share": 5.04,
-   "budget_usd": 151.32,
+   "score": 0.854,
+   "lift": 0.979,
+   "platform_fit": 1.009,
+   "culture_fit": 0.864,
+   "target_score": 0.8032,
+   "baseline_score": 0.8209,
+   "cells": 1136,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
    "source": "qloo",
    "result_ids": [
+    "q39",
+    "q40",
+    "q41",
+    "q42",
+    "q43"
+   ]
+  },
+  {
+   "region_id": "nyc",
+   "name": "New York",
+   "country": "US",
+   "lat": 40.73,
+   "lon": -73.99,
+   "score": 0.759,
+   "lift": 0.984,
+   "platform_fit": 1.008,
+   "culture_fit": 0.765,
+   "target_score": 0.8442,
+   "baseline_score": 0.8583,
+   "cells": 2351,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q4",
+    "q5",
+    "q6",
+    "q7",
+    "q8"
+   ]
+  },
+  {
+   "region_id": "ist",
+   "name": "Istanbul",
+   "country": "TR",
+   "lat": 41.01,
+   "lon": 28.98,
+   "score": 0.692,
+   "lift": 0.987,
+   "platform_fit": 0.945,
+   "culture_fit": 0.742,
+   "target_score": 0.8204,
+   "baseline_score": 0.8315,
+   "cells": 1209,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q54",
+    "q55",
+    "q56",
+    "q57",
+    "q58"
+   ]
+  },
+  {
+   "region_id": "waw",
+   "name": "Warsaw",
+   "country": "PL",
+   "lat": 52.23,
+   "lon": 21.01,
+   "score": 0.692,
+   "lift": 0.98,
+   "platform_fit": 0.994,
+   "culture_fit": 0.71,
+   "target_score": 0.7545,
+   "baseline_score": 0.7699,
+   "cells": 407,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q49",
+    "q50",
+    "q51",
+    "q52",
+    "q53"
+   ]
+  },
+  {
+   "region_id": "ber",
+   "name": "Berlin",
+   "country": "DE",
+   "lat": 52.52,
+   "lon": 13.4,
+   "score": 0.668,
+   "lift": 0.984,
+   "platform_fit": 1.016,
+   "culture_fit": 0.668,
+   "target_score": 0.7791,
+   "baseline_score": 0.7916,
+   "cells": 661,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q44",
+    "q45",
+    "q46",
+    "q47",
+    "q48"
+   ]
+  },
+  {
+   "region_id": "jkt",
+   "name": "Jakarta",
+   "country": "ID",
+   "lat": -6.21,
+   "lon": 106.85,
+   "score": 0.63,
+   "lift": 0.96,
+   "platform_fit": 0.973,
+   "culture_fit": 0.674,
+   "target_score": 0.8115,
+   "baseline_score": 0.8451,
+   "cells": 1921,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q84",
+    "q85",
+    "q86",
+    "q87",
+    "q88"
+   ]
+  },
+  {
+   "region_id": "mex",
+   "name": "Mexico City",
+   "country": "MX",
+   "lat": 19.43,
+   "lon": -99.13,
+   "score": 0.615,
+   "lift": 1.023,
+   "platform_fit": 1.012,
+   "culture_fit": 0.594,
+   "target_score": 0.9078,
+   "baseline_score": 0.8871,
+   "cells": 1574,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q24",
+    "q25",
+    "q26",
+    "q27",
+    "q28"
+   ]
+  },
+  {
+   "region_id": "chi",
+   "name": "Chicago",
+   "country": "US",
+   "lat": 41.88,
+   "lon": -87.63,
+   "score": 0.613,
+   "lift": 0.937,
+   "platform_fit": 1.009,
+   "culture_fit": 0.649,
+   "target_score": 0.8009,
+   "baseline_score": 0.8547,
+   "cells": 1113,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q14",
+    "q15",
+    "q16",
     "q17",
     "q18"
    ]
@@ -451,36 +663,98 @@
    "country": "BR",
    "lat": -23.55,
    "lon": -46.63,
-   "lift": 1.031,
-   "target_score": 0.8786,
-   "baseline_score": 0.8521,
-   "cells": 1970,
-   "confidence": "medium",
-   "budget_share": 4.9,
-   "budget_usd": 146.9,
-   "source": "qloo",
-   "result_ids": [
-    "q25",
-    "q26"
-   ]
-  },
-  {
-   "region_id": "waw",
-   "name": "Warsaw",
-   "country": "PL",
-   "lat": 52.23,
-   "lon": 21.01,
-   "lift": 0.874,
-   "target_score": 0.6897,
-   "baseline_score": 0.7889,
-   "cells": 241,
+   "score": 0.553,
+   "lift": 1.068,
+   "platform_fit": 1.009,
+   "culture_fit": 0.513,
+   "target_score": 0.9183,
+   "baseline_score": 0.8599,
+   "cells": 2450,
    "confidence": "high",
    "budget_share": 0.0,
    "budget_usd": 0.0,
    "source": "qloo",
    "result_ids": [
-    "q19",
-    "q20"
+    "q29",
+    "q30",
+    "q31",
+    "q32",
+    "q33"
+   ]
+  },
+  {
+   "region_id": "lax",
+   "name": "Los Angeles",
+   "country": "US",
+   "lat": 34.05,
+   "lon": -118.25,
+   "score": 0.5,
+   "lift": 0.946,
+   "platform_fit": 1.013,
+   "culture_fit": 0.522,
+   "target_score": 0.8068,
+   "baseline_score": 0.8531,
+   "cells": 3359,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q9",
+    "q10",
+    "q11",
+    "q12",
+    "q13"
+   ]
+  },
+  {
+   "region_id": "tyo",
+   "name": "Tokyo",
+   "country": "JP",
+   "lat": 35.68,
+   "lon": 139.69,
+   "score": 0.468,
+   "lift": 0.568,
+   "platform_fit": 0.948,
+   "culture_fit": 0.868,
+   "target_score": 0.4193,
+   "baseline_score": 0.738,
+   "cells": 1024,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q74",
+    "q75",
+    "q76",
+    "q77",
+    "q78"
+   ]
+  },
+  {
+   "region_id": "sel",
+   "name": "Seoul",
+   "country": "KR",
+   "lat": 37.57,
+   "lon": 126.98,
+   "score": 0.302,
+   "lift": 0.67,
+   "platform_fit": 1.008,
+   "culture_fit": 0.446,
+   "target_score": 0.559,
+   "baseline_score": 0.8338,
+   "cells": 868,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "source": "qloo",
+   "result_ids": [
+    "q79",
+    "q80",
+    "q81",
+    "q82",
+    "q83"
    ]
   }
  ],
@@ -488,615 +762,514 @@
   "age": [
    {
     "band": "24 and under",
-    "index": -0.096
+    "index": -0.084
    },
    {
     "band": "25-29",
-    "index": 0.075
+    "index": 0.008
    },
    {
     "band": "30-34",
-    "index": -0.231
+    "index": -0.174
    },
    {
     "band": "35-44",
-    "index": -0.042
+    "index": -0.117
    },
    {
     "band": "45-54",
-    "index": -0.129
+    "index": -0.158
    },
    {
     "band": "55+",
-    "index": -0.234
+    "index": -0.253
    }
   ],
   "gender": [
    {
     "label": "male",
-    "index": -0.469
+    "index": 0.28
    },
    {
     "label": "female",
-    "index": 0.469
+    "index": -0.28
    }
   ],
   "source": "qloo",
-  "result_id": "q27"
+  "result_id": "q94"
  },
  "partners": {
   "artist": [
    {
-    "entity_id": "00A28E97-A9F2-4C08-9AC8-D6CF94CFC7FF",
-    "name": "Waterparks",
-    "affinity": 0.9416,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, Stardew Valley 12%, My Time At Portia 12%. Qloo tags: Youth, My Chemical Romance, Bass, Emotional.",
+    "entity_id": "D1AA6C1F-F7E4-4A9F-96A3-6A088BA2587A",
+    "name": "blink-182",
+    "affinity": 0.9018,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 11%, Grand Theft Auto Online 11%, Grand Theft Auto V 10%. Qloo tags: Youthful, Vocals, Relationships, The Ramones.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/00A28E97-A9F2-4C08-9AC8-D6CF94CFC7FF-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/D1AA6C1F-F7E4-4A9F-96A3-6A088BA2587A-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "76567457-FAEA-4A5A-988B-F7EBD688058A",
-    "name": "I DONT KNOW HOW BUT THEY FOUND ME",
-    "affinity": 0.9396,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, My Time At Portia 12%, Stardew Valley 12%. Qloo tags: Catchy, Theatrical, Electropop, Synth-Driven.",
+    "entity_id": "20367368-EAAF-41B2-B3BC-BAA4B22E65D3",
+    "name": "Limp Bizkit",
+    "affinity": 0.8984,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Mafia II 10%. Qloo tags: Rapcore, Nu Metal, Turntables, Rap Metal.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/76567457-FAEA-4A5A-988B-F7EBD688058A-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/20367368-EAAF-41B2-B3BC-BAA4B22E65D3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "B75E8ED4-87C2-4682-BD14-7C4C0D72BE69",
-    "name": "Cavetown",
-    "affinity": 0.9334,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, Stardew Valley 13%, My Time At Portia 12%. Qloo tags: Alternative, Youth, 3, Bass.",
+    "entity_id": "157BE139-42EB-4D34-BB35-AB6C83C56870",
+    "name": "DrefGold",
+    "affinity": 0.8951,
+    "why": "Driven by fans of Mafia III 10%, Grand Theft Auto: Liberty City Stories 10%, Mafia 9%. Qloo tags: Loyal, Latin Trap, Urban Life, 4.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/B75E8ED4-87C2-4682-BD14-7C4C0D72BE69-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/157BE139-42EB-4D34-BB35-AB6C83C56870-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "8448DC59-B377-43A0-A3D4-C163AF45566D",
-    "name": "Panicland",
-    "affinity": 0.9318,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, My Time At Portia 12%, Miitopia 12%. Qloo tags: Social Justice, 6, Pop, Loyal.",
+    "entity_id": "CCED2E0D-F6C1-42CA-8BF1-118C70D946E8",
+    "name": "Red Hot Chili Peppers",
+    "affinity": 0.8923,
+    "why": "Driven by fans of Grand Theft Auto Online 12%, Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto V 11%. Qloo tags: Dynamic, Funk Rock, Psychedelic Rock, The Clash.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/8448DC59-B377-43A0-A3D4-C163AF45566D-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/CCED2E0D-F6C1-42CA-8BF1-118C70D946E8-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "594D807A-3E7E-4413-A359-6DF02532700A",
-    "name": "Set It Off",
-    "affinity": 0.9301,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, The Sims 4 13%, My Time At Portia 12%. Qloo tags: Rock, Melodic Emo, Passionate, Alternative Rock.",
+    "entity_id": "4070A9DA-CD52-4E86-84EA-CA7F9EF78E37",
+    "name": "Rage Against the Machine",
+    "affinity": 0.8915,
+    "why": "Driven by fans of Grand Theft Auto Online 12%, Tom Clancy's Ghost Recon: Wildlands 11%, Grand Theft Auto V 11%. Qloo tags: Political, Engaging, Passionate, Alternative Metal.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/594D807A-3E7E-4413-A359-6DF02532700A-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/4070A9DA-CD52-4E86-84EA-CA7F9EF78E37-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "1AE096AE-0C2C-4978-B708-BEEA785C716F",
-    "name": "Gerard Way",
-    "affinity": 0.9296,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, My Time At Portia 13%, The Sims 4 12%. Qloo tags: Guitar, Post-Hardcore, Dynamic, Indie Rock.",
+    "entity_id": "76922890-5BBA-42BB-B3F9-1AF72114CF44",
+    "name": "Green Day",
+    "affinity": 0.8896,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Grand Theft Auto V 11%. Qloo tags: 2, Alternative Rock, Tenor, Relationships.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/1AE096AE-0C2C-4978-B708-BEEA785C716F-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/76922890-5BBA-42BB-B3F9-1AF72114CF44-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "75285060-D626-4258-98B5-C99DA0E713FA",
-    "name": "Ricky Montgomery",
-    "affinity": 0.9294,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, Stardew Valley 12%, My Time At Portia 12%. Qloo tags: Love, Emotive Indie, Pop, Guitar.",
+    "entity_id": "A0E6E19F-AE13-40AA-8AAC-972C102D2EAA",
+    "name": "Superheaven",
+    "affinity": 0.8896,
+    "why": "Driven by fans of Mafia II 10%, Grand Theft Auto: Vice City Stories 10%, Sleeping Dogs 9%. Qloo tags: Post Grunge, Grunge, Drums, Shoegaze.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/75285060-D626-4258-98B5-C99DA0E713FA-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/A0E6E19F-AE13-40AA-8AAC-972C102D2EAA-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "B1682811-25F4-4974-A383-BC0BA46E8A11",
-    "name": "Beach Bunny",
-    "affinity": 0.9274,
-    "why": "Driven by fans of Stardew Valley 14%, Dream Daddy: A Dad Dating Simulator 13%, My Time At Portia 12%. Qloo tags: The Strokes, 3, Loyal, Emo Pop.",
+    "entity_id": "E8B40967-26BF-4298-875E-C17F2CAFA499",
+    "name": "The Offspring",
+    "affinity": 0.8891,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 12%, Grand Theft Auto V 11%. Qloo tags: Hardcore Punk, Dynamic, Engaging, Skate Punk.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/B1682811-25F4-4974-A383-BC0BA46E8A11-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/E8B40967-26BF-4298-875E-C17F2CAFA499-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q28"
+    "result_id": "q95"
    },
    {
-    "entity_id": "FF328366-918C-4F40-84AD-4CE5148AD602",
-    "name": "Survive Said The Prophet",
-    "affinity": 0.9551,
-    "why": "Driven by fans of Animal Crossing: New Horizons 13%, Animal Crossing: New Leaf 13%, Miitopia 12%. Qloo tags: Melodic Rock, Post-Hardcore, Expressive, Rock.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/FF328366-918C-4F40-84AD-4CE5148AD602-420x-auto.jpg",
+    "entity_id": "ABB725B5-B689-431B-A90F-A06FF9313F0F",
+    "name": "Linkin Park",
+    "affinity": 0.9385,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Mafia II 10%. Qloo tags: Dynamic, Hope, Diverse, Emotional.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/ABB725B5-B689-431B-A90F-A06FF9313F0F-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q32"
+    "result_id": "q99"
    },
    {
-    "entity_id": "890556EF-BC09-4117-A536-84D00CE44968",
-    "name": "THE ORAL CIGARETTES",
-    "affinity": 0.9524,
-    "why": "Driven by fans of Animal Crossing: New Horizons 14%, Animal Crossing: New Leaf 14%, Miitopia 12%. Qloo tags: Dynamic, J Rock, Melodic, Relationships.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/890556EF-BC09-4117-A536-84D00CE44968-420x-auto.jpg",
+    "entity_id": "1651869C-3277-47AC-8535-62784C799EDF",
+    "name": "Travis Scott",
+    "affinity": 0.9379,
+    "why": "Driven by fans of Grand Theft Auto: Liberty City Stories 11%, Saints Row 10%, Grand Theft Auto: Chinatown Wars 10%. Qloo tags: Vocals, Cloud Rap, Drum Machine, Loyal.",
+    "city": "Dubai",
+    "image_url": "https://images.qloo.com/i/1651869C-3277-47AC-8535-62784C799EDF-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q32"
-   },
-   {
-    "entity_id": "A12CDA85-4757-485C-ABAF-1418A1C71FDC",
-    "name": "Polkadot Stingray",
-    "affinity": 0.9522,
-    "why": "Driven by fans of Animal Crossing: New Horizons 14%, Miitopia 13%, Animal Crossing: New Leaf 13%. Qloo tags: J-Rock, Alternative Rock, Red Hot Chili Peppers, Catchy.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/A12CDA85-4757-485C-ABAF-1418A1C71FDC-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q32"
-   },
-   {
-    "entity_id": "2E98D91B-FD45-41BD-816C-96D8F4EA142F",
-    "name": "Oliver Tree",
-    "affinity": 0.9536,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 13%, Stardew Valley 13%, Miitopia 12%. Qloo tags: Youth, Indie Rock, Eclectic, Comedy Rock.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/2E98D91B-FD45-41BD-816C-96D8F4EA142F-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q35"
-   },
-   {
-    "entity_id": "9E2EB1BB-6F8C-483D-9078-429ACEE48D65",
-    "name": "The Regrettes",
-    "affinity": 0.9526,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 14%, Stardew Valley 13%, My Time At Portia 12%. Qloo tags: Feminist Punk, Empowerment, Pop Punk, Indie Pop Rock.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/9E2EB1BB-6F8C-483D-9078-429ACEE48D65-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q35"
-   },
-   {
-    "entity_id": "60B9C171-750C-4B3C-9497-55A345764A36",
-    "name": "Panic! at the Disco",
-    "affinity": 0.9523,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 14%, Tomodachi Life 13%, The Sims 4 13%. Qloo tags: Tenor, Emo Pop, Rock, The Beatles.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/60B9C171-750C-4B3C-9497-55A345764A36-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q35"
-   },
-   {
-    "entity_id": "B4B0505E-9201-4FE4-8E34-FAC54A623C76",
-    "name": "Steven Universe",
-    "affinity": 0.9556,
-    "why": "Driven by fans of Miitopia 13%, Dream Daddy: A Dad Dating Simulator 13%, My Time At Portia 13%. Qloo tags: Narrative-Driven, Indie Pop, Emotional Pop, Growth.",
-    "city": "Los Angeles",
-    "image_url": "https://images.qloo.com/i/B4B0505E-9201-4FE4-8E34-FAC54A623C76-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q38"
-   },
-   {
-    "entity_id": "97C28558-47C8-4D19-88EC-CD5F8EA82B3B",
-    "name": "My Chemical Romance",
-    "affinity": 0.9539,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 14%, Tomodachi Life 13%, My Time At Portia 12%. Qloo tags: Dedicated, Dramatic, Love, Post Hardcore.",
-    "city": "Los Angeles",
-    "image_url": "https://images.qloo.com/i/97C28558-47C8-4D19-88EC-CD5F8EA82B3B-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q38"
+    "result_id": "q105"
    }
   ],
   "podcast": [
    {
+    "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+    "name": "Stuff You Should Know",
+    "affinity": 0.9285,
+    "why": "Driven by fans of Sleeping Dogs 10%, Grand Theft Auto: Liberty City Stories 10%, Mafia 10%. Qloo tags: Society & Culture, Podcasts.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q96"
+   },
+   {
+    "entity_id": "405AF1BB-3CA8-46A6-BE6D-9907438F0F0D",
+    "name": "StarTalk Radio",
+    "affinity": 0.9098,
+    "why": "Driven by fans of Grand Theft Auto Online 9%, Grand Theft Auto: Liberty City Stories 9%, Sleeping Dogs 9%. Qloo tags: Podcasts, Science, Education.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/405AF1BB-3CA8-46A6-BE6D-9907438F0F0D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q96"
+   },
+   {
+    "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+    "name": "Radiolab",
+    "affinity": 0.9077,
+    "why": "Driven by fans of Mafia II 10%, Mafia 10%, Grand Theft Auto V 10%. Qloo tags: Podcasts, Natural Sciences, Society & Culture, Documentary.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q96"
+   },
+   {
+    "entity_id": "BF80E280-A231-44B0-B98C-31C541F007E2",
+    "name": "This American Life",
+    "affinity": 0.9039,
+    "why": "Driven by fans of Mafia 10%, Grand Theft Auto V 10%, Mafia II 10%. Qloo tags: Arts, Podcasts, Society & Culture.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/BF80E280-A231-44B0-B98C-31C541F007E2-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q96"
+   },
+   {
+    "entity_id": "B64B6DC3-AFA9-4619-B4A0-23788193492B",
+    "name": "Stuff To Blow Your Mind",
+    "affinity": 0.9032,
+    "why": "Driven by fans of Sleeping Dogs 11%, Grand Theft Auto: Liberty City Stories 10%, Mafia 9%. Qloo tags: Natural Sciences, Life Sciences, Podcasts, Science.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/B64B6DC3-AFA9-4619-B4A0-23788193492B-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q96"
+   },
+   {
     "entity_id": "4F1F6CCE-D6CB-4678-953F-6CF91E14B691",
     "name": "Welcome to Night Vale",
-    "affinity": 0.96,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: Pocket Camp 12%, Tomodachi Life 12%. Qloo tags: Science Fiction, Fiction, Podcasts.",
+    "affinity": 0.8968,
+    "why": "Driven by fans of Grand Theft Auto: Liberty City Stories 10%, Sleeping Dogs 10%, Mafia II 9%. Qloo tags: Science Fiction, Fiction, Podcasts.",
     "city": null,
     "image_url": "https://images.qloo.com/i/4F1F6CCE-D6CB-4678-953F-6CF91E14B691-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q29"
+    "result_id": "q96"
    },
    {
-    "entity_id": "0DD29CBA-D9B5-48F9-B3F4-1FEA71868387",
-    "name": "The Magnus Archives",
-    "affinity": 0.9578,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 12%, Tomodachi Life 12%, My Time At Portia 12%. Qloo tags: Drama, Fiction, Performing Arts, Arts.",
+    "entity_id": "A853E5FD-30E2-4ECC-9E9A-D3B939AC742D",
+    "name": "TED Radio Hour",
+    "affinity": 0.8896,
+    "why": "Driven by fans of Grand Theft Auto Online 10%, Mafia II 10%, Mafia 10%. Qloo tags: Science, Technology, Podcasts, Social Sciences.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/0DD29CBA-D9B5-48F9-B3F4-1FEA71868387-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/A853E5FD-30E2-4ECC-9E9A-D3B939AC742D-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q29"
+    "result_id": "q96"
    },
    {
-    "entity_id": "67D132FE-F1CD-49BA-AB8F-CC9591FB92FC",
-    "name": "Archive 81",
-    "affinity": 0.9363,
-    "why": "Driven by fans of Stardew Valley 12%, Animal Crossing: New Horizons 12%, Animal Crossing: Pocket Camp 12%. Qloo tags: Fiction, Podcasts, Science Fiction.",
+    "entity_id": "6FD93241-4920-4325-8983-F0A0AFE2219A",
+    "name": "How To Do Everything",
+    "affinity": 0.8884,
+    "why": "Driven by fans of Mafia II 10%, Mafia 10%, Grand Theft Auto Online 10%. Qloo tags: Podcasts, Society & Culture.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/67D132FE-F1CD-49BA-AB8F-CC9591FB92FC-420x-auto.jpg",
+    "image_url": null,
     "source": "qloo",
-    "result_id": "q29"
+    "result_id": "q96"
    },
    {
-    "entity_id": "B8A19DAA-F458-479C-A3E5-DB9F8DAE3E04",
-    "name": "Within the Wires",
-    "affinity": 0.9322,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 12%, Dream Daddy: A Dad Dating Simulator 12%, Tomodachi Life 12%. Qloo tags: Science Fiction, Fiction, Podcasts.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/B8A19DAA-F458-479C-A3E5-DB9F8DAE3E04-420x-auto.jpg",
+    "entity_id": "B3E6D9CD-28AE-4ABE-8592-C8E2949657AD",
+    "name": "Freakonomics Radio",
+    "affinity": 0.927,
+    "why": "Driven by fans of Grand Theft Auto Online 10%, Mafia 10%, Mafia II 10%. Qloo tags: Society & Culture, Podcasts, Documentary.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/B3E6D9CD-28AE-4ABE-8592-C8E2949657AD-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q29"
+    "result_id": "q100"
    },
    {
-    "entity_id": "3FD10117-C97A-417D-86FB-1BE71AC8552A",
-    "name": "Hello From The Magic Tavern",
-    "affinity": 0.9307,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Tomodachi Life 12%, Miitopia 11%. Qloo tags: Podcasts, Fiction, Comedy.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/3FD10117-C97A-417D-86FB-1BE71AC8552A-420x-auto.jpg",
+    "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+    "name": "The Joe Rogan Experience",
+    "affinity": 0.924,
+    "why": "Driven by fans of Grand Theft Auto: Chinatown Wars 9%, Grand Theft Auto Online 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Podcasts, Comedy.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q29"
+    "result_id": "q100"
    },
    {
-    "entity_id": "A75AB35C-5F70-4465-A1F0-F495811B270C",
-    "name": "The Adventure Zone",
-    "affinity": 0.9282,
-    "why": "Driven by fans of Animal Crossing: New Leaf 12%, Miitopia 12%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Games, Comedy Fiction, Leisure, Fiction.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/A75AB35C-5F70-4465-A1F0-F495811B270C-420x-auto.jpg",
+    "entity_id": "462310FD-79D1-4909-9EFC-9D5C7A9D66C2",
+    "name": "The Steve Austin Show",
+    "affinity": 0.9219,
+    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 12%, Grand Theft Auto: Chinatown Wars 12%, Mafia III 9%. Qloo tags: Society & Culture, Podcasts, Sports, Wrestling.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/462310FD-79D1-4909-9EFC-9D5C7A9D66C2-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q29"
-   },
-   {
-    "entity_id": "50879B4D-34C5-453B-886B-AEED73A373F7",
-    "name": "The Penumbra Podcast",
-    "affinity": 0.928,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 12%, Tomodachi Life 12%, My Time At Portia 12%. Qloo tags: Podcasts, Performing Arts, Science Fiction, Arts.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/50879B4D-34C5-453B-886B-AEED73A373F7-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q29"
-   },
-   {
-    "entity_id": "DA19C5DE-B72B-42F7-8DBB-87AB91DE226C",
-    "name": "TANIS",
-    "affinity": 0.9249,
-    "why": "Driven by fans of Animal Crossing: New Horizons 13%, Stardew Valley 12%, Animal Crossing: Pocket Camp 11%. Qloo tags: Science Fiction, Podcasts, Fiction.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/DA19C5DE-B72B-42F7-8DBB-87AB91DE226C-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q29"
-   },
-   {
-    "entity_id": "90E97AE7-0286-46DF-A60F-D9F752684769",
-    "name": "My Brother, My Brother And Me",
-    "affinity": 0.9471,
-    "why": "Driven by fans of Animal Crossing: New Leaf 13%, Miitopia 13%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Podcasts, Comedy.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/90E97AE7-0286-46DF-A60F-D9F752684769-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q33"
-   },
-   {
-    "entity_id": "65B9650E-2465-4CCA-86CF-EF989FE810ED",
-    "name": "Wonderful!",
-    "affinity": 0.9457,
-    "why": "Driven by fans of Animal Crossing: New Leaf 13%, Miitopia 13%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Comedy, Podcasts, Music.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/65B9650E-2465-4CCA-86CF-EF989FE810ED-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q33"
-   },
-   {
-    "entity_id": "080F4FD2-DC4B-4E74-89E3-E8FD4807FA40",
-    "name": "My Favorite Murder with Karen Kilgariff and Georgia Hardstark",
-    "affinity": 0.9112,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, The Sims 4 12%, Stardew Valley 11%. Qloo tags: Podcasts, True Crime.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/080F4FD2-DC4B-4E74-89E3-E8FD4807FA40-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q36"
-   },
-   {
-    "entity_id": "83E54B93-1621-4D54-9EB2-9057EFC4F002",
-    "name": "Kumail Nanjiani's The X-Files Files",
-    "affinity": 0.9073,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Miitopia 12%, Animal Crossing: New Leaf 12%. Qloo tags: TV & Film, Podcasts.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/83E54B93-1621-4D54-9EB2-9057EFC4F002-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q36"
-   },
-   {
-    "entity_id": "BCDDC74D-0058-4A73-870E-2517968D2736",
-    "name": "Radio Rental",
-    "affinity": 0.9059,
-    "why": "Driven by fans of The Sims 4 13%, Animal Crossing: New Horizons 13%, Stardew Valley 13%. Qloo tags: Podcasts, Society & Culture.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/BCDDC74D-0058-4A73-870E-2517968D2736-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q36"
-   },
-   {
-    "entity_id": "656C8017-53E3-4754-A951-7A48CEC1179C",
-    "name": "2 Dope Queens",
-    "affinity": 0.8949,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Stardew Valley 12%, Animal Crossing: New Leaf 11%. Qloo tags: Podcasts, Comedy, Society & Culture, Comedy Interviews.",
-    "city": "Los Angeles",
-    "image_url": "https://images.qloo.com/i/656C8017-53E3-4754-A951-7A48CEC1179C-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q39"
+    "result_id": "q100"
    }
   ],
   "movie": [
    {
-    "entity_id": "CF08B721-3873-4A5A-A792-205A4D2E7FB7",
-    "name": "Hilda and the Mountain King",
-    "affinity": 0.9301,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Miitopia 12%, Animal Crossing: New Horizons 12%. Qloo tags: Brave, Based on graphic novel, Character driven, Resilient.",
+    "entity_id": "4BBDFF4E-CAA6-4762-A1C7-0232698D5375",
+    "name": "Cartel Land",
+    "affinity": 0.9002,
+    "why": "Driven by fans of Mafia III 9%, Mafia II 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Illegal drug trade, Listening to a radio, Murder of an innocent person, Interrogation.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/CF08B721-3873-4A5A-A792-205A4D2E7FB7-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/4BBDFF4E-CAA6-4762-A1C7-0232698D5375-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "5C6428A2-60CA-4776-8E38-5F554EE2D0D7",
-    "name": "Encanto",
-    "affinity": 0.9175,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, My Time At Portia 12%, Miitopia 12%. Qloo tags: South america, Cgi animation, Woman wears a dress, Animation.",
+    "entity_id": "B6CF3B6B-C5B8-46B8-B305-9A2A84F0229B",
+    "name": "The Imposter",
+    "affinity": 0.8976,
+    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 10%, Sleeping Dogs 10%, Mafia II 9%. Qloo tags: Identity, Biographical documentary, Home video, Moody.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/5C6428A2-60CA-4776-8E38-5F554EE2D0D7-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/B6CF3B6B-C5B8-46B8-B305-9A2A84F0229B-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "08A38E2B-2888-4017-ADB4-BFDAEED64559",
-    "name": "Wolfwalkers",
-    "affinity": 0.9132,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, Dream Daddy: A Dad Dating Simulator 12%, Tomodachi Life 11%. Qloo tags: Feral child, Folk horror, Pretty girl, Naive.",
+    "entity_id": "E2E67E68-DD05-4607-926F-F8CB8DB9653F",
+    "name": "Victoria",
+    "affinity": 0.8913,
+    "why": "Driven by fans of Grand Theft Auto: Chinatown Wars 9%, Sleeping Dogs 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Disguise, Intimate, Stalled car, Consequences.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/08A38E2B-2888-4017-ADB4-BFDAEED64559-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/E2E67E68-DD05-4607-926F-F8CB8DB9653F-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "432FBF6B-CFCD-4D49-93BC-A489AB2C7134",
-    "name": "Onward",
-    "affinity": 0.91,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: Pocket Camp 12%, Animal Crossing: New Horizons 12%. Qloo tags: Comedy, Mythic humor, Male protagonist, Mythical creature.",
+    "entity_id": "126D71E7-467C-4665-BE23-F7310D988F5D",
+    "name": "Citizenfour",
+    "affinity": 0.8912,
+    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 9%, Mafia II 9%, Mafia 9%. Qloo tags: Government surveillance, Cia central intelligence agency, Telecommunication, Journalist.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/432FBF6B-CFCD-4D49-93BC-A489AB2C7134-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/126D71E7-467C-4665-BE23-F7310D988F5D-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "CF0D0AA4-699C-4C48-877C-5C1AB1BAC18B",
-    "name": "Arlo the Alligator Boy",
-    "affinity": 0.9091,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: Pocket Camp 12%, Animal Crossing: New Horizons 12%. Qloo tags: Youthful, Swamp, Found family, Expressive cartooning.",
+    "entity_id": "FF7A2377-967C-4BF5-A321-5CA978E46597",
+    "name": "The Overnighters",
+    "affinity": 0.8897,
+    "why": "Driven by fans of Mafia III 9%, Grand Theft Auto: Vice City Stories 9%, Mafia II 9%. Qloo tags: Americana, Motor home, Amtrak, Arrest photograph.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/CF0D0AA4-699C-4C48-877C-5C1AB1BAC18B-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/FF7A2377-967C-4BF5-A321-5CA978E46597-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "147F5627-F462-4159-A0E3-3F9FF54D87C1",
-    "name": "Luca",
-    "affinity": 0.9062,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, Animal Crossing: Pocket Camp 12%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Creature feature, Repeated line, Resourceful, Italy.",
+    "entity_id": "908A2CF3-B8F1-47CD-BFB3-BB11B52B3763",
+    "name": "The Internet's Own Boy: The Story of Aaron Swartz",
+    "affinity": 0.8893,
+    "why": "Driven by fans of Mafia II 9%, Grand Theft Auto: Vice City Stories 9%, Watch Dogs 2 9%. Qloo tags: Technology, Technically literate, Apostrophe in title, Archive footage.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/147F5627-F462-4159-A0E3-3F9FF54D87C1-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/908A2CF3-B8F1-47CD-BFB3-BB11B52B3763-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "629BC112-D0C7-41B8-A279-DF78B61A071A",
-    "name": "A Whisker Away",
-    "affinity": 0.9061,
-    "why": "Driven by fans of Tomodachi Life 12%, Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: New Horizons 12%. Qloo tags: Animation, Supernatural power, Loneliness, Romantic.",
+    "entity_id": "81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE",
+    "name": "Drive",
+    "affinity": 0.8891,
+    "why": "Driven by fans of Sleeping Dogs 10%, Grand Theft Auto V 10%, Mafia II 9%. Qloo tags: Ambient music, Ford mustang, Breaking hand, Movie camera.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/629BC112-D0C7-41B8-A279-DF78B61A071A-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "F54D886F-95D6-4CD7-B5C6-42542F926208",
-    "name": "The Mitchells vs. the Machines",
-    "affinity": 0.9046,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: New Horizons 12%, My Time At Portia 12%. Qloo tags: Versus in title, Puppy love, Father daughter relationship, Altered version of studio logo.",
+    "entity_id": "59DF86CF-3705-4FA4-ABF8-E62966696AA3",
+    "name": "Going Clear: Scientology & the Prison of Belief",
+    "affinity": 0.8877,
+    "why": "Driven by fans of Mafia II 9%, Grand Theft Auto: Vice City Stories 9%, Mafia III 9%. Qloo tags: Reference to las vegas nevada, Lake, Bucket on head, Year 1987.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/F54D886F-95D6-4CD7-B5C6-42542F926208-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/59DF86CF-3705-4FA4-ABF8-E62966696AA3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q30"
+    "result_id": "q97"
    },
    {
-    "entity_id": "A05A154B-FA8A-49E5-B524-3E5BE413F6C1",
-    "name": "Ride Your Wave",
-    "affinity": 0.9459,
-    "why": "Driven by fans of Dream Daddy: A Dad Dating Simulator 12%, Tomodachi Life 12%, Animal Crossing: New Horizons 12%. Qloo tags: Melancholic, Animation, Surfing film, The lover.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/A05A154B-FA8A-49E5-B524-3E5BE413F6C1-420x-auto.jpg",
+    "entity_id": "7E20CCDC-5D12-42B4-9376-DA9B7925B1A4",
+    "name": "Hotel Mumbai",
+    "affinity": 0.8818,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Watch Dogs 2 10%, Mafia III 9%. Qloo tags: Cafe, Place name in title, Islam, Automatic gunfire.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/7E20CCDC-5D12-42B4-9376-DA9B7925B1A4-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q34"
+    "result_id": "q101"
    },
    {
-    "entity_id": "A82EDC42-1FF6-49C8-9059-264E1B6FE078",
-    "name": "Belle",
-    "affinity": 0.9453,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, Animal Crossing: New Leaf 12%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Identity, Mirror, Song, Atmospheric.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/A82EDC42-1FF6-49C8-9059-264E1B6FE078-420x-auto.jpg",
+    "entity_id": "E523E848-A767-4F4B-9ED4-4FFF7B770242",
+    "name": "The White Tiger",
+    "affinity": 0.881,
+    "why": "Driven by fans of Watch Dogs 2 10%, Tom Clancy's Ghost Recon: Wildlands 10%, Sleeping Dogs 9%. Qloo tags: Drama, Neo noir, Entrepreneurship, Ambitious.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/E523E848-A767-4F4B-9ED4-4FFF7B770242-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q34"
+    "result_id": "q101"
    },
    {
-    "entity_id": "3D2FB8B4-E05A-49AE-87CD-527E6D0ADD32",
-    "name": "Mirai",
-    "affinity": 0.9413,
-    "why": "Driven by fans of Tomodachi Life 13%, Dream Daddy: A Dad Dating Simulator 12%, Animal Crossing: New Horizons 12%. Qloo tags: Jealousy, Anime, Mother son relationship, Photo album.",
-    "city": "Tokyo",
-    "image_url": "https://images.qloo.com/i/3D2FB8B4-E05A-49AE-87CD-527E6D0ADD32-420x-auto.jpg",
+    "entity_id": "E0025A3E-7DA7-4ED7-91A0-6B305B35FA09",
+    "name": "Naa Peru Surya, Naa Illu India",
+    "affinity": 0.881,
+    "why": "Driven by fans of Mafia III 10%, Grand Theft Auto Online 9%, Sleeping Dogs 9%. Qloo tags: Polished, Redemption, Drama, Ambitious.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/E0025A3E-7DA7-4ED7-91A0-6B305B35FA09-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q34"
+    "result_id": "q101"
    },
    {
-    "entity_id": "A9F58398-6C02-404E-B937-5FB02F86AB1C",
-    "name": "Raya and the Last Dragon",
-    "affinity": 0.9483,
-    "why": "Driven by fans of Animal Crossing: New Horizons 12%, Animal Crossing: New Leaf 12%, Dream Daddy: A Dad Dating Simulator 12%. Qloo tags: Cgi animation, Warrior princess, Heroine, Broken piece.",
-    "city": "San Francisco",
-    "image_url": "https://images.qloo.com/i/A9F58398-6C02-404E-B937-5FB02F86AB1C-420x-auto.jpg",
+    "entity_id": "C785D047-628D-43ED-89E5-0A6874D43FFF",
+    "name": "Deva",
+    "affinity": 0.8808,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Grand Theft Auto: Liberty City Stories 9%, Watch Dogs 2 9%. Qloo tags: Charismatic, Villain as protagonist, Character name as title, Twist ending.",
+    "city": "Mumbai",
+    "image_url": "https://images.qloo.com/i/C785D047-628D-43ED-89E5-0A6874D43FFF-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q37"
+    "result_id": "q101"
+   },
+   {
+    "entity_id": "AB64C7F6-60F4-4C15-A0F8-8E2D59174595",
+    "name": "The Irishman",
+    "affinity": 0.8811,
+    "why": "Driven by fans of Sleeping Dogs 9%, Watch Dogs 2 9%, Tom Clancy's Ghost Recon: Wildlands 9%. Qloo tags: Cigarette smoking, Character driven, Crime, Near death experience.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/AB64C7F6-60F4-4C15-A0F8-8E2D59174595-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q104"
+   },
+   {
+    "entity_id": "5F98082A-A0AC-4453-8D8B-FCFBCB9ED4C0",
+    "name": "Joker",
+    "affinity": 0.879,
+    "why": "Driven by fans of Grand Theft Auto Online 11%, Watch Dogs 2 10%, Tom Clancy's Ghost Recon: Wildlands 9%. Qloo tags: Money problems, Cynicism, Bus, Happy face.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/5F98082A-A0AC-4453-8D8B-FCFBCB9ED4C0-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q104"
+   },
+   {
+    "entity_id": "E2894C83-A497-4A2F-A3C6-E7DDF4A835EC",
+    "name": "Borat Subsequent Moviefilm",
+    "affinity": 0.8829,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Grand Theft Auto Online 10%, Watch Dogs 2 10%. Qloo tags: Reference to rudy giuliani, Cringe comedy, Reading a story, Farce comedy.",
+    "city": "Dubai",
+    "image_url": "https://images.qloo.com/i/E2894C83-A497-4A2F-A3C6-E7DDF4A835EC-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q107"
    }
   ],
   "brand": [
    {
     "entity_id": "13C23581-CFEB-4865-8878-79109D14BAD3",
     "name": "Twitch",
-    "affinity": 0.971,
-    "why": "Driven by fans of Tomodachi Life 12%, Animal Crossing: Pocket Camp 12%, My Time At Portia 12%. Qloo tags: Energetic, Inclusive, Interactive, Authentic.",
+    "affinity": 0.9775,
+    "why": "Driven by fans of Sleeping Dogs 8%, Watch Dogs 2 8%, Mafia III 8%. Qloo tags: Energetic, Inclusive, Interactive, Authentic.",
     "city": null,
     "image_url": "https://images.qloo.com/i/13C23581-CFEB-4865-8878-79109D14BAD3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q31"
-   },
-   {
-    "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
-    "name": "Razer",
-    "affinity": 0.9591,
-    "why": "Driven by fans of Stardew Valley 12%, Miitopia 12%, Animal Crossing: Pocket Camp 12%. Qloo tags: Bold, Aggressive, High-Tech, Immersive.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q31"
-   },
-   {
-    "entity_id": "AF555F4C-A4A6-43BF-B431-938FC59BD20C",
-    "name": "Origin PC",
-    "affinity": 0.9544,
-    "why": "Driven by fans of Stardew Valley 12%, Animal Crossing: New Horizons 12%, My Time At Portia 12%. Qloo tags: Empowering, Reliable, Technical, Ambitious.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/AF555F4C-A4A6-43BF-B431-938FC59BD20C-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q31"
-   },
-   {
-    "entity_id": "A30D4719-5EE8-41FC-8D98-52D69C39890E",
-    "name": "Square Enix",
-    "affinity": 0.9521,
-    "why": "Driven by fans of Animal Crossing: Pocket Camp 12%, Tomodachi Life 12%, My Time At Portia 12%. Qloo tags: Immersive, Epic, Nostalgic, Dramatic.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/A30D4719-5EE8-41FC-8D98-52D69C39890E-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q31"
-   },
-   {
-    "entity_id": "1E74E760-63C9-48E9-89A0-6716C9C14E8B",
-    "name": "Playstation",
-    "affinity": 0.9518,
-    "why": "Driven by fans of Tomodachi Life 12%, Animal Crossing: Pocket Camp 12%, My Time At Portia 12%. Qloo tags: Exciting, Immersive, Innovative, Dynamic.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/1E74E760-63C9-48E9-89A0-6716C9C14E8B-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q31"
+    "result_id": "q98"
    },
    {
     "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
     "name": "Elgato",
-    "affinity": 0.9504,
-    "why": "Driven by fans of Stardew Valley 12%, My Time At Portia 12%, Animal Crossing: New Horizons 12%. Qloo tags: Technical, Efficient, Creative, Precise.",
+    "affinity": 0.977,
+    "why": "Driven by fans of Watch Dogs 2 8%, Mafia III 8%, Grand Theft Auto: Chinatown Wars 8%. Qloo tags: Technical, Efficient, Creative, Precise.",
     "city": null,
     "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q31"
+    "result_id": "q98"
    },
    {
-    "entity_id": "E0C26132-AD45-4583-99EC-4E01F7430E72",
-    "name": "NZXT",
-    "affinity": 0.9491,
-    "why": "Driven by fans of Stardew Valley 12%, My Time At Portia 12%, Animal Crossing: New Horizons 12%. Qloo tags: Reliable, Sophisticated, Passionate, Clean.",
+    "entity_id": "1E282763-BA57-45E7-A0AE-D664F3D93EBF",
+    "name": "Electronic Arts",
+    "affinity": 0.975,
+    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 9%, Saints Row 9%, Grand Theft Auto: Liberty City Stories 8%. Qloo tags: Exciting, Competitive, Immersive, Engaging.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/E0C26132-AD45-4583-99EC-4E01F7430E72-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/1E282763-BA57-45E7-A0AE-D664F3D93EBF-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q31"
+    "result_id": "q98"
    },
    {
     "entity_id": "75D1595F-016E-4050-A30F-2378CDCEB3C0",
     "name": "Xbox",
-    "affinity": 0.944,
-    "why": "Driven by fans of Tomodachi Life 12%, My Time At Portia 12%, Animal Crossing: Pocket Camp 12%. Qloo tags: Exciting, Engaging, Competitive, Innovative.",
+    "affinity": 0.9745,
+    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 8%, Saints Row 8%, Grand Theft Auto: Liberty City Stories 8%. Qloo tags: Exciting, Engaging, Competitive, Innovative.",
     "city": null,
     "image_url": "https://images.qloo.com/i/75D1595F-016E-4050-A30F-2378CDCEB3C0-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q31"
+    "result_id": "q98"
+   },
+   {
+    "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+    "name": "Razer",
+    "affinity": 0.9725,
+    "why": "Driven by fans of Grand Theft Auto Online 9%, Grand Theft Auto: Chinatown Wars 8%, Grand Theft Auto V 8%. Qloo tags: Bold, Aggressive, High-Tech, Immersive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q98"
+   },
+   {
+    "entity_id": "5F55E5CB-3F3A-4B04-B794-E134A0835CD5",
+    "name": "Nvidia",
+    "affinity": 0.971,
+    "why": "Driven by fans of Grand Theft Auto V 9%, Grand Theft Auto: Chinatown Wars 8%, Saints Row 8%. Qloo tags: Innovative, Advanced, Reliable, Powerful.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/5F55E5CB-3F3A-4B04-B794-E134A0835CD5-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q98"
+   },
+   {
+    "entity_id": "1E74E760-63C9-48E9-89A0-6716C9C14E8B",
+    "name": "Playstation",
+    "affinity": 0.9646,
+    "why": "Driven by fans of Mafia II 8%, Grand Theft Auto: Liberty City Stories 8%, Grand Theft Auto V 8%. Qloo tags: Exciting, Immersive, Innovative, Dynamic.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/1E74E760-63C9-48E9-89A0-6716C9C14E8B-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q98"
+   },
+   {
+    "entity_id": "AD151998-3985-48D3-B8D1-EE22DE1101F3",
+    "name": "ASTRO Gaming",
+    "affinity": 0.9636,
+    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 8%, Grand Theft Auto: Liberty City Stories 8%, Mafia III 8%. Qloo tags: Competitive, Technical, Immersive, Precise.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/AD151998-3985-48D3-B8D1-EE22DE1101F3-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q98"
    }
   ]
  },
- "gap": {
-  "shared": [
-   "Single Player",
-   "Casual",
-   "Multiplayer",
-   "Co-Op",
-   "2D",
-   "Single-player, multiplayer",
-   "Exploration",
-   "Pixel art",
-   "PlayStation Vita",
-   "Crafting"
-  ],
-  "target_only": [
-   "Virtual Life",
-   "Simulation",
-   "Relaxing",
-   "Nintendo Switch",
-   "Tycoon",
-   "Pixel Graphics",
-   "Cel-shaded",
-   "3D",
-   "Open World",
-   "MacOS",
-   "Microsoft Windows",
-   "Role-Playing"
-  ],
-  "studio_only": [
-   "Building",
-   "PC",
-   "Action",
-   "Adventure",
-   "Adventurous",
-   "Xbox 360",
-   "Engaging",
-   "Sandbox",
-   "Fun",
-   "PlayStation 3"
-  ],
-  "source": "qloo",
-  "result_id": "q41"
- },
+ "gap": null,
  "brief": {
   "sections": [
    {
     "heading": "Where to Launch",
-    "body": "The affinity index identifies **Tokyo** as the top city with a lift of 1.86 and high confidence [q21, q22]. Other primary locations include **San Francisco** with a lift of 1.28 and high confidence [q7, q8], and **Los Angeles** with a lift of 1.23 and high confidence [q5, q6]."
+    "body": "According to the affinity index, the top three cities are **Mumbai** (spawn score 2.49, confidence high) [q69], **Delhi** (spawn score 2.12, confidence high) [q64], and **Dubai** (spawn score 2.06, confidence high) [q59]. The ranking of these cities is influenced by the setting's audience, which includes culture anchors such as **Gully Boy**, **3 Idiots**, **Arijit Singh**, and **Sacred Games** [q2]."
    },
    {
     "heading": "Who the Players Are",
-    "body": "The audience for **Moss Hollow** skews female by +46.9% and male by -46.9% [q27]. The age skew is +7.5% for those 25-29, while those 24 and under are -9.6% [q27]."
+    "body": "The audience skews male +28.0% and female -28.0% [q94]. Age skews include +0.8% for 25-29, -8.4% for 24 and under, -17.4% for 30-34, -11.7% for 35-44, -15.8% for 45-54, and -25.3% for 55+ [q94]."
    },
    {
     "heading": "Who to Partner With",
-    "body": "Potential partners include artists such as **Waterparks** and **Cavetown** [q28]. The studio could also engage with brands like **Twitch** and **Playstation** [q31] or podcasts such as **Welcome to Night Vale** [q29]."
+    "body": "Potential brand partners include **Twitch**, **Elgato**, **Electronic Arts**, **Xbox**, and **Razer** [q98]. Artist partnerships could include **blink-182**, **Limp Bizkit**, **DrefGold**, **Red Hot Chili Peppers**, or **Rage Against the Machine** [q95]."
    },
    {
     "heading": "How to Split the Budget",
-    "body": "From a total budget of $3,000.00, allocate 14.76% ($442.89) to **Tokyo** [q21, q22]. Assign 10.16% ($304.92) to **San Francisco** [q7, q8] and 9.70% ($291.15) to **Los Angeles** [q5, q6]."
+    "body": "From a total budget of $5,000.00, allocate $1,285.73 (25.71%) to **Mumbai** [q69, q73], $1,093.65 (21.87%) to **Delhi** [q64, q68], and $1,065.76 (21.32%) to **Dubai** [q59, q63]."
    },
    {
     "heading": "Caveats",
-    "body": "Certain regions show lower affinity, such as **Warsaw** with a lift of 0.87 [q19, q20]. Audience skews are significantly negative for those 55+ at -23.4% and those 30-34 at -23.1% [q27]."
+    "body": "The game **Delhi Gullies** is designed for pc and console platforms. It shares similarities with titles such as **Grand Theft Auto V**, **Sleeping Dogs**, **Watch Dogs 2**, **Mafia III**, and **Saints Row** [q1]."
    }
   ],
   "source": "llm",
@@ -1111,12 +1284,13 @@
   "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
   "City-level results cannot be validated with free public data.",
   "Brands are global: Qloo brand affinity ignores location.",
-  "In our language-level backtest (6 shipped games vs Steam review languages), this ranking beat a popularity baseline in only 1 of 6 games. Treat it as a taste-informed starting hypothesis."
+  "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps. Against Google Trends interest for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3 in 8.",
+  "Where Qloo's data is thin (for example mobile MOBAs in Southeast Asia), the ranking misses. Treat it as a taste-informed starting hypothesis."
  ],
  "error": null,
- "created_at": "2026-10-15T20:37:58.273836+00:00",
+ "created_at": "2026-10-16T13:05:06.576928+00:00",
  "calls": {
-  "live": 0,
-  "cached": 41
+  "live": 10,
+  "cached": 97
  }
 }

@@ -15,14 +15,14 @@ from ..qloo.trace import TraceEntry
 from ..schemas import Calls, Plan, PlanIn, Problem, Warning_
 from ..settings import Settings
 from ..storage import Store
-from . import brief, budget, cities, compare, demographics, expand, partners, resolve
+from . import brief, budget, cities, compare, culture, demographics, expand, partners, resolve
 
 log = logging.getLogger(__name__)
 
 STEPS = {
     "S1": "Resolve comps",
     "S2": "Expand comp set",
-    "S3": "Score cities vs baseline",
+    "S3": "Score cities: taste, platform, culture",
     "S4": "Read the audience",
     "S5": "Find partners",
     "S6": "Gap view",
@@ -35,8 +35,10 @@ LIMITS = [
     "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
     "City-level results cannot be validated with free public data.",
     "Brands are global: Qloo brand affinity ignores location.",
-    "In our language-level backtest (6 shipped games vs Steam review languages), this ranking beat a "
-    "popularity baseline in only 1 of 6 games. Treat it as a taste-informed starting hypothesis.",
+    "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps. Against Google Trends "
+    "interest for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3 in 8.",
+    "Where Qloo's data is thin (for example mobile MOBAs in Southeast Asia), the ranking misses. Treat it "
+    "as a taste-informed starting hypothesis.",
 ]
 
 
@@ -100,7 +102,19 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
                 code="comp_unresolved",
                 status=422,
             )
-        await done("S1", f"{len(comps)} comps resolved")
+        anchors, missing_anchors = await culture.lookup_culture(run, req.culture_entity_ids)
+        for m in missing_anchors:
+            await warn(
+                Warning_(
+                    code="unresolved_culture",
+                    message=f"Culture anchor {m} is not a Qloo film, show or artist",
+                )
+            )
+        await done(
+            "S1",
+            f"{len(comps)} comps resolved"
+            + (f", {len(anchors)} culture anchors" if anchors else ""),
+        )
 
         await step("S2")
         expanded = await expand.expand(run, comps)
@@ -108,12 +122,14 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
         await done("S2", f"{len(expanded)} similar games")
 
         await step("S3")
-        ranked, city_warnings = await cities.score_cities(run, req.regions, signal)
+        ranked, city_warnings = await cities.score_cities(
+            run, req.regions, signal, list(req.platforms), [a.entity_id for a in anchors]
+        )
         for w in city_warnings:
             await warn(w)
         if not ranked:
             raise QlooError("No city could be scored")
-        await done("S3", f"Top city: {ranked[0].name} (lift {ranked[0].lift:.2f})")
+        await done("S3", f"Top city: {ranked[0].name} (score {ranked[0].score:.2f})")
 
         await step("S4")
         aud = await demographics.audience(run, signal)
@@ -132,7 +148,7 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
 
         await step("S7")
         ranked = budget.split_budget(ranked, req.budget_usd)
-        await done("S7", "Budget split by lift x confidence")
+        await done("S7", "Budget split by spawn score x confidence")
 
         row = await store.get_plan(plan_id)
         entries = run.trace.entries
@@ -142,6 +158,7 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
             input=req,
             comps=comps,
             dropped_comps=missing,
+            culture=anchors,
             expanded=expanded,
             cities=ranked,
             audience=aud,

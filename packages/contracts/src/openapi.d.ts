@@ -45,7 +45,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Search Entities */
+        /**
+         * Search Entities
+         * @description `culture` searches films, TV shows and artists (culture anchors for a game's setting).
+         */
         get: operations["search_entities_v1_entities_search_get"];
         put?: never;
         post?: never;
@@ -66,6 +69,26 @@ export interface paths {
         put?: never;
         /** Suggest Comps */
         post: operations["suggest_comps_v1_comps_suggest_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/culture/suggest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Suggest Culture
+         * @description LLM proposes films, shows and artists from the game's setting; Qloo must resolve each one.
+         */
+        post: operations["suggest_culture_v1_culture_suggest_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -208,8 +231,14 @@ export interface components {
             lat: number;
             /** Lon */
             lon: number;
+            /** Score */
+            score: number;
             /** Lift */
             lift: number;
+            /** Platform Fit */
+            platform_fit: number;
+            /** Culture Fit */
+            culture_fit?: number | null;
             /** Target Score */
             target_score: number;
             /** Baseline Score */
@@ -243,6 +272,25 @@ export interface components {
             entity_id: string;
             /** Name */
             name: string;
+            /** Image Url */
+            image_url?: string | null;
+            /**
+             * Source
+             * @default qloo
+             * @constant
+             */
+            source: "qloo";
+            /** Result Id */
+            result_id: string;
+        };
+        /** CultureAnchor */
+        CultureAnchor: {
+            /** Entity Id */
+            entity_id: string;
+            /** Name */
+            name: string;
+            /** Type */
+            type: string;
             /** Image Url */
             image_url?: string | null;
             /**
@@ -427,6 +475,11 @@ export interface components {
              */
             dropped_comps: string[];
             /**
+             * Culture
+             * @default []
+             */
+            culture: components["schemas"]["CultureAnchor"][];
+            /**
              * Expanded
              * @default []
              */
@@ -484,6 +537,20 @@ export interface components {
             game: components["schemas"]["GameIn"];
             /** Comp Entity Ids */
             comp_entity_ids: string[];
+            /**
+             * Culture Entity Ids
+             * @default []
+             */
+            culture_entity_ids: string[];
+            /**
+             * Platforms
+             * @default [
+             *       "pc",
+             *       "mobile",
+             *       "console"
+             *     ]
+             */
+            platforms: ("pc" | "mobile" | "console")[];
             /** Regions */
             regions: string[];
             /** Budget Usd */
@@ -678,6 +745,39 @@ export interface operations {
         };
     };
     suggest_comps_v1_comps_suggest_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuggestIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuggestOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    suggest_culture_v1_culture_suggest_post: {
         parameters: {
             query?: never;
             header?: never;

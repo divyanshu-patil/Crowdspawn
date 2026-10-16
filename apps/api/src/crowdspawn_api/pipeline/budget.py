@@ -1,4 +1,4 @@
-"""S7: deterministic budget split, proportional to lift x confidence weight. No Qloo, no LLM."""
+"""S7: deterministic budget split, proportional to spawn score x confidence weight. No Qloo, no LLM."""
 
 from ..schemas import City
 
@@ -19,11 +19,11 @@ def largest_remainder(weights: list[float], total_units: int) -> list[int]:
 
 
 def split_budget(cities: list[City], budget_usd: float | None) -> list[City]:
-    """Only over-indexing cities (lift > 1) get budget; if none do, all cities share it."""
-    eligible = [c for c in cities if c.lift > 1] or cities
+    """Only over-indexing cities (score > 1) get budget; if none do, all cities share it."""
+    eligible = [c for c in cities if c.score > 1] or cities
     if not eligible:
         return cities
-    weights = [c.lift * CONFIDENCE_WEIGHT[c.confidence] for c in eligible]
+    weights = [c.score * CONFIDENCE_WEIGHT[c.confidence] for c in eligible]
     shares = largest_remainder(weights, 10_000)  # hundredths of a percent
     cents = largest_remainder(weights, round(budget_usd * 100)) if budget_usd else None
     by_id = {c.region_id: i for i, c in enumerate(eligible)}

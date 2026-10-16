@@ -11,6 +11,11 @@
     "870FBF81-80F8-401A-9621-63DBF6AB6C07",
     "20BEE4A4-44C1-49CC-962D-CC0B4EE80102"
   ],
+  "culture_entity_ids": [],
+  "platforms": [
+    "pc",
+    "console"
+  ],
   "regions": [
     "nyc",
     "lax",

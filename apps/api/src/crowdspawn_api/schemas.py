@@ -1,12 +1,13 @@
 """Public API models. Source of truth for openapi.json and packages/contracts."""
 
-from typing import Literal
+from typing import Any, Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 Confidence = Literal["high", "medium", "low"]
 PlanStatus = Literal["queued", "running", "done", "failed"]
 PartnerType = Literal["artist", "podcast", "movie", "brand"]
+Platform = Literal["pc", "mobile", "console"]
 
 
 class Region(BaseModel):
@@ -42,6 +43,11 @@ class Suggestion(BaseModel):
     resolved: EntityOut | None
 
 
+class CultureSuggestion(BaseModel):
+    name: str
+    type: Literal["movie", "tv_show", "artist"]
+
+
 class SuggestOut(BaseModel):
     suggestions: list[Suggestion]
     dropped: list[str]
@@ -50,12 +56,16 @@ class SuggestOut(BaseModel):
 class PlanIn(BaseModel):
     game: GameIn
     comp_entity_ids: list[str] = Field(min_length=1, max_length=5)
-    regions: list[str] = Field(min_length=3, max_length=15)
+    culture_entity_ids: list[str] = Field(default=[], max_length=5)
+    platforms: list[Platform] = Field(
+        default=["pc", "mobile", "console"], min_length=1, max_length=3
+    )
+    regions: list[str] = Field(min_length=3, max_length=20)
     budget_usd: float | None = Field(default=None, gt=0, le=10_000_000)
     previous_game_entity_ids: list[str] = Field(default=[], max_length=5)
     mode: Literal["fast"] = "fast"
 
-    @field_validator("comp_entity_ids", "regions")
+    @field_validator("comp_entity_ids", "culture_entity_ids", "platforms", "regions")
     @classmethod
     def _unique(cls, v: list[str]) -> list[str]:
         if len(set(v)) != len(v):
@@ -71,6 +81,15 @@ class PlanCreated(BaseModel):
 class Comp(BaseModel):
     entity_id: str
     name: str
+    image_url: str | None = None
+    source: Literal["qloo"] = "qloo"
+    result_id: str
+
+
+class CultureAnchor(BaseModel):
+    entity_id: str
+    name: str
+    type: str
     image_url: str | None = None
     source: Literal["qloo"] = "qloo"
     result_id: str
@@ -92,15 +111,26 @@ class City(BaseModel):
     country: str
     lat: float
     lon: float
-    lift: float
+    score: float  # spawn score = lift x platform_fit x culture_fit; cities are ranked by it
+    lift: float  # comp-set fans vs all gamers in the city
+    platform_fit: float
+    culture_fit: float | None = None
     target_score: float
-    baseline_score: float
+    baseline_score: float  # all gamers: mean of the PC, mobile and console panels
     cells: int
     confidence: Confidence
     budget_share: float = 0.0
     budget_usd: float | None = None
     source: Literal["qloo"] = "qloo"
     result_ids: list[str]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _backfill(cls, data: Any) -> Any:
+        """Plans saved before the spawn score was ranked by lift alone."""
+        if isinstance(data, dict) and "score" not in data and "lift" in data:
+            data = data | {"score": data["lift"], "platform_fit": 1.0}
+        return data
 
 
 class Band(BaseModel):
@@ -180,6 +210,7 @@ class Plan(BaseModel):
     input: PlanIn
     comps: list[Comp] = []
     dropped_comps: list[str] = []
+    culture: list[CultureAnchor] = []
     expanded: list[ExpandedGame] = []
     cities: list[City] = []
     audience: Audience | None = None

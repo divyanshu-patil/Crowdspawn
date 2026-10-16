@@ -1,4 +1,4 @@
-"""Pure-function and Phase 0 fixture tests: lift, confidence, budget, matching, grounding."""
+"""Pure-function and Phase 0 fixture tests: spawn score, confidence, budget, matching, grounding."""
 
 import json
 from pathlib import Path
@@ -8,9 +8,10 @@ import pytest
 from crowdspawn_api.grounding import validate
 from crowdspawn_api.pipeline.brief import check, template_brief
 from crowdspawn_api.pipeline.budget import largest_remainder, split_budget
-from crowdspawn_api.pipeline.cities import make_city, regions
+from crowdspawn_api.pipeline.cities import regions
 from crowdspawn_api.pipeline.confidence import confidence
 from crowdspawn_api.pipeline.resolve import name_matches
+from crowdspawn_api.pipeline.scoring import CityMetrics, spawn_scores
 from crowdspawn_api.schemas import BriefSection, City, Plan
 
 from .conftest import FIXTURES, PLAN_INPUT
@@ -24,7 +25,9 @@ def city(rid: str, lift: float, conf: str = "high") -> City:
         country=r.country,
         lat=r.lat,
         lon=r.lon,
+        score=lift,
         lift=lift,
+        platform_fit=1.0,
         target_score=0.8,
         baseline_score=0.8 / lift,
         cells=200,
@@ -33,15 +36,50 @@ def city(rid: str, lift: float, conf: str = "high") -> City:
     )
 
 
+def panels(pc: float, mobile: float, console: float) -> dict[str, float]:
+    return {"pc": pc, "mobile": mobile, "console": console}
+
+
 def test_lift_order_differs_from_raw_order() -> None:  # Q5
-    # Raw scores say New York > Tokyo; against each city's baseline Tokyo over-indexes far more.
-    nyc = make_city(regions()["nyc"], ("q1", 0.80, 300), ("q2", 0.80, 300))
-    tyo = make_city(regions()["tyo"], ("q3", 0.75, 300), ("q4", 0.45, 300))
-    raw = sorted([nyc, tyo], key=lambda c: -c.target_score)
-    by_lift = sorted([nyc, tyo], key=lambda c: -c.lift)
-    assert [c.name for c in raw] == ["New York", "Tokyo"]
-    assert [c.name for c in by_lift] == ["Tokyo", "New York"]
-    assert tyo.lift == pytest.approx(1.667, abs=1e-3)
+    # Raw comp-fan scores say New York > Tokyo; against each city's all-gamer baseline Tokyo wins.
+    m = {
+        "nyc": CityMetrics(target=0.80, panels=panels(0.8, 0.8, 0.8), cells=300),
+        "tyo": CityMetrics(target=0.75, panels=panels(0.45, 0.45, 0.45), cells=300),
+    }
+    s = spawn_scores(m, [])
+    assert max(m, key=lambda k: m[k].target) == "nyc"
+    assert max(s, key=lambda k: s[k].score) == "tyo"
+    assert s["tyo"].lift == pytest.approx(1.667, abs=1e-3)
+    assert s["tyo"].platform_fit == 1.0 and s["tyo"].culture_fit is None
+
+
+def test_platform_fit_moves_console_games_away_from_console_light_markets() -> None:
+    m = {
+        "ist": CityMetrics(target=0.9, panels=panels(0.95, 0.95, 0.6), cells=300),
+        "mex": CityMetrics(target=0.9, panels=panels(0.85, 0.85, 0.95), cells=300),
+    }
+    assert spawn_scores(m, ["pc", "mobile", "console"])["ist"].platform_fit == pytest.approx(1.0)
+    console = spawn_scores(m, ["console"])
+    assert console["mex"].score > console["ist"].score
+    pc = spawn_scores(m, ["pc"])
+    assert pc["ist"].score > pc["mex"].score
+
+
+def test_culture_fit_lifts_the_settings_home_market() -> None:
+    # Delhi Gullies: equal taste lift, but fans of Indian films and music are concentrated in Delhi.
+    m = {
+        "del": CityMetrics(target=0.92, panels=panels(0.94, 0.95, 0.75), cells=900, culture=0.82),
+        "lon": CityMetrics(target=0.83, panels=panels(0.69, 0.81, 0.84), cells=900, culture=0.40),
+        "nyc": CityMetrics(target=0.85, panels=panels(0.76, 0.84, 0.94), cells=900, culture=0.30),
+    }
+    taste_only = spawn_scores(
+        {k: CityMetrics(v.target, v.panels, v.cells) for k, v in m.items()}, []
+    )
+    assert max(taste_only, key=lambda k: taste_only[k].score) == "lon"
+    s = spawn_scores(m, [])
+    assert max(s, key=lambda k: s[k].score) == "del"
+    ratios = [s[k].culture_fit for k in m]
+    assert sum(r for r in ratios if r is not None) / 3 == pytest.approx(1.0)
 
 
 def test_phase0_comp_sets_rank_cities_differently() -> None:  # Q6
@@ -52,7 +90,7 @@ def test_phase0_comp_sets_rank_cities_differently() -> None:  # Q6
 
 
 @pytest.mark.parametrize(
-    ("lift", "cells", "expected"),
+    ("score", "cells", "expected"),
     [
         (1.10, 150, "high"),
         (1.0999, 150, "medium"),
@@ -64,8 +102,8 @@ def test_phase0_comp_sets_rank_cities_differently() -> None:  # Q6
         (1.5, 10, "low"),
     ],
 )
-def test_confidence_boundaries(lift: float, cells: int, expected: str) -> None:  # P8
-    assert confidence(lift, cells) == expected
+def test_confidence_boundaries(score: float, cells: int, expected: str) -> None:  # P8
+    assert confidence(score, cells) == expected
 
 
 def test_budget_shares_sum_to_100_with_and_without_budget() -> None:  # P7
@@ -117,13 +155,15 @@ def sample_plan() -> Plan:
 
 
 def ground(plan: Plan, body: str) -> list[str]:
-    return check(plan, [BriefSection(heading="Where", body=body)], {"q1", "q2", "q21", "q27"})
+    ids = {"q1", "q2", "q21", "q27"} | {i for c in plan.cities for i in c.result_ids}
+    return check(plan, [BriefSection(heading="Where", body=body)], ids)
 
 
 def test_grounding_accepts_facts() -> None:
     plan = sample_plan()
     top = plan.cities[0]
-    assert ground(plan, f"**{top.name}** has lift {top.lift:.2f} [{top.result_ids[0]}].") == []
+    body = f"**{top.name}** has spawn score {top.score:.2f}, lift {top.lift:.2f} [{top.result_ids[0]}]."
+    assert ground(plan, body) == []
 
 
 def test_grounding_rejects_invented_city() -> None:  # L7
@@ -166,3 +206,31 @@ def test_validate_small_counts_allowed() -> None:
 
 def test_plan_input_fixture_shape() -> None:
     assert 1 <= len(PLAN_INPUT["comp_entity_ids"]) <= 5
+
+
+class StubRun:
+    """Replays one recorded body for any call (enough for single-call helpers)."""
+
+    def __init__(self, body: object):
+        self.body = body
+        self.params: list[dict[str, str]] = []
+
+    async def get(self, step: str, path: str, params: dict[str, str]) -> tuple[str, object]:
+        self.params.append(params)
+        return "q2", self.body
+
+
+async def test_culture_lookup_keeps_films_shows_artists_and_drops_unknown_ids() -> None:
+    from crowdspawn_api.pipeline.culture import lookup_culture
+
+    rec = json.loads((FIXTURES / "entities" / "culture_india.json").read_text())
+    ids = rec["request"]["params"]["entity_ids"].split(",") + ["NOT-A-REAL-ID"]
+    anchors, missing = await lookup_culture(StubRun(rec["body"]), ids)  # type: ignore[arg-type]
+    assert [a.name for a in anchors] == ["Gully Boy", "3 Idiots", "Arijit Singh", "Sacred Games"]
+    assert {a.type for a in anchors} == {
+        "urn:entity:movie",
+        "urn:entity:artist",
+        "urn:entity:tv_show",
+    }
+    assert missing == ["NOT-A-REAL-ID"] and all(a.result_id == "q2" for a in anchors)
+    assert await lookup_culture(StubRun({}), []) == ([], [])  # type: ignore[arg-type]

@@ -48,6 +48,7 @@
     "/v1/entities/search": {
       "get": {
         "summary": "Search Entities",
+        "description": "`culture` searches films, TV shows and artists (culture anchors for a game's setting).",
         "operationId": "search_entities_v1_entities_search_get",
         "parameters": [
           {
@@ -67,7 +68,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "pattern": "^videogame$",
+              "pattern": "^(videogame|culture)$",
               "default": "videogame",
               "title": "Type"
             }
@@ -105,6 +106,45 @@
       "post": {
         "summary": "Suggest Comps",
         "operationId": "suggest_comps_v1_comps_suggest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/culture/suggest": {
+      "post": {
+        "summary": "Suggest Culture",
+        "description": "LLM proposes films, shows and artists from the game's setting; Qloo must resolve each one.",
+        "operationId": "suggest_culture_v1_culture_suggest_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -470,9 +510,28 @@
             "type": "number",
             "title": "Lon"
           },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
           "lift": {
             "type": "number",
             "title": "Lift"
+          },
+          "platform_fit": {
+            "type": "number",
+            "title": "Platform Fit"
+          },
+          "culture_fit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Culture Fit"
           },
           "target_score": {
             "type": "number",
@@ -532,7 +591,9 @@
           "country",
           "lat",
           "lon",
+          "score",
           "lift",
+          "platform_fit",
           "target_score",
           "baseline_score",
           "cells",
@@ -580,6 +641,51 @@
           "result_id"
         ],
         "title": "Comp"
+      },
+      "CultureAnchor": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "result_id": {
+            "type": "string",
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "type",
+          "result_id"
+        ],
+        "title": "CultureAnchor"
       },
       "EntityOut": {
         "properties": {
@@ -977,6 +1083,14 @@
             "title": "Dropped Comps",
             "default": []
           },
+          "culture": {
+            "items": {
+              "$ref": "#/components/schemas/CultureAnchor"
+            },
+            "type": "array",
+            "title": "Culture",
+            "default": []
+          },
           "expanded": {
             "items": {
               "$ref": "#/components/schemas/ExpandedGame"
@@ -1117,12 +1231,40 @@
             "minItems": 1,
             "title": "Comp Entity Ids"
           },
+          "culture_entity_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Culture Entity Ids",
+            "default": []
+          },
+          "platforms": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "pc",
+                "mobile",
+                "console"
+              ]
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Platforms",
+            "default": [
+              "pc",
+              "mobile",
+              "console"
+            ]
+          },
           "regions": {
             "items": {
               "type": "string"
             },
             "type": "array",
-            "maxItems": 15,
+            "maxItems": 20,
             "minItems": 3,
             "title": "Regions"
           },

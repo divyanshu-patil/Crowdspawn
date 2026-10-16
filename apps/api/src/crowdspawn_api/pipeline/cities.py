@@ -1,4 +1,4 @@
-"""S3: score cities by heatmap affinity_rank, as lift over a mainstream-gamer baseline."""
+"""S3: score cities from heatmap affinity_rank: comp fans, platform panels and culture anchors."""
 
 import asyncio
 import json
@@ -11,8 +11,9 @@ from ..errors import QlooError, QlooFilterIgnored
 from ..qloo.client import QlooRun
 from ..qloo.models import HeatmapCell, HeatmapInsights
 from ..schemas import City, Region, Warning_
-from ..settings import BASELINE_ENTITY_IDS
+from ..settings import PLATFORM_PANELS
 from .confidence import confidence
+from .scoring import CityMetrics, Score, spawn_scores
 
 CITIES_FILE = Path(__file__).resolve().parents[1] / "data" / "cities.json"
 INSIDE_FACTOR = 1.5  # cells may sit a little outside the radius (cell centres)
@@ -62,30 +63,42 @@ async def heatmap_score(
     return rid, fmean(c.query.affinity_rank for c in cells), len(cells)
 
 
-def make_city(region: Region, target: tuple[str, float, int], base: tuple[str, float, int]) -> City:
-    lift = target[1] / base[1] if base[1] > 0 else 0.0
+Heat = tuple[str, float, int]  # (result_id, mean affinity_rank, cells)
+
+
+def make_city(region: Region, m: CityMetrics, sc: Score, result_ids: list[str]) -> City:
     return City(
         region_id=region.id,
         name=region.name,
         country=region.country,
         lat=region.lat,
         lon=region.lon,
-        lift=round(lift, 3),
-        target_score=round(target[1], 4),
-        baseline_score=round(base[1], 4),
-        cells=target[2],
-        confidence=confidence(lift, target[2]),
-        result_ids=[target[0], base[0]],
+        score=round(sc.score, 3),
+        lift=round(sc.lift, 3),
+        platform_fit=round(sc.platform_fit, 3),
+        culture_fit=None if sc.culture_fit is None else round(sc.culture_fit, 3),
+        target_score=round(m.target, 4),
+        baseline_score=round(m.general, 4),
+        cells=m.cells,
+        confidence=confidence(sc.score, m.cells),
+        result_ids=result_ids,
     )
 
 
 async def score_cities(
-    run: QlooRun, region_ids: list[str], signal: list[str]
+    run: QlooRun,
+    region_ids: list[str],
+    signal: list[str],
+    platforms: list[str] | None = None,
+    culture_ids: list[str] | None = None,
 ) -> tuple[list[City], list[Warning_]]:
-    async def one(region: Region) -> City | Warning_:
+    async def one(region: Region) -> tuple[Region, CityMetrics, list[str]] | Warning_:
+        sets: list[list[str] | tuple[str, ...]] = [signal, *PLATFORM_PANELS.values()]
+        if culture_ids:
+            sets.append(culture_ids)
         try:
-            target, base = await asyncio.gather(
-                heatmap_score(run, region, signal), heatmap_score(run, region, BASELINE_ENTITY_IDS)
+            heats: list[Heat] = await asyncio.gather(
+                *(heatmap_score(run, region, ids) for ids in sets)
             )
         except QlooFilterIgnored as e:
             return Warning_(
@@ -95,12 +108,18 @@ async def score_cities(
             if type(e) is not QlooError:  # auth, budget, rate limit, unconfigured: fail closed
                 raise
             return Warning_(code="city_failed", message=f"{region.name} skipped: {e.detail}")
-        return make_city(region, target, base)
+        panels = dict(zip(PLATFORM_PANELS, (h[1] for h in heats[1:4]), strict=True))
+        culture = heats[4][1] if culture_ids else None
+        metrics = CityMetrics(target=heats[0][1], panels=panels, cells=heats[0][2], culture=culture)
+        return region, metrics, [h[0] for h in heats]
 
     all_regions = regions()
     results = await asyncio.gather(*(one(all_regions[i]) for i in region_ids))
+    scored = [r for r in results if not isinstance(r, Warning_)]
+    scores = spawn_scores({r.id: m for r, m, _ in scored}, platforms or [])
     cities = sorted(
-        (r for r in results if isinstance(r, City)), key=lambda c: (-c.lift, c.region_id)
+        (make_city(r, m, scores[r.id], ids) for r, m, ids in scored),
+        key=lambda c: (-c.score, c.region_id),
     )
     warnings = [r for r in results if isinstance(r, Warning_)]
     warnings += [

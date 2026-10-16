@@ -23,9 +23,9 @@ describe("form validation mirrors the API (F2)", () => {
     expect(validateComps({ ...emptyDraft(), comps: [comp("a"), comp("a")] }).comps).toBeTruthy();
     expect(validateComps({ ...emptyDraft(), comps: [comp("a")] })).toEqual({});
   });
-  it("needs 3-15 regions and a positive budget", () => {
+  it("needs 3-20 regions and a positive budget", () => {
     expect(validateRegions({ ...emptyDraft(), regions: ["a", "b"] }).regions).toBeTruthy();
-    expect(validateRegions({ ...emptyDraft(), regions: Array.from({ length: 16 }, (_, i) => `r${i}`) }).regions).toBeTruthy();
+    expect(validateRegions({ ...emptyDraft(), regions: Array.from({ length: 21 }, (_, i) => `r${i}`) }).regions).toBeTruthy();
     expect(validateRegions({ ...emptyDraft(), regions: ["a", "b", "c"], budget: "-5" }).budget).toBeTruthy();
     expect(validateRegions({ ...emptyDraft(), regions: ["a", "b", "c"], budget: "" })).toEqual({});
   });
