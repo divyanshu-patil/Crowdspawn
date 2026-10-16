@@ -278,7 +278,7 @@ const TYPE_LABEL: Record<string, string> = {
 };
 
 /** Debounced Qloo search through the API (games by default, or films, shows and artists). */
-function GameSearch({
+export function GameSearch({
   label,
   onPick,
   exclude,

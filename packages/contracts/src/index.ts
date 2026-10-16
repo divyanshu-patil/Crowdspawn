@@ -19,6 +19,15 @@ export type SuggestOut = S["SuggestOut"];
 export type TraceRow = S["TraceRow"];
 export type Health = S["Health"];
 export type Warning = S["Warning_"];
+export type CultureAnchor = S["CultureAnchor"];
+export type PlaceHit = S["PlaceHit"];
+export type PlatformMix = S["PlatformMix"];
+export type AreaActivity = S["AreaActivity"];
+export type ActivityOut = S["ActivityOut"];
+export type ScoutArea = S["ScoutArea"];
+export type ScoutFit = S["ScoutFit"];
+export type GenreHeat = S["GenreHeat"];
+export type LocalGame = S["LocalGame"];
 export type Confidence = City["confidence"];
 export type PartnerType = keyof Partners;
 

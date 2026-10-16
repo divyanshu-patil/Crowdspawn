@@ -1,5 +1,9 @@
 import type {
+  ActivityOut,
   EntityOut,
+  PlaceHit,
+  ScoutArea,
+  ScoutFit,
   Health,
   Plan,
   PlanCreated,
@@ -51,6 +55,15 @@ export const api = {
     request<SuggestOut>("/v1/culture/suggest", { method: "POST", body: JSON.stringify(game) }),
   createPlan: (body: PlanIn) => request<PlanCreated>("/v1/plans", { method: "POST", body: JSON.stringify(body) }),
   plan: (id: string) => request<Plan>(`/v1/plans/${id}`),
+  places: (q: string) => request<PlaceHit[]>(`/v1/scout/places?q=${encodeURIComponent(q)}`),
+  activity: () => request<ActivityOut>("/v1/scout/activity"),
+  area: (lat: number, lon: number) =>
+    request<ScoutArea>("/v1/scout/area", { method: "POST", body: JSON.stringify({ lat, lon }) }),
+  fit: (lat: number, lon: number, comp_entity_ids: string[], platforms: string[]) =>
+    request<ScoutFit>("/v1/scout/fit", {
+      method: "POST",
+      body: JSON.stringify({ lat, lon, comp_entity_ids, platforms }),
+    }),
   trace: (id: string) => request<TraceRow[]>(`/v1/plans/${id}/trace`),
 };
 

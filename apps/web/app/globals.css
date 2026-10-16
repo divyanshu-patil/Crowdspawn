@@ -1694,3 +1694,316 @@ footer.foot {
   opacity: 0.35;
   cursor: not-allowed;
 }
+
+/* ---------- Region scout ---------- */
+
+.region-map {
+  --side: 0.42px; /* 3D side depth, in map tile units */
+  user-select: none;
+}
+
+.region-svg {
+  cursor: crosshair;
+  touch-action: pan-y;
+  aspect-ratio: 180 / 65;
+}
+
+.region-map .sea {
+  fill: var(--paper);
+}
+
+.region-map .country .side {
+  fill: var(--ink);
+  transform: translate(var(--side), var(--side));
+}
+
+.region-map .country .top {
+  transition: transform 220ms var(--ease-spring);
+  animation: country-in 520ms var(--d) var(--ease-out) both;
+}
+
+.region-map .country .fill {
+  fill: var(--mist);
+  transition: fill 200ms;
+}
+
+.region-map .country .border {
+  fill: none;
+  stroke: var(--ink);
+  stroke-opacity: 0.35;
+  stroke-width: 1px;
+}
+
+.region-map .country.h0 .fill {
+  fill: #fff3c4;
+}
+.region-map .country.h1 .fill {
+  fill: #ffe27a;
+}
+.region-map .country.h2 .fill {
+  fill: var(--marker);
+}
+.region-map .country.h3 .fill {
+  fill: #ffad45;
+}
+.region-map .country.h4 .fill {
+  fill: var(--ember);
+}
+
+/* Hover: the whole country lifts like a block and shows its black side. */
+.region-map .country.lit .top {
+  transform: translate(calc(var(--side) * -1), calc(var(--side) * -1));
+}
+
+.region-map .country.lit .border {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.region-map .country.lit.h-1 .fill {
+  fill: var(--paper);
+}
+
+@keyframes country-in {
+  from {
+    opacity: 0;
+    transform: translate(0, 1.4px);
+  }
+}
+
+/* Area select: a filled zone, two expanding rings and crosshairs. */
+.region-map .pick .aoe {
+  fill: var(--ember);
+  fill-opacity: 0.22;
+  stroke: var(--ink);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  animation: aoe-in 420ms var(--ease-spring) both;
+}
+
+.region-map .pick .ring {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-out 1600ms var(--ease-out) infinite;
+}
+
+.region-map .pick .ring.two {
+  animation-delay: 800ms;
+}
+
+.region-map .pick .cross {
+  stroke: var(--ink);
+  stroke-width: 1.5px;
+}
+
+.region-map .pick .dot {
+  fill: var(--ink);
+}
+
+@keyframes aoe-in {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes ring-out {
+  from {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.region-tip {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  display: grid;
+  gap: 6px;
+  width: 240px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-btn);
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(calc(16px - var(--flip) * (100% + 32px)), 16px);
+  animation: pop 200ms var(--ease-spring) both;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px 14px;
+}
+
+.map-legend .key {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--ink);
+  background: var(--mist);
+}
+.map-legend .key.h0 {
+  background: #fff3c4;
+}
+.map-legend .key.h1 {
+  background: #ffe27a;
+}
+.map-legend .key.h2 {
+  background: var(--marker);
+}
+.map-legend .key.h3 {
+  background: #ffad45;
+}
+.map-legend .key.h4 {
+  background: var(--ember);
+}
+
+.place-hits {
+  list-style: none;
+  position: absolute;
+  z-index: 4;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 6px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-btn);
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: hidden;
+}
+
+.place-hits button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  animation: rise 240ms calc(var(--i) * 30ms) var(--ease-out) both;
+}
+
+.place-hits button:hover,
+.place-hits button:focus-visible {
+  background: var(--marker);
+}
+
+.scout-panel {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: clamp(16px, 3vw, 32px);
+}
+
+.mix {
+  display: grid;
+  gap: 6px;
+}
+
+.mix-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+}
+
+.works {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+}
+
+.genres,
+.local-games {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.genres li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 1fr 56px;
+  align-items: center;
+  gap: 12px;
+  animation: rise 320ms calc(var(--i) * 40ms) var(--ease-out) both;
+}
+
+.genres .g-name {
+  display: grid;
+}
+
+.genres li.hot .power > i {
+  background: linear-gradient(90deg, var(--ink) 55%, var(--ember));
+}
+
+.local-games li {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  animation: rise 320ms calc(var(--i) * 40ms) var(--ease-out) both;
+}
+
+.local-games img,
+.local-games .ph {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--mist);
+}
+
+.verdict {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-card);
+  box-shadow: 6px 6px 0 var(--ink);
+  animation: pop 360ms var(--ease-spring) both;
+}
+
+.verdict-title {
+  font: 500 clamp(28px, 4vw, 44px) / 1 var(--font-display);
+}
+
+.verdict.v-strong {
+  background: var(--marker);
+}
+.verdict.v-promising {
+  background: #fff3c4;
+}
+.verdict.v-weak {
+  background: var(--mist);
+}
+
+@media (max-width: 760px) {
+  .works {
+    grid-template-columns: 1fr;
+  }
+  .region-tip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .region-map .country .top,
+  .region-map .pick .ring,
+  .region-map .pick .aoe {
+    animation: none;
+  }
+}

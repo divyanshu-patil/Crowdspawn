@@ -88,11 +88,22 @@ def test_area_rejects_bad_coordinates_and_failed_calls(client: TestClient) -> No
 
 
 def test_area_with_empty_heatmap_is_no_area_data(client: TestClient, fake_qloo: FakeQloo) -> None:
-    r = scout.area(0, -30, 40)
-    for p in PLATFORM_PANELS.values():
-        fake_qloo.recorded[heat_key(r, p)] = {"results": {"heatmap": []}}
+    for radius in (40, scout.WIDE_KM):  # widened once before giving up
+        r = scout.area(0, -30, radius)
+        for p in PLATFORM_PANELS.values():
+            fake_qloo.recorded[heat_key(r, p)] = {"results": {"heatmap": []}}
     res = client.post("/v1/scout/area", json={"lat": 0, "lon": -30})
     assert res.status_code == 422 and res.json()["code"] == "no_area_data"
+
+
+def test_area_widens_between_towns(client: TestClient, fake_qloo: FakeQloo) -> None:
+    near = scout.area(17.6, 76.0, 40)
+    for p in PLATFORM_PANELS.values():
+        fake_qloo.recorded[heat_key(near, p)] = {"results": {"heatmap": []}}
+    stage_area(fake_qloo, scout.area(17.6, 76.0, scout.WIDE_KM), {})
+    res = client.post("/v1/scout/area", json={"lat": 17.6, "lon": 76.0})
+    assert res.status_code == 200, res.text
+    assert res.json()["radius_km"] == scout.WIDE_KM
 
 
 def test_fit_scores_the_comp_set_here(client: TestClient, fake_qloo: FakeQloo) -> None:

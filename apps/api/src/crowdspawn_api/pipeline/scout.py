@@ -147,14 +147,30 @@ async def local_games(run: QlooRun, region: Region) -> list[LocalGame]:
     ]
 
 
+WIDE_KM = 120
+
+
+async def mix_widening(
+    run: QlooRun, lat: float, lon: float, radius_km: int
+) -> tuple[Region, PlatformMix, int]:
+    """Between towns Qloo has few cells; widen once before giving up (qloo_filter_ignored)."""
+    try:
+        r = area(lat, lon, radius_km)
+        return r, *(await mix_at(run, r))
+    except QlooError as e:
+        if e.code != "qloo_filter_ignored" or radius_km >= WIDE_KM:
+            raise
+    r = area(lat, lon, WIDE_KM)
+    return r, *(await mix_at(run, r))
+
+
 async def scout_area(run: QlooRun, lat: float, lon: float, radius_km: int) -> ScoutArea:
-    r = area(lat, lon, radius_km)
-    mix, cells = await mix_at(run, r)  # raises qloo_filter_ignored where Qloo has no data
+    r, mix, cells = await mix_widening(run, lat, lon, radius_km)
     genres, games = await asyncio.gather(genre_heat(run, r, mix.general), local_games(run, r))
     return ScoutArea(
         lat=r.lat,
         lon=r.lon,
-        radius_km=radius_km,
+        radius_km=r.radius_m // 1000,
         cells=cells,
         mix=mix,
         genres=genres,
@@ -180,10 +196,8 @@ async def scout_fit(
     if not comps:
         raise QlooError("None of the comps resolved to a Qloo video game", code="comp_unresolved")
     signal = signal_ids(comps, await expand(run, comps))
-    r = area(lat, lon, radius_km)
-    (mix, _), (_, target, cells) = await asyncio.gather(
-        mix_at(run, r), heatmap_score(run, r, signal)
-    )
+    r, mix, _ = await mix_widening(run, lat, lon, radius_km)
+    _, target, cells = await heatmap_score(run, r, signal)
     m = CityMetrics(
         target=target,
         panels={"pc": mix.pc, "mobile": mix.mobile, "console": mix.console},
