@@ -40,7 +40,7 @@ def panels(pc: float, mobile: float, console: float) -> dict[str, float]:
     return {"pc": pc, "mobile": mobile, "console": console}
 
 
-def test_lift_order_differs_from_raw_order() -> None:  # Q5
+def test_lift_order_differs_from_raw_order() -> None:
     # Raw comp-fan scores say New York > Tokyo; against each city's all-gamer baseline Tokyo wins.
     m = {
         "nyc": CityMetrics(target=0.80, panels=panels(0.8, 0.8, 0.8), cells=300),
@@ -82,7 +82,7 @@ def test_culture_fit_lifts_the_settings_home_market() -> None:
     assert sum(r for r in ratios if r is not None) / 3 == pytest.approx(1.0)
 
 
-def test_phase0_comp_sets_rank_cities_differently() -> None:  # Q6
+def test_phase0_comp_sets_rank_cities_differently() -> None:
     report = json.loads((FIXTURES / "spike" / "report.json").read_text())
     rho = report["report"]["heatmap"]["spearman_cozy_vs_rogue_lift"]
     assert rho < 0.9
@@ -102,11 +102,11 @@ def test_phase0_comp_sets_rank_cities_differently() -> None:  # Q6
         (1.5, 10, "low"),
     ],
 )
-def test_confidence_boundaries(score: float, cells: int, expected: str) -> None:  # P8
+def test_confidence_boundaries(score: float, cells: int, expected: str) -> None:
     assert confidence(score, cells) == expected
 
 
-def test_budget_shares_sum_to_100_with_and_without_budget() -> None:  # P7
+def test_budget_shares_sum_to_100_with_and_without_budget() -> None:
     cities = [
         city("tyo", 1.7),
         city("sfo", 1.19, "medium"),
@@ -166,7 +166,7 @@ def test_grounding_accepts_facts() -> None:
     assert ground(plan, body) == []
 
 
-def test_grounding_rejects_invented_city() -> None:  # L7
+def test_grounding_rejects_invented_city() -> None:
     plan = sample_plan()
     errors = ground(plan, "Launch in **Melbourne** first [q1].")
     assert any("Melbourne" in e for e in errors)
@@ -174,7 +174,7 @@ def test_grounding_rejects_invented_city() -> None:  # L7
     assert any("melbourne" in e for e in errors)
 
 
-def test_grounding_rejects_invented_number_and_missing_citation() -> None:  # L7
+def test_grounding_rejects_invented_number_and_missing_citation() -> None:
     plan = sample_plan()
     top = plan.cities[0].name
     assert any("37%" in e for e in ground(plan, f"**{top}** gets 37% of players [q1]."))

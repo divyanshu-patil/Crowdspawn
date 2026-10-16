@@ -40,7 +40,7 @@ def qloo_items(plan: dict[str, Any]) -> list[dict[str, Any]]:
     return items
 
 
-def test_full_plan_is_qloo_sourced_and_traced(client: TestClient) -> None:  # Q1, Q3, Q4, Q7
+def test_full_plan_is_qloo_sourced_and_traced(client: TestClient) -> None:
     plan = run_plan(client)
     assert plan["status"] == "done", plan.get("error")
     trace = client.get(f"/v1/plans/{plan['id']}/trace").json()
@@ -49,28 +49,28 @@ def test_full_plan_is_qloo_sourced_and_traced(client: TestClient) -> None:  # Q1
         assert item["source"] == "qloo"
         refs = item.get("result_ids") or [item["result_id"]]
         assert set(refs) <= ids
-    # Q3: at least five distinct Qloo capabilities
+    # at least five distinct Qloo capabilities
     kinds = {(t["endpoint"], t["params"].get("filter.type")) for t in trace}
     assert ("/entities", None) in kinds
     assert ("/v2/insights", "urn:entity:videogame") in kinds
     assert ("/v2/insights", "urn:heatmap") in kinds
     assert ("/v2/insights", "urn:demographics") in kinds
     assert ("/v2/insights", "urn:entity:artist") in kinds
-    # Q4: steps run in dependency order and S2 uses S1 ids
+    # steps run in dependency order and S2 uses S1 ids
     steps = [t["step"] for t in sorted(trace, key=lambda t: int(t["result_id"][1:]))]
     assert steps == sorted(steps)
     s2 = next(t for t in trace if t["step"] == "S2")
     assert s2["params"]["signal.interests.entities"].split(",") == PLAN_INPUT["comp_entity_ids"]
-    # Q7: trace rows carry endpoint, step, cache flag and status, and never the key
+    # trace rows carry endpoint, step, cache flag and status, and never the key
     assert all({"endpoint", "step", "cache_hit", "status"} <= t.keys() for t in trace)
     assert TEST_KEY not in json.dumps(trace) + json.dumps(plan)
-    # P7 + brief exists and is grounded
+    # budget shares and a grounded brief
     assert abs(sum(c["budget_share"] for c in plan["cities"]) - 100) < 0.005
     assert plan["brief"]["source"] == "llm"
     assert plan["limits"][0].startswith("Affinity index")
 
 
-def test_repeat_plan_makes_zero_live_calls(client: TestClient, fake_qloo: FakeQloo) -> None:  # P4
+def test_repeat_plan_makes_zero_live_calls(client: TestClient, fake_qloo: FakeQloo) -> None:
     first = run_plan(client)
     n = len(fake_qloo.requests)
     second = run_plan(client)
@@ -78,7 +78,7 @@ def test_repeat_plan_makes_zero_live_calls(client: TestClient, fake_qloo: FakeQl
     assert second["calls"]["live"] == 0 and second["calls"]["cached"] == first["calls"]["live"]
 
 
-def test_kill_switch_no_key(make_client: Any) -> None:  # Q2, Q8
+def test_kill_switch_no_key(make_client: Any) -> None:
     client = make_client(qloo_api_key="")
     fake = FakeProvider()
     client.app.state.deps.llm = fake
@@ -90,7 +90,7 @@ def test_kill_switch_no_key(make_client: Any) -> None:  # Q2, Q8
     assert client.get("/health").json()["qloo"] == "unconfigured"
 
 
-def test_kill_switch_invalid_key(client: TestClient, fake_qloo: FakeQloo) -> None:  # Q2
+def test_kill_switch_invalid_key(client: TestClient, fake_qloo: FakeQloo) -> None:
     fake_qloo.status_override = 401
     fake = FakeProvider()
     client.app.state.deps.llm = fake
@@ -101,7 +101,7 @@ def test_kill_switch_invalid_key(client: TestClient, fake_qloo: FakeQloo) -> Non
     assert events[-1][1] == "failed" and events[-1][2]["code"] == "qloo_auth"
 
 
-def test_llm_calls_limited_to_brief(client: TestClient) -> None:  # L1, L8
+def test_llm_calls_limited_to_brief(client: TestClient) -> None:
     fake = FakeProvider()
     client.app.state.deps.llm = fake
     run_plan(client)
@@ -109,7 +109,7 @@ def test_llm_calls_limited_to_brief(client: TestClient) -> None:  # L1, L8
     assert all("<facts>" in "".join(m["content"] for m in call) for call in fake.calls)
 
 
-def test_bad_brief_falls_back_to_template(client: TestClient) -> None:  # L6, L7
+def test_bad_brief_falls_back_to_template(client: TestClient) -> None:
     invented = json.dumps(
         {
             "sections": [
@@ -126,7 +126,7 @@ def test_bad_brief_falls_back_to_template(client: TestClient) -> None:  # L6, L7
     assert any(w["code"] == "brief_template" for w in plan["warnings"])
 
 
-def test_provider_swap_changes_only_brief(make_client: Any) -> None:  # L4
+def test_provider_swap_changes_only_brief(make_client: Any) -> None:
     a, b = make_client(), make_client()
     a.app.state.deps.llm = FakeProvider(prefix="Alpha. ")
     b.app.state.deps.llm = FakeProvider(prefix="Beta. ")
@@ -138,7 +138,7 @@ def test_provider_swap_changes_only_brief(make_client: Any) -> None:  # L4
     }
 
 
-def test_unresolved_comp_is_dropped(client: TestClient, fake_qloo: FakeQloo) -> None:  # P1
+def test_unresolved_comp_is_dropped(client: TestClient, fake_qloo: FakeQloo) -> None:
     body = PLAN_INPUT | {"comp_entity_ids": PLAN_INPUT["comp_entity_ids"] + ["NOT-A-REAL-ID"]}
     lookup_key = next(k for k in fake_qloo.recorded if k[0] == "/entities")
     fake_qloo.recorded[("/entities", (("entity_ids", ",".join(body["comp_entity_ids"])),))] = (
@@ -150,7 +150,7 @@ def test_unresolved_comp_is_dropped(client: TestClient, fake_qloo: FakeQloo) -> 
     assert any(w["code"] == "unresolved_comp" for w in plan["warnings"])
 
 
-def test_sse_replays_all_event_types_and_resumes(client: TestClient) -> None:  # B3
+def test_sse_replays_all_event_types_and_resumes(client: TestClient) -> None:
     plan = run_plan(client)
     events = sse_events(client, plan["id"])  # late connection: replays everything
     types = {t for _, t, _ in events}
@@ -160,7 +160,7 @@ def test_sse_replays_all_event_types_and_resumes(client: TestClient) -> None:  #
     assert resumed[0][0] == mid + 1 and resumed == [e for e in events if e[0] > mid]
 
 
-def test_validation_problems(client: TestClient) -> None:  # B2
+def test_validation_problems(client: TestClient) -> None:
     cases = [
         PLAN_INPUT | {"comp_entity_ids": []},
         PLAN_INPUT | {"regions": ["nyc", "lon"]},
@@ -301,7 +301,7 @@ def test_entity_search(client: TestClient, fake_qloo: FakeQloo) -> None:
     ]
 
 
-def test_openapi_contract_is_current(tmp_path: Path) -> None:  # B1
+def test_openapi_contract_is_current(tmp_path: Path) -> None:
     committed = Path(__file__).parents[1] / "openapi.json"
     live = create_app(make_settings(tmp_path)).openapi()
     assert json.loads(committed.read_text()) == live, "run: pnpm --filter api openapi"

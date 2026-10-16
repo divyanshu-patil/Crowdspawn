@@ -45,7 +45,7 @@ def test_extract_json_fails_without_object() -> None:
         extract_json("no json here")
 
 
-async def test_one_repair_then_success() -> None:  # L6
+async def test_one_repair_then_success() -> None:
     fake = FakeProvider(replies=["not json", '{"names": ["Hades"]}'])
     budget = CallBudget(4)
     out, _ = await complete_json(fake, MSGS, Names, budget)
@@ -53,14 +53,14 @@ async def test_one_repair_then_success() -> None:  # L6
     assert "invalid" in fake.calls[1][-1]["content"]
 
 
-async def test_exactly_one_repair_then_error() -> None:  # L6
+async def test_exactly_one_repair_then_error() -> None:
     fake = FakeProvider(replies=["nope", "still nope", '{"names": []}'])
     with pytest.raises(LLMBadResponseError):
         await complete_json(fake, MSGS, Names, CallBudget(4))
     assert len(fake.calls) == 2
 
 
-async def test_call_budget_cap() -> None:  # L8
+async def test_call_budget_cap() -> None:
     budget = CallBudget(1)
     fake = FakeProvider(replies=["bad", "bad"])
     with pytest.raises(LLMError) as e:
@@ -69,7 +69,7 @@ async def test_call_budget_cap() -> None:  # L8
 
 
 @respx.mock
-async def test_ollama_cloud_request() -> None:  # L3, L5
+async def test_ollama_cloud_request() -> None:
     route = respx.post("https://ollama.com/api/chat").mock(
         return_value=httpx.Response(
             200,
@@ -95,7 +95,7 @@ async def test_ollama_cloud_request() -> None:  # L3, L5
 
 
 @respx.mock
-async def test_gemini_request_uses_native_schema() -> None:  # L3
+async def test_gemini_request_uses_native_schema() -> None:
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-x:generateContent"
     route = respx.post(url).mock(
         return_value=httpx.Response(
@@ -114,7 +114,7 @@ async def test_gemini_request_uses_native_schema() -> None:  # L3
 
 
 @respx.mock
-async def test_openai_compat_request() -> None:  # L3
+async def test_openai_compat_request() -> None:
     route = respx.post("https://api.example.com/v1/chat/completions").mock(
         return_value=httpx.Response(200, json={"choices": [{"message": {"content": "yo"}}]})
     )
@@ -158,12 +158,12 @@ async def test_error_mapping() -> None:
 )
 def test_registry_selects_by_env(
     tmp_path: Path, provider: str, over: dict[str, Any], expected: str | None
-) -> None:  # L3
+) -> None:
     p = build_provider(make_settings(tmp_path, llm_provider=provider, **over))
     assert (p.name if p else None) == expected
 
 
-def test_no_provider_names_outside_llm() -> None:  # L2
+def test_no_provider_names_outside_llm() -> None:
     src = Path(__file__).parents[1] / "src" / "crowdspawn_api"
     pattern = re.compile(r"ollama|gemini|openai", re.IGNORECASE)
     allowed = {"settings.py", "registry.py"}  # settings holds env names; registry wires them

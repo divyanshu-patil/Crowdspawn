@@ -1,4 +1,4 @@
-"""Accuracy backtest (docs/08): does Qloo's city lift carry signal beyond popularity?
+"""Accuracy backtest: does Qloo's city lift carry signal beyond popularity?
 
 For each shipped game we run S1-S3 with comps that are NOT the game, aggregate city scores to
 Steam languages, and compare with a public proxy: the game's Steam review share per language

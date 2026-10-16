@@ -72,10 +72,10 @@ apps/api      FastAPI service (Python 3.12, uv)
   scripts/                       fixtures, snapshots, accuracy scenarios, demo warm-up
 apps/web      Next.js 16 app: app/ routes, components/, lib/
 packages/contracts   TypeScript types generated from the API
-docs/         spec, verified Qloo contract, decisions, progress
+docs/         how it works, verified Qloo contract, accuracy results, deploy guide
 ```
 
-Start with [`docs/00-overview.md`](docs/00-overview.md), then [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md). Read [`docs/DESIGN.md`](docs/DESIGN.md) before you touch the UI.
+Start with [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md), then [`docs/qloo-contract.md`](docs/qloo-contract.md). For UI work, match the existing look: the sketchpad grid, ink borders with a solid offset side, marker yellow and ember orange, no blurred shadows.
 
 > Next.js 16 and Turborepo 2.11 differ from older versions. Check the docs bundled in `node_modules/next/dist/docs/` and the `turbo` package before changing config.
 
@@ -108,10 +108,10 @@ These rules aren't optional. Tests enforce several of them.
 
 ## Commits and pull requests
 
-- Keep commits small and use conventional prefixes with a scope, e.g. `feat(scout): …`, `fix(web): …`, `test(api): …`, `docs: …`. Reference acceptance IDs from [`docs/07-acceptance-criteria.md`](docs/07-acceptance-criteria.md) where one applies, e.g. `[Q5]`.
+- Keep commits small and use conventional prefixes with a scope, e.g. `feat(scout): …`, `fix(web): …`, `test(api): …`, `docs: …`.
 - One topic per PR. Say what changed, why, and how you verified it. For UI changes, include a screenshot and check the page at 360 px width and with the keyboard.
-- If a doc in `docs/` disagrees with live behaviour, trust the live behaviour, update the doc, and add a line to the decisions log ([`docs/10-risks-decisions.md`](docs/10-risks-decisions.md)).
-- New features outside `docs/` need discussion first. Open an issue.
+- If a doc in `docs/` disagrees with live behaviour, trust the live behaviour and update the doc in the same PR.
+- Open an issue to discuss a new feature before building it.
 
 ## Licence
 

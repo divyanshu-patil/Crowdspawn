@@ -192,10 +192,10 @@ apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8, agent, sc
 apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, LaunchAgent, PlanView, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
 packages/contracts   generated API types
 assets/readme        README art; the hero is generated from the app's own country map (source/build_hero.py)
-docs/         product spec, verified Qloo contract, progress, decisions, accuracy results
+docs/         how it works, verified Qloo contract, accuracy results, deploy guide
 ```
 
-Progress against every acceptance criterion is in [`docs/progress.md`](docs/progress.md); decisions in [`docs/10-risks-decisions.md`](docs/10-risks-decisions.md); a plain-language walkthrough in [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).
+A plain-language walkthrough is in [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md), and the verified Qloo calls in [`docs/qloo-contract.md`](docs/qloo-contract.md).
 
 </details>
 

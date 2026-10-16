@@ -84,4 +84,4 @@ Your browser  ──>  Website (Next.js, port 3000)  ──>  API (Python FastAP
 - **New plan** runs the full live flow.
 - **/scout** explores any place on the map.
 - **/agent** lets the launch agent plan for you, step by step.
-- [`../README.md`](../README.md) has the setup; [`progress.md`](progress.md) tracks which requirements pass; [`qloo-contract.md`](qloo-contract.md) lists the verified Qloo calls.
+- [`../README.md`](../README.md) has the setup; [`qloo-contract.md`](qloo-contract.md) lists the verified Qloo calls.

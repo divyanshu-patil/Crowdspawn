@@ -37,7 +37,7 @@ class FakeClock:
         self.now += s
 
 
-async def test_token_bucket_never_exceeds_4_rps() -> None:  # P3
+async def test_token_bucket_never_exceeds_4_rps() -> None:
     clock = FakeClock()
     bucket = TokenBucket(4, clock=clock, sleep=clock.sleep)
     stamps = []
@@ -66,7 +66,7 @@ def client_for(tmp_path: Path, store: Store, **over: Any) -> QlooClient:
 
 
 @respx.mock
-async def test_cache_hit_and_miss(tmp_path: Path, store: Store) -> None:  # P4
+async def test_cache_hit_and_miss(tmp_path: Path, store: Store) -> None:
     route = respx.get("https://hackathon.api.qloo.com/search").mock(
         return_value=httpx.Response(200, json={"results": []})
     )
@@ -79,11 +79,11 @@ async def test_cache_hit_and_miss(tmp_path: Path, store: Store) -> None:  # P4
     hits = [e.cache_hit for e in sorted(run.trace.entries, key=lambda e: e.result_id)]
     assert hits == [False, True, False]
     assert route.calls[0].request.headers["X-Api-Key"] == TEST_KEY
-    assert TEST_KEY not in json.dumps(run.trace.dump())  # Q7, B4
+    assert TEST_KEY not in json.dumps(run.trace.dump())
 
 
 @respx.mock
-async def test_budget_cap_stops_run(tmp_path: Path, store: Store) -> None:  # P5
+async def test_budget_cap_stops_run(tmp_path: Path, store: Store) -> None:
     respx.get(url__regex=r".*").mock(return_value=httpx.Response(200, json={"results": []}))
     run = client_for(tmp_path, store).run(max_calls=3)
     for i in range(3):
@@ -127,7 +127,7 @@ async def test_auth_error_and_bad_request(tmp_path: Path, store: Store) -> None:
     assert [e.status for e in run.trace.entries] == [502, 400]
 
 
-async def test_unconfigured_makes_no_call(tmp_path: Path, store: Store) -> None:  # Q2
+async def test_unconfigured_makes_no_call(tmp_path: Path, store: Store) -> None:
     with respx.mock(assert_all_called=False) as router:
         route = router.get(url__regex=r".*").mock(return_value=httpx.Response(200, json={}))
         with pytest.raises(QlooUnconfigured):
@@ -135,7 +135,7 @@ async def test_unconfigured_makes_no_call(tmp_path: Path, store: Store) -> None:
         assert route.call_count == 0
 
 
-def test_heatmap_outside_radius_is_silent_failure() -> None:  # P6
+def test_heatmap_outside_radius_is_silent_failure() -> None:
     body = json.loads((FIXTURES / "spike/heatmap/rogue_tyo.json").read_text())["body"]
     cells = HeatmapInsights.model_validate(body).results.heatmap
     check_inside(cells, regions()["tyo"])  # the real Tokyo response passes
@@ -145,7 +145,7 @@ def test_heatmap_outside_radius_is_silent_failure() -> None:  # P6
         check_inside([], regions()["lon"])
 
 
-def test_wrong_entity_type_is_silent_failure() -> None:  # P6
+def test_wrong_entity_type_is_silent_failure() -> None:
     body = json.loads((FIXTURES / "spike/partners/artist.json").read_text())["body"]
     entities = EntityInsights.model_validate(body).results.entities
     check_subtype(entities, "urn:entity:artist")
