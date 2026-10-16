@@ -4,6 +4,7 @@ import { Schibsted_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { TileField } from "../components/TileField";
 import { SfxListener, SoundToggle } from "../components/Sfx";
+import { Tour } from "../components/Tour";
 
 const display = Schibsted_Grotesk({ subsets: ["latin"], weight: ["500"], variable: "--font-schibsted" });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono" });
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <div className="nav-links">
               <SoundToggle />
+              <Tour />
               <Link className="label" href="/agent">
                 Agent
               </Link>

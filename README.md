@@ -18,6 +18,8 @@
 
 Crowdspawn gives indie game studios a launch plan built from [Qloo Taste AI](https://qloo.com) data. It shows the cities where fans of games like yours over-index against all gamers, who that audience is, and which artists, podcasts, films and brands they love. An LLM explains the result but never supplies a fact: every city, name and number traces back to the Qloo call that produced it.
 
+New here? Press **Tour** in the app's nav for a one-minute guided walk through the map, a full plan, the region scout and the agent.
+
 ## Three ways in
 
 ### 01 · Ask the launch agent — `/agent`
