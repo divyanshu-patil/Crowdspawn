@@ -1735,7 +1735,7 @@ footer.foot {
   fill: var(--paper);
 }
 
-.region-map .country .side {
+.region-map .side {
   fill: var(--ink);
   transform: translate(var(--side), var(--side));
 }
@@ -1776,6 +1776,13 @@ footer.foot {
 /* Hover: the whole country lifts like a block and shows its black side. */
 .region-map .country.lit .top {
   transform: translate(calc(var(--side) * -1), calc(var(--side) * -1));
+  animation: country-lift 220ms var(--ease-spring) both;
+}
+
+@keyframes country-lift {
+  from {
+    transform: translate(0, 0);
+  }
 }
 
 .region-map .country.lit .border {

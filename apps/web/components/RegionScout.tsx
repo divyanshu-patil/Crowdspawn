@@ -465,24 +465,37 @@ function RegionMap({
   const spotCountry = spot ? countryShapeAt(spot.lat, spot.lon) : null;
   const hoverId = hover?.c.id ?? spotCountry?.id;
   // The country layer only changes with readings or hover, never with the camera, so frames stay cheap.
-  const countryLayer = useMemo(
-    () =>
-      shapes.map(({ c, step }) => (
-          <g
-            key={c.id}
-            data-id={c.id}
-            className={`country h${step}${hoverId === c.id ? " lit" : ""}`}
-            style={{ ["--d" as string]: `${Math.round(c.cx * 6)}ms` }}
-          >
-            <path className="side" d={c.d} />
-            <g className="top">
-              <path className="fill" d={c.d} />
-              <path className="border" d={c.b} vectorEffect="non-scaling-stroke" />
-            </g>
+  // All black sides go under all tops, or a later country's side paints over its neighbour when zoomed in.
+  // The hovered country is drawn again on top (a copy, so the original never moves and replays its intro).
+  const countryLayer = useMemo(() => {
+    const lit = shapes.find((s) => s.c.id === hoverId);
+    const top = (c: CountryShape) => (
+      <g className="top">
+        <path className="fill" d={c.d} />
+        <path className="border" d={c.b} vectorEffect="non-scaling-stroke" />
+      </g>
+    );
+    return (
+      <>
+        <g className="sides" pointerEvents="none">
+          {shapes.map(({ c }) => (
+            <path key={c.id} className="side" d={c.d} />
+          ))}
+        </g>
+        {shapes.map(({ c, step }) => (
+          <g key={c.id} data-id={c.id} className={`country h${step}`} style={{ ["--d" as string]: `${Math.round(c.cx * 6)}ms` }}>
+            {top(c)}
           </g>
-        )),
-    [shapes, hoverId],
-  );
+        ))}
+        {lit && (
+          <g key={`lit-${lit.c.id}`} className={`country lit h${lit.step}`} pointerEvents="none">
+            <path className="side" d={lit.c.d} />
+            {top(lit.c)}
+          </g>
+        )}
+      </>
+    );
+  }, [shapes, hoverId]);
   const hovered = hover?.c.a2 ? readings?.get(hover.c.a2) : undefined;
   const at = pick ? toXY(pick.lat, pick.lon) : null;
   const unit = 1 / view.k; // keep rings and borders a constant on-screen size
