@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { AreaActivity, EntityOut, PlaceHit, PlatformMix, ScoutArea, ScoutFit } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
 import { COUNTRIES, GRID, OWNER, type CountryShape } from "../lib/countries";
+import snapshotJson from "../lib/scout-snapshot.json";
 import { lift as fmt } from "../lib/format";
 import { play } from "../lib/sfx";
 import { PLATFORMS, type Platform } from "../lib/validate";
@@ -17,6 +18,28 @@ const toXY = (lat: number, lon: number) => ({ x: (lon + 180) / GRID.step, y: (GR
 const toLatLon = (x: number, y: number) => ({ lat: GRID.latTop - y * GRID.step, lon: x * GRID.step - 180 });
 
 type CountryReading = { mix: PlatformMix; cities: string[] };
+
+/** What the panel shows: a live scout, or a place from the bundled Qloo snapshot. */
+type AreaView = Omit<ScoutArea, "games" | "calls"> & {
+  games: { name: string; image_url?: string | null }[];
+  calls?: ScoutArea["calls"];
+  snapshot?: string;
+};
+type SnapArea = AreaView & { id: string; name: string; country: string };
+
+// "What works here" for 50 popular places, generated from Qloo by apps/api/scripts/snapshot_scout.py.
+const SNAPSHOT = snapshotJson as unknown as { generated: string; areas: SnapArea[] };
+const POPULAR = ["New York", "London", "Tokyo", "Seoul", "Sao Paulo", "Mumbai", "Istanbul", "Jakarta", "Lagos", "Berlin"];
+
+function snapshotNear(lat: number, lon: number): SnapArea | null {
+  let best: SnapArea | null = null;
+  let bestKm = 60; // close enough to be the same metro area
+  for (const a of SNAPSHOT.areas) {
+    const d = km({ lat, lon }, a);
+    if (d < bestKm) [best, bestKm] = [a, d];
+  }
+  return best;
+}
 
 /** English country name at a coordinate, from the generated tile grid (nearest land tile for coasts). */
 function countryAt(lat: number, lon: number): string | null {
@@ -71,7 +94,7 @@ export function RegionScout() {
   const [snapNote, setSnapNote] = useState<string | null>(null);
   const [activityError, setActivityError] = useState<string | null>(null);
   const [pick, setPick] = useState<Pick | null>(null);
-  const [area, setArea] = useState<ScoutArea | null>(null);
+  const [area, setArea] = useState<AreaView | null>(null);
   const [areaError, setAreaError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState<"works" | "fit">("works");
@@ -87,6 +110,18 @@ export function RegionScout() {
   }, []);
 
   async function scout(p: Pick, snapped = false) {
+    const snap = snapshotNear(p.lat, p.lon);
+    if (snap) {
+      // Popular place: answer instantly from the bundled Qloo snapshot, no API call.
+      const title = [snap.name, countryAt(snap.lat, snap.lon)].filter(Boolean).join(", ");
+      setPick({ lat: snap.lat, lon: snap.lon, label: title });
+      setArea({ ...snap, snapshot: SNAPSHOT.generated });
+      setAreaError(null);
+      setLoading(false);
+      if (!snapped) setSnapNote(null);
+      play("coin");
+      return;
+    }
     setPick(p);
     setArea(null);
     setAreaError(null);
@@ -122,6 +157,17 @@ export function RegionScout() {
         <PlaceSearch
           onPick={(h) => scout({ lat: h.lat, lon: h.lon, label: placeTitle(h) })}
         />
+        <div className="row popular" aria-label="Popular places, instant from a Qloo snapshot">
+          <span className="label muted">Popular</span>
+          {POPULAR.map((n) => {
+            const a = SNAPSHOT.areas.find((x) => x.name === n)!;
+            return (
+              <button key={n} type="button" className="chip-btn" onClick={() => scout({ lat: a.lat, lon: a.lon, label: n })}>
+                {n}
+              </button>
+            );
+          })}
+        </div>
       </header>
 
       {activityError && <Notice tone="warn">{activityError}</Notice>}
@@ -428,6 +474,10 @@ function RegionMap({
         <rect x={0} y={0} width={W} height={H} className="sea" />
         {countryLayer}
         <rect x={0} y={0} width={W} height={H} fill="url(#pix)" pointerEvents="none" />
+        {SNAPSHOT.areas.map((a) => {
+          const p = toXY(a.lat, a.lon);
+          return <circle key={a.id} className="spot" cx={p.x} cy={p.y} r={0.32 * unit * 1.6} pointerEvents="none" />;
+        })}
         {at && (
           <g className="pick" transform={`translate(${at.x} ${at.y})`} pointerEvents="none">
             <circle className="aoe" r={2.2 * unit * 2} />
@@ -510,7 +560,7 @@ function MixBars({ mix }: { mix: PlatformMix }) {
   );
 }
 
-function WhatWorks({ area }: { area: ScoutArea }) {
+function WhatWorks({ area }: { area: AreaView }) {
   const max = Math.max(...area.genres.map((g) => g.lift));
   return (
     <div className="works">
@@ -543,7 +593,7 @@ function WhatWorks({ area }: { area: ScoutArea }) {
         </h3>
         <ol className="local-games">
           {area.games.map((g, i) => (
-            <li key={g.entity_id} style={{ ["--i" as string]: i }}>
+            <li key={g.name} style={{ ["--i" as string]: i }}>
               {g.image_url ? <img src={g.image_url} alt="" loading="lazy" /> : <span className="ph">{g.name[0]}</span>}
               <span>{g.name}</span>
               <span className="num muted">#{i + 1}</span>
@@ -551,8 +601,11 @@ function WhatWorks({ area }: { area: ScoutArea }) {
           ))}
         </ol>
         <p className="hint">
-          {area.cells} Qloo heatmap cells · {area.calls.live} live / {area.calls.cached} cached calls · affinity index, not
-          sales.
+          {area.cells} Qloo heatmap cells ·{" "}
+          {area.snapshot
+            ? `instant from a Qloo snapshot taken ${area.snapshot}`
+            : `${area.calls?.live ?? 0} live / ${area.calls?.cached ?? 0} cached calls`}{" "}
+          · affinity index, not sales.
         </p>
       </div>
     </div>

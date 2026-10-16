@@ -2030,3 +2030,33 @@ footer.foot {
     animation: none;
   }
 }
+
+.region-map .spot {
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.popular {
+  gap: 6px;
+  align-items: center;
+}
+
+.chip-btn {
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  font: 400 13px/1 var(--font-body);
+  cursor: pointer;
+  transition: background 160ms, transform 160ms var(--ease-spring);
+}
+
+.chip-btn:hover {
+  background: var(--marker);
+}
+
+.chip-btn:active {
+  transform: scale(0.94);
+}
