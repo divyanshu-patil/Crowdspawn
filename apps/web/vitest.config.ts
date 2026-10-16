@@ -3,5 +3,6 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  test: { environment: "jsdom", include: ["tests/**/*.test.{ts,tsx}"] },
+  // Two test files: two workers is enough, and spare forks time out on a busy machine.
+  test: { environment: "jsdom", include: ["tests/**/*.test.{ts,tsx}"], maxWorkers: 2 },
 });
