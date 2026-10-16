@@ -11,19 +11,25 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
-from ..errors import NotFound, QlooUnconfigured, RateLimited
+from ..errors import NotFound, QlooError, QlooUnconfigured, RateLimited
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import cities, culture, resolve
+from ..pipeline import cities, culture, resolve, scout
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
+    ActivityOut,
     CultureSuggestion,
     EntityOut,
+    PlaceHit,
     Plan,
     PlanCreated,
     PlanIn,
     Problem,
     Region,
+    ScoutArea,
+    ScoutAreaIn,
+    ScoutFit,
+    ScoutFitIn,
     SuggestIn,
     Suggestion,
     SuggestOut,
@@ -34,6 +40,17 @@ router = APIRouter(prefix="/v1")
 SSE_POLL_SECONDS = 0.25
 SSE_HEARTBEAT_SECONDS = 15
 _plan_hits: dict[str, deque[float]] = defaultdict(deque)
+_scout_hits: dict[str, deque[float]] = defaultdict(deque)
+
+
+def _limit(request: Request, book: dict[str, deque[float]], per_hour: int) -> None:
+    ip = request.client.host if request.client else "unknown"
+    hits, now = book[ip], time.time()
+    while hits and hits[0] < now - 3600:
+        hits.popleft()
+    if len(hits) >= per_hour:
+        raise RateLimited()
+    hits.append(now)
 
 
 def deps(request: Request) -> Deps:
@@ -139,13 +156,7 @@ async def create_plan(request: Request, body: PlanIn, tasks: BackgroundTasks) ->
                 }
             ]
         )
-    ip = request.client.host if request.client else "unknown"
-    hits, now = _plan_hits[ip], time.time()
-    while hits and hits[0] < now - 3600:
-        hits.popleft()
-    if len(hits) >= d.settings.plans_per_ip_per_hour:
-        raise RateLimited()
-    hits.append(now)
+    _limit(request, _plan_hits, d.settings.plans_per_ip_per_hour)
     plan_id = uuid.uuid4().hex[:12]
     await d.store.create_plan(plan_id, body.model_dump(mode="json"))
     await d.store.add_event(plan_id, "queued", {"plan_id": plan_id})
@@ -211,3 +222,71 @@ async def stream_plan(request: Request, plan_id: str) -> StreamingResponse:
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
+
+
+def _qloo_ready(d: Deps) -> None:
+    if not d.qloo.configured:
+        raise QlooUnconfigured("Set QLOO_API_KEY in apps/api/.env")
+
+
+def _no_data(e: QlooError) -> QlooError:
+    if (
+        e.code == "qloo_filter_ignored"
+    ):  # no heatmap cells: open sea, desert, or Qloo has no data here
+        return QlooError(
+            "Qloo has no player data around this point. Try a town or city.",
+            code="no_area_data",
+            status=422,
+        )
+    return e
+
+
+@router.get("/scout/places", response_model=list[PlaceHit])
+async def scout_places(
+    request: Request, q: Annotated[str, Query(min_length=2, max_length=80)]
+) -> list[PlaceHit]:
+    """Find a town, city or region by name (Qloo localities, with coordinates)."""
+    d = deps(request)
+    _qloo_ready(d)
+    return await scout.search_places(d.qloo.run(max_calls=1), q)
+
+
+@router.get("/scout/activity", response_model=ActivityOut)
+async def scout_activity(request: Request) -> ActivityOut:
+    """Player activity index (PC, mobile, console panels) for 67 cities. Cached for a week."""
+    d = deps(request)
+    _qloo_ready(d)
+    run = d.qloo.run(max_calls=3 * len(scout.scout_points()))
+    points, skipped = await scout.activity(run)
+    return ActivityOut(points=points, skipped=skipped, calls=scout.calls(run))
+
+
+@router.post("/scout/area", response_model=ScoutArea)
+async def scout_area(request: Request, body: ScoutAreaIn) -> ScoutArea:
+    """What works here: platform mix, genre heat and the games locals love."""
+    d = deps(request)
+    _qloo_ready(d)
+    _limit(request, _scout_hits, d.settings.scouts_per_ip_per_hour)
+    try:
+        return await scout.scout_area(d.qloo.run(max_calls=24), body.lat, body.lon, body.radius_km)
+    except QlooError as e:
+        raise _no_data(e) from e
+
+
+@router.post("/scout/fit", response_model=ScoutFit)
+async def scout_fit(request: Request, body: ScoutFitIn) -> ScoutFit:
+    """Would my game work here: spawn score of the comp set in this area."""
+    d = deps(request)
+    _qloo_ready(d)
+    _limit(request, _scout_hits, d.settings.scouts_per_ip_per_hour)
+    try:
+        return await scout.scout_fit(
+            d.qloo.run(max_calls=26),
+            body.lat,
+            body.lon,
+            body.radius_km,
+            body.comp_entity_ids,
+            list(body.platforms),
+        )
+    except QlooError as e:
+        raise _no_data(e) from e

@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import uuid
 from collections.abc import AsyncIterator, Awaitable, Callable
@@ -10,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .errors import AppError, app_error_handler, validation_error_handler
 from .llm.registry import build_provider
+from .pipeline import scout
 from .pipeline.orchestrator import Deps
 from .qloo.client import QlooClient
 from .routes import health, v1
@@ -23,6 +25,14 @@ class RequestIdFilter(logging.Filter):
     def filter(self, record: logging.LogRecord) -> bool:
         record.request_id = request_id.get()
         return True
+
+
+async def _warm_scout(qloo: QlooClient) -> None:
+    """Fill the week-long cache behind /v1/scout/activity; cached readings cost no calls."""
+    try:
+        await scout.activity(qloo.run(max_calls=3 * len(scout.scout_points())))
+    except Exception:  # best effort: the endpoint fetches on demand anyway
+        logging.getLogger(__name__).warning("scout warm-up failed", exc_info=True)
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -41,7 +51,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         qloo = QlooClient(s, store)
         llm = build_provider(s)
         app.state.deps = Deps(settings=s, store=store, qloo=qloo, llm=llm)
+        warm = None
+        if qloo.configured and s.app_env != "test":
+            warm = asyncio.create_task(_warm_scout(qloo))  # first map visit is instant
         yield
+        if warm and not warm.done():
+            warm.cancel()
         await qloo.aclose()
         if llm:
             await llm.aclose()

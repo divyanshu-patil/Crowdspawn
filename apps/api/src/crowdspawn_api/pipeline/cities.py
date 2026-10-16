@@ -11,7 +11,7 @@ from ..errors import QlooError, QlooFilterIgnored
 from ..qloo.client import QlooRun
 from ..qloo.models import HeatmapCell, HeatmapInsights
 from ..schemas import City, Region, Warning_
-from ..settings import PLATFORM_PANELS
+from ..settings import PANEL_TTL_SECONDS, PLATFORM_PANELS
 from .confidence import confidence
 from .scoring import CityMetrics, Score, spawn_scores
 
@@ -46,7 +46,7 @@ def check_inside(cells: list[HeatmapCell], region: Region) -> None:
 
 
 async def heatmap_score(
-    run: QlooRun, region: Region, ids: list[str] | tuple[str, ...]
+    run: QlooRun, region: Region, ids: list[str] | tuple[str, ...], ttl: float | None = None
 ) -> tuple[str, float, int]:
     rid, body = await run.get(
         "S3",
@@ -57,6 +57,7 @@ async def heatmap_score(
             "filter.location": f"POINT({region.lon} {region.lat})",
             "filter.location.radius": str(region.radius_m),
         },
+        ttl,
     )
     cells = HeatmapInsights.model_validate(body).results.heatmap
     check_inside(cells, region)
@@ -98,7 +99,10 @@ async def score_cities(
             sets.append(culture_ids)
         try:
             heats: list[Heat] = await asyncio.gather(
-                *(heatmap_score(run, region, ids) for ids in sets)
+                *(
+                    heatmap_score(run, region, ids, PANEL_TTL_SECONDS if i else None)
+                    for i, ids in enumerate(sets)
+                )
             )
         except QlooFilterIgnored as e:
             return Warning_(

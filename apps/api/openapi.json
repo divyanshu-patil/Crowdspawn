@@ -333,10 +333,218 @@
           }
         }
       }
+    },
+    "/v1/scout/places": {
+      "get": {
+        "summary": "Scout Places",
+        "description": "Find a town, city or region by name (Qloo localities, with coordinates).",
+        "operationId": "scout_places_v1_scout_places_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 80,
+              "title": "Q"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaceHit"
+                  },
+                  "title": "Response Scout Places V1 Scout Places Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/scout/activity": {
+      "get": {
+        "summary": "Scout Activity",
+        "description": "Player activity index (PC, mobile, console panels) for 67 cities. Cached for a week.",
+        "operationId": "scout_activity_v1_scout_activity_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/scout/area": {
+      "post": {
+        "summary": "Scout Area",
+        "description": "What works here: platform mix, genre heat and the games locals love.",
+        "operationId": "scout_area_v1_scout_area_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoutAreaIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoutArea"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/scout/fit": {
+      "post": {
+        "summary": "Scout Fit",
+        "description": "Would my game work here: spawn score of the comp set in this area.",
+        "operationId": "scout_fit_v1_scout_fit_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoutFitIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoutFit"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "ActivityOut": {
+        "properties": {
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/AreaActivity"
+            },
+            "type": "array",
+            "title": "Points"
+          },
+          "skipped": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skipped"
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "points",
+          "skipped",
+          "calls"
+        ],
+        "title": "ActivityOut"
+      },
+      "AreaActivity": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "mix": {
+            "$ref": "#/components/schemas/PlatformMix"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "country",
+          "lat",
+          "lon",
+          "mix"
+        ],
+        "title": "AreaActivity"
+      },
       "Audience": {
         "properties": {
           "age": {
@@ -873,6 +1081,32 @@
         ],
         "title": "GenderSkew"
       },
+      "GenreHeat": {
+        "properties": {
+          "genre": {
+            "type": "string",
+            "title": "Genre"
+          },
+          "lift": {
+            "type": "number",
+            "title": "Lift"
+          },
+          "examples": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Examples"
+          }
+        },
+        "type": "object",
+        "required": [
+          "genre",
+          "lift",
+          "examples"
+        ],
+        "title": "GenreHeat"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -948,6 +1182,40 @@
           "status"
         ],
         "title": "LLMStatus"
+      },
+      "LocalGame": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "affinity": {
+            "type": "number",
+            "title": "Affinity"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "affinity"
+        ],
+        "title": "LocalGame"
       },
       "Partner": {
         "properties": {
@@ -1047,6 +1315,39 @@
         },
         "type": "object",
         "title": "Partners"
+      },
+      "PlaceHit": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "label",
+          "lat",
+          "lon"
+        ],
+        "title": "PlaceHit"
       },
       "Plan": {
         "properties": {
@@ -1305,6 +1606,35 @@
         ],
         "title": "PlanIn"
       },
+      "PlatformMix": {
+        "properties": {
+          "pc": {
+            "type": "number",
+            "title": "Pc"
+          },
+          "mobile": {
+            "type": "number",
+            "title": "Mobile"
+          },
+          "console": {
+            "type": "number",
+            "title": "Console"
+          },
+          "general": {
+            "type": "number",
+            "title": "General"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pc",
+          "mobile",
+          "console",
+          "general"
+        ],
+        "title": "PlatformMix",
+        "description": "Mean Qloo affinity_rank (0-1) of each platform's player panel in an area. An index, not a headcount."
+      },
       "Problem": {
         "properties": {
           "code": {
@@ -1365,6 +1695,238 @@
           "radius_m"
         ],
         "title": "Region"
+      },
+      "ScoutArea": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "radius_km": {
+            "type": "integer",
+            "title": "Radius Km"
+          },
+          "cells": {
+            "type": "integer",
+            "title": "Cells"
+          },
+          "mix": {
+            "$ref": "#/components/schemas/PlatformMix"
+          },
+          "genres": {
+            "items": {
+              "$ref": "#/components/schemas/GenreHeat"
+            },
+            "type": "array",
+            "title": "Genres"
+          },
+          "games": {
+            "items": {
+              "$ref": "#/components/schemas/LocalGame"
+            },
+            "type": "array",
+            "title": "Games"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon",
+          "radius_km",
+          "cells",
+          "mix",
+          "genres",
+          "games",
+          "calls"
+        ],
+        "title": "ScoutArea"
+      },
+      "ScoutAreaIn": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "maximum": 75.0,
+            "minimum": -60.0,
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Lon"
+          },
+          "radius_km": {
+            "type": "integer",
+            "maximum": 150.0,
+            "minimum": 10.0,
+            "title": "Radius Km",
+            "default": 40
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon"
+        ],
+        "title": "ScoutAreaIn"
+      },
+      "ScoutFit": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "comps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Comps"
+          },
+          "lift": {
+            "type": "number",
+            "title": "Lift"
+          },
+          "platform_fit": {
+            "type": "number",
+            "title": "Platform Fit"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "promising",
+              "neutral",
+              "weak"
+            ],
+            "title": "Verdict"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "cells": {
+            "type": "integer",
+            "title": "Cells"
+          },
+          "best_genre": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GenreHeat"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon",
+          "comps",
+          "lift",
+          "platform_fit",
+          "score",
+          "verdict",
+          "confidence",
+          "cells",
+          "calls"
+        ],
+        "title": "ScoutFit"
+      },
+      "ScoutFitIn": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "maximum": 75.0,
+            "minimum": -60.0,
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Lon"
+          },
+          "radius_km": {
+            "type": "integer",
+            "maximum": 150.0,
+            "minimum": 10.0,
+            "title": "Radius Km",
+            "default": 40
+          },
+          "comp_entity_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Comp Entity Ids"
+          },
+          "platforms": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "pc",
+                "mobile",
+                "console"
+              ]
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Platforms",
+            "default": [
+              "pc",
+              "mobile",
+              "console"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon",
+          "comp_entity_ids"
+        ],
+        "title": "ScoutFitIn"
       },
       "SuggestIn": {
         "properties": {

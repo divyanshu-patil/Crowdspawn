@@ -246,3 +246,91 @@ class Health(BaseModel):
     qloo: Literal["ok", "unconfigured", "error"]
     llm: LLMStatus
     version: str
+
+
+# Region scout: what works in an area, and would my game work there.
+
+
+class PlaceHit(BaseModel):
+    entity_id: str
+    name: str
+    label: str
+    lat: float
+    lon: float
+
+
+class PlatformMix(BaseModel):
+    """Mean Qloo affinity_rank (0-1) of each platform's player panel in an area. An index, not a headcount."""
+
+    pc: float
+    mobile: float
+    console: float
+    general: float
+
+
+class AreaActivity(BaseModel):
+    id: str
+    name: str
+    country: str
+    lat: float
+    lon: float
+    mix: PlatformMix
+
+
+class ActivityOut(BaseModel):
+    points: list[AreaActivity]
+    skipped: list[str]
+    calls: Calls
+
+
+class ScoutAreaIn(BaseModel):
+    lat: float = Field(ge=-60, le=75)
+    lon: float = Field(ge=-180, le=180)
+    radius_km: int = Field(default=40, ge=10, le=150)
+
+
+class GenreHeat(BaseModel):
+    genre: str
+    lift: float  # genre panel heat / all gamers in the area
+    examples: list[str]
+
+
+class LocalGame(BaseModel):
+    entity_id: str
+    name: str
+    affinity: float
+    image_url: str | None = None
+
+
+class ScoutArea(BaseModel):
+    lat: float
+    lon: float
+    radius_km: int
+    cells: int
+    mix: PlatformMix
+    genres: list[GenreHeat]
+    games: list[LocalGame]
+    source: Literal["qloo"] = "qloo"
+    calls: Calls
+
+
+class ScoutFitIn(ScoutAreaIn):
+    comp_entity_ids: list[str] = Field(min_length=1, max_length=5)
+    platforms: list[Platform] = Field(
+        default=["pc", "mobile", "console"], min_length=1, max_length=3
+    )
+
+
+class ScoutFit(BaseModel):
+    lat: float
+    lon: float
+    comps: list[str]
+    lift: float
+    platform_fit: float
+    score: float
+    verdict: Literal["strong", "promising", "neutral", "weak"]
+    confidence: Confidence
+    cells: int
+    best_genre: GenreHeat | None = None
+    source: Literal["qloo"] = "qloo"
+    calls: Calls

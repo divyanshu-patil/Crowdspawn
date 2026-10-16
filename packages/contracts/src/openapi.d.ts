@@ -163,10 +163,112 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/scout/places": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Scout Places
+         * @description Find a town, city or region by name (Qloo localities, with coordinates).
+         */
+        get: operations["scout_places_v1_scout_places_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/scout/activity": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Scout Activity
+         * @description Player activity index (PC, mobile, console panels) for 67 cities. Cached for a week.
+         */
+        get: operations["scout_activity_v1_scout_activity_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/scout/area": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Scout Area
+         * @description What works here: platform mix, genre heat and the games locals love.
+         */
+        post: operations["scout_area_v1_scout_area_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/scout/fit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Scout Fit
+         * @description Would my game work here: spawn score of the comp set in this area.
+         */
+        post: operations["scout_fit_v1_scout_fit_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** ActivityOut */
+        ActivityOut: {
+            /** Points */
+            points: components["schemas"]["AreaActivity"][];
+            /** Skipped */
+            skipped: string[];
+            calls: components["schemas"]["Calls"];
+        };
+        /** AreaActivity */
+        AreaActivity: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Country */
+            country: string;
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            mix: components["schemas"]["PlatformMix"];
+        };
         /** Audience */
         Audience: {
             /** Age */
@@ -375,6 +477,15 @@ export interface components {
             /** Index */
             index: number;
         };
+        /** GenreHeat */
+        GenreHeat: {
+            /** Genre */
+            genre: string;
+            /** Lift */
+            lift: number;
+            /** Examples */
+            examples: string[];
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
@@ -407,6 +518,17 @@ export interface components {
              * @enum {string}
              */
             status: "configured" | "unconfigured";
+        };
+        /** LocalGame */
+        LocalGame: {
+            /** Entity Id */
+            entity_id: string;
+            /** Name */
+            name: string;
+            /** Affinity */
+            affinity: number;
+            /** Image Url */
+            image_url?: string | null;
         };
         /** Partner */
         Partner: {
@@ -453,6 +575,19 @@ export interface components {
              * @default []
              */
             brand: components["schemas"]["Partner"][];
+        };
+        /** PlaceHit */
+        PlaceHit: {
+            /** Entity Id */
+            entity_id: string;
+            /** Name */
+            name: string;
+            /** Label */
+            label: string;
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
         };
         /** Plan */
         Plan: {
@@ -567,6 +702,20 @@ export interface components {
              */
             mode: "fast";
         };
+        /**
+         * PlatformMix
+         * @description Mean Qloo affinity_rank (0-1) of each platform's player panel in an area. An index, not a headcount.
+         */
+        PlatformMix: {
+            /** Pc */
+            pc: number;
+            /** Mobile */
+            mobile: number;
+            /** Console */
+            console: number;
+            /** General */
+            general: number;
+        };
         /** Problem */
         Problem: {
             /** Code */
@@ -593,6 +742,99 @@ export interface components {
              * @default false
              */
             default: boolean;
+        };
+        /** ScoutArea */
+        ScoutArea: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /** Radius Km */
+            radius_km: number;
+            /** Cells */
+            cells: number;
+            mix: components["schemas"]["PlatformMix"];
+            /** Genres */
+            genres: components["schemas"]["GenreHeat"][];
+            /** Games */
+            games: components["schemas"]["LocalGame"][];
+            /**
+             * Source
+             * @default qloo
+             * @constant
+             */
+            source: "qloo";
+            calls: components["schemas"]["Calls"];
+        };
+        /** ScoutAreaIn */
+        ScoutAreaIn: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /**
+             * Radius Km
+             * @default 40
+             */
+            radius_km: number;
+        };
+        /** ScoutFit */
+        ScoutFit: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /** Comps */
+            comps: string[];
+            /** Lift */
+            lift: number;
+            /** Platform Fit */
+            platform_fit: number;
+            /** Score */
+            score: number;
+            /**
+             * Verdict
+             * @enum {string}
+             */
+            verdict: "strong" | "promising" | "neutral" | "weak";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "high" | "medium" | "low";
+            /** Cells */
+            cells: number;
+            best_genre?: components["schemas"]["GenreHeat"] | null;
+            /**
+             * Source
+             * @default qloo
+             * @constant
+             */
+            source: "qloo";
+            calls: components["schemas"]["Calls"];
+        };
+        /** ScoutFitIn */
+        ScoutFitIn: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /**
+             * Radius Km
+             * @default 40
+             */
+            radius_km: number;
+            /** Comp Entity Ids */
+            comp_entity_ids: string[];
+            /**
+             * Platforms
+             * @default [
+             *       "pc",
+             *       "mobile",
+             *       "console"
+             *     ]
+             */
+            platforms: ("pc" | "mobile" | "console")[];
         };
         /** SuggestIn */
         SuggestIn: {
@@ -923,6 +1165,123 @@ export interface operations {
                 };
                 content: {
                     "text/event-stream": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    scout_places_v1_scout_places_get: {
+        parameters: {
+            query: {
+                q: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlaceHit"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    scout_activity_v1_scout_activity_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ActivityOut"];
+                };
+            };
+        };
+    };
+    scout_area_v1_scout_area_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ScoutAreaIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScoutArea"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    scout_fit_v1_scout_fit_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ScoutFitIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScoutFit"];
                 };
             };
             /** @description Validation Error */

@@ -99,7 +99,9 @@ class QlooRun:
         self.max_calls = max_calls
         self.calls = 0
 
-    async def get(self, step: str, path: str, params: dict[str, str]) -> tuple[str, Any]:
+    async def get(
+        self, step: str, path: str, params: dict[str, str], ttl: float | None = None
+    ) -> tuple[str, Any]:
         if self.calls >= self.max_calls:
             raise QlooBudgetExceeded(f"More than {self.max_calls} Qloo calls in one run")
         self.calls += 1
@@ -114,7 +116,7 @@ class QlooRun:
                 status, body = await self.client._fetch(path, params)
                 if status == 200:
                     await self.client.store.cache_put(
-                        key, body, self.client.settings.qloo_cache_ttl_seconds
+                        key, body, ttl or self.client.settings.qloo_cache_ttl_seconds
                     )
         except QlooError as e:
             status = getattr(e, "status", 502)
