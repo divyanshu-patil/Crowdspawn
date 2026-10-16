@@ -3,7 +3,7 @@ import type { PlanEvent, Warning } from "@repo/contracts";
 export const STEPS: { key: string; label: string; quest: string }[] = [
   { key: "S1", label: "Resolve comps", quest: "Identify your rivals" },
   { key: "S2", label: "Expand comp set", quest: "Scout the genre" },
-  { key: "S3", label: "Score cities vs baseline", quest: "Find the spawn points" },
+  { key: "S3", label: "Score cities: taste, platform, culture", quest: "Find the spawn points" },
   { key: "S4", label: "Read the audience", quest: "Read the party" },
   { key: "S5", label: "Find partners", quest: "Gather allies" },
   { key: "S6", label: "Gap view", quest: "Map the gap" },

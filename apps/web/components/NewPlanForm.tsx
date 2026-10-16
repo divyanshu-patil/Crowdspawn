@@ -8,6 +8,7 @@ import {
   emptyDraft,
   isValid,
   LIMITS,
+  PLATFORMS,
   toPlanIn,
   validateAll,
   validateComps,
@@ -148,17 +149,49 @@ export function NewPlanForm() {
                 placeholder="A fast roguelike dungeon crawler with hand-drawn bosses."
               />
               <span className="hint">
-                {draft.description.length}/{LIMITS.descriptionMax}. Used only to suggest comps; never shown to Qloo.
+                {draft.description.length}/{LIMITS.descriptionMax}. Used only to suggest comps and culture; never sent to Qloo.
               </span>
               {show("description")}
             </div>
             <TagInput tags={draft.tags} onChange={(tags) => set({ tags })} />
             {show("tags")}
+            <fieldset className="field" style={{ border: 0 }}>
+              <legend className="label" style={{ marginBottom: 8 }}>
+                Platforms
+              </legend>
+              <div className="row">
+                {PLATFORMS.map((p) => {
+                  const on = draft.platforms.includes(p.id);
+                  return (
+                    <label key={p.id} className={`toggle${on ? " on" : ""}`}>
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={on}
+                        onChange={() =>
+                          set({
+                            platforms: on ? draft.platforms.filter((x) => x !== p.id) : [...draft.platforms, p.id],
+                          })
+                        }
+                      />
+                      {on ? "◆" : "◇"} {p.label}
+                    </label>
+                  );
+                })}
+              </div>
+              <span className="hint">
+                Markets differ by platform: console games do worse where people mostly play on PC or mobile.
+              </span>
+              {touched && validateComps(draft).platforms && <p className="err">{validateComps(draft).platforms}</p>}
+            </fieldset>
           </>
         )}
 
         {step === 1 && (
-          <CompsStep draft={draft} set={set} error={touched ? stepErrors.comps : undefined} />
+          <>
+            <CompsStep draft={draft} set={set} error={touched ? stepErrors.comps : undefined} />
+            <CultureStep draft={draft} set={set} error={touched ? stepErrors.culture : undefined} />
+          </>
         )}
 
         {step === 2 && (
@@ -230,17 +263,27 @@ function TagInput({ tags, onChange }: { tags: string[]; onChange: (t: string[]) 
   );
 }
 
-/** Debounced Qloo search through the API. */
+const TYPE_LABEL: Record<string, string> = {
+  "urn:entity:movie": "Film",
+  "urn:entity:tv_show": "Show",
+  "urn:entity:artist": "Artist",
+};
+
+/** Debounced Qloo search through the API (games by default, or films, shows and artists). */
 function GameSearch({
   label,
   onPick,
   exclude,
   disabled,
+  search = api.search,
+  noun = "video games",
 }: {
   label: string;
   onPick: (e: EntityOut) => void;
   exclude: string[];
   disabled?: boolean;
+  search?: (q: string) => Promise<EntityOut[]>;
+  noun?: string;
 }) {
   const [q, setQ] = useState("");
   const [results, setResults] = useState<EntityOut[] | null>(null);
@@ -255,8 +298,7 @@ function GameSearch({
     }
     setLoading(true);
     const t = setTimeout(() => {
-      api
-        .search(term)
+      search(term)
         .then((r) => {
           setResults(r);
           setError(null);
@@ -265,7 +307,7 @@ function GameSearch({
         .finally(() => setLoading(false));
     }, 350);
     return () => clearTimeout(t);
-  }, [q]);
+  }, [q, search]);
 
   const shown = (results ?? []).filter((r) => !exclude.includes(r.entity_id));
   return (
@@ -278,7 +320,7 @@ function GameSearch({
           id={`search-${label}`}
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder={disabled ? "Comp slots full" : label}
+          placeholder={disabled ? "Slots full" : label}
           disabled={disabled}
           autoComplete="off"
         />
@@ -289,7 +331,9 @@ function GameSearch({
       {error && <p className="err">{error}</p>}
       {q.trim().length > 0 && q.trim().length < 2 && <p className="hint">Type at least two letters.</p>}
       {results && shown.length === 0 && !loading && (
-        <p className="hint">No Qloo video games match “{q}”. Try the official title.</p>
+        <p className="hint">
+          No Qloo {noun} match “{q}”. Try the official title.
+        </p>
       )}
       {shown.length > 0 && (
         <ul className="row" style={{ listStyle: "none", marginTop: 8 }}>
@@ -305,6 +349,7 @@ function GameSearch({
               >
                 + {r.name}
                 {r.year ? ` (${r.year})` : ""}
+                {TYPE_LABEL[r.type] ? ` · ${TYPE_LABEL[r.type]}` : ""}
               </button>
             </li>
           ))}
@@ -391,6 +436,81 @@ function CompsStep({ draft, set, error }: { draft: Draft; set: (p: Partial<Draft
   );
 }
 
+function CultureStep({ draft, set, error }: { draft: Draft; set: (p: Partial<Draft>) => void; error?: string }) {
+  const [suggesting, setSuggesting] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
+  const [suggestError, setSuggestError] = useState<string | null>(null);
+  const full = draft.culture.length >= LIMITS.cultureMax;
+
+  async function suggest() {
+    setSuggesting(true);
+    setSuggestError(null);
+    setNote(null);
+    try {
+      const r = await api.suggestCulture({ title: draft.title, description: draft.description, tags: draft.tags });
+      const have = new Set(draft.culture.map((c) => c.entity_id));
+      const add = r.suggestions
+        .map((s) => s.resolved!)
+        .filter((e) => !have.has(e.entity_id))
+        .slice(0, LIMITS.cultureMax - draft.culture.length);
+      set({ culture: [...draft.culture, ...add] });
+      if (r.suggestions.length === 0)
+        setNote("No real-world setting found in your description, so the plan will rank by taste alone.");
+      else if (r.dropped.length) setNote(`Not found in Qloo, so left out: ${r.dropped.join(", ")}.`);
+    } catch (e) {
+      setSuggestError((e as ApiError).message);
+    } finally {
+      setSuggesting(false);
+    }
+  }
+
+  return (
+    <section className="stack" style={{ marginTop: 40 }} aria-labelledby="culture-h">
+      <h2 className="h2" id="culture-h">
+        Where is it set? <span className="muted">(optional)</span>
+      </h2>
+      <p className="lede" style={{ fontSize: 19 }}>
+        If your game draws on a real place, add films, shows or artists people there love. Qloo finds where their fans
+        live, so a game set in Delhi ranks Indian cities and the diaspora higher.
+      </p>
+      <GameSearch
+        label="Search films, shows, artists"
+        noun="films, shows or artists"
+        search={api.searchCulture}
+        exclude={draft.culture.map((c) => c.entity_id)}
+        disabled={full}
+        onPick={(e) => set({ culture: [...draft.culture, e] })}
+      />
+      <div className="row">
+        <button className="ghost" onClick={suggest} disabled={suggesting || full || !draft.title.trim()}>
+          {suggesting ? "Reading the setting…" : "Suggest from my description"}
+        </button>
+        <span className="hint">An LLM suggests names; only titles Qloo can find are kept.</span>
+      </div>
+      {suggestError && <Notice tone="warn">{suggestError}</Notice>}
+      {note && <Notice>{note}</Notice>}
+      <div className="row" aria-live="polite">
+        {draft.culture.map((c) => (
+          <span key={c.entity_id} className="chip">
+            {c.name}
+            <span className="muted"> · {TYPE_LABEL[c.type] ?? "Culture"}</span>
+            <button
+              aria-label={`Remove ${c.name}`}
+              onClick={() => set({ culture: draft.culture.filter((x) => x.entity_id !== c.entity_id) })}
+            >
+              ×
+            </button>
+          </span>
+        ))}
+      </div>
+      <span className="hint">
+        {draft.culture.length}/{LIMITS.cultureMax} culture anchors
+      </span>
+      {error && <p className="err">{error}</p>}
+    </section>
+  );
+}
+
 function RegionsStep({
   draft,
   set,
@@ -430,7 +550,7 @@ function RegionsStep({
           {regions?.map((r, i) => (
             <label
               key={r.id}
-              className={selected.has(r.id) ? "chip" : "chip"}
+              className="chip"
               style={{
                 cursor: "pointer",
                 paddingRight: 14,
@@ -446,7 +566,10 @@ function RegionsStep({
           ))}
         </div>
         {errors.regions && <p className="err">{errors.regions}</p>}
-        <span className="hint">Each city costs 2 Qloo calls: one for your comps, one for the mainstream baseline.</span>
+        <span className="hint">
+          Each city costs up to 5 Qloo calls: your comps, PC, console and mobile player panels (shared and cached), and
+          your culture anchors.
+        </span>
       </fieldset>
 
       <div className="field" style={{ maxWidth: 320 }}>

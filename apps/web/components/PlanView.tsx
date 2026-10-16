@@ -14,12 +14,19 @@ const TABS: { key: PartnerType; label: string }[] = [
   { key: "brand", label: "Brands" },
 ];
 
+const TYPE_NAME: Record<string, string> = {
+  "urn:entity:movie": "film",
+  "urn:entity:tv_show": "show",
+  "urn:entity:artist": "artist",
+};
+
 const TILTS = [-3, 2, -1.5, 3, -2.5, 1.5, -1, 2.5];
 
 export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string }) {
   const [activeCity, setActiveCity] = useState<string | null>(null);
   const top = plan.cities[0];
-  const maxLift = Math.max(...plan.cities.map((c) => c.lift), 1.01);
+  const maxScore = Math.max(...plan.cities.map((c) => c.score), 1.01);
+  const culture = plan.culture ?? [];
   const counts = { high: 0, medium: 0, low: 0 };
   plan.cities.forEach((c) => counts[c.confidence]++);
 
@@ -32,9 +39,10 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
           <span className="marker">{plan.input.game.title}</span>
         </h1>
         <p className="lede" style={{ maxWidth: 820 }}>
-          Fans of {plan.comps.map((c) => c.name).join(", ")} over-index most in{" "}
+          Fans of {plan.comps.map((c) => c.name).join(", ")}
+          {culture.length > 0 && <> and of {culture.map((c) => c.name).join(", ")}</>} gather most in{" "}
           <strong>{top ? top.name : "—"}</strong>
-          {top ? ` (lift ${lift(top.lift)})` : ""}.
+          {top ? ` (spawn score ${lift(top.score)})` : ""}.
         </p>
         <div className="hud">
           <Stat label="Top spawn point">{top?.name ?? "—"}</Stat>
@@ -95,7 +103,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
               key={c.region_id}
               c={c}
               i={i}
-              maxLift={maxLift}
+              maxScore={maxScore}
               active={activeCity === c.region_id}
               onToggle={() => setActiveCity(c.region_id)}
               traceHref={traceHref}
@@ -129,6 +137,18 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
             </figure>
           ))}
         </div>
+        {culture.length > 0 && (
+          <p className="row" aria-label="Culture anchors">
+            <span className="label muted">Setting, via</span>
+            {culture.map((a) => (
+              <span key={a.entity_id} className="chip" style={{ paddingRight: 14 }}>
+                {a.name}
+                <span className="muted">{TYPE_NAME[a.type] ?? ""}</span>
+              </span>
+            ))}
+            <Cite id={culture[0]!.result_id} traceHref={traceHref} />
+          </p>
+        )}
         <div className="loot-grid">
           {plan.expanded.slice(0, 12).map((g, i) => (
             <div key={g.entity_id} className="loot" style={{ ["--i" as string]: i }}>
@@ -242,7 +262,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
 function CityRow({
   c,
   i,
-  maxLift,
+  maxScore,
   active,
   onToggle,
   traceHref,
@@ -250,13 +270,14 @@ function CityRow({
 }: {
   c: City;
   i: number;
-  maxLift: number;
+  maxScore: number;
   active: boolean;
   onToggle: () => void;
   traceHref: string;
   hasBudget: boolean;
 }) {
-  const v = Math.max(0.04, (c.lift - 0.85) / (maxLift - 0.85));
+  const v = Math.max(0.04, c.score / maxScore);
+  const [target, pc, mobile, console_, cultureId] = c.result_ids;
   return (
     <li>
       <details
@@ -270,11 +291,11 @@ function CityRow({
           <span className="c-name">
             <b>{c.name}</b> <span className="muted">{c.country}</span>
           </span>
-          <span className={`power c-power ${i < 3 && c.lift > 1 ? "hot" : ""}`} aria-hidden>
+          <span className={`power c-power ${i < 3 && c.score > 1 ? "hot" : ""}`} aria-hidden>
             <i style={{ ["--v" as string]: Math.min(1, v), ["--i" as string]: i }} />
           </span>
-          <span className="num c-lift" aria-label={`lift ${lift(c.lift)}`}>
-            ×{lift(c.lift)}
+          <span className="num c-lift" aria-label={`spawn score ${lift(c.score)}`}>
+            ×{lift(c.score)}
           </span>
           <span className="c-conf">
             <ConfidenceBadge level={c.confidence} />
@@ -295,18 +316,53 @@ function CityRow({
           </span>
         </summary>
         <div className="why">
+          <p className="breakdown num" aria-label="Spawn score breakdown">
+            <span>
+              <b>{lift(c.lift)}</b> taste
+            </span>
+            ×
+            <span>
+              <b>{lift(c.platform_fit)}</b> platform
+            </span>
+            {c.culture_fit != null && (
+              <>
+                ×
+                <span>
+                  <b>{lift(c.culture_fit)}</b> culture
+                </span>
+              </>
+            )}
+            =<span className="total">{lift(c.score)}</span>
+          </p>
           <p>
-            Fans of your comp set score <b className="num">{c.target_score.toFixed(3)}</b> on Qloo&apos;s affinity rank
-            here, against <b className="num">{c.baseline_score.toFixed(3)}</b> for fans of mainstream games (Minecraft,
-            Fortnite, GTA V, Warzone). Lift = {c.target_score.toFixed(3)} ÷ {c.baseline_score.toFixed(3)} ={" "}
-            {lift(c.lift)}.
+            <b>Taste:</b> fans of your comp set score <b className="num">{c.target_score.toFixed(3)}</b> on Qloo&apos;s
+            affinity rank here, against <b className="num">{c.baseline_score.toFixed(3)}</b> for gamers in general (the
+            mean of PC, console and mobile player panels).{" "}
+            <b>Platform:</b> how strong your platforms are here compared with gaming overall.
+            {c.culture_fit != null && (
+              <>
+                {" "}
+                <b>Culture:</b> how concentrated fans of your setting&apos;s films, shows and artists are here, compared
+                with the average city.
+              </>
+            )}
           </p>
           <p className="muted">
             Based on {c.cells} heatmap cells. {CONFIDENCE_HELP}
           </p>
           <p>
-            Sources: <Cite id={c.result_ids[0]!} traceHref={traceHref} /> target,{" "}
-            <Cite id={c.result_ids[1]!} traceHref={traceHref} /> baseline
+            Sources: <Cite id={target!} traceHref={traceHref} /> your comps
+            {pc && (
+              <>
+                , <Cite id={pc} traceHref={traceHref} /> PC, <Cite id={mobile!} traceHref={traceHref} /> mobile,{" "}
+                <Cite id={console_!} traceHref={traceHref} /> console
+              </>
+            )}
+            {cultureId && (
+              <>
+                , <Cite id={cultureId} traceHref={traceHref} /> culture
+              </>
+            )}
           </p>
         </div>
       </details>

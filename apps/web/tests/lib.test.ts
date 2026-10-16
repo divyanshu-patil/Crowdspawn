@@ -33,6 +33,14 @@ describe("form validation mirrors the API (F2)", () => {
     const d = { ...emptyDraft(), title: " Moss ", comps: [comp("A")], regions: ["nyc", "lon", "tyo"], budget: "500" };
     expect(isValid(validateAll(d))).toBe(true);
     expect(toPlanIn(d)).toMatchObject({ game: { title: "Moss" }, comp_entity_ids: ["A"], budget_usd: 500, mode: "fast" });
+    expect(toPlanIn(d)).toMatchObject({ culture_entity_ids: [], platforms: ["pc", "console", "mobile"] });
+  });
+  it("sends culture anchors and platforms, and needs at least one platform", () => {
+    const d = { ...emptyDraft(), title: "Delhi Gullies", comps: [comp("A")], culture: [{ ...comp("G"), type: "urn:entity:movie" }] };
+    expect(toPlanIn({ ...d, platforms: ["pc"] })).toMatchObject({ culture_entity_ids: ["G"], platforms: ["pc"] });
+    expect(validateComps({ ...d, platforms: [] }).platforms).toBeTruthy();
+    const six = Array.from({ length: 6 }, (_, i) => ({ ...comp(`c${i}`), type: "urn:entity:artist" }));
+    expect(validateComps({ ...d, culture: six }).culture).toBeTruthy();
   });
 });
 
@@ -76,7 +84,11 @@ describe("formatting", () => {
     const plan = sample as unknown as Plan;
     const top = plan.cities[0]!;
     const md = planToMarkdown(plan);
-    expect(md).toContain(`| 1 | ${top.name}, ${top.country} | ${top.lift.toFixed(2)} | ${top.confidence} |`);
+    expect(md).toContain(
+      `| 1 | ${top.name}, ${top.country} | ${top.score.toFixed(2)} | ${top.lift.toFixed(2)} | ${top.confidence} |`,
+    );
+    expect(md).toContain("Setting via: Gully Boy");
+    expect(top.name).toBe("Mumbai"); // the sample is Delhi Gullies: culture fit puts India first
     expect(md).toContain("Affinity index, not a sales forecast.");
   });
 });

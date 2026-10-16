@@ -25,8 +25,8 @@ const LAND_PATH = LAND_ROWS.flatMap((row, r) =>
   [...row].flatMap((ch, c) => (ch === "1" ? [`M${r2(c * CELL)} ${r2(r * CELL)}h${TILE}v${TILE}h-${TILE}z`] : [])),
 ).join("");
 
-/** Crowd size in tiles: one per 0.02 of lift above 1, capped. Under-indexing cities get one. */
-export const crowdSize = (lift: number) => Math.max(1, Math.min(24, Math.round((lift - 1) / 0.02)));
+/** Crowd size in tiles: one per 0.02 of spawn score above 1, capped. Under-indexing cities get one. */
+export const crowdSize = (score: number) => Math.max(1, Math.min(24, Math.round((score - 1) / 0.02)));
 
 /**
  * Light up the tiles nearest each city, land first. Cities claim tiles in rank order, so
@@ -47,7 +47,7 @@ function crowds(cities: City[]): Map<string, [number, number][]> {
         candidates.push({ c, r, d: Math.hypot(dc, dr) + (isLand(c, r) ? 0 : 2.5) });
       }
     candidates.sort((a, b) => a.d - b.d || a.r - b.r || a.c - b.c);
-    const picked = candidates.slice(0, crowdSize(city.lift)).map(({ c, r }) => [c, r] as [number, number]);
+    const picked = candidates.slice(0, crowdSize(city.score)).map(({ c, r }) => [c, r] as [number, number]);
     picked.forEach(([c, r]) => claimed.add(`${c},${r}`));
     out.set(city.region_id, picked);
   }
@@ -195,7 +195,7 @@ export function SpawnMap({
   };
 
   const tiles = useMemo(() => crowds(cities), [cities]);
-  const isTop = (rank: number, c: City) => rank < 3 && c.lift > 1;
+  const isTop = (rank: number, c: City) => rank < 3 && c.score > 1;
   // Pins keep a constant on-screen size, so re-run the de-overlap at each zoom level:
   // zooming in lets nudged pins settle back onto their true locations.
   const zoomKey = Math.round(view.k * 4) / 4;
@@ -213,7 +213,7 @@ export function SpawnMap({
         <path className="land" d={LAND_PATH} />
         <line className="equator" x1={0} x2={W} y1={py(0)} y2={py(0)} vectorEffect="non-scaling-stroke" />
         {cities.map((c, rank) => (
-          <g key={`crowd-${c.region_id}`} className={`crowd ${isTop(rank, c) ? "hot" : c.lift > 1 ? "" : "cold"}`}>
+          <g key={`crowd-${c.region_id}`} className={`crowd ${isTop(rank, c) ? "hot" : c.score > 1 ? "" : "cold"}`}>
             {tiles.get(c.region_id)!.map(([col, row], i) => (
               <rect
                 key={i}
@@ -233,10 +233,10 @@ export function SpawnMap({
           return (
             <g
               key={c.region_id}
-              className={`pin ${top ? "top" : ""} ${c.lift <= 1 ? "dim" : ""} ${activeId === c.region_id ? "active" : ""}`}
+              className={`pin ${top ? "top" : ""} ${c.score <= 1 ? "dim" : ""} ${activeId === c.region_id ? "active" : ""}`}
               onClick={() => !justDragged.current && onSelect?.(c.region_id)}
             >
-              <title>{`${rank + 1}. ${c.name}, ${c.country}: lift ×${fmtLift(c.lift)}, ${c.confidence} confidence`}</title>
+              <title>{`${rank + 1}. ${c.name}, ${c.country}: spawn score ×${fmtLift(c.score)}, ${c.confidence} confidence`}</title>
               {(p.x !== px(c.lon) || p.y !== py(c.lat)) && (
                 <>
                   <line className="leader" x1={px(c.lon)} y1={py(c.lat)} x2={p.x} y2={p.y} vectorEffect="non-scaling-stroke" />
@@ -265,7 +265,7 @@ export function SpawnMap({
   );
 
   return (
-    <figure className="map" aria-label="Map of cities ranked by fan affinity lift">
+    <figure className="map" aria-label="Map of cities ranked by spawn score">
       <svg
         ref={svgRef}
         viewBox={`${r2(view.x)} ${r2(view.y)} ${r2(W / view.k)} ${r2(H / view.k)}`}
@@ -283,7 +283,7 @@ export function SpawnMap({
         }}
         onKeyDown={onKeyDown}
       >
-        <title>Spawn map: the bigger a city&apos;s crowd, the more fans of your comps over-index there</title>
+        <title>Spawn map: the bigger a city&apos;s crowd, the more your players over-index there</title>
         {/* Two copies side by side: with the viewBox x wrapped into [0, W), the seam is always covered. */}
         <g>{world}</g>
         <g transform={`translate(${W} 0)`} aria-hidden>
@@ -310,7 +310,7 @@ export function SpawnMap({
                 <button type="button" onClick={() => (onSelect ? onSelect(c.region_id) : flyTo({ k: 2.5, x: px(c.lon) - W / 5, y: py(c.lat) - H / 5 }))}>
                   <span className={`rank-badge ${isTop(i, c) ? "hot" : ""}`}>{i + 1}</span>
                   <span className="board-name">{c.name}</span>
-                  <span className="num">×{fmtLift(c.lift)}</span>
+                  <span className="num">×{fmtLift(c.score)}</span>
                 </button>
               </li>
             ))}
@@ -318,7 +318,7 @@ export function SpawnMap({
         </div>
         <span className="label muted map-key">
           <i className="key-tile hot" /> top 3 crowd <i className="key-tile" /> over-indexes <i className="key-tile cold" />{" "}
-          below baseline · 1 tile = +0.02 lift · drag to explore
+          below average · 1 tile = +0.02 spawn score · drag to explore
         </span>
       </figcaption>
     </figure>

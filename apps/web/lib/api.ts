@@ -46,6 +46,9 @@ export const api = {
   search: (q: string) => request<EntityOut[]>(`/v1/entities/search?q=${encodeURIComponent(q)}&type=videogame`),
   suggest: (game: { title: string; description: string; tags: string[] }) =>
     request<SuggestOut>("/v1/comps/suggest", { method: "POST", body: JSON.stringify(game) }),
+  searchCulture: (q: string) => request<EntityOut[]>(`/v1/entities/search?q=${encodeURIComponent(q)}&type=culture`),
+  suggestCulture: (game: { title: string; description: string; tags: string[] }) =>
+    request<SuggestOut>("/v1/culture/suggest", { method: "POST", body: JSON.stringify(game) }),
   createPlan: (body: PlanIn) => request<PlanCreated>("/v1/plans", { method: "POST", body: JSON.stringify(body) }),
   plan: (id: string) => request<Plan>(`/v1/plans/${id}`),
   trace: (id: string) => request<TraceRow[]>(`/v1/plans/${id}/trace`),

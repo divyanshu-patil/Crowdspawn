@@ -16,11 +16,12 @@ export function rarity(affinity: number): "legendary" | "rare" | "common" {
 export function planToMarkdown(plan: Plan): string {
   const lines = [`# Launch plan: ${plan.input.game.title}`, ""];
   lines.push(`Comps: ${plan.comps.map((c) => c.name).join(", ")}`, "");
-  lines.push("## Cities (affinity index vs mainstream gamers)", "");
-  lines.push("| Rank | City | Lift | Confidence | Budget share |", "|---|---|---|---|---|");
+  if (plan.culture?.length) lines.push(`Setting via: ${plan.culture.map((c) => c.name).join(", ")}`, "");
+  lines.push("## Cities (spawn score = taste lift × platform fit × culture fit; an affinity index)", "");
+  lines.push("| Rank | City | Spawn score | Taste lift | Confidence | Budget share |", "|---|---|---|---|---|---|");
   plan.cities.forEach((c, i) =>
     lines.push(
-      `| ${i + 1} | ${c.name}, ${c.country} | ${lift(c.lift)} | ${c.confidence} | ${pct(c.budget_share ?? 0)}${
+      `| ${i + 1} | ${c.name}, ${c.country} | ${lift(c.score)} | ${lift(c.lift)} | ${c.confidence} | ${pct(c.budget_share ?? 0)}${
         c.budget_usd != null ? ` (${usd(c.budget_usd)})` : ""
       } |`,
     ),

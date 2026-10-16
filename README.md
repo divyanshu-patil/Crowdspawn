@@ -51,16 +51,16 @@ Each step depends on the one before it. All parameters were verified live and re
 
 | Step | Qloo call | Output |
 |---|---|---|
-| S1 Resolve comps | `/entities` (plan) or `/search` (picker, LLM suggestions) | Real Qloo video game ids; unknown names are dropped, never invented |
+| S1 Resolve comps and culture | `/entities` (plan) or `/search` (picker, LLM suggestions) | Real Qloo video game ids, plus optional culture anchors (films, shows, artists of the game's setting); unknown names are dropped, never invented |
 | S2 Expand | `/v2/insights` `filter.type=urn:entity:videogame` + explainability | 20 similar games with the comps that drive each one |
-| S3 Cities | `urn:heatmap` per city, for the comp set **and** a mainstream baseline (Minecraft, Fortnite, GTA V, Warzone) | Lift = mean `affinity_rank` of comp fans ÷ baseline, with confidence |
+| S3 Cities | `urn:heatmap` per city for the comp set, PC, mobile and console player panels, and the culture anchors | **Spawn score = taste lift × platform fit × culture fit** (all ratios of mean `affinity_rank`), with confidence |
 | S4 Audience | `urn:demographics` | Age and gender over/under-index |
 | S5 Partners | `/v2/insights` for artist, podcast, movie, brand (+ `signal.location` for the top 3 cities) | Partners with affinity and Qloo's reasons |
 | S6 Gap (optional) | `/v2/analysis/compare` | Tastes shared with your last game vs new ground |
-| S7 Budget | none, deterministic | Split by lift × confidence, sums to exactly 100% |
+| S7 Budget | none, deterministic | Split by spawn score × confidence, sums to exactly 100% |
 | S8 Brief | none, LLM over S1–S7 facts | Prose that cites `[q12]` result ids; validated before display |
 
-A typical plan with 5 comps and 12 cities uses 40 Qloo calls: 21.8 s on a cold cache, 2.2 s warm, 0 live calls on repeat.
+A plan with 5 comps, 4 culture anchors and 18 cities uses about 107 Qloo calls; the player panels are shared across plans and cached, so a new plan usually costs about 2 live calls per city, and 0 on repeat.
 
 ### Why it can't exist without Qloo (the swap test)
 
@@ -74,7 +74,7 @@ Every city, entity, score and audience figure carries `source: "qloo"` and a `re
 
 - It's an **affinity index** from taste data, not a sales or wishlist forecast.
 - New indie games are rarely in Qloo, so plans work through comparable games (16 of 20 recent indie titles resolved in Phase 0).
-- **Backtest:** against Steam review languages for 6 shipped games, the lift ranking beat a popularity baseline in **1 of 6** (mean Spearman −0.21 vs 0.40). Lift is inflated where mainstream gamers are scarce in Qloo's data (Tokyo, Seoul). Read it as a taste-informed starting hypothesis, and test with small campaigns. Full table: [`docs/backtest-results.md`](docs/backtest-results.md).
+- **Accuracy scenarios:** 10 independent hypothetical games checked against Google Trends interest for a real shipped analogue (never used as a comp). The true #1 country was our #1 in **6 of 10** and in our top 3 in **8 of 10**; the original lift-only ranking managed 2 and 5. It misses where Qloo's data is thin (mobile MOBAs in Southeast Asia, Football Manager in Korea). Full table: [`docs/scenario-results.md`](docs/scenario-results.md). The earlier Steam-language backtest of the old ranking is in [`docs/backtest-results.md`](docs/backtest-results.md).
 - City-level accuracy cannot be validated with free public data.
 - Brands are global: Qloo's brand affinity ignores location.
 

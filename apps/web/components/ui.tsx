@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { Confidence } from "@repo/contracts";
 
 export const CONFIDENCE_HELP =
-  "High: at least 150 Qloo heatmap cells and lift at least 0.10 away from 1. " +
-  "Medium: at least 50 cells and lift at least 0.03 away from 1. Low: anything else.";
+  "High: at least 150 Qloo heatmap cells and spawn score at least 0.10 away from 1. " +
+  "Medium: at least 50 cells and spawn score at least 0.03 away from 1. Low: anything else.";
 
 export function ConfidenceBadge({ level }: { level: Confidence }) {
   const on = level === "high" ? 3 : level === "medium" ? 2 : 1;

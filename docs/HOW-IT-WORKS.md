@@ -12,9 +12,10 @@ The idea in one line: **find where your players already are, and who else they l
 
 1. **Describe your game:** title, a short description, a few genre tags.
 2. **Pick 1–5 comparable games ("comps"):** existing games your players probably love, like Stardew Valley for a cozy farming game. Your new game usually isn't in Qloo yet, so the app works through these. You can search for them, or click "Suggest for me" and an AI proposes some.
-3. **Pick cities and an optional budget,** for example 12 cities and $3,000. You can also add your previous game to see how your current players differ from the new target audience.
-4. **Watch it build.** A live progress log ticks through the steps, with a counter of Qloo calls.
-5. **Get your plan:** a map and ranked list of cities, the audience profile, partners, a budget split, and a written brief.
+3. **Say where it's set (optional):** if your game draws on a real place, add a few films, shows or artists from there (Gully Boy, Sacred Games, Divine for a game set in Delhi). "Suggest from my description" proposes some; Qloo must find each one. Also pick your platforms (PC, console, mobile).
+4. **Pick cities and an optional budget,** for example the 18 default cities and $5,000. You can also add your previous game to see how your current players differ from the new target audience.
+5. **Watch it build.** A live progress log ticks through the steps, with a counter of Qloo calls.
+6. **Get your plan:** a map and ranked list of cities, the audience profile, partners, a budget split, and a written brief.
 
 ## What happens behind the scenes
 
@@ -24,29 +25,31 @@ The API runs eight steps in order, each using the previous step's results:
 |---|---|---|
 | S1 | Checks your comps exist in Qloo | Makes sure the games are real |
 | S2 | Asks Qloo for ~20 similar games | "Fans of these also love Loop Hero, Hollow Knight…", with Qloo's reasons |
-| S3 | Scores every city, twice | Once for fans of your games, once for fans of mainstream hits (Minecraft, Fortnite, GTA V, Warzone) |
+| S3 | Scores every city on three things | Taste (fans of your games vs gamers in general), platform (how big your platforms are there) and culture (where fans of your setting's films and music are) |
 | S4 | Gets the audience's age and gender | e.g. "skews female, 25–29" |
 | S5 | Finds partners | Artists, podcasts, films and brands this audience over-indexes on, worldwide and in the top 3 cities |
 | S6 | Compares with your last game (optional) | Tastes you share vs. new ground |
-| S7 | Splits the budget | Plain math: more money to cities with higher lift and confidence |
+| S7 | Splits the budget | Plain math: more money to cities with a higher spawn score and confidence |
 | S8 | Writes the brief | An AI turns the results into readable advice |
 
-### The key idea: lift
+### The key idea: the spawn score
 
-Big cities have lots of gamers of every kind, so a raw count would always put New York first. Crowdspawn divides your fans' score by ordinary gamers' score in the same city:
+Big cities have lots of gamers of every kind, so a raw count would always put New York first. Crowdspawn multiplies three ratios, each around 1.0:
 
-- **1.86 in Tokyo** means fans of your comps show up there far more than ordinary gamers do.
-- **1.00** means no special interest.
-- **Below 1** means they're under-represented.
+- **Taste lift:** fans of your comps in the city ÷ gamers in general there (the average of PC, console and mobile player panels). 1.05 means slightly more fans than usual.
+- **Platform fit:** how strong your platforms are in the city compared with gaming overall. Console games drop in PC- and mobile-first markets.
+- **Culture fit:** how concentrated fans of your setting's films, shows and artists are in the city, compared with the average city. Only used when you name a setting.
 
-That's what the crowd size on the map shows: one lit tile per +0.02 lift.
+**Mumbai at 2.49** for Delhi Gullies = taste 1.05 × platform 0.97 × culture 2.45. Below 1 means under-represented. The map's crowd size shows it: one lit tile per +0.02.
+
+We checked this against Google Trends for 10 shipped games (details in [`scenario-results.md`](scenario-results.md)): the real #1 country was our #1 in 6 and in our top 3 in 8. The old taste-only ranking managed 2 and 5.
 
 ## The rules that make it trustworthy
 
 - **Qloo is the only source of facts.** Every city, number and partner traces back to a specific Qloo call. Small chips like `q21` in the brief link to the trace page, which lists every call the plan made.
 - **The AI only writes words.** It never invents cities or numbers. A checker reads the brief and rejects anything not in Qloo's results, such as an invented city, a made-up percentage or a missing citation. If the AI fails twice, a plain template brief is shown instead.
 - **It fails safely.** Without a Qloo key (or with a wrong one) the app refuses to make a plan rather than guess, and shows an error screen. This is the "kill switch" you can show in the demo.
-- **It's honest about accuracy.** The rankings were tested against real Steam review languages for 6 well-known indie games. The city ranking beat a simple "where gamers are" ranking in only **1 of 6** (details in [`backtest-results.md`](backtest-results.md)). The app says so on the page and calls its results a "starting hypothesis", not a prediction.
+- **It's honest about accuracy.** Against Google Trends for 10 shipped games, the real #1 country was our #1 in 6 of 10 and in our top 3 in 8 ([`scenario-results.md`](scenario-results.md)). It misses where Qloo's data is thin, such as mobile MOBAs in the Philippines. The app says so and calls its results a "starting hypothesis", not a prediction.
 
 ## The pieces
 

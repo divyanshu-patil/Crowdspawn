@@ -55,3 +55,12 @@ Two comp sets (cozy: Stardew Valley, Unpacking, A Short Hike; roguelike: Hades, 
 | lift spread | 0.93 - 1.67 | 0.98 - 1.02 |
 
 Place affinity tracks the baseline almost perfectly (popularity) and its lifts are within ±3%, which is noise. Heatmap raw scores do not track the baseline, lifts spread widely, and the two comp sets rank cities differently (London #5 cozy vs #13 rogue; Austin #2 vs #3; Seattle top-5 only for rogue). **Decision: Strategy A, heatmap. City score = mean `affinity_rank` over all cells in the radius; lift = target / baseline.** The shared component (Tokyo on top for both) reflects "indie fans vs mainstream gamers", which is the over-indexing the product is about.
+
+## Strategy update (2026-10-16): spawn score
+
+Verified live on 33 cities. The 4-game mainstream baseline scored Tokyo 0.49 against 0.75-0.95 elsewhere, so every lift in Tokyo was inflated. Three player panels (PC: Counter-Strike 2, CS:GO, Valorant, Apex Legends, Rust, World of Tanks, PUBG, TF2; mobile: Clash Royale, Subway Surfers, PUBG Mobile, CoD Mobile, Candy Crush, Clash of Clans, Pokémon GO; console: Mario Kart 8 Deluxe, Zelda BotW, Smash Ultimate, Animal Crossing NH, God of War, Halo Infinite, Splatoon 3) put Tokyo at 0.80 average. PC and mobile panels rank countries alike; the console panel differs (Mexico, US, Canada high; Turkey, India, Poland low).
+
+Culture anchors are resolved with `/search` per type (`urn:entity:movie`, `urn:entity:tv_show`, `urn:entity:artist`) and looked up with `/entities` (types come back in `types`, `subtype` is empty). Heatmaps accept them as `signal.interests.entities` like games. Indian anchors (Gully Boy, 3 Idiots, Arijit Singh): Delhi 0.82, Mumbai 0.90, Bengaluru 0.86, London 0.40, New York 0.30, Tokyo 0.30.
+
+Spawn score = (target ÷ all-gamers) × (platform panels ÷ all-gamers) × ((culture ÷ all-gamers) ÷ mean over cities). Results against Google Trends: `docs/scenario-results.md`.
+

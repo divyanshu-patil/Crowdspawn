@@ -32,9 +32,10 @@ export default function Home() {
       <section className="section stack">
         <SpawnMap cities={plan.cities} />
         <p className="muted" style={{ maxWidth: 720 }}>
-          Sample run for <b>{plan.input.game.title}</b>, with comps {plan.comps.map((c) => c.name).join(", ")}. Each crowd
-          shows how much more fans of those games show up in a city than fans of mainstream hits like Minecraft and
-          Fortnite.
+          Sample run for <b>{plan.input.game.title}</b>, an open-world crime game set in Delhi, with comps{" "}
+          {plan.comps.map((c) => c.name).join(", ")} and the setting read through{" "}
+          {(plan.culture ?? []).map((c) => c.name).join(", ")}. Each crowd shows how much a city over-indexes on taste,
+          platform and culture together.
         </p>
       </section>
 
@@ -45,7 +46,8 @@ export default function Home() {
         <ol className="quest card">
           {[
             ["Name your rivals", "Pick 1-5 comparable games. Qloo confirms each one exists."],
-            ["Watch the spawn map fill", "Qloo scores every city against a mainstream-gamer baseline, live."],
+            ["Name your setting", "Add films, shows or artists from the place your game draws on. Qloo finds their fans."],
+            ["Watch the spawn map fill", "Qloo scores 33 cities on taste, platform and culture, live."],
             ["Recruit allies", "Artists, podcasts, films and brands this audience over-indexes on, with Qloo's reasons."],
             ["Take the battle plan", "A budget split and a brief where every claim links to the Qloo call behind it."],
           ].map(([t, d], i) => (
@@ -71,8 +73,9 @@ export default function Home() {
           <li>New indie games are usually not in Qloo yet, so everything runs through comparable games.</li>
           <li>If Qloo is unavailable, Crowdspawn refuses to make a plan rather than guess.</li>
           <li>
-            In a backtest against Steam review languages for 6 shipped games, the city ranking beat a popularity
-            baseline in only 1. Use it as a starting hypothesis and test with small campaigns.
+            Checked against Google Trends for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3
+            in 8. It misses where Qloo&apos;s data is thin, like mobile MOBAs in Southeast Asia. Use it as a starting
+            hypothesis and test with small campaigns.
           </li>
         </ul>
       </section>
