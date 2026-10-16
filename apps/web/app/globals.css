@@ -153,8 +153,51 @@ img {
 /* ---------- layout ---------- */
 
 .shell {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* Grid squares that rise into 3D blocks under the mouse (components/TileField.tsx). */
+.tile-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--grid) + 1px);
+  height: calc(var(--grid) + 1px);
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 0 0 var(--ink);
+  transition:
+    translate 480ms var(--ease-spring),
+    box-shadow 480ms var(--ease-out),
+    border-color 300ms,
+    background 300ms;
+}
+
+.tile.up {
+  translate: -8px -8px;
+  border-color: var(--ink);
+  background: var(--paper);
+  box-shadow:
+    1px 1px 0 var(--ink),
+    2px 2px 0 var(--ink),
+    3px 3px 0 var(--ink),
+    4px 4px 0 var(--ink),
+    5px 5px 0 var(--ink),
+    6px 6px 0 var(--ink),
+    7px 7px 0 var(--ink),
+    8px 8px 0 var(--ink);
+  transition-duration: 200ms;
 }
 
 .stack > * + * {
