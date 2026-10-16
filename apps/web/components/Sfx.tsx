@@ -3,7 +3,21 @@
 import { useEffect, useState } from "react";
 import { isMuted, onMuteChange, play, setMuted, type Sound } from "../lib/sfx";
 
-const INTERACTIVE = "button, a[href], summary, [role=tab], [role=button], label.toggle, label.chip";
+const INTERACTIVE = "button, a[href], summary, [role=tab], [role=button], label.toggle, label.chip, g.pin";
+
+/** Each kind of control has its own sound. */
+function soundFor(el: Element): Sound {
+  const label = el.getAttribute("aria-label") ?? "";
+  if (el.matches("g.pin, .map-board button")) return "pin";
+  if (label === "Zoom in") return "zoomIn";
+  if (label === "Zoom out" || label === "Reset map view") return "zoomOut";
+  if (el.matches("[role=tab]")) return "tab";
+  if (el.matches(".chip button") || label.startsWith("Remove ")) return "remove";
+  if (el.matches("a.cite, .textlink")) return "pop";
+  if (el.matches("a[href]")) return "nav";
+  if (el.matches(".btn")) return "confirm";
+  return "click";
+}
 
 /** One document-level listener gives every control a sound; `data-sfx` overrides the default. */
 export function SfxListener() {
@@ -19,7 +33,7 @@ export function SfxListener() {
       const box = el.querySelector<HTMLInputElement>("input[type=checkbox]");
       if (box) return play(box.checked ? "off" : "on"); // capture phase: state before the toggle
       if (el.matches("summary")) return play((el.parentElement as HTMLDetailsElement).open ? "back" : "select");
-      play("click");
+      play(soundFor(el));
     };
     const onOver = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;

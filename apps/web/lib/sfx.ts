@@ -17,6 +17,24 @@ const SOUNDS = {
     { f: 784, len: 0.05, wave: "square", vol: 0.045 },
     { f: 392, at: 0.05, len: 0.08, wave: "square", vol: 0.045 },
   ],
+  nav: [{ f: 330, to: 990, len: 0.11, wave: "triangle", vol: 0.12 }],
+  confirm: [
+    { f: 523, len: 0.06, wave: "square", vol: 0.05 },
+    { f: 659, len: 0.06, wave: "square", vol: 0.04 },
+    { f: 1047, at: 0.06, len: 0.12, wave: "square", vol: 0.05 },
+  ],
+  pop: [{ f: 1400, to: 700, len: 0.045, wave: "sine", vol: 0.12 }],
+  tab: [
+    { f: 880, len: 0.035, wave: "triangle", vol: 0.1 },
+    { f: 1175, at: 0.035, len: 0.05, wave: "triangle", vol: 0.1 },
+  ],
+  remove: [{ f: 700, to: 180, len: 0.12, wave: "sawtooth", vol: 0.04 }],
+  pin: [
+    { f: 1568, len: 0.05, wave: "triangle", vol: 0.1 },
+    { f: 2093, at: 0.05, len: 0.16, wave: "sine", vol: 0.08 },
+  ],
+  zoomIn: [{ f: 400, to: 1200, len: 0.09, wave: "square", vol: 0.035 }],
+  zoomOut: [{ f: 1200, to: 400, len: 0.09, wave: "square", vol: 0.035 }],
   // Game moments
   coin: [
     { f: 988, len: 0.06, wave: "square", vol: 0.05 },
@@ -84,9 +102,9 @@ function audio(): { c: AudioContext; o: GainNode } | null {
     ctx = new AudioContext();
     const soften = ctx.createBiquadFilter(); // take the harsh edge off square waves
     soften.type = "lowpass";
-    soften.frequency.value = 3800;
+    soften.frequency.value = 5200;
     out = ctx.createGain();
-    out.gain.value = 0.9;
+    out.gain.value = 2.6; // notes are written quiet; this sets the overall loudness
     out.connect(soften).connect(ctx.destination);
   }
   return { c: ctx, o: out! };
