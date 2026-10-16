@@ -1467,3 +1467,71 @@ footer.foot {
     background-size: 100% 100%;
   }
 }
+
+/* ---------- draggable map ---------- */
+
+.map svg {
+  cursor: grab;
+  touch-action: pan-y; /* vertical swipes still scroll the page on phones */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.map svg.dragging {
+  cursor: grabbing;
+}
+
+.map svg.dragging .pin {
+  pointer-events: none;
+}
+
+.map svg:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.map .pin {
+  cursor: pointer;
+}
+
+.map-zoom {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+}
+
+.map-zoom button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-btn);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 18px/1 var(--font-display);
+  cursor: pointer;
+  transition:
+    background 140ms,
+    color 140ms,
+    transform 120ms var(--ease-out);
+}
+
+.map-zoom button.label {
+  font: 400 11px/1 var(--font-mono);
+}
+
+.map-zoom button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.map-zoom button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.map-zoom button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

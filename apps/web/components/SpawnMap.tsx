@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import type { City } from "@repo/contracts";
 import { lift as fmtLift } from "../lib/format";
 import { LAND, LAND_ROWS } from "../lib/land";
@@ -60,7 +61,7 @@ const PIN_R_TOP = 9.5;
  * Nudge overlapping pins apart (deterministic relaxation). Each pin keeps a leader line back to
  * its true location, so dense regions (London/Paris, LA/SF) stay readable.
  */
-function layoutPins(cities: City[], radius: (i: number) => number) {
+function layoutPins(cities: City[], radius: (i: number) => number, gap: number) {
   const pos = cities.map((c) => ({ x: px(c.lon), y: py(c.lat) }));
   for (let iter = 0; iter < 60; iter++) {
     let moved = false;
@@ -68,7 +69,7 @@ function layoutPins(cities: City[], radius: (i: number) => number) {
       for (let j = i + 1; j < pos.length; j++) {
         const a = pos[i]!;
         const b = pos[j]!;
-        const min = radius(i) + radius(j) + 2;
+        const min = radius(i) + radius(j) + gap;
         let dx = b.x - a.x;
         let dy = b.y - a.y;
         let d = Math.hypot(dx, dy);
@@ -86,6 +87,21 @@ function layoutPins(cities: City[], radius: (i: number) => number) {
   return pos.map((p) => ({ x: r2(p.x), y: r2(p.y) }));
 }
 
+type View = { x: number; y: number; k: number };
+const MAX_K = 6;
+const HOME: View = { x: 0, y: 0, k: 1 };
+const wrapX = (x: number) => ((x % W) + W) % W; // the world repeats horizontally
+const clampY = (y: number, k: number) => Math.min(Math.max(y, 0), H - H / k);
+const norm = (v: View): View => ({ k: v.k, x: wrapX(v.x), y: clampY(v.y, v.k) });
+
+/** Zoom to k2 keeping world point (cx, cy) under the same spot on screen. */
+function zoomAt(v: View, k2: number, cx: number, cy: number): View {
+  const k = Math.min(Math.max(k2, 1), MAX_K);
+  const rx = (cx - v.x) / (W / v.k);
+  const ry = (cy - v.y) / (H / v.k);
+  return norm({ k, x: cx - (rx * W) / k, y: cy - (ry * H) / k });
+}
+
 export function SpawnMap({
   cities,
   activeId,
@@ -95,15 +111,107 @@ export function SpawnMap({
   activeId?: string | null;
   onSelect?: (id: string) => void;
 }) {
-  const tiles = crowds(cities);
+  const [view, setView] = useState<View>(HOME);
+  const viewRef = useRef(view);
+  viewRef.current = view;
+  const svgRef = useRef<SVGSVGElement>(null);
+  const drag = useRef<{ id: number; px: number; py: number; v: View; moved: boolean } | null>(null);
+  const justDragged = useRef(false);
+  const tween = useRef(0);
+  const [dragging, setDragging] = useState(false);
+
+  // Fly smoothly to a view (shortest way round the wrapped world).
+  function flyTo(target: View) {
+    cancelAnimationFrame(tween.current);
+    const from = viewRef.current;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setView(norm(target));
+    let dx = target.x - from.x;
+    if (dx > W / 2) dx -= W;
+    if (dx < -W / 2) dx += W;
+    const t0 = performance.now();
+    const step = (t: number) => {
+      const e = 1 - Math.pow(1 - Math.min(1, (t - t0) / 550), 3);
+      setView(norm({ k: from.k + (target.k - from.k) * e, x: from.x + dx * e, y: from.y + (target.y - from.y) * e }));
+      if (e < 1) tween.current = requestAnimationFrame(step);
+    };
+    tween.current = requestAnimationFrame(step);
+  }
+
+  // Selecting a city (leaderboard or list) centres the map on it.
+  useEffect(() => {
+    const c = cities.find((x) => x.region_id === activeId);
+    if (!c) return;
+    const k = Math.max(viewRef.current.k, 2.5);
+    flyTo({ k, x: px(c.lon) - W / (2 * k), y: py(c.lat) - H / (2 * k) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeId]);
+
+  useEffect(() => () => cancelAnimationFrame(tween.current), []);
+
+  const toWorld = (clientX: number, clientY: number) => {
+    const r = svgRef.current!.getBoundingClientRect();
+    const v = viewRef.current;
+    return { x: v.x + ((clientX - r.left) / r.width) * (W / v.k), y: v.y + ((clientY - r.top) / r.height) * (H / v.k) };
+  };
+
+  const onPointerDown = (e: PointerEvent<SVGSVGElement>) => {
+    if (e.button !== 0) return;
+    cancelAnimationFrame(tween.current);
+    drag.current = { id: e.pointerId, px: e.clientX, py: e.clientY, v: viewRef.current, moved: false };
+  };
+  const onPointerMove = (e: PointerEvent<SVGSVGElement>) => {
+    const d = drag.current;
+    if (!d || d.id !== e.pointerId) return;
+    const r = svgRef.current!.getBoundingClientRect();
+    const dx = e.clientX - d.px;
+    const dy = e.clientY - d.py;
+    if (!d.moved && Math.hypot(dx, dy) < 4) return; // still a click, not a drag
+    if (!d.moved) {
+      d.moved = true;
+      setDragging(true);
+      svgRef.current!.setPointerCapture(e.pointerId); // capture only once it's a drag, so pin clicks still work
+    }
+    setView(norm({ k: d.v.k, x: d.v.x - (dx / r.width) * (W / d.v.k), y: d.v.y - (dy / r.height) * (H / d.v.k) }));
+  };
+  const endDrag = () => {
+    justDragged.current = !!drag.current?.moved;
+    drag.current = null;
+    setDragging(false);
+  };
+
+  const zoomBy = (f: number) => {
+    const v = viewRef.current;
+    flyTo(zoomAt(v, v.k * f, v.x + W / (2 * v.k), v.y + H / (2 * v.k)));
+  };
+  const onKeyDown = (e: KeyboardEvent<SVGSVGElement>) => {
+    const v = viewRef.current;
+    const pan = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+    if (pan) setView(norm({ k: v.k, x: v.x + (pan[0]! * W) / (8 * v.k), y: v.y + (pan[1]! * H) / (8 * v.k) }));
+    else if (e.key === "+" || e.key === "=") zoomBy(1.6);
+    else if (e.key === "-") zoomBy(1 / 1.6);
+    else if (e.key === "0") flyTo(HOME);
+    else return;
+    e.preventDefault();
+  };
+
+  const tiles = useMemo(() => crowds(cities), [cities]);
   const isTop = (rank: number, c: City) => rank < 3 && c.lift > 1;
-  const pins = layoutPins(cities, (i) => (isTop(i, cities[i]!) ? PIN_R_TOP : PIN_R));
-  return (
-    <figure className="map" aria-label="Map of cities ranked by fan affinity lift">
-      <svg viewBox={`0 0 ${W} ${H}`} role="img">
-        <title>Spawn map: the bigger a city&apos;s crowd, the more fans of your comps over-index there</title>
+  // Pins keep a constant on-screen size, so re-run the de-overlap at each zoom level:
+  // zooming in lets nudged pins settle back onto their true locations.
+  const zoomKey = Math.round(view.k * 4) / 4;
+  const s = 1 / zoomKey;
+  const pins = useMemo(
+    () => layoutPins(cities, (i) => (isTop(i, cities[i]!) ? PIN_R_TOP : PIN_R) * s, 2 * s),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cities, s],
+  );
+
+  // The world content is static during a drag (only the viewBox moves), so build it once per zoom level.
+  const world = useMemo(
+    () => (
+      <>
         <path className="land" d={LAND_PATH} />
-        <line className="equator" x1={0} x2={W} y1={py(0)} y2={py(0)} />
+        <line className="equator" x1={0} x2={W} y1={py(0)} y2={py(0)} vectorEffect="non-scaling-stroke" />
         {cities.map((c, rank) => (
           <g key={`crowd-${c.region_id}`} className={`crowd ${isTop(rank, c) ? "hot" : c.lift > 1 ? "" : "cold"}`}>
             {tiles.get(c.region_id)!.map(([col, row], i) => (
@@ -119,41 +227,87 @@ export function SpawnMap({
           </g>
         ))}
         {/* Pins drawn last so no crowd covers a rank number; better ranks on top. */}
-        {[...cities.entries()].reverse().map(([rank, c]) => (
-          <g
-            key={c.region_id}
-            className={`pin ${isTop(rank, c) ? "top" : ""} ${c.lift <= 1 ? "dim" : ""} ${activeId === c.region_id ? "active" : ""}`}
-            onClick={() => onSelect?.(c.region_id)}
-            style={{ cursor: onSelect ? "pointer" : "default" }}
-          >
-            <title>{`${rank + 1}. ${c.name}, ${c.country}: lift ×${fmtLift(c.lift)}, ${c.confidence} confidence`}</title>
-            {(pins[rank]!.x !== px(c.lon) || pins[rank]!.y !== py(c.lat)) && (
-              <>
-                <line className="leader" x1={px(c.lon)} y1={py(c.lat)} x2={pins[rank]!.x} y2={pins[rank]!.y} />
-                <circle className="anchor" cx={px(c.lon)} cy={py(c.lat)} r={1.8} />
-              </>
-            )}
-            <circle className="ring" cx={pins[rank]!.x} cy={pins[rank]!.y} r={PIN_R} style={{ animationDelay: `${rank * 140}ms` }} />
-            <circle
-              className="core"
-              cx={pins[rank]!.x}
-              cy={pins[rank]!.y}
-              r={isTop(rank, c) ? PIN_R_TOP : PIN_R}
-              style={{ animationDelay: `${rank * 140}ms` }}
-            />
-            <text x={pins[rank]!.x} y={pins[rank]!.y} dy="0.35em" textAnchor="middle" style={{ animationDelay: `${rank * 140 + 150}ms` }}>
-              {rank + 1}
-            </text>
-          </g>
-        ))}
+        {[...cities.entries()].reverse().map(([rank, c]) => {
+          const p = pins[rank]!;
+          const top = isTop(rank, c);
+          return (
+            <g
+              key={c.region_id}
+              className={`pin ${top ? "top" : ""} ${c.lift <= 1 ? "dim" : ""} ${activeId === c.region_id ? "active" : ""}`}
+              onClick={() => !justDragged.current && onSelect?.(c.region_id)}
+            >
+              <title>{`${rank + 1}. ${c.name}, ${c.country}: lift ×${fmtLift(c.lift)}, ${c.confidence} confidence`}</title>
+              {(p.x !== px(c.lon) || p.y !== py(c.lat)) && (
+                <>
+                  <line className="leader" x1={px(c.lon)} y1={py(c.lat)} x2={p.x} y2={p.y} vectorEffect="non-scaling-stroke" />
+                  <circle className="anchor" cx={px(c.lon)} cy={py(c.lat)} r={1.8 * s} />
+                </>
+              )}
+              <circle className="ring" cx={p.x} cy={p.y} r={PIN_R * s} vectorEffect="non-scaling-stroke" style={{ animationDelay: `${rank * 140}ms` }} />
+              <circle
+                className="core"
+                cx={p.x}
+                cy={p.y}
+                r={(top ? PIN_R_TOP : PIN_R) * s}
+                vectorEffect="non-scaling-stroke"
+                style={{ animationDelay: `${rank * 140}ms` }}
+              />
+              <text x={p.x} y={p.y} dy="0.35em" textAnchor="middle" style={{ fontSize: (top ? 10 : 9) * s, animationDelay: `${rank * 140 + 150}ms` }}>
+                {rank + 1}
+              </text>
+            </g>
+          );
+        })}
+      </>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cities, tiles, pins, s, activeId],
+  );
+
+  return (
+    <figure className="map" aria-label="Map of cities ranked by fan affinity lift">
+      <svg
+        ref={svgRef}
+        viewBox={`${r2(view.x)} ${r2(view.y)} ${r2(W / view.k)} ${r2(H / view.k)}`}
+        role="img"
+        tabIndex={0}
+        aria-label="Spawn map. Drag or use arrow keys to pan, plus and minus to zoom, 0 to reset."
+        className={dragging ? "dragging" : ""}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onDoubleClick={(e) => {
+          const w = toWorld(e.clientX, e.clientY);
+          flyTo(zoomAt(viewRef.current, viewRef.current.k * 2, w.x, w.y));
+        }}
+        onKeyDown={onKeyDown}
+      >
+        <title>Spawn map: the bigger a city&apos;s crowd, the more fans of your comps over-index there</title>
+        {/* Two copies side by side: with the viewBox x wrapped into [0, W), the seam is always covered. */}
+        <g>{world}</g>
+        <g transform={`translate(${W} 0)`} aria-hidden>
+          {world}
+        </g>
       </svg>
+      <div className="map-zoom no-print">
+        <button type="button" onClick={() => zoomBy(1.6)} aria-label="Zoom in" disabled={view.k >= MAX_K}>
+          +
+        </button>
+        <button type="button" onClick={() => zoomBy(1 / 1.6)} aria-label="Zoom out" disabled={view.k <= 1}>
+          −
+        </button>
+        <button type="button" onClick={() => flyTo(HOME)} aria-label="Reset map view" className="label">
+          Reset
+        </button>
+      </div>
       <figcaption className="map-hud">
         <div className="map-board">
           <span className="label muted">Top spawn points</span>
           <ol>
             {cities.slice(0, 3).map((c, i) => (
               <li key={c.region_id} style={{ ["--i" as string]: i }}>
-                <button type="button" onClick={() => onSelect?.(c.region_id)} disabled={!onSelect}>
+                <button type="button" onClick={() => (onSelect ? onSelect(c.region_id) : flyTo({ k: 2.5, x: px(c.lon) - W / 5, y: py(c.lat) - H / 5 }))}>
                   <span className={`rank-badge ${isTop(i, c) ? "hot" : ""}`}>{i + 1}</span>
                   <span className="board-name">{c.name}</span>
                   <span className="num">×{fmtLift(c.lift)}</span>
@@ -164,7 +318,7 @@ export function SpawnMap({
         </div>
         <span className="label muted map-key">
           <i className="key-tile hot" /> top 3 crowd <i className="key-tile" /> over-indexes <i className="key-tile cold" />{" "}
-          below baseline · 1 tile = +0.02 lift
+          below baseline · 1 tile = +0.02 lift · drag to explore
         </span>
       </figcaption>
     </figure>
