@@ -378,6 +378,10 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
         </h2>
         <span className="label muted">Legendary ≥ 95 affinity · Rare ≥ 90</span>
       </div>
+      <p className="muted" style={{ marginTop: 8, maxWidth: 760 }}>
+        Co-marketing and sponsorship leads: artists for launch events and streams, podcasts for ad reads, films and brands
+        for collaborations. Local picks are what fans in your top cities love.
+      </p>
       <div className="tabs" role="tablist" style={{ marginTop: 20 }}>
         {TABS.map((t) => (
           <button

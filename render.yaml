@@ -1,0 +1,24 @@
+# Render blueprint for the Crowdspawn API (the web app deploys to Vercel; see docs/DEPLOY.md).
+# Secrets are marked sync: false, so Render asks for them in its dashboard; they are never in git.
+services:
+  - type: web
+    name: crowdspawn-api
+    runtime: docker
+    rootDir: apps/api
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: QLOO_API_KEY
+        sync: false
+      - key: OLLAMA_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: ollama_cloud
+      - key: OLLAMA_MODEL
+        value: gemma4:31b
+      - key: CORS_ORIGINS
+        sync: false # e.g. https://crowdspawn.vercel.app
+      - key: PLANS_PER_IP_PER_HOUR
+        value: "20"
+      - key: SCOUTS_PER_IP_PER_HOUR
+        value: "120"

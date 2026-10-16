@@ -10,5 +10,6 @@
     "test:live": "uv run --no-sync pytest -m live -o addopts=''",
     "lint": "uv run --no-sync ruff check src scripts tests && uv run --no-sync ruff format --check src scripts tests",
     "check-types": "uv run --no-sync mypy"
-  }
+  },
+  "license": "MIT"
 }

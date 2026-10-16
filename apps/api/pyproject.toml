@@ -3,6 +3,7 @@ name = "crowdspawn-api"
 version = "0.1.0"
 description = "Crowdspawn API: Qloo-grounded launch plans for indie games"
 requires-python = ">=3.12,<3.13"
+license = "MIT"
 dependencies = [
   "fastapi>=0.115",
   "uvicorn[standard]>=0.30",

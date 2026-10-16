@@ -22,6 +22,9 @@ export default function Home() {
             <Link className="btn btn-lg" href="/plan/new">
               Start a plan
             </Link>
+            <Link className="ghost" href="/agent">
+              Ask the launch agent
+            </Link>
             <Link className="ghost" href="/sample">
               See a sample plan
             </Link>
@@ -72,6 +75,10 @@ export default function Home() {
           <li>It&apos;s an affinity index from taste data, not a sales or wishlist forecast.</li>
           <li>New indie games are usually not in Qloo yet, so everything runs through comparable games.</li>
           <li>If Qloo is unavailable, Crowdspawn refuses to make a plan rather than guess.</li>
+          <li>
+            The AI only proposes names and writes words. Qloo must find every game, place and artist, and any number the
+            AI writes is checked against Qloo&apos;s results. No personal data is used anywhere.
+          </li>
           <li>
             Checked against Google Trends for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3
             in 8. It misses where Qloo&apos;s data is thin, like mobile MOBAs in Southeast Asia. Use it as a starting

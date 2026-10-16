@@ -44,6 +44,10 @@ Big cities have lots of gamers of every kind, so a raw count would always put Ne
 
 We checked this against Google Trends for 10 shipped games (details in [`scenario-results.md`](scenario-results.md)): the real #1 country was our #1 in 6 and in our top 3 in 8. The old taste-only ranking managed 2 and 5.
 
+## The launch agent
+
+`/agent` is the same engine run by an agent. You describe your game and your question; the agent decides what to do next, one Qloo tool at a time: search for comparable games, look up the culture your game draws on, rank cities, scout the top one, read the audience, find partners, then answer. You watch every step live. It can only use what the tools returned, so it can't invent a city or a number, and it can hand its picks straight to a full launch plan.
+
 ## The region scout
 
 `/scout` answers the reverse question: given a place, what works there?
@@ -79,4 +83,5 @@ Your browser  ──>  Website (Next.js, port 3000)  ──>  API (Python FastAP
 - **/sample** shows a finished plan and works without any keys.
 - **New plan** runs the full live flow.
 - **/scout** explores any place on the map.
+- **/agent** lets the launch agent plan for you, step by step.
 - [`../README.md`](../README.md) has the setup; [`progress.md`](progress.md) tracks which requirements pass; [`qloo-contract.md`](qloo-contract.md) lists the verified Qloo calls.

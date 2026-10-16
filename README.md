@@ -19,7 +19,7 @@ cp apps/web/.env.example apps/web/.env.local
 pnpm dev              # starts web (http://localhost:3000) and API (http://localhost:8000) together
 ```
 
-`/sample` works with no keys at all. Without `OLLAMA_API_KEY` plans still work and the brief falls back to a grounded template. Without `QLOO_API_KEY` no plan is produced (see the kill-switch test).
+`/sample` works with no keys at all. To put a live demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). MIT licensed. Without `OLLAMA_API_KEY` plans still work and the brief falls back to a grounded template. Without `QLOO_API_KEY` no plan is produced (see the kill-switch test).
 
 | Command | What it does |
 |---|---|
@@ -29,6 +29,10 @@ pnpm dev              # starts web (http://localhost:3000) and API (http://local
 | `pnpm build` | Exports `openapi.json` and builds the Next.js app |
 | `pnpm contracts` | Regenerates `packages/contracts` TypeScript types from the API |
 | `pnpm --filter api test:live` | One live smoke test against real Qloo (spends a few calls) |
+
+## Launch agent (`/agent`)
+
+The Qloo agent. Describe your game and your question; an LLM plans step by step with Qloo tools (`search_games`, `search_culture`, `find_place`, `rank_cities`, `scout_place`, `audience`, `find_partners`, `finish`) and every step streams live: the tool, its arguments, the agent's reasoning and what Qloo returned. Guards keep Qloo the only source of facts: the agent refers to entities by handles the server issued (`g1`, `c2`, `p1`), so it cannot invent ids; its final answer may only use numbers and names that appeared in tool results, or a template built from the Qloo ranking replaces it; caps of 10 steps, 12 LLM calls and 150 Qloo calls; auth, budget and rate-limit errors fail closed. "Open as a launch plan" hands its picks to a full plan.
 
 ## Region scout (`/scout`)
 
@@ -44,6 +48,18 @@ Areas with no Qloo cells widen to 120 km, then snap to the nearest city with a r
 ## Feel
 
 Sketchpad grid squares rise into 3D blocks under the mouse (only where nothing sits on top of them). Sound effects are 8-bit blips synthesized at runtime with the Web Audio API, so there are no audio files and nothing to license; the nav toggle mutes them and remembers the choice.
+
+## Who it's for
+
+- **Buyer:** indie studios and small publishers planning a launch with a limited marketing budget (about 20,000 games launched on Steam in 2025). Free scouting and a paid full launch plan with partner leads is the obvious model.
+- **Next:** the same taste geography works for any entertainment launch: a film's release cities, a tour, a podcast, an esports team's next market. Partner panels double as co-marketing and sponsorship leads.
+
+## Trust and safety
+
+- The LLM never supplies data. It proposes names (Qloo must resolve them) and writes words; numbers and names in its text are checked against Qloo results.
+- Fail closed: without a working Qloo key nothing is produced (kill-switch test).
+- No personal data: Qloo's taste data is PII-free and Crowdspawn stores none; keys never reach the browser.
+- Honest outputs: "affinity index, not a sales forecast" everywhere; probabilities capped at 3-97% and labelled as estimates; accuracy misses published.
 
 ## Architecture
 
@@ -96,8 +112,8 @@ Every city, entity, score and audience figure carries `source: "qloo"` and a `re
 ## Repo map
 
 ```
-apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8), llm/ (providers, prompts), grounding.py
-apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, PlanView, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
+apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8, agent, scout, judge), llm/ (providers, prompts), grounding.py
+apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, LaunchAgent, PlanView, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
 packages/contracts   generated API types
 docs/         product spec, verified Qloo contract, progress, decisions, backtest results
 ```
