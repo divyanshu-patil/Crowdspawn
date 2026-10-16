@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Schibsted_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { TileField } from "../components/TileField";
+import { SfxListener, SoundToggle } from "../components/Sfx";
 
 const display = Schibsted_Grotesk({ subsets: ["latin"], weight: ["500"], variable: "--font-schibsted" });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono" });
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${display.variable} ${mono.variable}`}>
       <body>
         <TileField />
+        <SfxListener />
         <div className="shell">
           <nav className="nav" aria-label="Main">
             <Link href="/" className="brand">
@@ -25,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               Crowdspawn
             </Link>
             <div className="nav-links">
+              <SoundToggle />
               <Link className="label" href="/sample">
                 Sample
               </Link>

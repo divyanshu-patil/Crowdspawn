@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { EntityOut, Region } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
+import { play } from "../lib/sfx";
 import {
   emptyDraft,
   isValid,
@@ -61,15 +62,16 @@ export function NewPlanForm() {
 
   function next() {
     setTouched(true);
-    if (!isValid(stepErrors)) return;
+    if (!isValid(stepErrors)) return play("error");
     setTouched(false);
+    play("level");
     setStep(step + 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   async function submit() {
     setTouched(true);
-    if (!isValid(allErrors)) return;
+    if (!isValid(allErrors)) return play("error");
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -79,6 +81,7 @@ export function NewPlanForm() {
     } catch (e) {
       setSubmitError((e as ApiError).message);
       setSubmitting(false);
+      play("error");
     }
   }
 
@@ -202,15 +205,20 @@ export function NewPlanForm() {
       {submitError && <Notice tone="warn">{submitError}</Notice>}
 
       <div className="row" style={{ justifyContent: "space-between", marginTop: 40 }}>
-        <button className="textlink" onClick={() => setStep(step - 1)} style={{ visibility: step ? "visible" : "hidden" }}>
+        <button
+          className="textlink"
+          data-sfx="back"
+          onClick={() => setStep(step - 1)}
+          style={{ visibility: step ? "visible" : "hidden" }}
+        >
           Back
         </button>
         {step < 2 ? (
-          <button className="ghost" onClick={next} disabled={touched && !isValid(stepErrors)}>
+          <button className="ghost" data-sfx="tick" onClick={next} disabled={touched && !isValid(stepErrors)}>
             Next level
           </button>
         ) : (
-          <button className="btn btn-lg" onClick={submit} disabled={submitting || (touched && !isValid(allErrors))}>
+          <button className="btn btn-lg" data-sfx="select" onClick={submit} disabled={submitting || (touched && !isValid(allErrors))}>
             {submitting ? "Spawning…" : "Build launch plan"}
           </button>
         )}
@@ -376,6 +384,7 @@ function CompsStep({ draft, set, error }: { draft: Draft; set: (p: Partial<Draft
         .filter((e) => !have.has(e.entity_id))
         .slice(0, LIMITS.compsMax - draft.comps.length);
       set({ comps: [...draft.comps, ...add] });
+      if (add.length) play("coin");
       setDropped(r.dropped);
     } catch (e) {
       setSuggestError((e as ApiError).message);
@@ -454,6 +463,7 @@ function CultureStep({ draft, set, error }: { draft: Draft; set: (p: Partial<Dra
         .filter((e) => !have.has(e.entity_id))
         .slice(0, LIMITS.cultureMax - draft.culture.length);
       set({ culture: [...draft.culture, ...add] });
+      if (add.length) play("coin");
       if (r.suggestions.length === 0)
         setNote("No real-world setting found in your description, so the plan will rank by taste alone.");
       else if (r.dropped.length) setNote(`Not found in Qloo, so left out: ${r.dropped.join(", ")}.`);

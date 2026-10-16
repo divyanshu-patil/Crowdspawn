@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Plan, PlanEvent } from "@repo/contracts";
 import { api, ApiError, streamPlan } from "../lib/api";
+import { play } from "../lib/sfx";
 import { initialProgress, reduce, STEPS, xp, type Progress } from "../lib/progress";
 import { PlanView } from "./PlanView";
 import { CountUp, ErrorScreen, Notice, Skeleton } from "./ui";
@@ -56,7 +57,12 @@ export function LivePlan({ id }: { id: string }) {
           id,
           (ev) => {
             dispatch({ kind: "event", ev });
-            if (ev.type === "done") api.plan(id).then((full) => !cancelled && setPlan(full));
+            if (ev.type === "step_done") play("coin");
+            if (ev.type === "failed") play("error");
+            if (ev.type === "done") {
+              play("win");
+              api.plan(id).then((full) => !cancelled && setPlan(full));
+            }
           },
           setConn,
         );
