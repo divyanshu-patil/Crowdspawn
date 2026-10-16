@@ -32,7 +32,14 @@ class FakeProvider:
             text = self.replies.pop(0)
         else:
             joined = "\n".join(m["content"] for m in messages)
-            if FACTS_START in joined:
+            if '{"summary"' in joined:  # scout judge explanation: echo the verdict facts
+                facts = json.loads(joined.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
+                text = json.dumps(
+                    {
+                        "summary": f"{facts['verdict']} with {facts['probability']}, spawn score {facts['spawn score']}."
+                    }
+                )
+            elif FACTS_START in joined:
                 text = self._brief(joined)
             elif '"anchors"' in joined:
                 anchors = [

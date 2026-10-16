@@ -481,7 +481,7 @@ function CultureStep({ draft, set, error }: { draft: Draft; set: (p: Partial<Dra
       </h2>
       <p className="lede" style={{ fontSize: 19 }}>
         If your game draws on a real place, add films, shows or artists people there love. Qloo finds where their fans
-        live, so a game set in Delhi ranks Indian cities and the diaspora higher.
+        live, so cities where that culture is loved, at home and abroad, rank higher.
       </p>
       <GameSearch
         label="Search films, shows, artists"

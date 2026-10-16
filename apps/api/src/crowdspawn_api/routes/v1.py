@@ -14,7 +14,7 @@ from pydantic import BaseModel, Field
 from ..errors import NotFound, QlooError, QlooUnconfigured, RateLimited
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import cities, culture, resolve, scout
+from ..pipeline import cities, culture, judge, resolve, scout
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
     ActivityOut,
@@ -30,6 +30,8 @@ from ..schemas import (
     ScoutAreaIn,
     ScoutFit,
     ScoutFitIn,
+    ScoutJudge,
+    ScoutJudgeIn,
     SuggestIn,
     Suggestion,
     SuggestOut,
@@ -287,6 +289,30 @@ async def scout_fit(request: Request, body: ScoutFitIn) -> ScoutFit:
             body.radius_km,
             body.comp_entity_ids,
             list(body.platforms),
+        )
+    except QlooError as e:
+        raise _no_data(e) from e
+
+
+@router.post("/scout/judge", response_model=ScoutJudge)
+async def scout_judge(request: Request, body: ScoutJudgeIn) -> ScoutJudge:
+    """Would the game I describe work here? LLM proposes names, Qloo scores, verdict with probability."""
+    d = deps(request)
+    llm = _ready(d)
+    _limit(request, _scout_hits, d.settings.scouts_per_ip_per_hour)
+    try:
+        return await judge.judge(
+            d.qloo.run(max_calls=90),
+            llm,
+            lat=body.lat,
+            lon=body.lon,
+            radius_km=body.radius_km,
+            title=body.title,
+            description=body.description,
+            tags=body.tags,
+            platforms=list(body.platforms),
+            comp_ids=body.comp_entity_ids,
+            timeout=d.settings.llm_timeout_seconds,
         )
     except QlooError as e:
         raise _no_data(e) from e

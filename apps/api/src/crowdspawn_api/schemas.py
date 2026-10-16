@@ -334,3 +334,47 @@ class ScoutFit(BaseModel):
     best_genre: GenreHeat | None = None
     source: Literal["qloo"] = "qloo"
     calls: Calls
+
+
+class ScoutJudgeIn(ScoutAreaIn):
+    title: str = Field(default="", max_length=80)
+    description: str = Field(min_length=10, max_length=600)
+    tags: list[str] = Field(default=[], max_length=8)
+    platforms: list[Platform] = Field(
+        default=["pc", "mobile", "console"], min_length=1, max_length=3
+    )
+    comp_entity_ids: list[str] = Field(default=[], max_length=5)  # optional: games the user picked
+
+
+class RankedPlace(BaseModel):
+    name: str
+    score: float
+    here: bool
+
+
+class ScoutJudge(BaseModel):
+    lat: float
+    lon: float
+    radius_km: int
+    verdict: str  # one of JUDGE_TIERS words
+    probability: (
+        float  # model estimate that this area over-indexes for the game (0-1), not a sales odds
+    )
+    score: float
+    lift: float
+    platform_fit: float
+    culture_fit: float | None
+    confidence: Confidence
+    cells: int
+    comps: list[str]
+    culture: list[str]
+    dropped: list[str]  # names the LLM suggested that Qloo could not find
+    ranking: list[RankedPlace]
+    genres: list[GenreHeat]
+    mix: PlatformMix
+    games: list[LocalGame]
+    summary: str
+    summary_source: Literal["llm", "template"]
+    model: str | None = None
+    source: Literal["qloo"] = "qloo"
+    calls: Calls

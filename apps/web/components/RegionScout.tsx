@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type PointerEvent as RPointerEvent } from "react";
 import Link from "next/link";
-import type { AreaActivity, EntityOut, PlaceHit, PlatformMix, ScoutArea, ScoutFit } from "@repo/contracts";
+import type { AreaActivity, EntityOut, PlaceHit, PlatformMix, ScoutArea, ScoutJudge } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
 import { COUNTRIES, GRID, OWNER, type CountryShape } from "../lib/countries";
 import snapshotJson from "../lib/scout-snapshot.json";
@@ -612,29 +612,47 @@ function WhatWorks({ area }: { area: AreaView }) {
   );
 }
 
-const VERDICT: Record<ScoutFit["verdict"], string> = {
-  strong: "Strong spawn point",
-  promising: "Promising",
-  neutral: "No edge here",
-  weak: "Weak fit",
-};
+/** Verdict colours by word; the words themselves come from the API (JUDGE_TIERS in judge.py). */
+const TONE: Record<string, string> = { Superb: "superb", Excellent: "excellent", Yes: "yes", Maybe: "maybe", No: "no" };
+
+function Gauge({ p }: { p: number }) {
+  const r = 52;
+  const c = Math.PI * r; // half circle
+  return (
+    <svg className="gauge" viewBox="0 0 128 72" aria-hidden>
+      <path d="M12 64a52 52 0 0 1 104 0" className="track" />
+      <path d="M12 64a52 52 0 0 1 104 0" className="value" style={{ strokeDasharray: c, strokeDashoffset: c * (1 - p) }} />
+    </svg>
+  );
+}
 
 function Fit({ pick }: { pick: Pick }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [comps, setComps] = useState<EntityOut[]>([]);
   const [platforms, setPlatforms] = useState<Platform[]>(["pc", "console", "mobile"]);
-  const [fit, setFit] = useState<ScoutFit | null>(null);
+  const [result, setResult] = useState<ScoutJudge | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => setFit(null), [pick]);
+  useEffect(() => setResult(null), [pick]);
+  const ready = description.trim().length >= 10;
 
-  async function check() {
+  async function judge() {
     setBusy(true);
     setError(null);
+    setResult(null);
     try {
-      const f = await api.fit(pick.lat, pick.lon, comps.map((c) => c.entity_id), platforms);
-      setFit(f);
-      play(f.verdict === "strong" || f.verdict === "promising" ? "win" : "back");
+      const r = await api.judge({
+        lat: pick.lat,
+        lon: pick.lon,
+        title: title.trim(),
+        description: description.trim(),
+        platforms,
+        comp_entity_ids: comps.map((c) => c.entity_id),
+      });
+      setResult(r);
+      play(r.probability >= 0.58 ? "win" : r.probability >= 0.42 ? "level" : "error");
     } catch (e) {
       setError((e as ApiError).message);
       play("error");
@@ -645,78 +663,189 @@ function Fit({ pick }: { pick: Pick }) {
 
   return (
     <div className="stack">
-      <p className="muted">Pick 1-5 released games like yours. Qloo scores how much their fans over-index right here.</p>
-      <GameSearch
-        label="Search games like yours"
-        exclude={comps.map((c) => c.entity_id)}
-        disabled={comps.length >= 5}
-        onPick={(e) => setComps([...comps, e])}
-      />
-      <div className="row">
-        {comps.map((c) => (
-          <span key={c.entity_id} className="chip">
-            {c.name}
-            <button aria-label={`Remove ${c.name}`} onClick={() => setComps(comps.filter((x) => x.entity_id !== c.entity_id))}>
-              ×
-            </button>
-          </span>
-        ))}
-      </div>
-      <div className="row">
-        {PLATFORMS.map((p) => {
-          const on = platforms.includes(p.id);
-          return (
-            <label key={p.id} className={`toggle${on ? " on" : ""}`}>
-              <input
-                type="checkbox"
-                className="sr-only"
-                checked={on}
-                onChange={() =>
-                  setPlatforms(on && platforms.length > 1 ? platforms.filter((x) => x !== p.id) : on ? platforms : [...platforms, p.id])
-                }
-              />
-              {on ? "◆" : "◇"} {p.label}
-            </label>
-          );
-        })}
-      </div>
-      <div>
-        <button className="btn btn-lg" data-sfx="select" onClick={check} disabled={busy || comps.length === 0}>
-          {busy ? "Scouting…" : "Check the fit"}
-        </button>
-      </div>
-      {error && <Notice tone="warn">{error}</Notice>}
-      {fit && (
-        <div className={`verdict v-${fit.verdict}`}>
-          <span className="label">Verdict</span>
-          <strong className="verdict-title">{VERDICT[fit.verdict]}</strong>
-          <p className="breakdown num">
-            <span>
-              <b>{fmt(fit.lift)}</b> taste
-            </span>
-            ×
-            <span>
-              <b>{fmt(fit.platform_fit)}</b> platform
-            </span>
-            =<span className="total">{fmt(fit.score)}</span>
-            <ConfidenceBadge level={fit.confidence} />
-          </p>
-          <p>
-            Fans of {fit.comps.join(", ")} show up here {fit.lift >= 1 ? `${((fit.lift - 1) * 100).toFixed(0)}% more` : `${((1 - fit.lift) * 100).toFixed(0)}% less`}{" "}
-            than gamers in general.
-            {fit.best_genre && (
-              <>
-                {" "}
-                The hottest genre here is <b>{fit.best_genre.genre}</b> (×{fmt(fit.best_genre.lift)}).
-              </>
-            )}
-          </p>
-          <p className="hint">
-            If your game is set somewhere real, a <Link href="/plan/new">full launch plan</Link> adds culture fit and ranks 33
-            cities. Affinity index, not a sales forecast.
-          </p>
+      <p className="muted">
+        Describe your game. An LLM picks comparable games and the culture it draws on; Qloo checks every name and scores
+        this spot against 8 cities around the world.
+      </p>
+      <div className="judge-form">
+        <div className="field">
+          <label className="label" htmlFor="j-title">
+            Game title (optional)
+          </label>
+          <input id="j-title" className="input" value={title} maxLength={80} onChange={(e) => setTitle(e.target.value)} placeholder="Your game's name" />
         </div>
-      )}
+        <div className="field">
+          <label className="label" htmlFor="j-desc">
+            Describe your game
+          </label>
+          <textarea
+            id="j-desc"
+            className="textarea"
+            value={description}
+            maxLength={600}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="What players do, the genre and mood, and where it is set if it is a real place."
+          />
+          <span className="hint">{description.length}/600 · at least 10 characters</span>
+        </div>
+        <div className="row">
+          {PLATFORMS.map((p) => {
+            const on = platforms.includes(p.id);
+            return (
+              <label key={p.id} className={`toggle${on ? " on" : ""}`}>
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={on}
+                  onChange={() =>
+                    setPlatforms(on ? (platforms.length > 1 ? platforms.filter((x) => x !== p.id) : platforms) : [...platforms, p.id])
+                  }
+                />
+                {on ? "◆" : "◇"} {p.label}
+              </label>
+            );
+          })}
+        </div>
+        <details className="more">
+          <summary className="label">Name specific comparable games (optional)</summary>
+          <GameSearch
+            label="Search games like yours"
+            exclude={comps.map((c) => c.entity_id)}
+            disabled={comps.length >= 5}
+            onPick={(e) => setComps([...comps, e])}
+          />
+          <div className="row">
+            {comps.map((c) => (
+              <span key={c.entity_id} className="chip">
+                {c.name}
+                <button aria-label={`Remove ${c.name}`} onClick={() => setComps(comps.filter((x) => x.entity_id !== c.entity_id))}>
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
+        </details>
+        <div>
+          <button className="btn btn-lg" data-sfx="select" onClick={judge} disabled={busy || !ready}>
+            {busy ? "Scouting with Qloo…" : "Judge my game here"}
+          </button>
+        </div>
+      </div>
+      {busy && <Skeleton h={260} />}
+      {error && <Notice tone="warn">{error}</Notice>}
+      {result && <JudgeResult r={result} />}
+    </div>
+  );
+}
+
+function JudgeResult({ r }: { r: ScoutJudge }) {
+  const pct = Math.round(r.probability * 100);
+  const max = Math.max(...r.ranking.map((x) => x.score), 1.01);
+  return (
+    <div className="stack judge">
+      <div className={`verdict v-${TONE[r.verdict] ?? "maybe"}`}>
+        <div className="verdict-head">
+          <div>
+            <span className="label">Verdict</span>
+            <strong className="verdict-title">{r.verdict}</strong>
+            <span className="hint">
+              Estimated chance players here over-index for your game. A model estimate from taste data, not sales odds.
+            </span>
+          </div>
+          <div className="gauge-wrap" aria-label={`${pct} percent`}>
+            <Gauge p={r.probability} />
+            <span className="num gauge-num">{pct}%</span>
+          </div>
+        </div>
+        <p className="breakdown num" aria-label="Spawn score breakdown">
+          <span>
+            <b>{fmt(r.lift)}</b> taste
+          </span>
+          ×
+          <span>
+            <b>{fmt(r.platform_fit)}</b> platform
+          </span>
+          {r.culture_fit != null && (
+            <>
+              ×
+              <span>
+                <b>{fmt(r.culture_fit)}</b> culture
+              </span>
+            </>
+          )}
+          =<span className="total">{fmt(r.score)}</span>
+          <ConfidenceBadge level={r.confidence} />
+        </p>
+      </div>
+
+      <div className="judge-grid">
+        <section className="stack">
+          <h3 className="h3">Against the world</h3>
+          <ol className="ranking">
+            {r.ranking.map((x, i) => (
+              <li key={x.name} className={x.here ? "here" : ""} style={{ ["--i" as string]: i }}>
+                <span className="r-name">{x.here ? "This spot" : x.name}</span>
+                <span className={`power ${x.here ? "hot" : ""}`}>
+                  <i style={{ ["--v" as string]: Math.max(0.04, x.score / max) }} />
+                </span>
+                <span className="num">×{fmt(x.score)}</span>
+              </li>
+            ))}
+          </ol>
+          <h3 className="h3">What Qloo matched from your description</h3>
+          <div className="row">
+            {r.comps.map((c) => (
+              <span key={c} className="chip" style={{ paddingRight: 14 }}>
+                {c}
+              </span>
+            ))}
+          </div>
+          {r.culture.length > 0 && (
+            <div className="row">
+              <span className="label muted">Setting via</span>
+              {r.culture.map((c) => (
+                <span key={c} className="chip" style={{ paddingRight: 14 }}>
+                  {c}
+                </span>
+              ))}
+            </div>
+          )}
+          {r.dropped.length > 0 && <p className="hint">Not found in Qloo, left out: {r.dropped.join(", ")}.</p>}
+        </section>
+        <section className="stack">
+          <h3 className="h3">Hottest genres here</h3>
+          <ol className="genres">
+            {r.genres.slice(0, 5).map((g, i) => (
+              <li key={g.genre} className={g.lift > 1 ? "hot" : ""} style={{ ["--i" as string]: i }}>
+                <span className="g-name">
+                  <b>{g.genre}</b>
+                </span>
+                <span className="power">
+                  <i style={{ ["--v" as string]: Math.max(0.04, (g.lift - 0.6) / 0.8) }} />
+                </span>
+                <span className="num">×{fmt(g.lift)}</span>
+              </li>
+            ))}
+          </ol>
+          <h3 className="h3">Local favourites</h3>
+          <div className="row">
+            {r.games.map((g) => (
+              <span key={g.entity_id} className="chip" style={{ paddingRight: 14 }}>
+                {g.name}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div className="judge-summary">
+        <span className="label muted">{r.summary_source === "llm" ? `Explained by ${r.model}` : "Summary (template)"}</span>
+        <p>{r.summary}</p>
+        <p className="hint">
+          {r.cells} heatmap cells · {r.calls.live} live / {r.calls.cached} cached Qloo calls · every name and number above
+          comes from Qloo.
+        </p>
+      </div>
     </div>
   );
 }

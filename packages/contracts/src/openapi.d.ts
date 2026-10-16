@@ -243,6 +243,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/scout/judge": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Scout Judge
+         * @description Would the game I describe work here? LLM proposes names, Qloo scores, verdict with probability.
+         */
+        post: operations["scout_judge_v1_scout_judge_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -723,6 +743,15 @@ export interface components {
             /** Message */
             message: string;
         };
+        /** RankedPlace */
+        RankedPlace: {
+            /** Name */
+            name: string;
+            /** Score */
+            score: number;
+            /** Here */
+            here: boolean;
+        };
         /** Region */
         Region: {
             /** Id */
@@ -835,6 +864,101 @@ export interface components {
              *     ]
              */
             platforms: ("pc" | "mobile" | "console")[];
+        };
+        /** ScoutJudge */
+        ScoutJudge: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /** Radius Km */
+            radius_km: number;
+            /** Verdict */
+            verdict: string;
+            /** Probability */
+            probability: number;
+            /** Score */
+            score: number;
+            /** Lift */
+            lift: number;
+            /** Platform Fit */
+            platform_fit: number;
+            /** Culture Fit */
+            culture_fit: number | null;
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "high" | "medium" | "low";
+            /** Cells */
+            cells: number;
+            /** Comps */
+            comps: string[];
+            /** Culture */
+            culture: string[];
+            /** Dropped */
+            dropped: string[];
+            /** Ranking */
+            ranking: components["schemas"]["RankedPlace"][];
+            /** Genres */
+            genres: components["schemas"]["GenreHeat"][];
+            mix: components["schemas"]["PlatformMix"];
+            /** Games */
+            games: components["schemas"]["LocalGame"][];
+            /** Summary */
+            summary: string;
+            /**
+             * Summary Source
+             * @enum {string}
+             */
+            summary_source: "llm" | "template";
+            /** Model */
+            model?: string | null;
+            /**
+             * Source
+             * @default qloo
+             * @constant
+             */
+            source: "qloo";
+            calls: components["schemas"]["Calls"];
+        };
+        /** ScoutJudgeIn */
+        ScoutJudgeIn: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /**
+             * Radius Km
+             * @default 40
+             */
+            radius_km: number;
+            /**
+             * Title
+             * @default
+             */
+            title: string;
+            /** Description */
+            description: string;
+            /**
+             * Tags
+             * @default []
+             */
+            tags: string[];
+            /**
+             * Platforms
+             * @default [
+             *       "pc",
+             *       "mobile",
+             *       "console"
+             *     ]
+             */
+            platforms: ("pc" | "mobile" | "console")[];
+            /**
+             * Comp Entity Ids
+             * @default []
+             */
+            comp_entity_ids: string[];
         };
         /** SuggestIn */
         SuggestIn: {
@@ -1282,6 +1406,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ScoutFit"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    scout_judge_v1_scout_judge_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ScoutJudgeIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScoutJudge"];
                 };
             };
             /** @description Validation Error */

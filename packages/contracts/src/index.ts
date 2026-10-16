@@ -28,6 +28,8 @@ export type ScoutArea = S["ScoutArea"];
 export type ScoutFit = S["ScoutFit"];
 export type GenreHeat = S["GenreHeat"];
 export type LocalGame = S["LocalGame"];
+export type ScoutJudge = S["ScoutJudge"];
+export type RankedPlace = S["RankedPlace"];
 export type Confidence = City["confidence"];
 export type PartnerType = keyof Partners;
 

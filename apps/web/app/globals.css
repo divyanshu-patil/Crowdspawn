@@ -2060,3 +2060,142 @@ footer.foot {
 .chip-btn:active {
   transform: scale(0.94);
 }
+
+/* Scout: judge my game */
+.judge-form {
+  display: grid;
+  gap: 16px;
+  max-width: 720px;
+}
+
+.more > summary {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.verdict-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.verdict-head > div:first-child {
+  display: grid;
+  gap: 6px;
+}
+
+.gauge-wrap {
+  position: relative;
+  width: 150px;
+  flex: none;
+}
+
+.gauge {
+  display: block;
+  width: 100%;
+}
+
+.gauge path {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.gauge .track {
+  stroke: color-mix(in srgb, var(--ink) 15%, transparent);
+}
+
+.gauge .value {
+  stroke: var(--ink);
+  transition: stroke-dashoffset 900ms var(--ease-out);
+  animation: gauge-in 1100ms var(--ease-out) both;
+}
+
+@keyframes gauge-in {
+  from {
+    stroke-dashoffset: 163.4;
+  }
+}
+
+.gauge-num {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.verdict.v-superb {
+  background: var(--ember);
+}
+.verdict.v-excellent {
+  background: var(--marker);
+}
+.verdict.v-yes {
+  background: #fff3c4;
+}
+.verdict.v-maybe {
+  background: var(--paper);
+}
+.verdict.v-no {
+  background: var(--mist);
+}
+
+.judge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.ranking {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.ranking li {
+  display: grid;
+  grid-template-columns: 110px 1fr 56px;
+  align-items: center;
+  gap: 12px;
+  animation: rise 320ms calc(var(--i) * 50ms) var(--ease-out) both;
+}
+
+.ranking li.here .r-name {
+  font-weight: 700;
+}
+
+.ranking li.here .power > i {
+  background: linear-gradient(90deg, var(--ink) 55%, var(--ember));
+}
+
+.judge-summary {
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
+  border: 1px dashed var(--ink);
+  border-radius: var(--r-card);
+  background: var(--paper);
+}
+
+.judge-summary p:first-of-type {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .judge-grid {
+    grid-template-columns: 1fr;
+  }
+  .verdict-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.verdict .hint {
+  color: var(--ink); /* grey fails contrast on the orange and yellow verdict cards */
+}

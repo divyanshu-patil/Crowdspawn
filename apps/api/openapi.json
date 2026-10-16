@@ -476,6 +476,45 @@
           }
         }
       }
+    },
+    "/v1/scout/judge": {
+      "post": {
+        "summary": "Scout Judge",
+        "description": "Would the game I describe work here? LLM proposes names, Qloo scores, verdict with probability.",
+        "operationId": "scout_judge_v1_scout_judge_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoutJudgeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoutJudge"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1653,6 +1692,29 @@
         ],
         "title": "Problem"
       },
+      "RankedPlace": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "here": {
+            "type": "boolean",
+            "title": "Here"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "score",
+          "here"
+        ],
+        "title": "RankedPlace"
+      },
       "Region": {
         "properties": {
           "id": {
@@ -1927,6 +1989,247 @@
           "comp_entity_ids"
         ],
         "title": "ScoutFitIn"
+      },
+      "ScoutJudge": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "title": "Lon"
+          },
+          "radius_km": {
+            "type": "integer",
+            "title": "Radius Km"
+          },
+          "verdict": {
+            "type": "string",
+            "title": "Verdict"
+          },
+          "probability": {
+            "type": "number",
+            "title": "Probability"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "lift": {
+            "type": "number",
+            "title": "Lift"
+          },
+          "platform_fit": {
+            "type": "number",
+            "title": "Platform Fit"
+          },
+          "culture_fit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Culture Fit"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "cells": {
+            "type": "integer",
+            "title": "Cells"
+          },
+          "comps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Comps"
+          },
+          "culture": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Culture"
+          },
+          "dropped": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dropped"
+          },
+          "ranking": {
+            "items": {
+              "$ref": "#/components/schemas/RankedPlace"
+            },
+            "type": "array",
+            "title": "Ranking"
+          },
+          "genres": {
+            "items": {
+              "$ref": "#/components/schemas/GenreHeat"
+            },
+            "type": "array",
+            "title": "Genres"
+          },
+          "mix": {
+            "$ref": "#/components/schemas/PlatformMix"
+          },
+          "games": {
+            "items": {
+              "$ref": "#/components/schemas/LocalGame"
+            },
+            "type": "array",
+            "title": "Games"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "summary_source": {
+            "type": "string",
+            "enum": [
+              "llm",
+              "template"
+            ],
+            "title": "Summary Source"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "source": {
+            "type": "string",
+            "const": "qloo",
+            "title": "Source",
+            "default": "qloo"
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon",
+          "radius_km",
+          "verdict",
+          "probability",
+          "score",
+          "lift",
+          "platform_fit",
+          "culture_fit",
+          "confidence",
+          "cells",
+          "comps",
+          "culture",
+          "dropped",
+          "ranking",
+          "genres",
+          "mix",
+          "games",
+          "summary",
+          "summary_source",
+          "calls"
+        ],
+        "title": "ScoutJudge"
+      },
+      "ScoutJudgeIn": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "maximum": 75.0,
+            "minimum": -60.0,
+            "title": "Lat"
+          },
+          "lon": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Lon"
+          },
+          "radius_km": {
+            "type": "integer",
+            "maximum": 150.0,
+            "minimum": 10.0,
+            "title": "Radius Km",
+            "default": 40
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Title",
+            "default": ""
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 10,
+            "title": "Description"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Tags",
+            "default": []
+          },
+          "platforms": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "pc",
+                "mobile",
+                "console"
+              ]
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Platforms",
+            "default": [
+              "pc",
+              "mobile",
+              "console"
+            ]
+          },
+          "comp_entity_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Comp Entity Ids",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lon",
+          "description"
+        ],
+        "title": "ScoutJudgeIn"
       },
       "SuggestIn": {
         "properties": {

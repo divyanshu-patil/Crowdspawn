@@ -4,6 +4,7 @@ import type {
   PlaceHit,
   ScoutArea,
   ScoutFit,
+  ScoutJudge,
   Health,
   Plan,
   PlanCreated,
@@ -59,6 +60,14 @@ export const api = {
   activity: () => request<ActivityOut>("/v1/scout/activity"),
   area: (lat: number, lon: number) =>
     request<ScoutArea>("/v1/scout/area", { method: "POST", body: JSON.stringify({ lat, lon }) }),
+  judge: (body: {
+    lat: number;
+    lon: number;
+    title: string;
+    description: string;
+    platforms: string[];
+    comp_entity_ids: string[];
+  }) => request<ScoutJudge>("/v1/scout/judge", { method: "POST", body: JSON.stringify(body) }),
   fit: (lat: number, lon: number, comp_entity_ids: string[], platforms: string[]) =>
     request<ScoutFit>("/v1/scout/fit", {
       method: "POST",
