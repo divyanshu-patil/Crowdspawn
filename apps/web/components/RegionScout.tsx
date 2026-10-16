@@ -231,6 +231,10 @@ function RegionMap({
   const [hover, setHover] = useState<{ c: CountryShape; x: number; y: number } | null>(null);
   const [view, setView] = useState<View>(HOME);
   const drag = useRef<{ x: number; y: number; v: View; moved: boolean } | null>(null);
+  // Smooth camera: `goal` is where the view is heading, `cur` what is drawn; each frame closes part of the gap.
+  const cur = useRef<View>(HOME);
+  const goal = useRef<View>(HOME);
+  const raf = useRef(0);
 
   const clamp = (v: View): View => {
     const k = Math.min(MAX_K, Math.max(1, v.k));
@@ -238,10 +242,64 @@ function RegionMap({
     const vh = H / k;
     return { k, x: Math.min(W - vw, Math.max(0, v.x)), y: Math.min(H - vh, Math.max(0, v.y)) };
   };
-  const zoomAt = (factor: number, cx = view.x + W / view.k / 2, cy = view.y + H / view.k / 2) => {
-    const k = Math.min(MAX_K, Math.max(1, view.k * factor));
-    setView(clamp({ k, x: cx - (cx - view.x) * (view.k / k), y: cy - (cy - view.y) * (view.k / k) }));
+  const draw = (v: View) => {
+    cur.current = v;
+    setView(v);
   };
+  const goTo = (v: View, instant = false) => {
+    goal.current = clamp(v);
+    if (instant || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      cancelAnimationFrame(raf.current);
+      raf.current = 0;
+      return draw(goal.current);
+    }
+    if (raf.current) return;
+    let last = performance.now();
+    const step = (now: number) => {
+      const a = 1 - Math.exp(-(now - last) / 110); // frame-rate independent easing
+      last = now;
+      const c = cur.current;
+      const g = goal.current;
+      // Interpolate the visible width (not k) so the zoom anchor stays exactly under the cursor.
+      const cw = W / c.k;
+      const w = cw + (W / g.k - cw) * a;
+      const next = { k: W / w, x: c.x + (g.x - c.x) * a, y: c.y + (g.y - c.y) * a };
+      const done = Math.abs(w - W / g.k) < 0.002 && Math.abs(next.x - g.x) < 0.002 && Math.abs(next.y - g.y) < 0.002;
+      draw(done ? g : next);
+      raf.current = done ? 0 : requestAnimationFrame(step);
+    };
+    raf.current = requestAnimationFrame(step);
+  };
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
+
+  // Wheel and trackpad zoom. Native listener: React's wheel handler is passive and cannot stop page scroll.
+  const zoomRef = useRef<(f: number, cx?: number, cy?: number) => void>(() => {});
+  useEffect(() => {
+    const el = svg.current!;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(el.getScreenCTM()!.inverse());
+      const lines = e.deltaMode === 1 ? 16 : 1; // Firefox reports lines
+      zoomRef.current(Math.exp(-e.deltaY * lines * 0.0022), p.x, p.y);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
+  /** Zoom by `factor` keeping map point (cx, cy) fixed on screen. Builds on the goal, so wheel ticks add up. */
+  const zoomAt = (factor: number, cx?: number, cy?: number) => {
+    const c = cur.current;
+    const g = goal.current;
+    const cw = W / c.k;
+    const ch = H / c.k;
+    const rx = cx === undefined ? 0.5 : (cx - c.x) / cw; // cursor position as a fraction of the screen
+    const ry = cy === undefined ? 0.5 : (cy - c.y) / ch;
+    const px = g.x + rx * (W / g.k);
+    const py = g.y + ry * (H / g.k);
+    const k = Math.min(MAX_K, Math.max(1, g.k * factor));
+    goTo({ k, x: px - rx * (W / k), y: py - ry * (H / k) });
+  };
+  zoomRef.current = zoomAt;
   const svgPoint = (clientX: number, clientY: number) => {
     const m = svg.current!.getScreenCTM()!.inverse();
     const p = new DOMPoint(clientX, clientY).matrixTransform(m);
@@ -253,7 +311,7 @@ function RegionMap({
     if (!pick) return;
     const { x, y } = toXY(pick.lat, pick.lon);
     const inView = x > view.x && x < view.x + W / view.k && y > view.y && y < view.y + H / view.k;
-    if (!inView || view.k < 2) setView(clamp({ k: 3, x: x - W / 6, y: y - H / 6 }));
+    if (!inView || view.k < 2) goTo({ k: 3, x: x - W / 6, y: y - H / 6 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pick]);
 
@@ -267,7 +325,7 @@ function RegionMap({
   );
 
   const onDown = (e: RPointerEvent<SVGSVGElement>) => {
-    drag.current = { x: e.clientX, y: e.clientY, v: view, moved: false };
+    drag.current = { x: e.clientX, y: e.clientY, v: cur.current, moved: false };
   };
   const onMove = (e: RPointerEvent<SVGSVGElement>) => {
     const box = fig.current!.getBoundingClientRect();
@@ -282,7 +340,7 @@ function RegionMap({
     if (!d.moved) svg.current!.setPointerCapture(e.pointerId);
     d.moved = true;
     const scale = W / d.v.k / svg.current!.getBoundingClientRect().width;
-    setView(clamp({ k: d.v.k, x: d.v.x - dx * scale, y: d.v.y - dy * scale }));
+    goTo({ k: d.v.k, x: d.v.x - dx * scale, y: d.v.y - dy * scale }, true); // drag follows the hand exactly
   };
   const onUp = (e: RPointerEvent<SVGSVGElement>) => {
     const d = drag.current;
@@ -296,6 +354,26 @@ function RegionMap({
     onPick({ lat, lon, label: c.name, country: c.name });
   };
 
+  const hoverId = hover?.c.id;
+  // The country layer only changes with readings or hover, never with the camera, so frames stay cheap.
+  const countryLayer = useMemo(
+    () =>
+      shapes.map(({ c, step }) => (
+          <g
+            key={c.id}
+            data-id={c.id}
+            className={`country h${step}${hoverId === c.id ? " lit" : ""}`}
+            style={{ ["--d" as string]: `${Math.round(c.cx * 6)}ms` }}
+          >
+            <path className="side" d={c.d} />
+            <g className="top">
+              <path className="fill" d={c.d} />
+              <path className="border" d={c.b} vectorEffect="non-scaling-stroke" />
+            </g>
+          </g>
+        )),
+    [shapes, hoverId],
+  );
   const hovered = hover?.c.a2 ? readings?.get(hover.c.a2) : undefined;
   const at = pick ? toXY(pick.lat, pick.lon) : null;
   const unit = 1 / view.k; // keep rings and borders a constant on-screen size
@@ -318,10 +396,6 @@ function RegionMap({
           setHover(null);
           drag.current = null;
         }}
-        onWheel={(e) => {
-          const p = svgPoint(e.clientX, e.clientY);
-          zoomAt(e.deltaY < 0 ? 1.25 : 0.8, p.x, p.y);
-        }}
         role="img"
       >
         <defs>
@@ -330,20 +404,7 @@ function RegionMap({
           </pattern>
         </defs>
         <rect x={0} y={0} width={W} height={H} className="sea" />
-        {shapes.map(({ c, step }) => (
-          <g
-            key={c.id}
-            data-id={c.id}
-            className={`country h${step}${hover?.c.id === c.id ? " lit" : ""}`}
-            style={{ ["--d" as string]: `${Math.round(c.cx * 6)}ms` }}
-          >
-            <path className="side" d={c.d} />
-            <g className="top">
-              <path className="fill" d={c.d} />
-              <path className="border" d={c.b} vectorEffect="non-scaling-stroke" />
-            </g>
-          </g>
-        ))}
+        {countryLayer}
         <rect x={0} y={0} width={W} height={H} fill="url(#pix)" pointerEvents="none" />
         {at && (
           <g className="pick" transform={`translate(${at.x} ${at.y})`} pointerEvents="none">
@@ -363,7 +424,7 @@ function RegionMap({
         <button type="button" aria-label="Zoom out" onClick={() => zoomAt(1 / 1.6)} disabled={view.k <= 1}>
           −
         </button>
-        <button type="button" aria-label="Reset map view" className="label" onClick={() => setView(HOME)}>
+        <button type="button" aria-label="Reset map view" className="label" onClick={() => goTo(HOME)}>
           Reset
         </button>
       </div>
