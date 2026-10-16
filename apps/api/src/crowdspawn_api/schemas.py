@@ -378,3 +378,54 @@ class ScoutJudge(BaseModel):
     model: str | None = None
     source: Literal["qloo"] = "qloo"
     calls: Calls
+
+
+# Launch agent: an LLM that plans with Qloo tools, step by step.
+
+
+class AgentIn(BaseModel):
+    goal: str = Field(min_length=10, max_length=600)
+
+
+class AgentStepOut(BaseModel):
+    n: int
+    thought: str
+    tool: str
+    args: dict[str, Any]
+    observation: str
+    ok: bool
+
+
+class DraftGame(BaseModel):
+    entity_id: str
+    name: str
+
+
+class DraftCulture(BaseModel):
+    entity_id: str
+    name: str
+    type: str
+
+
+class PlanDraft(BaseModel):
+    """What the agent hands to a full launch plan (all Qloo entity ids)."""
+
+    title: str
+    description: str
+    games: list[DraftGame]
+    culture: list[DraftCulture]
+    platforms: list[Platform]
+    regions: list[str]
+
+
+class AgentRun(BaseModel):
+    id: str
+    status: Literal["running", "done", "failed"]
+    goal: str
+    steps: list[AgentStepOut] = []
+    answer: str | None = None
+    answer_source: Literal["llm", "template"] | None = None
+    draft: PlanDraft | None = None
+    model: str | None = None
+    error: Problem | None = None
+    calls: Calls = Calls(live=0, cached=0)

@@ -4,7 +4,7 @@ import asyncio
 
 from ..qloo.client import QlooRun
 from ..qloo.models import EntityInsights
-from ..schemas import City, Partner, Partners, PartnerType
+from ..schemas import City, Partner, Partners, PartnerType, Region
 from .expand import check_subtype, explain
 
 GLOBAL_TAKE = 8
@@ -13,8 +13,12 @@ LOCAL_TYPES: tuple[PartnerType, ...] = ("artist", "podcast", "movie")  # brands 
 ALL_TYPES: tuple[PartnerType, ...] = ("artist", "podcast", "movie", "brand")
 
 
-async def _fetch(
-    run: QlooRun, kind: PartnerType, signal: list[str], names: dict[str, str], city: City | None
+async def fetch_kind(
+    run: QlooRun,
+    kind: PartnerType,
+    signal: list[str],
+    names: dict[str, str],
+    city: City | Region | None,
 ) -> list[Partner]:
     params = {
         "filter.type": f"urn:entity:{kind}",
@@ -47,7 +51,7 @@ async def partners(
     run: QlooRun, signal: list[str], names: dict[str, str], top_cities: list[City]
 ) -> Partners:
     jobs = [(k, None) for k in ALL_TYPES] + [(k, c) for c in top_cities[:3] for k in LOCAL_TYPES]
-    results = await asyncio.gather(*(_fetch(run, k, signal, names, c) for k, c in jobs))
+    results = await asyncio.gather(*(fetch_kind(run, k, signal, names, c) for k, c in jobs))
     out = Partners()
     for (kind, _), items in zip(jobs, results, strict=True):
         bucket: list[Partner] = getattr(out, kind)

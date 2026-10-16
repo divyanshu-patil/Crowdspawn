@@ -1,4 +1,4 @@
-"""SQLite persistence: plans, plan events (for SSE replay), traces and the Qloo cache."""
+"""SQLite persistence: plans, agent runs, their events (for SSE replay), traces and the Qloo cache."""
 
 import asyncio
 import json
@@ -12,6 +12,10 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS plans (
   id TEXT PRIMARY KEY, status TEXT NOT NULL, input TEXT NOT NULL,
   result TEXT, error TEXT, created_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS runs (
+  id TEXT PRIMARY KEY, status TEXT NOT NULL, input TEXT NOT NULL,
+  result TEXT, created_at REAL NOT NULL
 );
 CREATE TABLE IF NOT EXISTS events (
   plan_id TEXT NOT NULL, seq INTEGER NOT NULL, type TEXT NOT NULL, data TEXT NOT NULL,
@@ -100,6 +104,35 @@ class Store:
             "result": json.loads(row[3]) if row[3] else None,
             "error": json.loads(row[4]) if row[4] else None,
             "created_at": row[5],
+        }
+
+    # agent runs (their events share the events table; ids never collide with plan ids)
+    async def create_run(self, run_id: str, input_: dict[str, Any]) -> None:
+        await self.db.execute(
+            "INSERT INTO runs VALUES (?,?,?,?,?)",
+            (run_id, "running", json.dumps(input_), None, time.time()),
+        )
+        await self.db.commit()
+
+    async def finish_run(self, run_id: str, status: str, result: dict[str, Any]) -> None:
+        await self.db.execute(
+            "UPDATE runs SET status=?, result=? WHERE id=?", (status, json.dumps(result), run_id)
+        )
+        await self.db.commit()
+
+    async def get_run(self, run_id: str) -> dict[str, Any] | None:
+        async with self.db.execute(
+            "SELECT id, status, input, result, created_at FROM runs WHERE id=?", (run_id,)
+        ) as c:
+            row = await c.fetchone()
+        if not row:
+            return None
+        return {
+            "id": row[0],
+            "status": row[1],
+            "input": json.loads(row[2]),
+            "result": json.loads(row[3]) if row[3] else None,
+            "created_at": row[4],
         }
 
     # events

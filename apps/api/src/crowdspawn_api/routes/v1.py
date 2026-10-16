@@ -14,10 +14,12 @@ from pydantic import BaseModel, Field
 from ..errors import NotFound, QlooError, QlooUnconfigured, RateLimited
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import cities, culture, judge, resolve, scout
+from ..pipeline import agent, cities, culture, judge, resolve, scout
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
     ActivityOut,
+    AgentIn,
+    AgentRun,
     CultureSuggestion,
     EntityOut,
     PlaceHit,
@@ -200,6 +202,12 @@ async def stream_plan(request: Request, plan_id: str) -> StreamingResponse:
     store = deps(request).store
     if not await store.get_plan(plan_id):
         raise NotFound(f"No plan {plan_id}")
+    return _sse(request, plan_id)
+
+
+def _sse(request: Request, run_id: str) -> StreamingResponse:
+    """Replay a plan's or agent run's events from SQLite, then follow until done or failed."""
+    store = deps(request).store
     last = int(request.headers.get("last-event-id") or 0)
 
     async def events() -> AsyncIterator[str]:
@@ -207,7 +215,7 @@ async def stream_plan(request: Request, plan_id: str) -> StreamingResponse:
         quiet = 0.0
         yield "retry: 1500\n\n"
         while not await request.is_disconnected():
-            batch = await store.events_after(plan_id, last)
+            batch = await store.events_after(run_id, last)
             for seq, type_, data in batch:
                 last = seq
                 yield f"id: {seq}\nevent: {type_}\ndata: {json.dumps(data)}\n\n"
@@ -316,3 +324,46 @@ async def scout_judge(request: Request, body: ScoutJudgeIn) -> ScoutJudge:
         )
     except QlooError as e:
         raise _no_data(e) from e
+
+
+@router.post("/agent", status_code=202, response_model=PlanCreated)
+async def start_agent(request: Request, body: AgentIn, tasks: BackgroundTasks) -> PlanCreated:
+    """Start the launch agent: an LLM that plans with Qloo tools. Follow it on /agent/{id}/stream."""
+    d = deps(request)
+    _qloo_ready(d)
+    _ready(d)
+    _limit(request, _plan_hits, d.settings.plans_per_ip_per_hour)
+    run_id = "a" + uuid.uuid4().hex[:11]
+    await d.store.create_run(run_id, body.model_dump())
+    await d.store.add_event(run_id, "queued", {"id": run_id})
+    tasks.add_task(
+        agent.run_agent,
+        run_id,
+        body.goal,
+        d.store,
+        d.qloo,
+        d.llm,
+        timeout=d.settings.llm_timeout_seconds,
+    )
+    return PlanCreated(id=run_id, status="running")
+
+
+@router.get("/agent/{run_id}", response_model=AgentRun)
+async def get_agent(request: Request, run_id: str) -> AgentRun:
+    row = await deps(request).store.get_run(run_id)
+    if not row:
+        raise NotFound(f"No agent run {run_id}")
+    if row["result"]:
+        return AgentRun.model_validate(row["result"])
+    return AgentRun(id=row["id"], status="running", goal=row["input"]["goal"])
+
+
+@router.get(
+    "/agent/{run_id}/stream",
+    response_class=StreamingResponse,
+    responses={200: {"content": {"text/event-stream": {}}}},
+)
+async def stream_agent(request: Request, run_id: str) -> StreamingResponse:
+    if not await deps(request).store.get_run(run_id):
+        raise NotFound(f"No agent run {run_id}")
+    return _sse(request, run_id)

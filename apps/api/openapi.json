@@ -515,6 +515,119 @@
           }
         }
       }
+    },
+    "/v1/agent": {
+      "post": {
+        "summary": "Start Agent",
+        "description": "Start the launch agent: an LLM that plans with Qloo tools. Follow it on /agent/{id}/stream.",
+        "operationId": "start_agent_v1_agent_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanCreated"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agent/{run_id}": {
+      "get": {
+        "summary": "Get Agent",
+        "operationId": "get_agent_v1_agent__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRun"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agent/{run_id}/stream": {
+      "get": {
+        "summary": "Stream Agent",
+        "operationId": "stream_agent_v1_agent__run_id__stream_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/event-stream": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -546,6 +659,160 @@
           "calls"
         ],
         "title": "ActivityOut"
+      },
+      "AgentIn": {
+        "properties": {
+          "goal": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 10,
+            "title": "Goal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "goal"
+        ],
+        "title": "AgentIn"
+      },
+      "AgentRun": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "done",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "goal": {
+            "type": "string",
+            "title": "Goal"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/AgentStepOut"
+            },
+            "type": "array",
+            "title": "Steps",
+            "default": []
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          },
+          "answer_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "llm",
+                  "template"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Source"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanDraft"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Problem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "calls": {
+            "$ref": "#/components/schemas/Calls",
+            "default": {
+              "live": 0,
+              "cached": 0
+            }
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "goal"
+        ],
+        "title": "AgentRun"
+      },
+      "AgentStepOut": {
+        "properties": {
+          "n": {
+            "type": "integer",
+            "title": "N"
+          },
+          "thought": {
+            "type": "string",
+            "title": "Thought"
+          },
+          "tool": {
+            "type": "string",
+            "title": "Tool"
+          },
+          "args": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Args"
+          },
+          "observation": {
+            "type": "string",
+            "title": "Observation"
+          },
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          }
+        },
+        "type": "object",
+        "required": [
+          "n",
+          "thought",
+          "tool",
+          "args",
+          "observation",
+          "ok"
+        ],
+        "title": "AgentStepOut"
       },
       "AreaActivity": {
         "properties": {
@@ -933,6 +1200,47 @@
           "result_id"
         ],
         "title": "CultureAnchor"
+      },
+      "DraftCulture": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name",
+          "type"
+        ],
+        "title": "DraftCulture"
+      },
+      "DraftGame": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "name"
+        ],
+        "title": "DraftGame"
       },
       "EntityOut": {
         "properties": {
@@ -1556,6 +1864,62 @@
           "status"
         ],
         "title": "PlanCreated"
+      },
+      "PlanDraft": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "games": {
+            "items": {
+              "$ref": "#/components/schemas/DraftGame"
+            },
+            "type": "array",
+            "title": "Games"
+          },
+          "culture": {
+            "items": {
+              "$ref": "#/components/schemas/DraftCulture"
+            },
+            "type": "array",
+            "title": "Culture"
+          },
+          "platforms": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "pc",
+                "mobile",
+                "console"
+              ]
+            },
+            "type": "array",
+            "title": "Platforms"
+          },
+          "regions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Regions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "games",
+          "culture",
+          "platforms",
+          "regions"
+        ],
+        "title": "PlanDraft",
+        "description": "What the agent hands to a full launch plan (all Qloo entity ids)."
       },
       "PlanIn": {
         "properties": {

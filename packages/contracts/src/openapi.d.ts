@@ -263,6 +263,60 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/agent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Start Agent
+         * @description Start the launch agent: an LLM that plans with Qloo tools. Follow it on /agent/{id}/stream.
+         */
+        post: operations["start_agent_v1_agent_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/agent/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Agent */
+        get: operations["get_agent_v1_agent__run_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/agent/{run_id}/stream": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Stream Agent */
+        get: operations["stream_agent_v1_agent__run_id__stream_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -274,6 +328,60 @@ export interface components {
             /** Skipped */
             skipped: string[];
             calls: components["schemas"]["Calls"];
+        };
+        /** AgentIn */
+        AgentIn: {
+            /** Goal */
+            goal: string;
+        };
+        /** AgentRun */
+        AgentRun: {
+            /** Id */
+            id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "running" | "done" | "failed";
+            /** Goal */
+            goal: string;
+            /**
+             * Steps
+             * @default []
+             */
+            steps: components["schemas"]["AgentStepOut"][];
+            /** Answer */
+            answer?: string | null;
+            /** Answer Source */
+            answer_source?: ("llm" | "template") | null;
+            draft?: components["schemas"]["PlanDraft"] | null;
+            /** Model */
+            model?: string | null;
+            error?: components["schemas"]["Problem"] | null;
+            /**
+             * @default {
+             *       "live": 0,
+             *       "cached": 0
+             *     }
+             */
+            calls: components["schemas"]["Calls"];
+        };
+        /** AgentStepOut */
+        AgentStepOut: {
+            /** N */
+            n: number;
+            /** Thought */
+            thought: string;
+            /** Tool */
+            tool: string;
+            /** Args */
+            args: {
+                [key: string]: unknown;
+            };
+            /** Observation */
+            observation: string;
+            /** Ok */
+            ok: boolean;
         };
         /** AreaActivity */
         AreaActivity: {
@@ -423,6 +531,22 @@ export interface components {
             source: "qloo";
             /** Result Id */
             result_id: string;
+        };
+        /** DraftCulture */
+        DraftCulture: {
+            /** Entity Id */
+            entity_id: string;
+            /** Name */
+            name: string;
+            /** Type */
+            type: string;
+        };
+        /** DraftGame */
+        DraftGame: {
+            /** Entity Id */
+            entity_id: string;
+            /** Name */
+            name: string;
         };
         /** EntityOut */
         EntityOut: {
@@ -686,6 +810,24 @@ export interface components {
              * @enum {string}
              */
             status: "queued" | "running" | "done" | "failed";
+        };
+        /**
+         * PlanDraft
+         * @description What the agent hands to a full launch plan (all Qloo entity ids).
+         */
+        PlanDraft: {
+            /** Title */
+            title: string;
+            /** Description */
+            description: string;
+            /** Games */
+            games: components["schemas"]["DraftGame"][];
+            /** Culture */
+            culture: components["schemas"]["DraftCulture"][];
+            /** Platforms */
+            platforms: ("pc" | "mobile" | "console")[];
+            /** Regions */
+            regions: string[];
         };
         /** PlanIn */
         PlanIn: {
@@ -1439,6 +1581,101 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ScoutJudge"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_agent_v1_agent_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AgentIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlanCreated"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_agent_v1_agent__run_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AgentRun"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    stream_agent_v1_agent__run_id__stream_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": unknown;
                 };
             };
             /** @description Validation Error */
