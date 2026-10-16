@@ -48,7 +48,7 @@ We checked this against Google Trends for 10 shipped games (details in [`scenari
 
 `/scout` answers the reverse question: given a place, what works there?
 
-- **Hover a country** for its player activity index: how strongly people in its main cities match well-known PC, console and mobile games in Qloo's data. It's an index from 0 to 1, not a player count.
+- **Hover a country** for its gamer taste match: how strongly people in its main cities match well-known PC, console and mobile games in Qloo's data, out of 100. It is a taste score, not a player count (Qloo has no player counts).
 - **Click a spot or search a town.** A ring marks a 40 km area (widened to 120 km between towns). You get the genres whose fans over-index there, the games locals love, and the platform mix.
 - **Check your game:** add comps and platforms to get a verdict for that exact spot.
 

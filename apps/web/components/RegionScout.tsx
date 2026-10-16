@@ -111,8 +111,8 @@ export function RegionScout() {
       <section className="scout-panel" aria-live="polite" aria-busy={loading}>
         {!pick && (
           <p className="hint">
-            Pick a spot to scout. Countries are shaded by their player activity index; hover one to see its PC, console and
-            mobile readings.
+            Pick a spot to scout. Countries are shaded by how strongly people there match popular games in Qloo&apos;s taste
+            data; hover one to see the PC, console and mobile scores (out of 100, not player counts).
           </p>
         )}
         {pick && (
@@ -304,7 +304,7 @@ function RegionMap({
     <figure
       ref={fig}
       className="map region-map"
-      aria-label="World map of player activity; click a place to scout it"
+      aria-label="World map of gamer taste match; click a place to scout it"
       style={{ ["--side" as string]: `${0.42 / Math.sqrt(view.k)}px` }}
     >
       <svg
@@ -377,9 +377,15 @@ function RegionMap({
           <b>{hover.c.name}</b>
           {hovered ? (
             <>
-              <span className="label muted">Player activity index</span>
+              <span className="label muted">Gamer taste match, out of 100</span>
               <MixBars mix={hovered.mix} />
-              <span className="hint">From {hovered.cities.join(", ")}. Qloo affinity, not a headcount.</span>
+              <span className="hint">
+                How strongly people here match each platform&apos;s hit games in Qloo, read in{" "}
+                {hovered.cities.length > 3
+                  ? `${hovered.cities.slice(0, 3).join(", ")} and ${hovered.cities.length - 3} more cities`
+                  : hovered.cities.join(", ")}
+                . A taste score, not a player count.
+              </span>
             </>
           ) : (
             <span className="hint">{readings ? "No reading yet. Click to scout it." : "Loading readings…"}</span>
@@ -388,7 +394,7 @@ function RegionMap({
       )}
 
       <figcaption className="map-legend label muted">
-        <span>Player activity:</span>
+        <span>Gamer taste match:</span>
         <i className="key h-1" aria-hidden /> <span>no reading</span>
         <span>· low</span>
         {[0, 1, 2, 3, 4].map((s) => (
@@ -407,14 +413,14 @@ function MixBars({ mix }: { mix: PlatformMix }) {
     ["Mobile", mix.mobile],
   ];
   return (
-    <div className="mix">
+    <div className="mix" aria-label="Taste match out of 100 for PC, console and mobile hit games">
       {rows.map(([k, v], i) => (
         <div key={k} className="mix-row" style={{ ["--i" as string]: i }}>
           <span className="label">{k}</span>
           <span className="power">
             <i style={{ ["--v" as string]: Math.max(0.04, (v - 0.4) / 0.6) }} />
           </span>
-          <span className="num">{v.toFixed(2)}</span>
+          <span className="num">{Math.round(v * 100)}</span>
         </div>
       ))}
     </div>
@@ -446,8 +452,9 @@ function WhatWorks({ area }: { area: ScoutArea }) {
         </p>
       </div>
       <div className="stack">
-        <h3 className="h3">Platform mix</h3>
+        <h3 className="h3">Platform taste match</h3>
         <MixBars mix={area.mix} />
+        <p className="hint">Out of 100: how strongly people here match each platform&apos;s hit games. Not a player count.</p>
         <h3 className="h3" style={{ marginTop: 24 }}>
           Games locals love
         </h3>

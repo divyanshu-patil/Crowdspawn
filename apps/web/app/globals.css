@@ -529,6 +529,12 @@ img {
   outline: none;
 }
 
+/* The button's right edge follows the pill's curve. */
+.pill .btn {
+  border-radius: var(--r-btn) var(--r-pill) var(--r-pill) var(--r-btn);
+  padding-right: 22px;
+}
+
 /* ---------- surfaces ---------- */
 
 .card {

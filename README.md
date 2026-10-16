@@ -32,7 +32,7 @@ pnpm dev              # starts web (http://localhost:3000) and API (http://local
 
 ## Region scout (`/scout`)
 
-A second tool for the other question: *what works in a place?* A pixel-tile world map with real country borders, shaded by each country's Qloo **player activity index** (mean affinity rank of PC, console and mobile player panels in its main cities; an index, not a headcount). Hover a country to see its readings; click anywhere (or search a town through Qloo locality search) to drop an area-select ring and get:
+A second tool for the other question: *what works in a place?* A pixel-tile world map with real country borders, shaded by each country's Qloo **gamer taste match** (0-100: mean affinity rank of PC, console and mobile hit-game panels in its main cities; a taste score, not a player count, since Qloo has no player counts). Hover a country to see its readings; click anywhere (or search a town through Qloo locality search) to drop an area-select ring and get:
 
 - **Genres that over-index there:** 15 genre panels (3-4 well-known games each) scored against all gamers in the area.
 - **Games locals love:** Qloo video game insights with `signal.location`.
