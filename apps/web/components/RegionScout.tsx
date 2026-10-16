@@ -322,6 +322,7 @@ function RegionMap({
   const cur = useRef<View>(HOME);
   const goal = useRef<View>(HOME);
   const raf = useRef(0);
+  const preview = useRef<View | null>(null); // the view to return to after a chip hover
 
   const clamp = (v: View): View => {
     const k = Math.min(MAX_K, Math.max(1, v.k));
@@ -399,8 +400,27 @@ function RegionMap({
     const { x, y } = toXY(pick.lat, pick.lon);
     const inView = x > view.x && x < view.x + W / view.k && y > view.y && y < view.y + H / view.k;
     if (!inView || view.k < 2) goTo({ k: 3, x: x - W / 6, y: y - H / 6 });
+    preview.current = null; // a click keeps the camera where the hover took it
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pick]);
+
+  // Hovering a popular-place chip zooms to it; leaving returns to the earlier view. The short delay
+  // lets the pointer slide between chips without the camera bouncing home in between.
+  useEffect(() => {
+    if (spot) {
+      preview.current ??= goal.current;
+      const { x, y } = toXY(spot.lat, spot.lon);
+      goTo({ k: 3, x: x - W / 6, y: y - H / 6 });
+      return;
+    }
+    if (!preview.current) return;
+    const t = setTimeout(() => {
+      if (preview.current) goTo(preview.current);
+      preview.current = null;
+    }, 250);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spot]);
 
   const shapes = useMemo(
     () =>
