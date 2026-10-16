@@ -6,7 +6,80 @@ Crowdspawn gives indie game studios a launch plan built from [Qloo Taste AI](htt
 
 Built for the Qloo Agentic Hackathon 2026.
 
-![A Crowdspawn launch plan: spawn map and ranked cities](docs/screenshots/plan.png)
+![Crowdspawn landing page: the spawn map of the sample plan with the top three cities](docs/screenshots/landing.png)
+
+## Features
+
+### 1. Launch agent (`/agent`)
+
+The Qloo agent. Describe your game and your question. An LLM plans step by step with Qloo tools (`search_games`, `search_culture`, `find_place`, `rank_cities`, `scout_place`, `audience`, `find_partners`, `finish`), and every step streams live: the tool, its arguments, the agent's reasoning and what Qloo returned.
+
+| Each step, live | The answer, checked against Qloo |
+|---|---|
+| ![Agent steps: searching comparable games on Qloo](docs/screenshots/agent-steps.jpg) | ![Agent answer: launch in Tokyo, with partner artists, podcasts and films](docs/screenshots/agent-answer.jpg) |
+
+- **It can't invent data.** The agent refers to entities by handles the server issued (`g1`, `c2`, `p1`), so it never sees or makes up a Qloo id. Its answer may only use numbers and names that appeared in tool results; otherwise it retries once, then a template built from the Qloo ranking replaces it.
+- **Bounded.** At most 10 steps, 12 LLM calls and 150 Qloo calls per run. Auth, budget and rate-limit errors fail closed.
+- **Hands off.** "Open as a launch plan" fills the plan form with the agent's comps, culture anchors, platforms and cities.
+
+### 2. Launch plan (`/plan/new`, `/sample`)
+
+A three-level form: your game and platforms, comparable games ("rivals", with LLM suggestions that Qloo must resolve) and the culture your setting draws on, then the cities to score.
+
+![New plan form: title, description, genre tags and platforms](docs/screenshots/plan-new.png)
+
+The plan streams in step by step. Cities are ranked by **spawn score = taste lift × platform fit × culture fit**, each with a confidence level and a budget share.
+
+![Launch plan: spawn map, top spawn points and ranked cities with budget split](docs/screenshots/plan.png)
+
+**Rivals and audience.** Your comps, the games Qloo says their fans also love (with why), and the audience's age and gender over- or under-index.
+
+![Rivals scouted and the audience's age and gender skew](docs/screenshots/plan-rivals.png)
+
+**Allies to recruit.** Artists, podcasts, films and brands the audience loves, globally and in the top cities: co-marketing and sponsorship leads, with Qloo's reasons and loot-rarity tiers by affinity.
+
+![Partner cards: artists with affinity and Qloo's reasons, global and local](docs/screenshots/plan-partners.png)
+
+**Battle plan.** An LLM brief written only from the plan's facts. Every highlighted name and number is checked, and each citation chip (`q12`) links to the Qloo call behind it. Limits are stated next to it.
+
+![Brief with citation chips, and the limits box](docs/screenshots/plan-brief.png)
+
+An optional gap view compares the audience with your last game (`/v2/analysis/compare`). Plans export as Markdown or print.
+
+### 3. Qloo call trace (`/plan/{id}/trace`)
+
+Every Qloo call a plan made: step, endpoint, parameters, cache hit or live, status and time. The API key is never recorded.
+
+![Qloo call trace table with filters per step](docs/screenshots/trace.png)
+
+### 4. Region scout (`/scout`)
+
+The other question: *what works in a place?* A pixel-tile world map with real country borders, shaded by each country's Qloo **gamer taste match** (0-100: mean affinity rank of PC, console and mobile hit-game panels in its main cities; a taste score, not a player count, since Qloo has no player counts). Hover a country for its readings; drag, scroll or pinch to zoom.
+
+![Region scout map with India's PC, console and mobile taste match](docs/screenshots/scout.jpg)
+
+Click anywhere, search a town (Qloo locality search) or pick a popular place. Hovering a popular place zooms the map to it; 50 of them are pre-scouted in a bundled Qloo snapshot (`apps/api/scripts/snapshot_scout.py`) and answer instantly.
+
+- **Genres that over-index there:** 15 genre panels (3-4 well-known games each) scored against all gamers in the area.
+- **Games locals love:** Qloo video game insights with `signal.location`.
+
+![What works in Mumbai: genres that over-index, platform taste match and games locals love](docs/screenshots/scout-area.jpg)
+
+**Will my game work here?** Describe your game. An LLM proposes comparable games and the culture it draws on (names only); Qloo resolves each one and scores the spot against 8 reference cities with the plan's spawn score. You get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common) with an estimated probability that players there over-index for your game (capped at 3-97% and pulled toward 50% when confidence is low; a model estimate, not sales odds), the ranking, top genres, local favourites and a short explanation whose numbers are checked against the facts.
+
+![Legendary verdict for a Delhi-set game in Mumbai, with the world ranking and what Qloo matched](docs/screenshots/scout-judge.jpg)
+
+Areas with no Qloo cells widen to 120 km, then snap to the nearest city with a reading. Panels are cached for a week; a new area costs about 19 calls.
+
+### 5. Fails closed
+
+Without a working Qloo key nothing is produced: no cities, no brief, and no LLM call. The UI says why.
+
+![Kill-switch: the plan fails with a Qloo configuration error](docs/screenshots/kill-switch.png)
+
+### 6. Feel
+
+Sketchpad grid squares rise into 3D blocks under the mouse (only where nothing sits on top of them). Sound effects are 8-bit blips synthesized at runtime with the Web Audio API, so there are no audio files and nothing to license; the nav toggle mutes them and remembers the choice.
 
 ## Quick start
 
@@ -19,35 +92,7 @@ cp apps/web/.env.example apps/web/.env.local
 pnpm dev              # starts web (http://localhost:3000) and API (http://localhost:8000) together
 ```
 
-`/sample` works with no keys at all. To put a live demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). MIT licensed. Without `OLLAMA_API_KEY` plans still work and the brief falls back to a grounded template. Without `QLOO_API_KEY` no plan is produced (see the kill-switch test).
-
-| Command | What it does |
-|---|---|
-| `pnpm dev` | Web + API with hot reload (`turbo run dev`) |
-| `pnpm test` | API pytest (fixtures, no network, coverage gate 80%) + web Vitest |
-| `pnpm lint` / `pnpm check-types` | ruff + ESLint / mypy --strict + tsc |
-| `pnpm build` | Exports `openapi.json` and builds the Next.js app |
-| `pnpm contracts` | Regenerates `packages/contracts` TypeScript types from the API |
-| `pnpm --filter api test:live` | One live smoke test against real Qloo (spends a few calls) |
-
-## Launch agent (`/agent`)
-
-The Qloo agent. Describe your game and your question; an LLM plans step by step with Qloo tools (`search_games`, `search_culture`, `find_place`, `rank_cities`, `scout_place`, `audience`, `find_partners`, `finish`) and every step streams live: the tool, its arguments, the agent's reasoning and what Qloo returned. Guards keep Qloo the only source of facts: the agent refers to entities by handles the server issued (`g1`, `c2`, `p1`), so it cannot invent ids; its final answer may only use numbers and names that appeared in tool results, or a template built from the Qloo ranking replaces it; caps of 10 steps, 12 LLM calls and 150 Qloo calls; auth, budget and rate-limit errors fail closed. "Open as a launch plan" hands its picks to a full plan.
-
-## Region scout (`/scout`)
-
-A second tool for the other question: *what works in a place?* A pixel-tile world map with real country borders, shaded by each country's Qloo **gamer taste match** (0-100: mean affinity rank of PC, console and mobile hit-game panels in its main cities; a taste score, not a player count, since Qloo has no player counts). Hover a country to see its readings; click anywhere (or search a town through Qloo locality search) to drop an area-select ring and get:
-
-- **Genres that over-index there:** 15 genre panels (3-4 well-known games each) scored against all gamers in the area.
-- **Games locals love:** Qloo video game insights with `signal.location`.
-- **Will my game work here?** Describe your game. An LLM proposes comparable games and the culture it draws on (names only); Qloo resolves each one and scores the spot against 8 reference cities with the plan's spawn score (taste × platform × culture). You get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common) with an estimated probability that players there over-index for your game (capped at 3-97% and pulled toward 50% when confidence is low; a model estimate, not sales odds), the ranking, top genres, local favourites and a short explanation whose numbers are checked against the facts.
-- **50 popular places** (New York, London, Tokyo, Lagos, Jakarta and more) are pre-scouted into a bundled Qloo snapshot (`apps/api/scripts/snapshot_scout.py`), so they answer instantly with no calls.
-
-Areas with no Qloo cells widen to 120 km, then snap to the nearest city with a reading. Panels are cached for a week; a new area costs about 19 calls.
-
-## Feel
-
-Sketchpad grid squares rise into 3D blocks under the mouse (only where nothing sits on top of them). Sound effects are 8-bit blips synthesized at runtime with the Web Audio API, so there are no audio files and nothing to license; the nav toggle mutes them and remembers the choice.
+`/sample` works with no keys at all. Without `OLLAMA_API_KEY` plans still work and the brief falls back to a grounded template. Without `QLOO_API_KEY` no plan is produced (see the kill-switch test). To put a live demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup, commands and contribution rules: [`CONTRIBUTING.md`](CONTRIBUTING.md). MIT licensed.
 
 ## Who it's for
 
