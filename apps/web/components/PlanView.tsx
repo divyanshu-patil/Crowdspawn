@@ -83,7 +83,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
           <h2 id="cities-h" className="h2">
             Spawn points
           </h2>
-          <span className="label muted">Affinity index vs mainstream gamers · not a sales forecast</span>
+          <span className="label muted">Spawn score: taste × platform × culture · not a sales forecast</span>
         </div>
         <SpawnMap
           cities={plan.cities}
@@ -91,10 +91,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
           onSelect={(id) => {
             setActiveCity(id);
             const row = document.getElementById(`city-${id}`) as HTMLDetailsElement | null;
-            if (row) {
-              row.open = true;
-              row.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
+            if (row) row.open = true; // the map flies to the city; the page stays where it is
           }}
         />
         <ol className="cities">

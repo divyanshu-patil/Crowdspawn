@@ -228,7 +228,19 @@ img {
     background 300ms;
 }
 
+.tile.near {
+  translate: -3px -3px;
+  border-color: var(--ink);
+  background: var(--paper);
+  box-shadow:
+    1px 1px 0 var(--ink),
+    2px 2px 0 var(--ink),
+    3px 3px 0 var(--ink);
+  transition-duration: 260ms;
+}
+
 .tile.up {
+  z-index: 1;
   translate: -8px -8px;
   border-color: var(--ink);
   background: var(--paper);
