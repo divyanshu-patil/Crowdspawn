@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Source for assets/readme/showcase.png. Render from the repo root:
+     chrome --headless=new --hide-scrollbars --force-device-scale-factor=2 --window-size=1200,520 \
+       --screenshot=assets/readme/showcase.png assets/readme/source/showcase.html -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { --ink: #141414; --canvas: #f5f5f5; --hair: #d9d9d9; --paper: #fff; --marker: #fecc33; --ember: #ff8400; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    width: 1200px; height: 520px; overflow: hidden; position: relative;
+    background: var(--canvas);
+    background-image: linear-gradient(var(--hair) 1px, transparent 1px), linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+    background-size: 36px 36px; background-position: -1px -1px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .card { position: absolute; }
+  .shot {
+    border: 2.5px solid var(--ink); border-radius: 14px; overflow: hidden; background: var(--paper);
+    box-shadow: 7px 7px 0 var(--ink); /* the app's lifted-block side, not a blur */
+  }
+  .shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .tag {
+    display: inline-block; margin-bottom: 12px; padding: 7px 14px; border: 2px solid var(--ink); border-radius: 8px;
+    background: var(--paper); font-size: 15px; letter-spacing: 1px; color: var(--ink);
+  }
+  .tag b { color: var(--ember); margin-right: 6px; }
+  .a { left: 40px; top: 70px; width: 370px; transform: rotate(-2.2deg); }
+  .a .shot { height: 290px; }
+  .b { left: 405px; top: 34px; width: 420px; z-index: 2; }
+  .b .shot { height: 410px; }
+  .c { left: 820px; top: 84px; width: 345px; transform: rotate(2deg); }
+  .c .shot { height: 300px; }
+  .b .tag { background: var(--marker); }
+</style>
+</head>
+<body>
+  <div class="card a"><span class="tag"><b>01</b>ASK THE AGENT</span><div class="shot"><img src="../../../docs/screenshots/agent-answer.jpg" style="object-position: 0 62%"></div></div>
+  <div class="card b"><span class="tag"><b>02</b>GET A LAUNCH PLAN</span><div class="shot"><img src="../../../docs/screenshots/plan.png" style="object-position: 0 0"></div></div>
+  <div class="card c"><span class="tag"><b>03</b>SCOUT A REGION</span><div class="shot"><img src="../../../docs/screenshots/scout-judge.jpg" style="object-position: 0 18%"></div></div>
+</body>
+</html>

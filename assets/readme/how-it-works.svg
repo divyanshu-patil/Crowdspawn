@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">How Crowdspawn works: the LLM proposes, Qloo decides</title>
+  <desc id="desc">Your game goes to an LLM that only proposes names. Qloo Taste AI resolves each name and returns heatmaps, audiences and partners. A grounding check requires every city, name and number to match a Qloo result. The output is a plan, a verdict or an agent answer in which each claim cites its Qloo call.</desc>
+  <defs>
+    <pattern id="sketch" width="36" height="36" patternUnits="userSpaceOnUse" x="-1" y="-1">
+      <path d="M36 0H0V36" fill="none" stroke="#d9d9d9" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#141414"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="480" rx="24" fill="#f5f5f5"/>
+  <rect width="1200" height="480" rx="24" fill="url(#sketch)"/>
+
+  <g id="heading" transform="translate(56 0)">
+    <text x="0" y="66" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" letter-spacing="1.5" fill="#5c5c5c">HOW IT WORKS</text>
+    <text x="-2" y="114" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-1" fill="#141414">The LLM proposes. Qloo decides.</text>
+  </g>
+
+  <g id="steps" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#141414">
+    <!-- 01 your game -->
+    <g transform="translate(56 150)">
+      <rect x="6" y="6" width="246" height="170" rx="14" fill="#141414"/>
+      <rect width="246" height="170" rx="14" fill="#ffffff" stroke="#141414" stroke-width="2.5"/>
+      <text x="20" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700"><tspan fill="#ff8400">01 </tspan>YOUR GAME</text>
+      <text x="20" y="86">A title, a pitch</text>
+      <text x="20" y="114">and platforms, or</text>
+      <text x="20" y="142">a question to ask.</text>
+    </g>
+    <!-- 02 llm -->
+    <g transform="translate(340 150)">
+      <rect x="6" y="6" width="246" height="170" rx="14" fill="#141414"/>
+      <rect width="246" height="170" rx="14" fill="#ffffff" stroke="#141414" stroke-width="2.5"/>
+      <text x="20" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700"><tspan fill="#ff8400">02 </tspan>LLM</text>
+      <text x="20" y="86">Proposes names only:</text>
+      <text x="20" y="114">comparable games,</text>
+      <text x="20" y="142">films, shows, artists.</text>
+    </g>
+    <!-- 03 qloo -->
+    <g transform="translate(624 150)">
+      <rect x="6" y="6" width="246" height="170" rx="14" fill="#141414"/>
+      <rect width="246" height="170" rx="14" fill="#fecc33" stroke="#141414" stroke-width="2.5"/>
+      <text x="20" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700"><tspan fill="#141414">03 </tspan>QLOO TASTE AI</text>
+      <text x="20" y="86">Resolves every name,</text>
+      <text x="20" y="114">returns heatmaps,</text>
+      <text x="20" y="142">audiences, partners.</text>
+    </g>
+    <!-- 04 grounding -->
+    <g transform="translate(908 150)">
+      <rect x="6" y="6" width="246" height="170" rx="14" fill="#141414"/>
+      <rect width="246" height="170" rx="14" fill="#ffffff" stroke="#141414" stroke-width="2.5"/>
+      <text x="20" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700"><tspan fill="#ff8400">04 </tspan>GROUNDING</text>
+      <text x="20" y="86">Every city, name and</text>
+      <text x="20" y="114">number must match</text>
+      <text x="20" y="142">a Qloo result.</text>
+    </g>
+  </g>
+
+  <g id="arrows" stroke="#141414" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+    <path d="M306 235H334"/>
+    <path d="M590 235H618"/>
+    <path d="M874 235H902"/>
+    <path d="M1031 330V352"/>
+  </g>
+
+  <g id="output" transform="translate(56 360)">
+    <rect width="1104" height="64" rx="14" fill="#141414"/>
+    <text x="24" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700" letter-spacing="1" fill="#fecc33">PLAN · VERDICT · AGENT ANSWER</text>
+    <text x="1080" y="40" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#ffffff">Each claim cites the Qloo call behind it</text>
+  </g>
+
+  <text x="56" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" letter-spacing="0.5" fill="#5c5c5c">NO QLOO, NO OUTPUT · INVENTED FACTS ARE REJECTED, THEN REPLACED BY A TEMPLATE FROM THE QLOO RANKING</text>
+</svg>
