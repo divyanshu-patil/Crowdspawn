@@ -6,6 +6,8 @@ Crowdspawn gives indie game studios a launch plan built from [Qloo Taste AI](htt
 
 Built for the Qloo Agentic Hackathon 2026.
 
+![A Crowdspawn launch plan: spawn map and ranked cities](docs/screenshots/plan.png)
+
 ## Quick start
 
 Requirements: Node 24+, pnpm 11, [uv](https://docs.astral.sh/uv/) (Python 3.12 is fetched by uv).
