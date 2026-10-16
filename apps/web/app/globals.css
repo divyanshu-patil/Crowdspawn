@@ -295,6 +295,23 @@ img {
   align-items: center;
 }
 
+@media (max-width: 520px) {
+  .nav {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .nav-links {
+    gap: 14px;
+    margin-left: auto;
+  }
+  .nav-links .btn {
+    padding-inline: 12px;
+  }
+  .sfx-word {
+    display: none; /* the equaliser bars stay as the toggle */
+  }
+}
+
 .nav a.label {
   text-decoration: none;
   padding: 6px 0;

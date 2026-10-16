@@ -67,13 +67,14 @@ export function SoundToggle() {
         if (muted) play("on"); // the capture listener ran while still muted
       }}
       title={muted ? "Turn game sounds on" : "Turn game sounds off"}
+      aria-label={muted ? "Sound off" : "Sound on"}
     >
       <span className={`sfx-bars${muted ? "" : " live"}`} aria-hidden>
         <i />
         <i />
         <i />
       </span>
-      Sound {muted ? "off" : "on"}
+      <span className="sfx-word">Sound {muted ? "off" : "on"}</span>
     </button>
   );
 }
