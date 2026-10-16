@@ -582,8 +582,8 @@ export interface components {
             entity_id: string;
             /** Name */
             name: string;
-            /** Label */
-            label: string;
+            /** Region */
+            region: string;
             /** Lat */
             lat: number;
             /** Lon */

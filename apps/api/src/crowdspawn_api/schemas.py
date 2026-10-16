@@ -253,8 +253,8 @@ class Health(BaseModel):
 
 class PlaceHit(BaseModel):
     entity_id: str
-    name: str
-    label: str
+    name: str  # English or Latin-script name; Qloo often returns local script
+    region: str  # Latin-script parents below country level, e.g. "Faro" or "Orange, California"
     lat: float
     lon: float
 

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState, type PointerEvent as RPointerEven
 import Link from "next/link";
 import type { AreaActivity, EntityOut, PlaceHit, PlatformMix, ScoutArea, ScoutFit } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
-import { COUNTRIES, GRID, type CountryShape } from "../lib/countries";
+import { COUNTRIES, GRID, OWNER, type CountryShape } from "../lib/countries";
 import { lift as fmt } from "../lib/format";
 import { play } from "../lib/sfx";
 import { PLATFORMS, type Platform } from "../lib/validate";
@@ -17,6 +17,23 @@ const toXY = (lat: number, lon: number) => ({ x: (lon + 180) / GRID.step, y: (GR
 const toLatLon = (x: number, y: number) => ({ lat: GRID.latTop - y * GRID.step, lon: x * GRID.step - 180 });
 
 type CountryReading = { mix: PlatformMix; cities: string[] };
+
+/** English country name at a coordinate, from the generated tile grid (nearest land tile for coasts). */
+function countryAt(lat: number, lon: number): string | null {
+  const r0 = Math.floor((GRID.latTop - lat) / GRID.step);
+  const c0 = Math.floor((lon + 180) / GRID.step);
+  for (let ring = 0; ring <= 2; ring++)
+    for (let dr = -ring; dr <= ring; dr++)
+      for (let dc = -ring; dc <= ring; dc++) {
+        if (Math.max(Math.abs(dr), Math.abs(dc)) !== ring) continue;
+        const ch = OWNER[r0 + dr]?.[(c0 + dc + GRID.cols) % GRID.cols];
+        if (ch && ch !== ".") return COUNTRIES[ch.charCodeAt(0) - 48]?.name ?? null;
+      }
+  return null;
+}
+
+/** "Mumbai, India": the place, then its country in plain English. */
+const placeTitle = (h: PlaceHit) => [h.name, countryAt(h.lat, h.lon)].filter(Boolean).join(", ");
 type Pick = { lat: number; lon: number; label: string; country?: string };
 
 /** Mean of each platform over a country's points. */
@@ -102,7 +119,9 @@ export function RegionScout() {
         <p className="lede" style={{ maxWidth: 760 }}>
           Click anywhere on the map or search for a place. See what players there love, or test whether your game fits.
         </p>
-        <PlaceSearch onPick={(h) => scout({ lat: h.lat, lon: h.lon, label: h.label })} />
+        <PlaceSearch
+          onPick={(h) => scout({ lat: h.lat, lon: h.lon, label: placeTitle(h) })}
+        />
       </header>
 
       {activityError && <Notice tone="warn">{activityError}</Notice>}
@@ -163,7 +182,9 @@ function PlaceSearch({ onPick }: { onPick: (h: PlaceHit) => void }) {
       api
         .places(term)
         .then((r) => {
-          setHits(r);
+          // The same town can come back several times (city, district, metro area): keep one per label.
+          const seen = new Set<string>();
+          setHits(r.filter((h) => !seen.has(placeTitle(h) + h.region) && seen.add(placeTitle(h) + h.region)));
           setError(null);
         })
         .catch((e: ApiError) => setError(e.message))
@@ -182,7 +203,7 @@ function PlaceSearch({ onPick }: { onPick: (h: PlaceHit) => void }) {
           id="place-q"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search a place: Lagos, Kyiv, São Paulo…"
+          placeholder="Search a place: Lagos, Kyiv, Sao Paulo…"
           autoComplete="off"
         />
         <span className="btn" aria-hidden style={{ pointerEvents: "none" }}>
@@ -203,7 +224,8 @@ function PlaceSearch({ onPick }: { onPick: (h: PlaceHit) => void }) {
                   setHits(null);
                 }}
               >
-                <b>{h.name}</b> <span className="muted">{h.label}</span>
+                <b>{placeTitle(h)}</b>
+                {h.region && <span className="muted"> · {h.region}</span>}
               </button>
             </li>
           ))}

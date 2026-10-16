@@ -161,8 +161,53 @@ def test_places_keep_only_localities_with_coordinates(
     }
     res = client.get("/v1/scout/places", params={"q": "Lagos"})
     assert res.json() == [
-        {"entity_id": "L1", "name": "Lagos", "label": "Lagos, Nigeria", "lat": 6.5, "lon": 3.6}
+        {"entity_id": "L1", "name": "Lagos", "region": "", "lat": 6.5, "lon": 3.6}
     ]
+
+
+def aka(value: str, language: str | None = None) -> dict[str, str]:
+    return {"value": value} | ({"language": language} if language else {})
+
+
+@pytest.mark.parametrize(
+    ("hit", "query", "name"),
+    [
+        (
+            {"name": "Київ", "properties": {"akas": [aka("Kiew", "de"), aka("Kyiv", "nl")]}},
+            "Kyiv",
+            "Kyiv",
+        ),
+        (
+            {"name": "서울", "properties": {"akas": [aka("Seoul Special City", "en")]}},
+            "Seoul",
+            "Seoul Special City",
+        ),
+        ({"name": "Москва", "properties": {"akas": [aka("Moscó", "gl")]}}, "moscow", "Moscow"),
+        ({"name": "東京都", "properties": {"akas": [aka("東京都")]}}, "tokyo", "Tokyo"),
+        ({"name": "São Paulo"}, "sao paulo", "Sao Paulo"),
+        ({"name": "Hachiōji, Tokyo"}, "tokyo", "Hachioji, Tokyo"),
+        ({"name": "القاهرة", "properties": {"akas": [aka("Le Caire", "fr")]}}, "xyz", "Le Caire"),
+    ],
+)
+def test_place_names_are_plain_english(hit: dict[str, Any], query: str, name: str) -> None:
+    assert scout.english_name(hit, query) == name
+
+
+def test_place_region_is_the_latin_state_without_country() -> None:
+    def hit(name: str, *ancestors: tuple[str, str | None]) -> dict[str, Any]:
+        return {
+            "name": name,
+            "properties": {"ancestors": [{"name": n, "place": p} for n, p in ancestors]},
+        }
+
+    us = hit(
+        "Cairo", ("Grady", "county"), ("Georgia", "state"), ("United States of America", "country")
+    )
+    assert scout.english_region(us) == "Georgia"
+    assert scout.english_region(hit("Lagos", ("Faro", None), ("Portugal", "country"))) == "Faro"
+    assert scout.english_region(hit("Київ", ("Київська", None), ("Україна", "country"))) == ""
+    assert scout.english_region(hit("Riyadh", ("Riyadh", "state"), ("Saudi", "country"))) == ""
+    assert scout.english_region(hit("Mumbai", ("Maharashtra", "state"))) == "Maharashtra"
 
 
 def test_activity_reports_skipped_points(

@@ -5,9 +5,12 @@ Same Qloo heatmap math as S3 (scoring.py), applied to any point on the map. Qloo
 
 import asyncio
 import json
+import unicodedata
+from difflib import SequenceMatcher
 from functools import cache
 from pathlib import Path
 from statistics import fmean
+from typing import Any
 
 from ..errors import QlooError
 from ..qloo.client import QlooRun
@@ -91,6 +94,51 @@ async def activity(run: QlooRun) -> tuple[list[AreaActivity], list[str]]:
     ]
 
 
+def is_latin(text: str) -> bool:
+    """True when every letter is Latin script (accents allowed): 'São Paulo' yes, 'Київ' no."""
+    return all(not ch.isalpha() or "LATIN" in unicodedata.name(ch, "") for ch in text)
+
+
+def plain(text: str) -> str:
+    """Drop accents so names read as plain English letters: 'São Paulo' -> 'Sao Paulo'."""
+    return unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().strip()
+
+
+def loosely_matches(query: str, candidate: str) -> bool:
+    a, b = plain(query).lower(), plain(candidate).lower()
+    return bool(a) and (a == b or SequenceMatcher(None, a, b).ratio() >= 0.6)
+
+
+def english_name(hit: dict[str, Any], query: str) -> str:
+    """Qloo names places in local script; pick an English name in plain letters."""
+    name = str(hit.get("name", ""))
+    akas = [a for a in hit.get("properties", {}).get("akas", []) if isinstance(a, dict)]
+    english = [str(a["value"]) for a in akas if a.get("language") == "en" and a.get("value")]
+    if is_latin(name):
+        return plain(name)
+    if english:
+        return plain(english[0])
+    latin = [str(a["value"]) for a in akas if a.get("value") and is_latin(str(a["value"]))]
+    if any(loosely_matches(query, v) for v in latin) or not latin:
+        return plain(query).title()  # e.g. "Moscow" for Москва: the user's own English spelling
+    return plain(latin[0])
+
+
+def english_region(hit: dict[str, Any]) -> str:
+    """The state or province, in plain letters; the web app adds the English country name."""
+    parents = [a for a in hit.get("properties", {}).get("ancestors", []) if isinstance(a, dict)]
+    latin = [str(a["name"]) for a in parents if a.get("name") and is_latin(str(a["name"]))]
+    states = [str(a["name"]) for a in parents if a.get("place") in ("state", "province")]
+    pick = next((n for n in states if is_latin(n)), None)
+    if pick is None:
+        below_country = [
+            n for a, n in zip(parents, latin, strict=False) if a.get("place") != "country"
+        ]
+        pick = below_country[-1] if below_country else ""
+    region = plain(pick)
+    return "" if region.lower() == plain(str(hit.get("name", ""))).lower() else region
+
+
 async def search_places(run: QlooRun, q: str) -> list[PlaceHit]:
     _, body = await run.get("search", "/search", {"query": q, "types": LOCALITY, "take": "6"})
     out = []
@@ -100,8 +148,8 @@ async def search_places(run: QlooRun, q: str) -> list[PlaceHit]:
             out.append(
                 PlaceHit(
                     entity_id=r["entity_id"],
-                    name=r["name"],
-                    label=r.get("disambiguation") or r["name"],
+                    name=english_name(r, q),
+                    region=english_region(r),
                     lat=loc["lat"],
                     lon=loc["lon"],
                 )
