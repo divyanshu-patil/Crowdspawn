@@ -68,6 +68,9 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
         </div>
       </header>
 
+      {/* 2. The same question to an LLM alone, checked in Qloo: a labelled baseline */}
+      <VersusLLM plan={plan} />
+
       {plan.warnings.filter((w) => w.code !== "low_confidence_city").length > 0 && (
         <Notice tone="warn">
           <ul style={{ marginLeft: 16 }}>
@@ -212,9 +215,6 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
 
       {/* 5. Partners */}
       <Partners plan={plan} traceHref={traceHref} />
-
-      {/* 5a. The same question to an LLM alone, checked in Qloo: a labelled baseline */}
-      <VersusLLM plan={plan} />
 
       {/* 5b. Launch actions: deterministic, copied from the plan */}
       <LaunchActions plan={plan} />
