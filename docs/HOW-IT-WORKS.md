@@ -6,16 +6,19 @@ You're a small indie studio about to launch a game with a small marketing budget
 
 Store tags like "roguelike" or "cozy" describe your game, not the people who'd play it. Crowdspawn answers the people question using **Qloo**, a "taste" database that knows, from real consumption data, what fans of one thing also like and where they are.
 
-The idea in one line: **find where your players already are, and who else they love, before launch day.**
+The idea in one line: **find where your players already are, and who they love, with every number traced to Qloo.**
 
 ## How you use it
+
+The quickest way: type your game and your question into **Plan my launch** on the home page. The launch agent (below) does the steps for you and can hand its picks to a full plan. To build the plan by hand, use "Advanced: pick comps yourself":
 
 1. **Describe your game:** title, a short description, a few genre tags.
 2. **Pick 1–5 comparable games ("comps"):** existing games your players probably love, like Stardew Valley for a cozy farming game. Your new game usually isn't in Qloo yet, so the app works through these. You can search for them, or click "Suggest for me" and an AI proposes some.
 3. **Say where it's set (optional):** if your game draws on a real place, add a few films, shows or artists from there (Gully Boy, Sacred Games, Divine for a game set in Delhi). "Suggest from my description" proposes some; Qloo must find each one. Also pick your platforms (PC, console, mobile).
 4. **Pick cities and an optional budget,** for example the 18 default cities and $5,000. You can also add your previous game to see how your current players differ from the new target audience.
 5. **Watch it build.** A live progress log ticks through the steps, with a counter of Qloo calls.
-6. **Get your plan:** a map and ranked list of cities, the audience profile, partners, a budget split, and a written brief.
+6. **Get your plan:** a map and ranked list of cities, the audience profile, partners, a budget split, launch actions for the top 3 cities, and a written brief.
+7. **Act on it:** "Launch actions" lists, for each top city, the languages to localise into (from a static table, not Qloo), where to geo-target ads (centre and radius), the top local partners and the audience skew. Copy it as a checklist or download a CSV. "Scout this city" on any city opens the region scout with your plan's games.
 
 ## What happens behind the scenes
 
@@ -46,7 +49,7 @@ On 23 held-out games with no home-country setting, frozen before scoring, Google
 
 ## The launch agent
 
-`/agent` is the same engine run by an agent. You describe your game and your question; the agent decides what to do next, one Qloo tool at a time: search for comparable games, look up the culture your game draws on, rank cities, scout the top one, read the audience, find partners, then answer. You watch every step live. It can only use what the tools returned, so it can't invent a city or a number, and it can hand its picks straight to a full launch plan.
+**Plan my launch** (on the home page, or `/agent`) is the same engine run by an agent. You describe your game and your question; the agent decides what to do next, one Qloo tool at a time: search for comparable games, look up the culture your game draws on, rank cities, scout the top one, read the audience, find partners, then answer. You watch every step live. It can only use what the tools returned, so it can't invent a city or a number. Each claim in its answer cites the step it came from, shown as a chip like `s3` that jumps to that step. It can hand its picks straight to a full launch plan, and if the AI is down, "Build the plan yourself" takes your description to the form.
 
 ## The region scout
 
@@ -54,7 +57,7 @@ On 23 held-out games with no home-country setting, frozen before scoring, Google
 
 - **Hover a country** for its gamer taste match: how strongly people in its main cities match well-known PC, console and mobile games in Qloo's data, out of 100. It is a taste score, not a player count (Qloo has no player counts).
 - **Click a spot or search a town.** A ring marks a 40 km area (widened to 120 km between towns). You get the genres whose fans over-index there, the games locals love, and the platform mix.
-- **Check your game:** add comps and platforms to get a verdict for that exact spot.
+- **Check your game:** describe it (or arrive from a plan's "Scout this city") to get a verdict for that exact spot: a rarity word for a band of the spawn score, not a probability.
 
 ## The rules that make it trustworthy
 
@@ -80,8 +83,9 @@ Your browser  ──>  Website (Next.js, port 3000)  ──>  API (Python FastAP
 ## Where to look
 
 - `pnpm dev` starts everything; open http://localhost:3000.
-- **/sample** shows a finished plan and works without any keys.
-- **New plan** runs the full live flow.
+- **/sample** shows a finished plan (Long Haul, a trucking sim) and works without any keys; **/sample/delhi** shows a game with a real-world setting.
+- **Plan my launch** (home page or `/agent`) lets the launch agent plan for you, step by step.
+- **/plan/new** builds a plan by hand.
 - **/scout** explores any place on the map.
-- **/agent** lets the launch agent plan for you, step by step.
+- **/accuracy** shows how the ranking did against real games, losses included.
 - [`../README.md`](../README.md) has the setup; [`qloo-contract.md`](qloo-contract.md) lists the verified Qloo calls.

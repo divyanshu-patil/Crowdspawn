@@ -59,7 +59,7 @@ Before you open a PR, run what CI runs:
 pnpm turbo run lint check-types test build
 ```
 
-CI (`.github/workflows/ci.yml`) runs exactly this with `APP_ENV=test` and no secrets.
+CI (`.github/workflows/ci.yml`) runs exactly this with `APP_ENV=test` and no secrets. The web tests run after the web build, because they read the built app's data.
 
 ## Repo layout
 
@@ -101,7 +101,10 @@ These rules aren't optional. Tests enforce several of them.
   ```
 
   The key is read from `.env` and never written to the fixture.
-- **Sample plan:** `uv run python scripts/export_plan_fixtures.py <plan_id> <fixture_dir> --sample` exports a finished plan as fixtures and as the `/sample` data, with no live calls.
+- **Sample plan:** `uv run python scripts/export_plan_fixtures.py <plan_id> <fixture_dir> --sample` exports a finished plan as fixtures and as the `/sample` data, with no live calls. Then rebuild the README hero with `python3 assets/readme/source/build_hero.py` (its map crop may need moving to the new top 3 cities). Web tests that need a fixed plan use `sample-delhi-plan.json`, so they don't change.
+- **Partner fixtures:** `uv run python scripts/record_partner_fixtures.py <fixture-dir-name>` re-records a plan fixture's partner (S5) calls (live).
+- **Before a demo:** `uv run python scripts/warm_demo.py <api-url>` runs the demo inputs, both samples' "Scout this city" links and the agent's first example once, so they answer from cache.
+- **Owner tools:** `scripts/studio_validation.py` compares a plan with a studio's by-country sales CSV; `scripts/usage_stats.py` reads plan and run counts from the database. Raw studio data stays in the git-ignored `apps/api/data/studio/`.
 - **Scout snapshot:** `uv run python scripts/snapshot_scout.py` refreshes the 50 bundled places. It's live and costs about 19 calls per uncached place.
 - **Web:** Vitest, in `apps/web/tests`.
 - **Changing an API schema:** run `pnpm contracts` and commit the regenerated types with the change.

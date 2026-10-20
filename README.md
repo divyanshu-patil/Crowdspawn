@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="#try-it-in-2-minutes">Try it</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#three-ways-in">Features</a> ·
   <a href="#how-it-works">How it works</a> ·
@@ -16,36 +17,49 @@
   <img src="./assets/readme/showcase.jpg" width="100%" alt="Three real screens: the launch agent's answer, a launch plan with its spawn map, and a Legendary verdict from the region scout">
 </p>
 
-Crowdspawn gives indie game studios a launch plan built from [Qloo Taste AI](https://qloo.com) data. It shows the cities where fans of games like yours over-index against all gamers, who that audience is, and which artists, podcasts, films and brands they love. An LLM explains the result but never supplies a fact: every city, name and number traces back to the Qloo call that produced it.
+**Crowdspawn tells indie game studios where their players already are, and who they love, with every number traced to Qloo.**
 
-New here? Press **Tour** in the app's nav for a one-minute guided walk through the map, a full plan, the region scout and the agent.
+Describe your game and an agent builds a launch plan from [Qloo Taste AI](https://qloo.com) data: the cities where fans of games like yours over-index against all gamers, who that audience is, which artists, podcasts, films and brands they love more than gamers in general, and what to do in your top 3 cities. An LLM plans the steps and writes the words but never supplies a fact: every city, name and number traces back to the Qloo call behind it. It is a taste-informed starting hypothesis, not a forecast; [how accurate it is](#is-it-right) is published below.
+
+## Try it in 2 minutes
+
+Live demo: `<live demo URL — Owner>`
+
+1. **Open the sample** (`/sample`): a saved plan for Long Haul, a trucking sim. The note at the top says what our evaluation found for this game.
+2. **Type a game into "Plan my launch"** on the home page, or click an example. Each agent step streams in; every claim in the answer has a chip that jumps to the step behind it.
+3. **Click a city, then "Scout this city"**: the region scout opens with your plan's games and judges that city against 8 world cities.
+
+If the day's Qloo budget runs out, new plans and scouts fail closed with a clear message. The samples (`/sample`, `/sample/delhi`), the accuracy page (`/accuracy`), the 50 pre-scouted places on `/scout`, and any input asked before (the demo inputs are warmed) still answer from cache. Press **Tour** in the nav for a one-minute walk-through.
 
 ## Three ways in
 
-### 01 · Ask the launch agent — `/agent`
+### 01 · Plan my launch — `/` · `/agent`
 
-Describe your game and your question. An LLM plans step by step with Qloo tools (`search_games`, `search_culture`, `find_place`, `rank_cities`, `scout_place`, `audience`, `find_partners`, `finish`), and each step streams live with its reasoning and what Qloo returned.
+One box on the home page: describe your game and what you want to decide. An LLM plans step by step with Qloo tools (`search_games`, `search_culture`, `find_place`, `rank_cities`, `scout_place`, `audience`, `find_partners`, `finish`), and each step streams live with its reasoning and what Qloo returned.
 
 | Each step, live | The answer, checked against Qloo |
 |---|---|
 | ![Agent steps: searching comparable games on Qloo](docs/screenshots/agent-steps.jpg) | ![Agent answer: launch in Tokyo, with partner artists, podcasts and films](docs/screenshots/agent-answer.jpg) |
 
 - **It can't invent ids.** The agent refers to entities by handles the server issues (`g1`, `c2`, `p1`).
-- **It can't invent facts.** Its answer may only use names and numbers from tool results. If it fails the check, it retries once, then a template built from the Qloo ranking replaces it.
+- **It can't invent facts.** Its answer may only use names and numbers from tool results, and every sentence that names a city, a partner or a number must cite the step it came from (`[s3]`). The citations render as chips that scroll to that step. If the answer fails the check twice, a template built from the Qloo ranking replaces it.
 - **It's bounded.** At most 10 steps, 12 LLM calls and 150 Qloo calls per run. Auth, budget and rate-limit errors fail closed.
-- **It hands off.** "Open as a launch plan" fills the plan form with the agent's picks.
+- **It hands off.** "Open as a launch plan" fills the plan form with the agent's picks. If the LLM is down, "Build the plan yourself" carries your description to the form, which needs no LLM.
 
-### 02 · Get a launch plan — `/plan/new` · `/sample`
+### 02 · Get a launch plan — `/sample` · `/plan/new`
 
-Three levels: your game and platforms, then comparable games and the culture your setting draws on (the LLM suggests names; Qloo must resolve them), then the cities to score. The plan streams in step by step.
+From the agent's hand-off, or by hand under "Advanced: pick comps yourself": your game and platforms, then comparable games and the culture your setting draws on (the LLM suggests names; Qloo must resolve them), then the cities to score. The plan streams in step by step.
 
 ![Launch plan: spawn map, top spawn points and ranked cities with budget split](docs/screenshots/plan.png)
 
-- **Spawn points:** cities ranked by spawn score, each with a confidence level and a budget share.
-- **Rivals and audience:** the games Qloo says your comps' fans also love, with why, plus the audience's age and gender skew.
-- **Allies to recruit:** artists, podcasts, films and brands the audience loves, globally and in the top cities. These are co-marketing and sponsorship leads.
-- **Battle plan:** a brief written only from the plan's facts. Each citation chip (`q12`) opens the Qloo call behind it.
+- **Spawn points: where to launch.** Cities ranked by spawn score, each with a confidence level, a budget share and a "Scout this city" link.
+- **Rivals: games your fans also love,** with Qloo's reasons. **Who's in the party:** the audience's age and gender skew.
+- **Allies: partners to recruit.** Artists, podcasts, films and brands ranked by lift: how much more your comps' fans like them than gamers in general do, globally and in each top city. Anything at or below ×1 is dropped.
+- **Launch actions: what to do in your top 3 cities.** Languages to localise into, a geo-target (centre and radius), the top local partners and the audience skew, as a checklist to copy or a CSV. Copied from the plan, with no AI.
+- **Battle plan: the brief.** Written only from the plan's facts. Each citation chip (`q12`) opens the Qloo call behind it.
 - **Gap view (optional):** tastes you share with your last game, and new ground.
+
+![Launch actions for Istanbul, Delhi and Warsaw: languages, geo-target, local partners and audience](docs/screenshots/plan-actions.png)
 
 <details>
 <summary><b>See the rest of the plan</b>: rivals, partners, brief, call trace, and the form</summary>
@@ -54,7 +68,7 @@ Three levels: your game and platforms, then comparable games and the culture you
 
 ![Rivals scouted and the audience's age and gender skew](docs/screenshots/plan-rivals.png)
 
-![Partner cards: artists with affinity and Qloo's reasons, global and local](docs/screenshots/plan-partners.png)
+![Partner cards: affinity, lift against all gamers and Qloo's reasons, global and local](docs/screenshots/plan-partners.png)
 
 ![Brief with citation chips, and the limits box](docs/screenshots/plan-brief.png)
 
@@ -74,7 +88,7 @@ Click anywhere, search a town or hover a popular place to zoom to it. You see th
 
 ![What works in Mumbai: genres that over-index, platform taste match and games locals love](docs/screenshots/scout-area.jpg)
 
-**Will my game work here?** Describe your game and get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common). Each word is a band of the spawn score, stricter when Qloo's data is thinner: Legendary needs 1.15 or more at high confidence. It is not a probability. You also get a ranking against 8 world cities and the names Qloo matched.
+**Will my game work here?** Describe your game (or arrive from a plan's "Scout this city", which brings the plan's games, so the LLM proposes no names) and get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common). Each word is a band of the spawn score, stricter when Qloo's data is thinner: Legendary needs 1.15 or more at high confidence. It is not a probability. You also get a ranking against 8 world cities and the names Qloo matched.
 
 ![Legendary verdict for a Delhi-set game in Mumbai, with the world ranking and what Qloo matched](docs/screenshots/scout-judge.jpg)
 
@@ -94,7 +108,9 @@ Every city is ranked by one transparent score. Each factor is a ratio of Qloo af
 - **Platform fit:** how strong your platforms are in that city.
 - **Culture fit:** how concentrated fans of your setting's films, shows and music are, relative to the average city.
 
-**Is it right?** Not yet, on its own. We wrote 23 held-out test games with no home-country setting and froze them before scoring. For each, Google Trends interest for a real shipped game like it (never a comp) is the truth, and every method ranks the same candidate countries:
+### Is it right?
+
+Not yet, on its own. We wrote 23 held-out test games with no home-country setting and froze them before scoring. For each, Google Trends interest for a real shipped game like it (never a comp) is the truth, and every method ranks the same candidate countries:
 
 | Method | Trends #1 is our #1 | Trends #1 in our top 3 | Mean ρ |
 |---|---|---|---|
@@ -102,7 +118,7 @@ Every city is ranked by one transparent score. Each factor is a ratio of Qloo af
 | LLM only (gemma4:31b) | 4 of 23 | 7 of 23 | 0.54 |
 | Popularity (all gamers, no game signal) | 0 of 23 | 1 of 23 | -0.33 |
 
-An LLM with no Qloo data did better. The ranking has a city bias: its #1 city was Stockholm for 9 and Istanbul for 6 of the 23 games, whatever the genre. It does better when a game has a real-world setting, where culture anchors carry the signal. On the 10-game tuning set (9 shipped games and 1 cancelled one, Mumbai Gullies) it found the #1 in 6 of 10 (5 of the 9 shipped), the same as the LLM (6 of 10), but the scorer was designed on those games. A Steam-review backtest on 6 shipped games also lost to plain popularity. Everything is published: [`docs/scenario-results.md`](docs/scenario-results.md), [`docs/backtest-results.md`](docs/backtest-results.md), and the app's "How accurate is it?" page.
+An LLM with no Qloo data did better. The ranking has a city bias: its #1 city was Stockholm for 9 and Istanbul for 6 of the 23 games, whatever the genre. It does better when a game has a real-world setting, where culture anchors carry the signal. On the 10-game tuning set (9 shipped games and 1 cancelled one, Mumbai Gullies) it found the #1 in 6 of 10 (5 of the 9 shipped), the same as the LLM (6 of 10), but the scorer was designed on those games. A Steam-review backtest on 6 shipped games also lost to plain popularity. Everything is published: [`docs/scenario-results.md`](docs/scenario-results.md), [`docs/backtest-results.md`](docs/backtest-results.md), and the app's "How accurate is it?" page (`/accuracy`). Beyond the country ranking, Qloo supplies what an LLM would have to guess: the audience skew, partners measured against all gamers in each city, and a trace for every number.
 
 <details>
 <summary><b>The Qloo call chain</b>: each plan step and the call behind it</summary>
@@ -172,7 +188,9 @@ To put a demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup and con
 - **An affinity index, not a sales or wishlist forecast.** Scout verdicts (Legendary to Common) are spawn-score bands, not probabilities.
 - **Comparable games.** New indie games are rarely in Qloo, so plans work through comparable games; 16 of 20 recent indie titles we tested resolved.
 - **Accuracy limits.** On held-out games with no real-world setting the country ranking lost to an LLM without Qloo data, and a [Steam-review backtest](docs/backtest-results.md) lost to plain popularity. City-level accuracy can't be validated with free public data. Treat the ranking as a starting hypothesis.
+- **Local partners can be weak leads.** For the trucking sample, Istanbul's lists differ from the global ones but are US podcasts and Hollywood films with small lifts (×1.006–1.032).
 - **Brands are global.** Qloo's brand affinity ignores location.
+- **Launch actions:** languages come from a static table, not Qloo, and the CSV is a plain spreadsheet, not an ad platform's import format.
 
 ## Who it's for
 
