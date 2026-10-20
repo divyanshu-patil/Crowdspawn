@@ -172,6 +172,36 @@ class Partners(BaseModel):
     brand: list[Partner] = []
 
 
+class LLMPick(BaseModel):
+    """A name an LLM suggested with no Qloo data, then looked up in Qloo."""
+
+    name: str  # as the LLM wrote it
+    entity_id: str | None = None  # None: Qloo found no entity of this type with a matching name
+    qloo_name: str | None = None
+    lift: float | None = None  # same lift as Qloo's partners: comp fans / all gamers
+    image_url: str | None = None
+    result_id: str | None = None
+
+
+class LLMOnlyKind(BaseModel):
+    kind: PartnerType
+    picks: list[LLMPick]
+    found: int  # picks Qloo could resolve
+    median_lift: float | None  # over the found picks
+    qloo_median_lift: float | None  # the plan's own global list, for comparison
+    overlap: int  # picks also on the plan's global list
+
+
+class LLMOnly(BaseModel):
+    """What an LLM alone answers for the same inputs. A labelled baseline, never part of the plan."""
+
+    plan_id: str
+    provider: str
+    model: str
+    cities: list[str]  # region ids in the LLM's order, limited to the plan's candidates
+    partners: list[LLMOnlyKind]
+
+
 class Gap(BaseModel):
     shared: list[str]
     target_only: list[str]

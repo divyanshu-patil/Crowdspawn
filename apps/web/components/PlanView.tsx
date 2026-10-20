@@ -6,7 +6,8 @@ import type { City, Plan, PartnerType } from "@repo/contracts";
 import { SpawnMap } from "./SpawnMap";
 import { Cite, ConfidenceBadge, CONFIDENCE_HELP, CountUp, Notice, RichText, Stat } from "./ui";
 import { lift, pct, planToMarkdown, rarity, skew, usd } from "../lib/format";
-import { audienceLine, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
+import { audienceLine, channels, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
+import { VersusLLM } from "./VersusLLM";
 
 const TABS: { key: PartnerType; label: string }[] = [
   { key: "artist", label: "Artists" },
@@ -212,6 +213,9 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
       {/* 5. Partners */}
       <Partners plan={plan} traceHref={traceHref} />
 
+      {/* 5a. The same question to an LLM alone, checked in Qloo: a labelled baseline */}
+      <VersusLLM plan={plan} />
+
       {/* 5b. Launch actions: deterministic, copied from the plan */}
       <LaunchActions plan={plan} />
 
@@ -400,6 +404,7 @@ function CityRow({
 function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
   const [tab, setTab] = useState<PartnerType>("artist");
   const items = plan.partners[tab] ?? [];
+  const ranked = channels(plan);
   return (
     <section className="section" aria-labelledby="partners-h">
       <div className="spread">
@@ -413,6 +418,18 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
         for collaborations. Sorted by how much more your fans like each one than gamers in general (×lift). Local picks
         compare against gamers in that city.
       </p>
+      {ranked.length > 1 && (
+        <p style={{ marginTop: 12, maxWidth: 760 }} data-testid="channels">
+          <b>Where to market first:</b>{" "}
+          {ranked.map((c, i) => (
+            <span key={c.kind}>
+              {i > 0 && " › "}
+              {TABS.find((t) => t.key === c.kind)!.label} ×{c.lift.toFixed(2)}
+            </span>
+          ))}
+          <span className="muted"> (median lift of each list: the medium where these fans stand out most)</span>
+        </p>
+      )}
       <div className="tabs" role="tablist" style={{ marginTop: 20 }}>
         {TABS.map((t) => (
           <button

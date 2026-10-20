@@ -1,4 +1,4 @@
-import type { Plan } from "@repo/contracts";
+import type { PartnerType, Plan } from "@repo/contracts";
 import { skew } from "./format";
 
 /** One top city's launch actions (J18). Deterministic: every value is copied from the plan, nothing is generated. */
@@ -74,4 +74,22 @@ export function launchCsv(plan: Plan, rows: LaunchRow[]): string {
       .join(","),
   );
   return [head.join(","), ...body].join("\n") + "\n";
+}
+
+/** Where to market first: partner types ordered by the median lift of the plan's global list (Qloo data only). */
+export function channels(plan: Plan): { kind: PartnerType; lift: number }[] {
+  const kinds: PartnerType[] = ["artist", "podcast", "movie", "brand"];
+  const median = (xs: number[]) => {
+    const s = [...xs].sort((a, b) => a - b);
+    const m = Math.floor(s.length / 2);
+    return s.length % 2 ? s[m]! : (s[m - 1]! + s[m]!) / 2;
+  };
+  return kinds
+    .map((kind) => ({
+      kind,
+      lifts: (plan.partners[kind] ?? []).filter((p) => !p.city && p.lift != null).map((p) => p.lift!),
+    }))
+    .filter((c) => c.lifts.length >= 3)
+    .map((c) => ({ kind: c.kind, lift: median(c.lifts) }))
+    .sort((a, b) => b.lift - a.lift);
 }

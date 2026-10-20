@@ -1,0 +1,255 @@
+{
+ "plan_id": "sample",
+ "provider": "ollama_cloud",
+ "model": "gemma4:31b",
+ "cities": [
+  "chi",
+  "yto",
+  "ber",
+  "waw",
+  "syd",
+  "lax",
+  "nyc",
+  "lon",
+  "par",
+  "sel",
+  "tyo",
+  "sao",
+  "mex",
+  "ist",
+  "dxb",
+  "jkt",
+  "bom",
+  "del"
+ ],
+ "partners": [
+  {
+   "kind": "artist",
+   "picks": [
+    {
+     "name": "Chris Stapleton",
+     "entity_id": "50D63FB3-3D36-46FD-B047-EC073A3D35BD",
+     "qloo_name": "Chris Stapleton",
+     "lift": 1.0107,
+     "image_url": "https://images.qloo.com/i/50D63FB3-3D36-46FD-B047-EC073A3D35BD-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Colter Wall",
+     "entity_id": "2D3A5E81-92E2-48C4-99F7-9AB7AC02C48D",
+     "qloo_name": "Colter Wall",
+     "lift": 1.013,
+     "image_url": "https://images.qloo.com/i/2D3A5E81-92E2-48C4-99F7-9AB7AC02C48D-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Sturgill Simpson",
+     "entity_id": "7A02EDC3-E954-4E25-B62A-B76744700CB6",
+     "qloo_name": "Sturgill Simpson",
+     "lift": 1.0058,
+     "image_url": "https://images.qloo.com/i/7A02EDC3-E954-4E25-B62A-B76744700CB6-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Zach Bryan",
+     "entity_id": "3221FBAC-2C10-4BAA-ADE0-AB40D02D5670",
+     "qloo_name": "Zach Bryan",
+     "lift": 0.9969,
+     "image_url": "https://images.qloo.com/i/3221FBAC-2C10-4BAA-ADE0-AB40D02D5670-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Tyler Childers",
+     "entity_id": "9B5028F6-5808-4BF4-A623-24C6C148D24B",
+     "qloo_name": "Tyler Childers",
+     "lift": 1.0059,
+     "image_url": "https://images.qloo.com/i/9B5028F6-5808-4BF4-A623-24C6C148D24B-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Alan Jackson",
+     "entity_id": "A2589897-5975-4489-9171-4CD0D8BFAF1C",
+     "qloo_name": "Alan Jackson",
+     "lift": 1.0261,
+     "image_url": "https://images.qloo.com/i/A2589897-5975-4489-9171-4CD0D8BFAF1C-420x-auto.jpg",
+     "result_id": "q25"
+    }
+   ],
+   "found": 6,
+   "median_lift": 1.0083,
+   "qloo_median_lift": 1.0331,
+   "overlap": 0
+  },
+  {
+   "kind": "podcast",
+   "picks": [
+    {
+     "name": "The Joe Rogan Experience",
+     "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+     "qloo_name": "The Joe Rogan Experience",
+     "lift": 0.955,
+     "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+     "result_id": "q27"
+    },
+    {
+     "name": "The Daily",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Hardcore History",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "WTF with Marc Maron",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "The Tim Ferriss Show",
+     "entity_id": "70EC9849-ADC9-4319-AF32-E60762AF012A",
+     "qloo_name": "The Tim Ferriss Show",
+     "lift": 0.9782,
+     "image_url": "https://images.qloo.com/i/70EC9849-ADC9-4319-AF32-E60762AF012A-420x-auto.jpg",
+     "result_id": "q27"
+    },
+    {
+     "name": "Stuff You Should Know",
+     "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+     "qloo_name": "Stuff You Should Know",
+     "lift": 0.9595,
+     "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+     "result_id": "q27"
+    }
+   ],
+   "found": 3,
+   "median_lift": 0.9595,
+   "qloo_median_lift": 1.0778,
+   "overlap": 0
+  },
+  {
+   "kind": "movie",
+   "picks": [
+    {
+     "name": "Convoy",
+     "entity_id": "B208A119-93B6-412A-9B4E-127A54DB00E2",
+     "qloo_name": "Convoy",
+     "lift": 1.0671,
+     "image_url": "https://images.qloo.com/i/B208A119-93B6-412A-9B4E-127A54DB00E2-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Duel",
+     "entity_id": "DE5CE14F-5EA0-4CFE-9A72-3B5F7371E46C",
+     "qloo_name": "Duel",
+     "lift": 1.0356,
+     "image_url": "https://images.qloo.com/i/DE5CE14F-5EA0-4CFE-9A72-3B5F7371E46C-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Mad Max: Fury Road",
+     "entity_id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+     "qloo_name": "Mad Max: Fury Road",
+     "lift": 0.984,
+     "image_url": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "The Martian",
+     "entity_id": "583A8819-890C-44CE-AC7E-C64117B318DA",
+     "qloo_name": "The Martian",
+     "lift": 0.992,
+     "image_url": "https://images.qloo.com/i/583A8819-890C-44CE-AC7E-C64117B318DA-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Cars",
+     "entity_id": "D0C32A97-669A-45E3-9B6B-5E442FA6E260",
+     "qloo_name": "Cars",
+     "lift": 0.9567,
+     "image_url": "https://images.qloo.com/i/D0C32A97-669A-45E3-9B6B-5E442FA6E260-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Fast & Furious",
+     "entity_id": "F01AC034-179A-47F3-8ADF-7A4D77559DCF",
+     "qloo_name": "Fast & Furious",
+     "lift": 1.0253,
+     "image_url": "https://images.qloo.com/i/F01AC034-179A-47F3-8ADF-7A4D77559DCF-420x-auto.jpg",
+     "result_id": "q29"
+    }
+   ],
+   "found": 6,
+   "median_lift": 1.0087,
+   "qloo_median_lift": 1.0409,
+   "overlap": 0
+  },
+  {
+   "kind": "brand",
+   "picks": [
+    {
+     "name": "John Deere",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "CAT",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Scania",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Volvo Trucks",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Peterbilt",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Kenworth",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    }
+   ],
+   "found": 0,
+   "median_lift": null,
+   "qloo_median_lift": 1.0103,
+   "overlap": 0
+  }
+ ]
+}

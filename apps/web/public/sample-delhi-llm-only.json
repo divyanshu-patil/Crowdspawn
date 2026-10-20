@@ -1,0 +1,255 @@
+{
+ "plan_id": "sample-delhi",
+ "provider": "ollama_cloud",
+ "model": "gemma4:31b",
+ "cities": [
+  "del",
+  "bom",
+  "mex",
+  "sao",
+  "jkt",
+  "ist",
+  "nyc",
+  "lax",
+  "lon",
+  "chi",
+  "yto",
+  "ber",
+  "par",
+  "waw",
+  "dxb",
+  "sel",
+  "tyo",
+  "syd"
+ ],
+ "partners": [
+  {
+   "kind": "artist",
+   "picks": [
+    {
+     "name": "Travis Scott",
+     "entity_id": "7D9B2B36-0EE8-4211-B745-13FB8F4002EB",
+     "qloo_name": "Travi$ Scott",
+     "lift": 0.9469,
+     "image_url": "https://images.qloo.com/i/7D9B2B36-0EE8-4211-B745-13FB8F4002EB-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Kendrick Lamar",
+     "entity_id": "C915A918-39C5-47A3-A101-D9FA1DECBD9C",
+     "qloo_name": "Kendrick Lamar",
+     "lift": 0.9872,
+     "image_url": "https://images.qloo.com/i/C915A918-39C5-47A3-A101-D9FA1DECBD9C-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Drake",
+     "entity_id": "FAA55DC8-6030-4CC8-9BA6-4668295C3FA7",
+     "qloo_name": "Drake",
+     "lift": 0.9687,
+     "image_url": "https://images.qloo.com/i/FAA55DC8-6030-4CC8-9BA6-4668295C3FA7-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "21 Savage",
+     "entity_id": "3D8CC570-78AB-4989-AC0E-34FD09E39601",
+     "qloo_name": "21 Savage",
+     "lift": 0.9577,
+     "image_url": "https://images.qloo.com/i/3D8CC570-78AB-4989-AC0E-34FD09E39601-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "Post Malone",
+     "entity_id": "ADB51D79-491A-49E7-9A99-E1F739382E9F",
+     "qloo_name": "Post Malone",
+     "lift": 0.908,
+     "image_url": "https://images.qloo.com/i/ADB51D79-491A-49E7-9A99-E1F739382E9F-420x-auto.jpg",
+     "result_id": "q25"
+    },
+    {
+     "name": "A$AP Rocky",
+     "entity_id": "E39030CC-3348-409F-B89F-66B4EA92BFD8",
+     "qloo_name": "A$AP Rocky",
+     "lift": 0.9651,
+     "image_url": "https://images.qloo.com/i/E39030CC-3348-409F-B89F-66B4EA92BFD8-420x-auto.jpg",
+     "result_id": "q25"
+    }
+   ],
+   "found": 6,
+   "median_lift": 0.9614,
+   "qloo_median_lift": null,
+   "overlap": 0
+  },
+  {
+   "kind": "podcast",
+   "picks": [
+    {
+     "name": "The Joe Rogan Experience",
+     "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+     "qloo_name": "The Joe Rogan Experience",
+     "lift": 0.9789,
+     "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+     "result_id": "q27"
+    },
+    {
+     "name": "H3 Podcast",
+     "entity_id": "E017B84E-B669-4AC1-80BC-5A6A7F68DD86",
+     "qloo_name": "H3 Podcast",
+     "lift": 0.928,
+     "image_url": "https://images.qloo.com/i/E017B84E-B669-4AC1-80BC-5A6A7F68DD86-420x-auto.jpg",
+     "result_id": "q27"
+    },
+    {
+     "name": "Trash Taste",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "Wave Sportz",
+     "entity_id": null,
+     "qloo_name": null,
+     "lift": null,
+     "image_url": null,
+     "result_id": null
+    },
+    {
+     "name": "The Yard",
+     "entity_id": "8F160AF5-07F8-4C6E-9CE2-0D95FC45A68A",
+     "qloo_name": "The Yard",
+     "lift": 0.9491,
+     "image_url": "https://images.qloo.com/i/8F160AF5-07F8-4C6E-9CE2-0D95FC45A68A-420x-auto.jpg",
+     "result_id": "q27"
+    },
+    {
+     "name": "Million Dollaz Worth of Game",
+     "entity_id": "FF781025-1017-44B6-AB53-4FC82AA2EEA9",
+     "qloo_name": "Million Dollaz Worth Of Game",
+     "lift": 0.9482,
+     "image_url": "https://images.qloo.com/i/FF781025-1017-44B6-AB53-4FC82AA2EEA9-420x-auto.jpg",
+     "result_id": "q27"
+    }
+   ],
+   "found": 4,
+   "median_lift": 0.9486,
+   "qloo_median_lift": null,
+   "overlap": 0
+  },
+  {
+   "kind": "movie",
+   "picks": [
+    {
+     "name": "The Godfather",
+     "entity_id": "F99FB2EB-7253-4E9B-B982-D21D29BFB238",
+     "qloo_name": "The Godfather",
+     "lift": 1.0498,
+     "image_url": "https://images.qloo.com/i/F99FB2EB-7253-4E9B-B982-D21D29BFB238-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Scarface",
+     "entity_id": "B6CAF8E7-5E34-4BBC-8870-0B3513F750AC",
+     "qloo_name": "Scarface",
+     "lift": 1.1124,
+     "image_url": "https://images.qloo.com/i/B6CAF8E7-5E34-4BBC-8870-0B3513F750AC-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Training Day",
+     "entity_id": "16B6B5AF-890B-4695-80DE-D62EE2A2FC3E",
+     "qloo_name": "Training Day",
+     "lift": 1.2217,
+     "image_url": "https://images.qloo.com/i/16B6B5AF-890B-4695-80DE-D62EE2A2FC3E-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Heat",
+     "entity_id": "BEB35893-ABB7-4E0C-8D02-65B43CAF74D0",
+     "qloo_name": "Heat",
+     "lift": 1.1163,
+     "image_url": "https://images.qloo.com/i/BEB35893-ABB7-4E0C-8D02-65B43CAF74D0-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "Goodfellas",
+     "entity_id": "7B808044-FAFA-4A21-A7E0-860D5857E10D",
+     "qloo_name": "GoodFellas",
+     "lift": 1.1071,
+     "image_url": "https://images.qloo.com/i/7B808044-FAFA-4A21-A7E0-860D5857E10D-420x-auto.jpg",
+     "result_id": "q29"
+    },
+    {
+     "name": "The Wolf of Wall Street",
+     "entity_id": "5CBB070C-71A4-4DC9-A799-A00DBCD31CF5",
+     "qloo_name": "The Wolf of Wall Street",
+     "lift": 1.0738,
+     "image_url": "https://images.qloo.com/i/5CBB070C-71A4-4DC9-A799-A00DBCD31CF5-420x-auto.jpg",
+     "result_id": "q29"
+    }
+   ],
+   "found": 6,
+   "median_lift": 1.1098,
+   "qloo_median_lift": null,
+   "overlap": 0
+  },
+  {
+   "kind": "brand",
+   "picks": [
+    {
+     "name": "Nike",
+     "entity_id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+     "qloo_name": "Nike",
+     "lift": 1.0083,
+     "image_url": "https://images.qloo.com/i/C70CE2B8-0AD1-4150-BF18-5A6347F2E860-420x-auto.jpg",
+     "result_id": "q31"
+    },
+    {
+     "name": "Adidas",
+     "entity_id": "FCEA7CA1-1D40-4680-B337-E74594D9BCF1",
+     "qloo_name": "Adidas",
+     "lift": 1.0033,
+     "image_url": "https://images.qloo.com/i/FCEA7CA1-1D40-4680-B337-E74594D9BCF1-420x-auto.jpg",
+     "result_id": "q31"
+    },
+    {
+     "name": "Red Bull",
+     "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+     "qloo_name": "Red Bull",
+     "lift": 0.9862,
+     "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+     "result_id": "q31"
+    },
+    {
+     "name": "Monster Energy",
+     "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+     "qloo_name": "Monster Energy",
+     "lift": 0.9963,
+     "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+     "result_id": "q31"
+    },
+    {
+     "name": "Supreme",
+     "entity_id": "7161ADA0-8DC8-471E-A4A8-61EE15578400",
+     "qloo_name": "Supreme",
+     "lift": 0.9824,
+     "image_url": "https://images.qloo.com/i/7161ADA0-8DC8-471E-A4A8-61EE15578400-420x-auto.jpg",
+     "result_id": "q31"
+    },
+    {
+     "name": "Razer",
+     "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+     "qloo_name": "Razer",
+     "lift": 0.9875,
+     "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+     "result_id": "q31"
+    }
+   ],
+   "found": 6,
+   "median_lift": 0.9919,
+   "qloo_median_lift": null,
+   "overlap": 1
+  }
+ ]
+}

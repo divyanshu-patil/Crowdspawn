@@ -33,6 +33,9 @@ export type RankedPlace = S["RankedPlace"];
 export type AgentRun = S["AgentRun"];
 export type AgentStep = S["AgentStepOut"];
 export type PlanDraft = S["PlanDraft"];
+export type LLMOnly = S["LLMOnly"];
+export type LLMOnlyKind = S["LLMOnlyKind"];
+export type LLMPick = S["LLMPick"];
 
 export type AgentEvent =
   | { type: "queued"; data: { id: string } }

@@ -8,6 +8,7 @@ import type {
   ScoutFit,
   ScoutJudge,
   Health,
+  LLMOnly,
   Plan,
   PlanCreated,
   PlanEvent,
@@ -108,6 +109,7 @@ export const api = {
       body: JSON.stringify({ lat, lon, comp_entity_ids, platforms }),
     }),
   trace: (id: string) => request<TraceRow[]>(`/v1/plans/${id}/trace`),
+  llmOnly: (id: string) => request<LLMOnly>(`/v1/plans/${id}/llm-only`, { method: "POST" }),
 };
 
 const EVENT_TYPES: PlanEvent["type"][] = [

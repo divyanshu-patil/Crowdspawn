@@ -14,7 +14,7 @@ from pydantic import BaseModel, Field
 from ..errors import NotFound, QlooError, QlooUnconfigured, RateLimited
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import agent, cities, culture, judge, resolve, scout
+from ..pipeline import agent, cities, culture, judge, llm_only, resolve, scout
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
     ActivityOut,
@@ -22,6 +22,7 @@ from ..schemas import (
     AgentRun,
     CultureSuggestion,
     EntityOut,
+    LLMOnly,
     PlaceHit,
     Plan,
     PlanCreated,
@@ -183,6 +184,24 @@ async def get_plan(request: Request, plan_id: str) -> Plan:
         created_at=created_iso(row["created_at"]),
         error=Problem.model_validate(row["error"]) if row["error"] else None,
     )
+
+
+@router.post("/plans/{plan_id}/llm-only", response_model=LLMOnly)
+async def plan_llm_only(request: Request, plan_id: str) -> LLMOnly:
+    """What an LLM alone answers for this plan's inputs, each name checked in Qloo. Cached per plan."""
+    d = deps(request)
+    plan = await get_plan(request, plan_id)
+    if plan.status != "done":
+        raise NotFound(f"Plan {plan_id} is not finished")
+    key = f"llm-only:{plan_id}"
+    if hit := await d.store.cache_get(key):
+        return LLMOnly.model_validate(hit)
+    llm = _ready(d)
+    _limit(request, _plan_hits, d.settings.plans_per_ip_per_hour)
+    run = d.qloo.run(max_calls=llm_only.QLOO_CALLS)
+    out = await llm_only.compare(llm, run, plan, d.settings.llm_timeout_seconds)
+    await d.store.cache_put(key, out.model_dump(mode="json"), 30 * 86400)
+    return out
 
 
 @router.get("/plans/{plan_id}/trace", response_model=list[TraceRow])

@@ -129,6 +129,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/plans/{plan_id}/llm-only": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Plan Llm Only
+         * @description What an LLM alone answers for this plan's inputs, each name checked in Qloo. Cached per plan.
+         */
+        post: operations["plan_llm_only_v1_plans__plan_id__llm_only_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/plans/{plan_id}/trace": {
         parameters: {
             query?: never;
@@ -673,6 +693,58 @@ export interface components {
             rank: number;
             /** Gamer Rank */
             gamer_rank: number;
+        };
+        /**
+         * LLMOnly
+         * @description What an LLM alone answers for the same inputs. A labelled baseline, never part of the plan.
+         */
+        LLMOnly: {
+            /** Plan Id */
+            plan_id: string;
+            /** Provider */
+            provider: string;
+            /** Model */
+            model: string;
+            /** Cities */
+            cities: string[];
+            /** Partners */
+            partners: components["schemas"]["LLMOnlyKind"][];
+        };
+        /** LLMOnlyKind */
+        LLMOnlyKind: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "artist" | "podcast" | "movie" | "brand";
+            /** Picks */
+            picks: components["schemas"]["LLMPick"][];
+            /** Found */
+            found: number;
+            /** Median Lift */
+            median_lift: number | null;
+            /** Qloo Median Lift */
+            qloo_median_lift: number | null;
+            /** Overlap */
+            overlap: number;
+        };
+        /**
+         * LLMPick
+         * @description A name an LLM suggested with no Qloo data, then looked up in Qloo.
+         */
+        LLMPick: {
+            /** Name */
+            name: string;
+            /** Entity Id */
+            entity_id?: string | null;
+            /** Qloo Name */
+            qloo_name?: string | null;
+            /** Lift */
+            lift?: number | null;
+            /** Image Url */
+            image_url?: string | null;
+            /** Result Id */
+            result_id?: string | null;
         };
         /** LLMStatus */
         LLMStatus: {
@@ -1413,6 +1485,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Plan"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    plan_llm_only_v1_plans__plan_id__llm_only_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                plan_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LLMOnly"];
                 };
             };
             /** @description Validation Error */

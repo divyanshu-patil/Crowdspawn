@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-delhi-plan.json"; // stable: the hero sample may be regenerated
-import { audienceLine, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
+import { audienceLine, channels, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
 
 // The sample plan with the J11/J18 fields a new plan carries: lift on partners, languages and radius on cities.
 const base = sample as unknown as Plan;
@@ -49,5 +49,20 @@ describe("launch actions (J18)", () => {
     expect(lines[1]).toContain('"Pod, with a comma (podcast, ×1.10)"');
     expect(lines[1]).toContain('"Film ""Quoted"" (movie, ×1.05)"');
     expect(audienceLine(plan)).toBe("Strongest age band 25-29 (+0.8%); leans male (+28.0%)");
+  });
+
+  it("ranks marketing channels by the median lift of each global list, skipping thin and local-only lists", () => {
+    const p = (lift: number | null, city: string | null = null) => ({ ...base.partners.artist[0]!, city, lift });
+    const ch = channels({
+      ...base,
+      partners: {
+        artist: [p(1.1), p(1.2), p(1.3), p(9, "Delhi")], // local picks ignored: median 1.2
+        podcast: [p(1.5), p(1.4), p(1.6), p(null)], // null lifts ignored: median 1.5
+        movie: [p(2), p(2)], // fewer than 3: not ranked
+        brand: [p(1.01), p(1.02), p(1.03), p(1.04)], // even count: mean of the middle two
+      },
+    });
+    expect(ch.map((c) => c.kind)).toEqual(["podcast", "artist", "brand"]);
+    expect(ch[2]!.lift).toBeCloseTo(1.025);
   });
 });

@@ -256,6 +256,46 @@
         }
       }
     },
+    "/v1/plans/{plan_id}/llm-only": {
+      "post": {
+        "summary": "Plan Llm Only",
+        "description": "What an LLM alone answers for this plan's inputs, each name checked in Qloo. Cached per plan.",
+        "operationId": "plan_llm_only_v1_plans__plan_id__llm_only_post",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LLMOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/plans/{plan_id}/trace": {
       "get": {
         "summary": "Get Trace",
@@ -1561,6 +1601,176 @@
         ],
         "title": "HiddenMarket",
         "description": "A city that ranks much higher for this game than for gamers in general."
+      },
+      "LLMOnly": {
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "title": "Plan Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "cities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Cities"
+          },
+          "partners": {
+            "items": {
+              "$ref": "#/components/schemas/LLMOnlyKind"
+            },
+            "type": "array",
+            "title": "Partners"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan_id",
+          "provider",
+          "model",
+          "cities",
+          "partners"
+        ],
+        "title": "LLMOnly",
+        "description": "What an LLM alone answers for the same inputs. A labelled baseline, never part of the plan."
+      },
+      "LLMOnlyKind": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "artist",
+              "podcast",
+              "movie",
+              "brand"
+            ],
+            "title": "Kind"
+          },
+          "picks": {
+            "items": {
+              "$ref": "#/components/schemas/LLMPick"
+            },
+            "type": "array",
+            "title": "Picks"
+          },
+          "found": {
+            "type": "integer",
+            "title": "Found"
+          },
+          "median_lift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Lift"
+          },
+          "qloo_median_lift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qloo Median Lift"
+          },
+          "overlap": {
+            "type": "integer",
+            "title": "Overlap"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "picks",
+          "found",
+          "median_lift",
+          "qloo_median_lift",
+          "overlap"
+        ],
+        "title": "LLMOnlyKind"
+      },
+      "LLMPick": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "qloo_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qloo Name"
+          },
+          "lift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lift"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "result_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "LLMPick",
+        "description": "A name an LLM suggested with no Qloo data, then looked up in Qloo."
       },
       "LLMStatus": {
         "properties": {
