@@ -18,6 +18,7 @@ class Region(BaseModel):
     lon: float
     radius_m: int
     default: bool = False
+    languages: list[str] = []  # main languages to localise into: static reference data, not Qloo
 
 
 class EntityOut(BaseModel):
@@ -121,6 +122,8 @@ class City(BaseModel):
     confidence: Confidence
     budget_share: float = 0.0
     budget_usd: float | None = None
+    radius_m: int | None = None  # the heatmap radius Qloo scored
+    languages: list[str] = []  # static reference table, not Qloo
     source: Literal["qloo"] = "qloo"
     result_ids: list[str]
 

@@ -41,6 +41,8 @@ LIMITS = [
     "better when the game has a real-world setting. A Steam-review backtest on 6 shipped games also lost "
     "to plain popularity. Numbers: docs/scenario-results.md and docs/backtest-results.md.",
     "Treat the ranking as a taste-informed starting hypothesis and test it with small campaigns.",
+    "Launch actions: languages come from a static table, not Qloo. The geo-target radius is the one "
+    "Qloo's heatmap used.",
 ]
 
 

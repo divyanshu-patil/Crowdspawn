@@ -82,6 +82,8 @@ def make_city(region: Region, m: CityMetrics, sc: Score, result_ids: list[str]) 
         baseline_score=round(m.general, 4),
         cells=m.cells,
         confidence=confidence(sc.score, m.cells),
+        radius_m=region.radius_m,
+        languages=region.languages,
         result_ids=result_ids,
     )
 

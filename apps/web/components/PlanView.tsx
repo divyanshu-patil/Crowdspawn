@@ -6,6 +6,7 @@ import type { City, Plan, PartnerType } from "@repo/contracts";
 import { SpawnMap } from "./SpawnMap";
 import { Cite, ConfidenceBadge, CONFIDENCE_HELP, CountUp, Notice, RichText, Stat } from "./ui";
 import { lift, pct, planToMarkdown, rarity, skew, usd } from "../lib/format";
+import { audienceLine, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
 
 const TABS: { key: PartnerType; label: string }[] = [
   { key: "artist", label: "Artists" },
@@ -210,6 +211,9 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
 
       {/* 5. Partners */}
       <Partners plan={plan} traceHref={traceHref} />
+
+      {/* 5b. Launch actions: deterministic, copied from the plan */}
+      <LaunchActions plan={plan} />
 
       {/* 6. Gap view */}
       {plan.gap && (
@@ -459,6 +463,93 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
           </div>
         )}
       </div>
+    </section>
+  );
+}
+
+function LaunchActions({ plan }: { plan: Plan }) {
+  const [copied, setCopied] = useState(false);
+  const rows = launchRows(plan);
+  const aud = audienceLine(plan);
+  if (!rows.length) return null;
+  function download() {
+    const url = URL.createObjectURL(new Blob([launchCsv(plan, rows)], { type: "text/csv" }));
+    const a = Object.assign(document.createElement("a"), { href: url, download: "launch-actions.csv" });
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+  return (
+    <section className="section stack" aria-labelledby="actions-h">
+      <div className="spread">
+        <h2 id="actions-h" className="h2">
+          Launch actions<span className="h-sub">: what to do in your top 3 cities</span>
+        </h2>
+        <div className="row no-print">
+          <button
+            className="ghost"
+            onClick={async () => {
+              await navigator.clipboard.writeText(launchMarkdown(plan, rows));
+              setCopied(true);
+              setTimeout(() => setCopied(false), 1800);
+            }}
+          >
+            {copied ? "Copied ✓" : "Copy checklist"}
+          </button>
+          <button className="ghost" onClick={download}>
+            Download CSV
+          </button>
+        </div>
+      </div>
+      <div className="launch-grid">
+        {rows.map((r, i) => (
+          <div key={r.city} className="card stack launch-card">
+            <p>
+              <span className="label muted">
+                #{i + 1} · {r.country}
+              </span>
+              <br />
+              <b className="h3">{r.city}</b>
+            </p>
+            <p>
+              <span className="label">Localise into</span>
+              <br />
+              {r.languages.join(", ") || <span className="muted">not in this saved plan</span>}
+            </p>
+            <p>
+              <span className="label">Geo-target</span>
+              <br />
+              <span className="num">
+                {r.lat}, {r.lon}
+                {r.radius_km != null && ` · ${r.radius_km} km radius`}
+              </span>
+            </p>
+            <p>
+              <span className="label">Local partners</span>
+              <br />
+              {r.partners.length ? (
+                r.partners.map((p) => (
+                  <span key={p.name} className="hint" style={{ display: "block" }}>
+                    {p.name} <span className="muted">({p.type}{p.lift ? `, ×${p.lift.toFixed(2)}` : ""})</span>
+                  </span>
+                ))
+              ) : (
+                <span className="muted">none in this plan</span>
+              )}
+            </p>
+            {aud && (
+              <p>
+                <span className="label">Audience</span>
+                <br />
+                <span className="hint">{aud} (whole audience)</span>
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="hint">
+        Copied from the plan, with no AI. Languages come from a static table, not Qloo; the radius is the one Qloo&apos;s
+        heatmap used. The CSV is a plain spreadsheet, not an ad platform&apos;s import format.
+      </p>
     </section>
   );
 }

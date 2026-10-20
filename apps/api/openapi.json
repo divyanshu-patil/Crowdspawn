@@ -1084,6 +1084,25 @@
             ],
             "title": "Budget Usd"
           },
+          "radius_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Radius M"
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages",
+            "default": []
+          },
           "source": {
             "type": "string",
             "const": "qloo",
@@ -2168,6 +2187,14 @@
             "type": "boolean",
             "title": "Default",
             "default": false
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages",
+            "default": []
           }
         },
         "type": "object",

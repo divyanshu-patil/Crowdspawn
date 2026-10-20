@@ -68,6 +68,9 @@ def test_full_plan_is_qloo_sourced_and_traced(client: TestClient) -> None:
     assert abs(sum(c["budget_share"] for c in plan["cities"]) - 100) < 0.005
     assert plan["brief"]["source"] == "llm"
     assert plan["limits"][0].startswith("Affinity index")
+    # J18: launch actions read these from the plan (languages are static reference data)
+    assert all(c["languages"] and c["radius_m"] for c in plan["cities"])
+    assert any("static table, not Qloo" in line for line in plan["limits"])
 
 
 def test_repeat_plan_makes_zero_live_calls(client: TestClient, fake_qloo: FakeQloo) -> None:

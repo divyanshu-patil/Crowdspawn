@@ -487,6 +487,13 @@ export interface components {
             budget_share: number;
             /** Budget Usd */
             budget_usd?: number | null;
+            /** Radius M */
+            radius_m?: number | null;
+            /**
+             * Languages
+             * @default []
+             */
+            languages: string[];
             /**
              * Source
              * @default qloo
@@ -936,6 +943,11 @@ export interface components {
              * @default false
              */
             default: boolean;
+            /**
+             * Languages
+             * @default []
+             */
+            languages: string[];
         };
         /** ScoutArea */
         ScoutArea: {
