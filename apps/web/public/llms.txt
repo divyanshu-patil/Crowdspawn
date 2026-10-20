@@ -1,0 +1,28 @@
+# Crowdspawn
+
+> A launch planner for indie games, built for the Qloo Agentic Hackathon 2026. An agent uses Qloo Taste AI to find the cities where fans of games like yours over-index against all gamers, who that audience is, which artists, podcasts, films and brands they love more than gamers in general, and what to do in the top 3 cities. The LLM plans steps and writes prose but never supplies a fact: every city, name and number traces to a Qloo call. With no Qloo key, no plan is produced.
+
+Source: https://github.com/divyanshu-patil/Crowdspawn (MIT)
+
+## Try it (no sign-in, no keys)
+
+- [Home: Plan my launch](https://crowdspawn.vercel.app/): describe a game; the agent picks from 8 Qloo tools step by step, streams each step, and cites the step behind every claim.
+- [Sample plan](https://crowdspawn.vercel.app/sample): Long Haul, a trucking sim. Spawn points, rivals, audience, partners ranked by lift, launch actions (languages, geo-targets, local partners, CSV), and a cited brief.
+- [Sample call trace](https://crowdspawn.vercel.app/sample/trace): every Qloo call behind the sample plan.
+- [Second sample](https://crowdspawn.vercel.app/sample/delhi): Delhi Gullies, where culture anchors (films and music from the setting) put Mumbai first.
+- [Region scout](https://crowdspawn.vercel.app/scout): a world map of gamer taste match, "what works here" for any place, and a verdict for your game.
+- [How accurate is it?](https://crowdspawn.vercel.app/accuracy): every evaluation, losses included.
+
+## Evaluation, as published
+
+- Held-out test (23 games, frozen before scoring; truth = Google Trends by country for a real similar game): the country ranking found the #1 country in 1 of 23, an LLM with no Qloo data in 4 of 23, plain popularity in 0 of 23. Follow-up fixes on all 33 games did not close the gap; the scorer is unchanged.
+- Audience check (10 genres, design fixed before any call): Qloo's gender skew matches a survey of over 270,000 gamers, Spearman 0.997; an LLM's guess reached 0.991.
+- Tests: 139 API tests (94% coverage, recorded Qloo fixtures) and 28 web tests; a kill-switch test and an LLM-swap test show Qloo is load-bearing.
+
+## Docs
+
+- [README](https://github.com/divyanshu-patil/Crowdspawn/blob/main/README.md)
+- [How it works](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/HOW-IT-WORKS.md)
+- [Verified Qloo API contract](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/qloo-contract.md)
+- [Scenario results](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/scenario-results.md)
+- [Audience check](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/audience-check.md)

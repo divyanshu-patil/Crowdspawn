@@ -1,0 +1,1 @@
+Crowdspawn: an agent that reads Qloo taste data to show indie game studios which cities to launch in and who to partner with there

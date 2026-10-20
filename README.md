@@ -3,7 +3,9 @@
 </p>
 
 <p align="center">
+  <a href="https://crowdspawn.vercel.app"><b>Live demo</b></a> ·
   <a href="#try-it-in-2-minutes">Try it</a> ·
+  <a href="#for-judges-evidence-by-criterion">For judges</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#three-ways-in">Features</a> ·
   <a href="#how-it-works">How it works</a> ·
@@ -23,13 +25,25 @@ Describe your game and an agent builds a launch plan from [Qloo Taste AI](https:
 
 ## Try it in 2 minutes
 
-Live demo: `<live demo URL — Owner>`
+**Live demo: [crowdspawn.vercel.app](https://crowdspawn.vercel.app)** (no sign-in, no keys; API health: [crowdspawn.onrender.com/health](https://crowdspawn.onrender.com/health)). If the API has been idle, the first request can take up to a minute; the app says so while it waits.
 
 1. **Open the sample** (`/sample`): a saved plan for Long Haul, a trucking sim. The note at the top says what our evaluation found for this game.
 2. **Type a game into "Plan my launch"** on the home page, or click an example. Each agent step streams in; every claim in the answer has a chip that jumps to the step behind it.
 3. **Click a city, then "Scout this city"**: the region scout opens with your plan's games and judges that city against 8 world cities.
 
 If the day's Qloo budget runs out, new plans and scouts fail closed with a clear message. The samples (`/sample`, `/sample/delhi`), the accuracy page (`/accuracy`), the 50 pre-scouted places on `/scout`, and any input asked before (the demo inputs are warmed) still answer from cache. Press **Tour** in the nav for a one-minute walk-through.
+
+## For judges: evidence by criterion
+
+Every claim below links to something you can open or run. Weak points are listed too.
+
+| Criterion | What to look at | Evidence |
+|---|---|---|
+| **Qloo integration and technical work** | 8-tool agent; 7 Qloo endpoint families; every number traced to its call | [Agent loop](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/src/crowdspawn_api/pipeline/agent.py) · [call trace of the sample](https://crowdspawn.vercel.app/sample/trace) · [verified API contract](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/qloo-contract.md) · kill switch: no Qloo key → no plan, and swapping the LLM changes only the wording ([tests](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/tests/test_api.py#L84)) · 139 API tests (94% coverage) + 28 web tests in CI |
+| **Does it beat an LLM alone?** | Audience: matches a survey, LLM nearly ties. Country ranking: no. Both published | [Audience check](https://crowdspawn.vercel.app/accuracy): Qloo's gender skew vs a 270,000-gamer survey, ρ 0.997 (LLM guess 0.991) · [held-out ranking test](https://crowdspawn.vercel.app/accuracy): LLM 4/23 vs Crowdspawn 1/23, plus the [fixes we tried](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/scenario-results.md) |
+| **Design and usability** | One front door, live streamed steps, citation chips, guided Tour | [Live demo](https://crowdspawn.vercel.app) · [sample plan](https://crowdspawn.vercel.app/sample) · Lighthouse accessibility 100 on every page · works at 360 px |
+| **Impact** | Ends in decisions: languages, geo-targets, local partners, CSV | [Launch actions on the sample](https://crowdspawn.vercel.app/sample) · [how studios choose today](#who-its-for) |
+| **Originality** | Culture anchors turn films and music into geography; partners ranked by lift over all gamers, per city | [Spawn score](#how-it-works) · [Delhi Gullies sample](https://crowdspawn.vercel.app/sample/delhi): Mumbai first via culture fit 2.45 |
 
 ## Three ways in
 

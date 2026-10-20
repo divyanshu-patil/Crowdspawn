@@ -11,6 +11,7 @@ const display = Schibsted_Grotesk({ subsets: ["latin"], weight: ["500"], variabl
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://crowdspawn.vercel.app"),
   title: "Crowdspawn: find where your players already are",
   description:
     "Launch planning for indie games: the cities where fans of comparable games over-index, and the artists, podcasts, films and brands they love. Built on Qloo taste data.",
