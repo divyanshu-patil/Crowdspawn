@@ -19,7 +19,7 @@ Frozen in `scripts/scenarios_holdout.json` and committed before any held-out run
 - **LLM only (gemma4:31b) found the top market more often than Crowdspawn on games with no setting:** #1 in 4/23 vs 1/23, top 3 in 7/23 vs 1/23, mean ρ 0.54 vs 0.11.
 - **The spawn score has a city bias.** Its #1 city was Stockholm in 9, Istanbul in 6, Delhi in 2 of the 23 games, whatever the genre. Averaged over all 23 games, taste lift is Istanbul 1.05, Stockholm 1.05, Warsaw 1.01 but Tokyo 0.91, Mexico City 0.92. A city with no bias would sit near 1.00 for every game. On games without a home-country setting this offset outweighs the game-specific signal.
 - **What still holds:** on the tuning set, 4 of the 5 games with a real-world setting had the true #1 country as our #1, against 2 of 5 without one: culture anchors carry the signal there. Partners, audience skew and city-level heat come from Qloo and are not measured by this test.
-- **Not changed after this run.** Removing the city offset (dividing each city's lift by its mean lift across many games) is the obvious fix, but changing the scorer after seeing held-out results would make this test meaningless. It needs a new held-out set first.
+- **Not changed after this run.** The scorer that produced these numbers is the one shipped. The fixes we tried afterwards, on these games as development data, are in section 4; none closed the gap, so no new held-out run was spent on them.
 
 ### Per scenario
 
@@ -83,6 +83,31 @@ Qloo data collected 2026-10-16; Trends fetched 2026-10-16. The scorer was chosen
 
 - **LLM only**: an LLM given the same inputs (description, comps, culture anchors, platforms, candidate countries), no Qloo data, temperature 0, asked to rank the countries where such players most over-index. Prompt and code: `apps/api/scripts/llm_baseline.py`.
 - **Popularity**: all gamers alone (mean of the PC, mobile, console panels): no game signal at all. It shows how much of each ranking is just "where gamers are".
+
+## 4. After the held-out loss: what we tried (33 games, development data)
+
+The city-bias diagnosis came from the held-out games, so from here on they are development data, pooled with the tuning set. Every variant below is scored on all 33 games against the same truth. Leave-one-out where a variant learns from other games. No Qloo calls; `scenarios.py score` regenerates it.
+
+| Variant | Truth #1 is our #1 | Truth #1 in our top 3 | Mean ρ |
+|---|---|---|---|
+| Crowdspawn (shipped spawn score) | 7/33 | 9/33 | 0.21 |
+| Spawn score ÷ the city's mean lift over the other games | 7/33 | 9/33 | 0.2 |
+| Old baseline (comp fans ÷ 4 mainstream hits) | 5/33 | 11/33 | 0.32 |
+| LLM only | 10/33 | 14/33 | 0.56 |
+| LLM rank + 0.2 × Crowdspawn rank | 8/33 | 14/33 | 0.54 |
+| LLM rank + 0.5 × Crowdspawn rank | 7/33 | 11/33 | 0.43 |
+
+- **Removing the city offset changes nothing.** The all-gamers panels are the same for every game, so every ranking here is *this game's comp-fan heat ÷ a fixed number per city*. Dividing by the city's mean lift is just another fixed number per city: the panels already did that job.
+- **The game-specific signal is weak against Trends.** Within a city, how this game's fans compare with other games' fans tracks Trends only loosely, so no per-city constant can close the gap to the LLM.
+- **Qloo's country ranking adds nothing to the LLM's** on this truth: blending it in lowers the LLM's scores. What Qloo adds is what this test doesn't score: the audience skew, partners scored against all gamers, and a trace for every number.
+- **We stopped here.** A new held-out set costs about 800 Qloo calls; none of these variants earned one.
+
+**An over-index truth (pre-registered, negative).** Raw Trends is a share of each country's own Google searches, and every method is asked for over-index, so we also divided by interest in the Trends topic "Video game" (fixed before any value was seen, in `trends_baseline.json`). It makes South Korea #1 for 22 of 33 games, which says more about how Trends measures that topic in Korea than about players. We report it and keep raw Trends as the truth:
+
+| Variant | Truth #1 is our #1 | Truth #1 in our top 3 | Mean ρ |
+|---|---|---|---|
+| Crowdspawn (shipped spawn score) | 4/33 | 5/33 | 0.18 |
+| LLM only | 8/33 | 15/33 | 0.48 |
 
 ## Caveats
 

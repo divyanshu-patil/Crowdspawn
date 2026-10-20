@@ -14,6 +14,7 @@ same candidate countries with an LLM alone; its results are scored here by the s
 
 import asyncio
 import json
+import math
 import statistics
 import sys
 from collections import Counter
@@ -352,11 +353,132 @@ def findings(
         f"setting had the true #1 country as our #1, against {free_hits} of {free_n} without one: culture "
         "anchors carry the signal there. Partners, audience skew and city-level heat come from Qloo and "
         "are not measured by this test.",
-        "- **Not changed after this run.** Removing the city offset (dividing each city's lift by its "
-        "mean lift across many games) is the obvious fix, but changing the scorer after seeing held-out "
-        "results would make this test meaningless. It needs a new held-out set first.",
+        "- **Not changed after this run.** The scorer that produced these numbers is the one shipped. "
+        "The fixes we tried afterwards, on these games as development data, are in section 4; none "
+        "closed the gap, so no new held-out run was spent on them.",
     ]
     return out
+
+
+def dev_games() -> list[tuple[str, dict[str, Any], dict[str, Any], dict[str, Any]]]:
+    """(set, scenario, candidate cities, truth) for every tuning and held-out game."""
+    out = []
+    for which, name in SETS.items():
+        raw_file, truth_file = paths(name)
+        raw = json.loads(raw_file.read_text())["scenarios"]
+        truth = json.loads(truth_file.read_text())
+        out += [(which, sc, candidates(raw[sc["id"]]), truth) for sc in load(name)["scenarios"]]
+    return out
+
+
+def followups() -> list[str]:
+    """Section 4: fixes tried after the held-out loss, scored on all games (now development data)."""
+    games = dev_games()
+    regions = cities.regions()
+    llm = {
+        w: json.loads(f.read_text())["rankings"] for w in SETS for k, f in llm_results(w).items()
+    }
+    baseline = json.loads((HERE / "trends_baseline.json").read_text())["interest"]
+
+    def country(scores: dict[str, float]) -> dict[str, float]:
+        by: dict[str, list[float]] = {}
+        for rid, v in scores.items():
+            by.setdefault(regions[rid].country, []).append(v)
+        return {c: statistics.fmean(v) for c, v in by.items()}
+
+    def spawn(sc: dict[str, Any], cs: dict[str, Any]) -> dict[str, float]:
+        return {
+            k: v.score
+            for k, v in spawn_scores(
+                {k: metrics_of(m) for k, m in cs.items()}, sc["platforms"]
+            ).items()
+        }
+
+    def log_lift(i: int) -> dict[str, float]:  # each city's mean log lift over the *other* games
+        acc: dict[str, list[float]] = {}
+        for j, (_, _, cs, _) in enumerate(games):
+            if j != i:
+                for k, m in cs.items():
+                    acc.setdefault(k, []).append(math.log(metrics_of(m).lift))
+        return {k: statistics.fmean(v) for k, v in acc.items()}
+
+    def ranks(d: dict[str, float]) -> dict[str, float]:
+        order = sorted(d, key=lambda c: -d[c])
+        return {c: float(len(order) - n) for n, c in enumerate(order)}
+
+    def llm_rank(w: str, sc: dict[str, Any]) -> dict[str, float]:
+        return {c: float(len(llm[w][sc["id"]]) - n) for n, c in enumerate(llm[w][sc["id"]])}
+
+    def blend(w: str, sc: dict[str, Any], cs: dict[str, Any], weight: float) -> dict[str, float]:
+        a, b = llm_rank(w, sc), ranks(country(spawn(sc, cs)))
+        return {c: (1 - weight) * a[c] + weight * b.get(c, 0.0) for c in a}
+
+    variants: dict[str, Any] = {
+        "Crowdspawn (shipped spawn score)": lambda i, w, sc, cs: country(spawn(sc, cs)),
+        "Spawn score ÷ the city's mean lift over the other games": lambda i, w, sc, cs: country(
+            {k: math.log(v) - log_lift(i).get(k, 0.0) for k, v in spawn(sc, cs).items() if v > 0}
+        ),
+        "Old baseline (comp fans ÷ 4 mainstream hits)": lambda i, w, sc, cs: country(
+            SCORERS["original"][1](cs, sc["platforms"])
+        ),
+        "LLM only": lambda i, w, sc, cs: llm_rank(w, sc),
+        "LLM rank + 0.2 × Crowdspawn rank": lambda i, w, sc, cs: blend(w, sc, cs, 0.2),
+        "LLM rank + 0.5 × Crowdspawn rank": lambda i, w, sc, cs: blend(w, sc, cs, 0.5),
+    }
+
+    def over(t: dict[str, Any]) -> dict[str, Any]:
+        return {
+            k: {c: v / baseline[c] for c, v in d.items() if c in baseline}
+            for k, d in t.items()
+            if isinstance(d, dict)
+        }
+
+    def row(name: str, fn: Any, overindex: bool) -> str:
+        rows = [
+            compare(sc, fn(i, w, sc, cs), over(t) if overindex else t)
+            for i, (w, sc, cs, t) in enumerate(games)
+        ]
+        return f"| {name} | {summary(rows)['top1']}/{len(rows)} | {summary(rows)['top3']}/{len(rows)} | {summary(rows)['rho']} |"
+
+    kr = sum(
+        max({regions[k].country for k in cs}, key=lambda c: over(t)[sc["id"]].get(c, 0.0)) == "KR"
+        for _, sc, cs, t in games
+    )
+    n = len(games)
+    head = [
+        "| Variant | Truth #1 is our #1 | Truth #1 in our top 3 | Mean ρ |",
+        "|---|---|---|---|",
+    ]
+    return [
+        f"## 4. After the held-out loss: what we tried ({n} games, development data)",
+        "",
+        "The city-bias diagnosis came from the held-out games, so from here on they are development data, "
+        f"pooled with the tuning set. Every variant below is scored on all {n} games against the same truth. "
+        "Leave-one-out where a variant learns from other games. No Qloo calls; `scenarios.py score` regenerates it.",
+        "",
+        *head,
+        *(row(k, f, False) for k, f in variants.items()),
+        "",
+        "- **Removing the city offset changes nothing.** The all-gamers panels are the same for every game, so "
+        "every ranking here is *this game's comp-fan heat ÷ a fixed number per city*. Dividing by the city's "
+        "mean lift is just another fixed number per city: the panels already did that job.",
+        "- **The game-specific signal is weak against Trends.** Within a city, how this game's fans compare with "
+        "other games' fans tracks Trends only loosely, so no per-city constant can close the gap to the LLM.",
+        "- **Qloo's country ranking adds nothing to the LLM's** on this truth: blending it in lowers the LLM's "
+        "scores. What Qloo adds is what this test doesn't score: the audience skew, partners scored against "
+        "all gamers, and a trace for every number.",
+        "- **We stopped here.** A new held-out set costs about 800 Qloo calls; none of these variants earned one.",
+        "",
+        "**An over-index truth (pre-registered, negative).** Raw Trends is a share of each country's own Google "
+        "searches, and every method is asked for over-index, so we also divided by interest in the Trends topic "
+        '"Video game" (fixed before any value was seen, in `trends_baseline.json`). It makes South Korea #1 for '
+        f"{kr} of {n} games, which says more about how Trends measures that topic in Korea than about players. "
+        "We report it and keep raw Trends as the truth:",
+        "",
+        *head,
+        *(row(k, variants[k], True) for k in ("Crowdspawn (shipped spawn score)", "LLM only")),
+        "",
+    ]
 
 
 def web_rows(which: str, results: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
@@ -465,6 +587,7 @@ def write_report(results: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
         f"- **LLM only**: {LLM_DESC}. Prompt and code: `apps/api/scripts/llm_baseline.py`.",
         f'- **Popularity**: {SCORERS["popularity"][0]}. It shows how much of each ranking is just "where gamers are".',
         "",
+        *followups(),
         "## Caveats",
         "",
         "- Google Trends measures search interest share per country, not downloads, wishlists or sales.",

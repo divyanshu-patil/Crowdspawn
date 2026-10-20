@@ -6,6 +6,9 @@ needed here, so it is not a project dependency:
 
 scenarios.json -> trends_truth.json, scenarios_holdout.json -> trends_truth_holdout.json. Scenarios already in
 the output are kept, so a run cut short by Google's rate limit resumes where it stopped.
+
+`... fetch_trends_truth.py --baseline` writes trends_baseline.json: interest in the topic "Video game"
+(/m/01mw1) by country over the same window. scenarios.py divides by it for the over-index truth.
 """
 
 import json
@@ -17,13 +20,40 @@ from pathlib import Path
 from pytrends.request import TrendReq
 
 HERE = Path(__file__).resolve().parent
+BASELINE = "/m/01mw1"  # Google Trends topic "Video game"
 
 
 def truth_file(scenarios: Path) -> Path:
     return scenarios.with_name(scenarios.name.replace("scenarios", "trends_truth"))
 
 
+def by_country(trends: TrendReq, mid: str, label: str) -> dict[str, int]:
+    for attempt in range(6):  # Google rate-limits pytrends often: back off politely
+        try:
+            trends.build_payload([mid], timeframe="today 5-y")
+            df = trends.interest_by_region(
+                resolution="COUNTRY", inc_low_vol=False, inc_geo_code=True
+            )
+            return {row["geoCode"]: int(row[mid]) for _, row in df.iterrows() if int(row[mid]) > 0}
+        except Exception as e:  # pytrends raises plain ResponseError / TooManyRequestsError
+            wait = 60 * 2**attempt
+            print(label, f"failed ({type(e).__name__}), retrying in {wait}s", flush=True)
+            time.sleep(wait)
+    sys.exit(f"gave up on {label}; rerun later to resume")
+
+
 def main() -> None:
+    if sys.argv[1:] == ["--baseline"]:
+        out = {
+            "fetched": date.today().isoformat(),
+            "timeframe": "today 5-y",
+            "topic": "Video game",
+            "mid": BASELINE,
+            "interest": by_country(TrendReq(hl="en-US", tz=0), BASELINE, "baseline"),
+        }
+        (HERE / "trends_baseline.json").write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
+        print(sorted(out["interest"].items(), key=lambda kv: -kv[1])[:10])  # type: ignore[union-attr]
+        return
     src = HERE / (sys.argv[1] if len(sys.argv) > 1 else "scenarios.json")
     dst = truth_file(src)
     scenarios = json.loads(src.read_text())["scenarios"]
@@ -33,23 +63,7 @@ def main() -> None:
     for s in scenarios:
         if s["id"] in out:
             continue
-        mid = s["truth"]["mid"]
-        for attempt in range(6):  # Google rate-limits pytrends often: back off politely
-            try:
-                trends.build_payload([mid], timeframe="today 5-y")
-                df = trends.interest_by_region(
-                    resolution="COUNTRY", inc_low_vol=False, inc_geo_code=True
-                )
-                break
-            except Exception as e:  # pytrends raises plain ResponseError / TooManyRequestsError
-                wait = 60 * 2**attempt
-                print(s["id"], f"failed ({type(e).__name__}), retrying in {wait}s", flush=True)
-                time.sleep(wait)
-        else:
-            sys.exit(f"gave up on {s['id']}; rerun later to resume")
-        out[s["id"]] = {
-            row["geoCode"]: int(row[mid]) for _, row in df.iterrows() if int(row[mid]) > 0
-        }
+        out[s["id"]] = by_country(trends, s["truth"]["mid"], s["id"])
         dst.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
         print(s["id"], sorted(out[s["id"]].items(), key=lambda kv: -kv[1])[:8], flush=True)  # type: ignore[union-attr]
         time.sleep(8)
