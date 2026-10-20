@@ -16,8 +16,9 @@ Source: https://github.com/divyanshu-patil/Crowdspawn (MIT)
 ## Evaluation, as published
 
 - Held-out test (23 games, frozen before scoring; truth = Google Trends by country for a real similar game): the country ranking found the #1 country in 1 of 23, an LLM with no Qloo data in 4 of 23, plain popularity in 0 of 23. Follow-up fixes on all 33 games did not close the gap; the scorer is unchanged.
+- Partner check (20 games, design fixed before any call): an LLM with the same inputs repeats the same names across games. 32% of its artist picks recur in 3+ games vs 5% of Qloo's; films 15% vs 3%; podcasts 32% vs 20%; brands are the exception (Qloo 67% vs LLM 51%). Every plan has a side-by-side "Qloo vs an LLM alone" section.
 - Audience check (10 genres, design fixed before any call): Qloo's gender skew matches a survey of over 270,000 gamers, Spearman 0.997; an LLM's guess reached 0.991.
-- Tests: 139 API tests (94% coverage, recorded Qloo fixtures) and 28 web tests; a kill-switch test and an LLM-swap test show Qloo is load-bearing.
+- Tests: 141 API tests (94% coverage, recorded Qloo fixtures) and 30 web tests; a kill-switch test and an LLM-swap test show Qloo is load-bearing.
 
 ## Docs
 

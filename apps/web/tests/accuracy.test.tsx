@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { AUDIENCE, AccuracyReport, AccuracySummary, EVAL, SampleCallout } from "../components/Accuracy";
+import { AUDIENCE, AccuracyReport, AccuracySummary, EVAL, PARTNERS, SampleCallout } from "../components/Accuracy";
 
 describe("accuracy evidence (J15)", () => {
   it("renders the held-out numbers straight from the evaluation JSON", () => {
@@ -41,6 +41,18 @@ describe("accuracy evidence (J15)", () => {
     const readme = readFileSync(resolve(process.cwd(), "../../README.md"), "utf8");
     expect(readme).toContain(`ρ ${AUDIENCE.rho_qloo}`);
     expect(readme).toContain(`ρ ${AUDIENCE.rho_llm}`);
+    cleanup();
+  });
+
+  it("the partner check in the app and the README quote the same numbers", () => {
+    const { getByTestId } = render(<AccuracyReport />);
+    expect(getByTestId("partner-check").querySelectorAll("tbody tr")).toHaveLength(PARTNERS.rows.length);
+    const readme = readFileSync(resolve(process.cwd(), "../../README.md"), "utf8");
+    const row = (k: string) => PARTNERS.rows.find((r) => r.kind === k)!;
+    expect(readme).toContain(`${row("artist").llm_generic_pct}% of its artist picks`);
+    expect(readme).toContain(`against ${row("artist").qloo_generic_pct}% of Qloo's`);
+    expect(readme).toContain(`Films: ${row("movie").llm_generic_pct}% vs ${row("movie").qloo_generic_pct}%`);
+    expect(readme).toContain(`(${row("brand").qloo_generic_pct}% vs ${row("brand").llm_generic_pct}%)`);
     cleanup();
   });
 });

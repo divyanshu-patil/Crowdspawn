@@ -1,0 +1,6021 @@
+{
+ "collected": "2026-10-21",
+ "games": {
+  "delhi-gullies": {
+   "game": "Delhi Gullies: open-world crime game set in the streets of Delhi",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Violent Soho",
+      "lift": 1.1241
+     },
+     {
+      "name": "These New South Whales",
+      "lift": 1.0999
+     },
+     {
+      "name": "Rage Against the Machine",
+      "lift": 1.0933
+     },
+     {
+      "name": "Dune Rats",
+      "lift": 1.0837
+     },
+     {
+      "name": "Sticky Fingers",
+      "lift": 1.079
+     },
+     {
+      "name": "Foo Fighters",
+      "lift": 1.0784
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Stuff To Blow Your Mind",
+      "lift": 1.0766
+     },
+     {
+      "name": "Radiolab",
+      "lift": 1.0682
+     },
+     {
+      "name": "Gamers With Jobs - Conference Call",
+      "lift": 1.0622
+     },
+     {
+      "name": "Rebel FM",
+      "lift": 1.0594
+     },
+     {
+      "name": "A Life Well Wasted",
+      "lift": 1.0564
+     },
+     {
+      "name": "CAGcast",
+      "lift": 1.0544
+     }
+    ],
+    "movie": [
+     {
+      "name": "25th Hour",
+      "lift": 1.3027
+     },
+     {
+      "name": "The Imposter",
+      "lift": 1.2756
+     },
+     {
+      "name": "Searching for Sugar Man",
+      "lift": 1.259
+     },
+     {
+      "name": "The Thin Blue Line",
+      "lift": 1.2401
+     },
+     {
+      "name": "Bronson",
+      "lift": 1.2363
+     },
+     {
+      "name": "How to Make Money Selling Drugs",
+      "lift": 1.2258
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.031
+     },
+     {
+      "name": "Electronic Arts",
+      "lift": 1.0287
+     },
+     {
+      "name": "ASTRO Gaming",
+      "lift": 1.0282
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0255
+     },
+     {
+      "name": "Xbox",
+      "lift": 1.0168
+     },
+     {
+      "name": "Turtle Beach",
+      "lift": 1.0157
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Divine",
+      "entity_id": "E103ED93-3062-401C-A248-52805287105C",
+      "qloo_name": "Divine",
+      "lift": 0.9569,
+      "image_url": "https://images.qloo.com/i/E103ED93-3062-401C-A248-52805287105C-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Naezy",
+      "entity_id": "2C53CB43-5284-4D94-9F8D-1CD34C9FD172",
+      "qloo_name": "Naezy",
+      "lift": 0.9426,
+      "image_url": "https://images.qloo.com/i/2C53CB43-5284-4D94-9F8D-1CD34C9FD172-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Arijit Singh",
+      "entity_id": "924C8504-4BD8-4615-AB2D-1C16880A8A62",
+      "qloo_name": "Arijit Singh",
+      "lift": 0.9069,
+      "image_url": "https://images.qloo.com/i/924C8504-4BD8-4615-AB2D-1C16880A8A62-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Badshah",
+      "entity_id": "09467B9E-8A6D-4F74-B6D7-1C498E64C5EF",
+      "qloo_name": "Badshah",
+      "lift": 0.9307,
+      "image_url": "https://images.qloo.com/i/09467B9E-8A6D-4F74-B6D7-1C498E64C5EF-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Karan Aujla",
+      "entity_id": "155AB918-6194-479D-AB96-B8BECE54CA29",
+      "qloo_name": "Karan Aujla",
+      "lift": 0.9497,
+      "image_url": "https://images.qloo.com/i/155AB918-6194-479D-AB96-B8BECE54CA29-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Sidhu Moose Wala",
+      "entity_id": "56692CC1-1B8F-4384-9BA3-DE89E7E11A0E",
+      "qloo_name": "Sidhu Moose Wala",
+      "lift": 0.9785,
+      "image_url": "https://images.qloo.com/i/56692CC1-1B8F-4384-9BA3-DE89E7E11A0E-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Ranveer Show",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Seen and the Unseen",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "BeerBiceps",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Desi Crime Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Gully Boy",
+      "entity_id": "51A19BB0-E7C3-44AD-A740-22B0A05013BF",
+      "qloo_name": "Gully Boy",
+      "lift": 0.888,
+      "image_url": "https://images.qloo.com/i/51A19BB0-E7C3-44AD-A740-22B0A05013BF-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Sacred Games",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Satya",
+      "entity_id": "4F62E103-6C36-4456-B0ED-A268A6EB8D24",
+      "qloo_name": "Satya",
+      "lift": 1.0651,
+      "image_url": "https://images.qloo.com/i/4F62E103-6C36-4456-B0ED-A268A6EB8D24-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Company",
+      "entity_id": "FEBC5796-68A5-4D40-9C43-413A1FC3CA0C",
+      "qloo_name": "Company",
+      "lift": 1.1049,
+      "image_url": "https://images.qloo.com/i/FEBC5796-68A5-4D40-9C43-413A1FC3CA0C-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Shootout at Lokhandwala",
+      "entity_id": "BB1A6FE0-5C36-4C4D-9E00-D59C1E17CB42",
+      "qloo_name": "Shootout at Lokhandwala",
+      "lift": 0.9935,
+      "image_url": "https://images.qloo.com/i/BB1A6FE0-5C36-4C4D-9E00-D59C1E17CB42-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Gangs of Wasseypur",
+      "entity_id": "80A8B65B-6ED8-4A96-BB02-80DCAAB82D67",
+      "qloo_name": "Gangs of Wasseypur",
+      "lift": 1.0381,
+      "image_url": "https://images.qloo.com/i/80A8B65B-6ED8-4A96-BB02-80DCAAB82D67-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Royal Enfield",
+      "entity_id": "CA1C34DD-CAB7-4E3F-8A68-D0415BAF87A2",
+      "qloo_name": "Royal Enfield",
+      "lift": 0.9441,
+      "image_url": "https://images.qloo.com/i/CA1C34DD-CAB7-4E3F-8A68-D0415BAF87A2-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Nike",
+      "entity_id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+      "qloo_name": "Nike",
+      "lift": 1.0038,
+      "image_url": "https://images.qloo.com/i/C70CE2B8-0AD1-4150-BF18-5A6347F2E860-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Red Bull",
+      "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+      "qloo_name": "Red Bull",
+      "lift": 0.9762,
+      "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9917,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Boat",
+      "entity_id": "BA8BEA86-40F0-404B-8AAA-27385BFA20A0",
+      "qloo_name": "boAt",
+      "lift": 0.9339,
+      "image_url": "https://images.qloo.com/i/BA8BEA86-40F0-404B-8AAA-27385BFA20A0-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Xiaomi",
+      "entity_id": "1D0F0434-1D07-4C25-A33B-82D55EC6BF60",
+      "qloo_name": "Xiaomi",
+      "lift": 0.9634,
+      "image_url": "https://images.qloo.com/i/1D0F0434-1D07-4C25-A33B-82D55EC6BF60-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ]
+   }
+  },
+  "kabukicho-brawler": {
+   "game": "Neon Kabukicho: a story-driven street brawler set in Tokyo's nightlife district",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Grant Kirkhope",
+      "lift": 1.1605
+     },
+     {
+      "name": "Tadayoshi Makino",
+      "lift": 1.1536
+     },
+     {
+      "name": "桜庭統",
+      "lift": 1.1436
+     },
+     {
+      "name": "Yuko Komiyama",
+      "lift": 1.1407
+     },
+     {
+      "name": "Scott Lloyd Shelly",
+      "lift": 1.1248
+     },
+     {
+      "name": "SQUARE ENIX MUSIC",
+      "lift": 1.1208
+     }
+    ],
+    "podcast": [
+     {
+      "name": "1UP.com - Retronauts",
+      "lift": 1.1581
+     },
+     {
+      "name": "Retronauts",
+      "lift": 1.1578
+     },
+     {
+      "name": "Axe of the Blood God: An RPG Podcast",
+      "lift": 1.1473
+     },
+     {
+      "name": "8-4 Play",
+      "lift": 1.1384
+     },
+     {
+      "name": "Player One Podcast",
+      "lift": 1.1333
+     },
+     {
+      "name": "Radio Free Nintendo",
+      "lift": 1.1294
+     }
+    ],
+    "movie": [
+     {
+      "name": "Don't Breathe 2",
+      "lift": 1.1223
+     },
+     {
+      "name": "The Hunt",
+      "lift": 1.0985
+     },
+     {
+      "name": "Nobody",
+      "lift": 1.089
+     },
+     {
+      "name": "Prey",
+      "lift": 1.0704
+     },
+     {
+      "name": "Boss Level",
+      "lift": 1.07
+     },
+     {
+      "name": "A Quiet Place Part II",
+      "lift": 1.0667
+     }
+    ],
+    "brand": [
+     {
+      "name": "Control",
+      "lift": 1.0576
+     },
+     {
+      "name": "Atari",
+      "lift": 1.0509
+     },
+     {
+      "name": "Square Enix",
+      "lift": 1.0323
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0304
+     },
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0295
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0164
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Hikaru Utada",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Tame Impala",
+      "entity_id": "D1AE8792-9129-46E0-AEE7-2C3A81E91385",
+      "qloo_name": "Tame Impala",
+      "lift": 0.9281,
+      "image_url": "https://images.qloo.com/i/D1AE8792-9129-46E0-AEE7-2C3A81E91385-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kaytranada",
+      "entity_id": "BF6AC996-EA91-4F02-B822-42881E60A21E",
+      "qloo_name": "Kaytranada",
+      "lift": 0.9322,
+      "image_url": "https://images.qloo.com/i/BF6AC996-EA91-4F02-B822-42881E60A21E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Flying Lotus",
+      "entity_id": "294CF67E-3032-43AC-9D1C-9D3182E92E97",
+      "qloo_name": "Flying Lotus",
+      "lift": 0.9746,
+      "image_url": "https://images.qloo.com/i/294CF67E-3032-43AC-9D1C-9D3182E92E97-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Death Grips",
+      "entity_id": "C4D5B748-690D-4461-8A63-B3231B38920F",
+      "qloo_name": "Death Grips",
+      "lift": 0.9827,
+      "image_url": "https://images.qloo.com/i/C4D5B748-690D-4461-8A63-B3231B38920F-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Bad Bunny",
+      "entity_id": "BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3",
+      "qloo_name": "Bad Bunny",
+      "lift": 0.8865,
+      "image_url": "https://images.qloo.com/i/BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Game Awards Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Kinda Funny",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Giant Bombcast",
+      "entity_id": "79012B13-F952-486D-A680-36D72A84BB53",
+      "qloo_name": "Giant Bombcast",
+      "lift": 1.0742,
+      "image_url": "https://images.qloo.com/i/79012B13-F952-486D-A680-36D72A84BB53-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore Gamer",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The MinnMax Show",
+      "entity_id": "6FD03046-1028-4752-94C9-C790CD341559",
+      "qloo_name": "The MinnMax Show",
+      "lift": 1.0988,
+      "image_url": "https://images.qloo.com/i/6FD03046-1028-4752-94C9-C790CD341559-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "IGN Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Oldboy",
+      "entity_id": "D0908D6C-A912-40C6-B77D-77AE05B92CC8",
+      "qloo_name": "Oldboy",
+      "lift": 1.0065,
+      "image_url": "https://images.qloo.com/i/D0908D6C-A912-40C6-B77D-77AE05B92CC8-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "John Wick",
+      "entity_id": "0D3D9B8F-EA18-49CB-85EC-72DE3FD8F007",
+      "qloo_name": "John Wick",
+      "lift": 0.935,
+      "image_url": "https://images.qloo.com/i/0D3D9B8F-EA18-49CB-85EC-72DE3FD8F007-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Akira",
+      "entity_id": "0E84F600-B861-4A93-AC5E-6E1DF4AC5826",
+      "qloo_name": "Akira",
+      "lift": 0.95,
+      "image_url": "https://images.qloo.com/i/0E84F600-B861-4A93-AC5E-6E1DF4AC5826-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Raid",
+      "entity_id": "34AF2D45-EF6A-4ACB-BD40-18F93459999D",
+      "qloo_name": "The Raid",
+      "lift": null,
+      "image_url": "https://images.qloo.com/i/34AF2D45-EF6A-4ACB-BD40-18F93459999D-420x-auto.jpg",
+      "result_id": null
+     },
+     {
+      "name": "Drive",
+      "entity_id": "81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE",
+      "qloo_name": "Drive",
+      "lift": 0.971,
+      "image_url": "https://images.qloo.com/i/81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Blade Runner 2049",
+      "entity_id": "3A02361C-987B-4F7E-9AAD-071C3853AD92",
+      "qloo_name": "Blade Runner 2049",
+      "lift": 0.9217,
+      "image_url": "https://images.qloo.com/i/3A02361C-987B-4F7E-9AAD-071C3853AD92-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Sony",
+      "entity_id": "AA620FF2-87D7-43EC-BFAE-36631D076D8D",
+      "qloo_name": "Sony",
+      "lift": 0.9707,
+      "image_url": "https://images.qloo.com/i/AA620FF2-87D7-43EC-BFAE-36631D076D8D-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9753,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Nike",
+      "entity_id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+      "qloo_name": "Nike",
+      "lift": 0.9429,
+      "image_url": "https://images.qloo.com/i/C70CE2B8-0AD1-4150-BF18-5A6347F2E860-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Red Bull",
+      "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+      "qloo_name": "Red Bull",
+      "lift": 0.9479,
+      "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Cyberpunk 2077",
+      "entity_id": "F8729607-014B-45F4-8B45-30AF3A6A8348",
+      "qloo_name": "Cyberpunk 2077",
+      "lift": 1.0342,
+      "image_url": "https://images.qloo.com/i/F8729607-014B-45F4-8B45-30AF3A6A8348-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Steam Deck",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "slavic-fantasy": {
+   "game": "Leshy: a dark fantasy RPG built on Slavic folklore",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Staind",
+      "lift": 1.185
+     },
+     {
+      "name": "Fuel",
+      "lift": 1.1608
+     },
+     {
+      "name": "Godsmack",
+      "lift": 1.1562
+     },
+     {
+      "name": "Evanescence",
+      "lift": 1.1505
+     },
+     {
+      "name": "Hinder",
+      "lift": 1.1491
+     },
+     {
+      "name": "3 Doors Down",
+      "lift": 1.1467
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Flash Forward",
+      "lift": 1.1488
+     },
+     {
+      "name": "Imaginary Worlds",
+      "lift": 1.1429
+     },
+     {
+      "name": "the memory palace",
+      "lift": 1.1372
+     },
+     {
+      "name": "Rabbits",
+      "lift": 1.1266
+     },
+     {
+      "name": "Stuff You Missed in History Class",
+      "lift": 1.1168
+     },
+     {
+      "name": "99% Invisible",
+      "lift": 1.1008
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Road",
+      "lift": 1.3121
+     },
+     {
+      "name": "City of God",
+      "lift": 1.2872
+     },
+     {
+      "name": "Lord of War",
+      "lift": 1.2799
+     },
+     {
+      "name": "The Road",
+      "lift": 1.275
+     },
+     {
+      "name": "Surrogates",
+      "lift": 1.2725
+     },
+     {
+      "name": "Repo Men",
+      "lift": 1.2709
+     }
+    ],
+    "brand": [
+     {
+      "name": "Control",
+      "lift": 1.0439
+     },
+     {
+      "name": "Steam",
+      "lift": 1.0414
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0316
+     },
+     {
+      "name": "Niantic",
+      "lift": 1.0277
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0229
+     },
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0202
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Wardruna",
+      "entity_id": "F5C997B2-9F95-4EEC-A14E-68BC94FF5A60",
+      "qloo_name": "Wardruna",
+      "lift": 0.9565,
+      "image_url": "https://images.qloo.com/i/F5C997B2-9F95-4EEC-A14E-68BC94FF5A60-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Heilung",
+      "entity_id": "C202E811-BF19-4577-A1A8-860E253A2737",
+      "qloo_name": "Heilung",
+      "lift": 0.962,
+      "image_url": "https://images.qloo.com/i/C202E811-BF19-4577-A1A8-860E253A2737-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The HU",
+      "entity_id": "A7649FA6-46A8-4858-9DC1-343665872D9D",
+      "qloo_name": "The Hu",
+      "lift": 0.9483,
+      "image_url": "https://images.qloo.com/i/A7649FA6-46A8-4858-9DC1-343665872D9D-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Danheim",
+      "entity_id": "FF881A26-2896-40D5-8DD3-C3C6CC708A1C",
+      "qloo_name": "Danheim",
+      "lift": 0.9395,
+      "image_url": "https://images.qloo.com/i/FF881A26-2896-40D5-8DD3-C3C6CC708A1C-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Percival Schuttenbach",
+      "entity_id": "7E235D0E-8AC0-4E26-B2A3-4AC537A8938D",
+      "qloo_name": "Percival Schuttenbach",
+      "lift": 0.9527,
+      "image_url": "https://images.qloo.com/i/7E235D0E-8AC0-4E26-B2A3-4AC537A8938D-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Loreena McKennitt",
+      "entity_id": "4EC459B0-F97F-4172-9E6F-5DEC47A0A577",
+      "qloo_name": "Loreena McKennitt",
+      "lift": 1.086,
+      "image_url": "https://images.qloo.com/i/4EC459B0-F97F-4172-9E6F-5DEC47A0A577-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Witcher Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Lore",
+      "entity_id": "289AF533-A998-4BCE-A847-1CA47448BC56",
+      "qloo_name": "Lore",
+      "lift": 1.0848,
+      "image_url": "https://images.qloo.com/i/289AF533-A998-4BCE-A847-1CA47448BC56-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The History of England",
+      "entity_id": "921ADFA7-0C3C-4E87-97D9-D301FBD59233",
+      "qloo_name": "The History of England",
+      "lift": 1.0641,
+      "image_url": "https://images.qloo.com/i/921ADFA7-0C3C-4E87-97D9-D301FBD59233-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Mythology",
+      "entity_id": "2F67B05F-5DF9-447E-AF5C-DCD85031B5DA",
+      "qloo_name": "Mythology",
+      "lift": 1.0564,
+      "image_url": "https://images.qloo.com/i/2F67B05F-5DF9-447E-AF5C-DCD85031B5DA-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Critical Role",
+      "entity_id": "3D579D48-B1C9-4E25-B63E-4BA7FCCA8E1D",
+      "qloo_name": "Critical Role",
+      "lift": 1.0119,
+      "image_url": "https://images.qloo.com/i/3D579D48-B1C9-4E25-B63E-4BA7FCCA8E1D-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Lord of the Rings: The Fellowship of the Ring",
+      "entity_id": "3006EB68-8DD8-426E-B2F2-19BD3B9418F0",
+      "qloo_name": "The Lord of the Rings: The Fellowship of the Ring",
+      "lift": 1.0579,
+      "image_url": "https://images.qloo.com/i/3006EB68-8DD8-426E-B2F2-19BD3B9418F0-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Witcher",
+      "entity_id": "48439B19-1FF5-4D26-93C1-F915F91A5A1A",
+      "qloo_name": "Witchery",
+      "lift": 0.9212,
+      "image_url": "https://images.qloo.com/i/48439B19-1FF5-4D26-93C1-F915F91A5A1A-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Northman",
+      "entity_id": "EDFA9474-BB6F-4398-B5EC-ED1663C8E6E6",
+      "qloo_name": "The Northman",
+      "lift": 0.8985,
+      "image_url": "https://images.qloo.com/i/EDFA9474-BB6F-4398-B5EC-ED1663C8E6E6-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Excalibur",
+      "entity_id": "FF5E2228-0BC0-4DF0-99D9-6AA639C789C1",
+      "qloo_name": "Excalibur",
+      "lift": 1.0929,
+      "image_url": "https://images.qloo.com/i/FF5E2228-0BC0-4DF0-99D9-6AA639C789C1-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Conan the Barbarian",
+      "entity_id": "5B77A54A-FAC2-49B0-8F56-9A113941D92E",
+      "qloo_name": "Conan the Barbarian",
+      "lift": 1.0755,
+      "image_url": "https://images.qloo.com/i/5B77A54A-FAC2-49B0-8F56-9A113941D92E-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Pan's Labyrinth",
+      "entity_id": "878B26C8-9C94-4A6B-B65A-5AAD2CC67D97",
+      "qloo_name": "Pan's Labyrinth",
+      "lift": 1.1375,
+      "image_url": "https://images.qloo.com/i/878B26C8-9C94-4A6B-B65A-5AAD2CC67D97-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "brand": [
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 0.9919,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9729,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.9807,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Secretlab",
+      "entity_id": "649F2917-15A2-41C8-A1D9-CD70DB767EEF",
+      "qloo_name": "Secretlab",
+      "lift": 0.9785,
+      "image_url": "https://images.qloo.com/i/649F2917-15A2-41C8-A1D9-CD70DB767EEF-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Elgato",
+      "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
+      "qloo_name": "Elgato",
+      "lift": 1.0082,
+      "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "korean-mmo": {
+   "game": "Hanok Online: a fantasy MMORPG from a Seoul studio",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Eyes Set to Kill",
+      "lift": 1.1902
+     },
+     {
+      "name": "Parkway Drive",
+      "lift": 1.1713
+     },
+     {
+      "name": "Hopes Die Last",
+      "lift": 1.1569
+     },
+     {
+      "name": "All That Remains",
+      "lift": 1.156
+     },
+     {
+      "name": "Adept",
+      "lift": 1.1555
+     },
+     {
+      "name": "Blessthefall",
+      "lift": 1.1533
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Instance: Deep Dives for Gamers",
+      "lift": 1.1475
+     },
+     {
+      "name": "World of Warcast: A World of Warcraft Podcast",
+      "lift": 1.1434
+     },
+     {
+      "name": "Final Score",
+      "lift": 1.1394
+     },
+     {
+      "name": "Outlandish Podcast",
+      "lift": 1.1336
+     },
+     {
+      "name": "Convert to Raid: The podcast for raiders in the World of Warcraft!",
+      "lift": 1.1293
+     },
+     {
+      "name": "Episodes – Ventchat",
+      "lift": 1.1231
+     }
+    ],
+    "movie": [
+     {
+      "name": "Upside Down",
+      "lift": 1.2846
+     },
+     {
+      "name": "Enemy?",
+      "lift": 1.2753
+     },
+     {
+      "name": "A Hitman's Solitude Before the Shot",
+      "lift": 1.2054
+     },
+     {
+      "name": "Equilibrium",
+      "lift": 1.1914
+     },
+     {
+      "name": "Uncanny",
+      "lift": 1.1865
+     },
+     {
+      "name": "Air",
+      "lift": 1.1849
+     }
+    ],
+    "brand": [
+     {
+      "name": "Seagate",
+      "lift": 1.0404
+     },
+     {
+      "name": "EK Water Blocks",
+      "lift": 1.035
+     },
+     {
+      "name": "Roccat",
+      "lift": 1.0311
+     },
+     {
+      "name": "Lian Li Industrial",
+      "lift": 1.0308
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.0296
+     },
+     {
+      "name": "EVGA Corporation",
+      "lift": 1.0281
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "BTS",
+      "entity_id": "F347D506-CB6F-46FA-9A8B-AFBC31C71A1A",
+      "qloo_name": "BTS",
+      "lift": 0.8642,
+      "image_url": "https://images.qloo.com/i/F347D506-CB6F-46FA-9A8B-AFBC31C71A1A-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Blackpink",
+      "entity_id": "AFB6CA3D-9620-4D8B-9958-6727BA40AFA6",
+      "qloo_name": "BLACKPINK",
+      "lift": 0.8669,
+      "image_url": "https://images.qloo.com/i/AFB6CA3D-9620-4D8B-9958-6727BA40AFA6-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Stray Kids",
+      "entity_id": "C47948A8-9DE8-4214-B66D-6962B54533FD",
+      "qloo_name": "STRAY KIDS",
+      "lift": 0.8841,
+      "image_url": "https://images.qloo.com/i/C47948A8-9DE8-4214-B66D-6962B54533FD-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "NewJeans",
+      "entity_id": "E3B96B9A-665E-4258-B446-4A5CFDFD882E",
+      "qloo_name": "NewJeans",
+      "lift": 0.9071,
+      "image_url": "https://images.qloo.com/i/E3B96B9A-665E-4258-B446-4A5CFDFD882E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Twice",
+      "entity_id": "E404DC51-323B-4DB4-ABD3-0A9F02C0429E",
+      "qloo_name": "TWICE",
+      "lift": 0.8792,
+      "image_url": "https://images.qloo.com/i/E404DC51-323B-4DB4-ABD3-0A9F02C0429E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "ATEEZ",
+      "entity_id": "8F1F50B7-F82D-4442-85CC-F1B0FADBAA57",
+      "qloo_name": "ATEEZ",
+      "lift": 0.9118,
+      "image_url": "https://images.qloo.com/i/8F1F50B7-F82D-4442-85CC-F1B0FADBAA57-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Daily",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Stuff You Should Know",
+      "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+      "qloo_name": "Stuff You Should Know",
+      "lift": 0.9779,
+      "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Radiolab",
+      "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+      "qloo_name": "Radiolab",
+      "lift": 0.9654,
+      "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "99% Invisible",
+      "entity_id": "1B466B0E-323A-4EFD-A314-8737F58F1E1B",
+      "qloo_name": "99% Invisible",
+      "lift": 0.9824,
+      "image_url": "https://images.qloo.com/i/1B466B0E-323A-4EFD-A314-8737F58F1E1B-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Reply All",
+      "entity_id": "75CFD09E-D949-4F0A-97F3-9498EA98E652",
+      "qloo_name": "Reply All",
+      "lift": 0.9645,
+      "image_url": "https://images.qloo.com/i/75CFD09E-D949-4F0A-97F3-9498EA98E652-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "movie": [
+     {
+      "name": "Parasite",
+      "entity_id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
+      "qloo_name": "Parasite",
+      "lift": 0.8145,
+      "image_url": "https://images.qloo.com/i/A499EC25-7FF6-46DE-9DA5-3E78E99B9E26-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Everything Everywhere All At Once",
+      "entity_id": "F0D354AA-BA7E-49D2-8ABA-9A8250F5C852",
+      "qloo_name": "Everything Everywhere All at Once",
+      "lift": 0.7833,
+      "image_url": "https://images.qloo.com/i/F0D354AA-BA7E-49D2-8ABA-9A8250F5C852-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Lord of the Rings: The Fellowship of the Ring",
+      "entity_id": "3006EB68-8DD8-426E-B2F2-19BD3B9418F0",
+      "qloo_name": "The Lord of the Rings: The Fellowship of the Ring",
+      "lift": 1.0019,
+      "image_url": "https://images.qloo.com/i/3006EB68-8DD8-426E-B2F2-19BD3B9418F0-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Oldboy",
+      "entity_id": "D0908D6C-A912-40C6-B77D-77AE05B92CC8",
+      "qloo_name": "Oldboy",
+      "lift": 1.0304,
+      "image_url": "https://images.qloo.com/i/D0908D6C-A912-40C6-B77D-77AE05B92CC8-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Host",
+      "entity_id": "E965BD2A-5BF8-443C-BEF6-B3552CF15E5D",
+      "qloo_name": "The Host",
+      "lift": 0.9975,
+      "image_url": "https://images.qloo.com/i/E965BD2A-5BF8-443C-BEF6-B3552CF15E5D-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Pan's Labyrinth",
+      "entity_id": "878B26C8-9C94-4A6B-B65A-5AAD2CC67D97",
+      "qloo_name": "Pan's Labyrinth",
+      "lift": 1.0596,
+      "image_url": "https://images.qloo.com/i/878B26C8-9C94-4A6B-B65A-5AAD2CC67D97-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Samsung",
+      "entity_id": "19D309BB-83F9-437C-8C68-CE7B7B8C98AD",
+      "qloo_name": "Samsung",
+      "lift": 0.9714,
+      "image_url": "https://images.qloo.com/i/19D309BB-83F9-437C-8C68-CE7B7B8C98AD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Gentle Monster",
+      "entity_id": "2D84D286-1A44-4240-9C58-C4F8F1E09E0D",
+      "qloo_name": "Gentle Monster",
+      "lift": 0.9567,
+      "image_url": "https://images.qloo.com/i/2D84D286-1A44-4240-9C58-C4F8F1E09E0D-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Hyundai",
+      "entity_id": "DEF0BC93-11F7-4A7F-A771-BF8E049CA2BB",
+      "qloo_name": "Hyundai",
+      "lift": 0.9696,
+      "image_url": "https://images.qloo.com/i/DEF0BC93-11F7-4A7F-A771-BF8E049CA2BB-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Line",
+      "entity_id": "721C53CD-05D9-425A-8EC6-089ADB7206A6",
+      "qloo_name": "LINE",
+      "lift": 0.9602,
+      "image_url": "https://images.qloo.com/i/721C53CD-05D9-425A-8EC6-089ADB7206A6-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "KakaoTalk",
+      "entity_id": "768A1B9C-D7E4-4563-BF55-32779B4215E3",
+      "qloo_name": "KakaoTalk",
+      "lift": 0.973,
+      "image_url": "https://images.qloo.com/i/768A1B9C-D7E4-4563-BF55-32779B4215E3-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Innisfree",
+      "entity_id": "016EA3BD-D740-46A0-B775-4B0E4A248FF0",
+      "qloo_name": "Innisfree",
+      "lift": 0.9903,
+      "image_url": "https://images.qloo.com/i/016EA3BD-D740-46A0-B775-4B0E4A248FF0-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "ottoman-sandbox": {
+   "game": "Sultan's March: a medieval sandbox of battles and politics in Anatolia",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Darren Korb",
+      "lift": 1.1234
+     },
+     {
+      "name": "zYnthetic",
+      "lift": 1.1131
+     },
+     {
+      "name": "Miracle of Sound",
+      "lift": 1.11
+     },
+     {
+      "name": "Old Gods of Asgard",
+      "lift": 1.108
+     },
+     {
+      "name": "Kevin MacLeod",
+      "lift": 1.1043
+     },
+     {
+      "name": "Erock",
+      "lift": 1.0986
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Age of Napoleon Podcast",
+      "lift": 1.2095
+     },
+     {
+      "name": "The Ancient World",
+      "lift": 1.1777
+     },
+     {
+      "name": "Revolutions",
+      "lift": 1.1718
+     },
+     {
+      "name": "The History of Byzantium",
+      "lift": 1.17
+     },
+     {
+      "name": "When Diplomacy Fails Podcast",
+      "lift": 1.1662
+     },
+     {
+      "name": "The British History Podcast",
+      "lift": 1.1521
+     }
+    ],
+    "movie": [
+     {
+      "name": "Ad Astra",
+      "lift": 1.0305
+     },
+     {
+      "name": "Blade Runner 2049",
+      "lift": 1.0202
+     },
+     {
+      "name": "Tenet",
+      "lift": 1.0154
+     },
+     {
+      "name": "Terminator: Dark Fate",
+      "lift": 1.0029
+     },
+     {
+      "name": "Dune",
+      "lift": 1.0025
+     },
+     {
+      "name": "Star Wars: Episode VIII - The Last Jedi",
+      "lift": 1.0023
+     }
+    ],
+    "brand": [
+     {
+      "name": "Control",
+      "lift": 1.0383
+     },
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0265
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0205
+     },
+     {
+      "name": "Square Enix",
+      "lift": 1.0171
+     },
+     {
+      "name": "Digital Storm Online",
+      "lift": 1.0102
+     },
+     {
+      "name": "MSI",
+      "lift": 1.0037
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Hans Zimmer",
+      "entity_id": "37DB91E9-9EE1-4C98-AA01-0AF0C34274EC",
+      "qloo_name": "Hans Zimmer",
+      "lift": 1.0735,
+      "image_url": "https://images.qloo.com/i/37DB91E9-9EE1-4C98-AA01-0AF0C34274EC-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Two Steps From Hell",
+      "entity_id": "B8015192-A45E-4C39-8390-4ED7AA32F2E1",
+      "qloo_name": "Two Steps from Hell",
+      "lift": 1.0888,
+      "image_url": "https://images.qloo.com/i/B8015192-A45E-4C39-8390-4ED7AA32F2E1-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Wardruna",
+      "entity_id": "F5C997B2-9F95-4EEC-A14E-68BC94FF5A60",
+      "qloo_name": "Wardruna",
+      "lift": 1.1087,
+      "image_url": "https://images.qloo.com/i/F5C997B2-9F95-4EEC-A14E-68BC94FF5A60-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Jeremy Soule",
+      "entity_id": "94FDF541-0F61-45B5-8237-D5D40C06F679",
+      "qloo_name": "Jeremy Soule",
+      "lift": 1.1229,
+      "image_url": "https://images.qloo.com/i/94FDF541-0F61-45B5-8237-D5D40C06F679-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The Hu",
+      "entity_id": "A7649FA6-46A8-4858-9DC1-343665872D9D",
+      "qloo_name": "The Hu",
+      "lift": 1.0871,
+      "image_url": "https://images.qloo.com/i/A7649FA6-46A8-4858-9DC1-343665872D9D-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Dead Can Dance",
+      "entity_id": "502E29C2-F28A-4D73-8A51-E83D18875779",
+      "qloo_name": "Dead Can Dance",
+      "lift": 1.0569,
+      "image_url": "https://images.qloo.com/i/502E29C2-F28A-4D73-8A51-E83D18875779-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The History of Rome",
+      "entity_id": "40E2AB73-A524-4932-A83C-4890BA745CD7",
+      "qloo_name": "The History of Rome",
+      "lift": 1.1397,
+      "image_url": "https://images.qloo.com/i/40E2AB73-A524-4932-A83C-4890BA745CD7-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Tides of History",
+      "entity_id": "3BA76BD4-FCAC-4154-81C1-69FD4DEC94AB",
+      "qloo_name": "Tides of History",
+      "lift": 1.1792,
+      "image_url": "https://images.qloo.com/i/3BA76BD4-FCAC-4154-81C1-69FD4DEC94AB-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Great Courses",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Empire",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Fall of Civilizations",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Kingdom of Heaven",
+      "entity_id": "894991BD-5FC4-4988-9438-12BE8FB32883",
+      "qloo_name": "Kingdom of Heaven",
+      "lift": 1.0131,
+      "image_url": "https://images.qloo.com/i/894991BD-5FC4-4988-9438-12BE8FB32883-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Gladiator",
+      "entity_id": "3BDFC00A-B52E-48B5-AED6-F2CECAD049FB",
+      "qloo_name": "Gladiator",
+      "lift": 0.997,
+      "image_url": "https://images.qloo.com/i/3BDFC00A-B52E-48B5-AED6-F2CECAD049FB-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Last Kingdom",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Braveheart",
+      "entity_id": "37D581D2-E777-45BD-BA0F-B59383A315E3",
+      "qloo_name": "Braveheart",
+      "lift": 1.0084,
+      "image_url": "https://images.qloo.com/i/37D581D2-E777-45BD-BA0F-B59383A315E3-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Troy",
+      "entity_id": "66E47558-C9A9-46B0-9AC2-A877A4BF0D90",
+      "qloo_name": "Troy",
+      "lift": 0.9841,
+      "image_url": "https://images.qloo.com/i/66E47558-C9A9-46B0-9AC2-A877A4BF0D90-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The King",
+      "entity_id": "95377F3C-009F-4D7A-9F4D-D824C60843E1",
+      "qloo_name": "The King",
+      "lift": 1.0285,
+      "image_url": "https://images.qloo.com/i/95377F3C-009F-4D7A-9F4D-D824C60843E1-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 1.0036,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9875,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 1.0025,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Secretlab",
+      "entity_id": "649F2917-15A2-41C8-A1D9-CD70DB767EEF",
+      "qloo_name": "Secretlab",
+      "lift": 0.9968,
+      "image_url": "https://images.qloo.com/i/649F2917-15A2-41C8-A1D9-CD70DB767EEF-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "ASUS ROG",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "cozy-farm": {
+   "game": "Moss Hollow: a cozy farming and village life sim",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Shoji Meguro",
+      "lift": 1.1146
+     },
+     {
+      "name": "Lotus Juice",
+      "lift": 1.0957
+     },
+     {
+      "name": "SQUARE ENIX MUSIC",
+      "lift": 1.0846
+     },
+     {
+      "name": "Claris",
+      "lift": 1.0817
+     },
+     {
+      "name": "kyary pamyu pamyu",
+      "lift": 1.0816
+     },
+     {
+      "name": "HOYO-MiX",
+      "lift": 1.0806
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Rabbits",
+      "lift": 1.1535
+     },
+     {
+      "name": "The Bright Sessions",
+      "lift": 1.1454
+     },
+     {
+      "name": "Stories from Among the Stars",
+      "lift": 1.1337
+     },
+     {
+      "name": "The Penumbra Podcast",
+      "lift": 1.1307
+     },
+     {
+      "name": "The Black Tapes",
+      "lift": 1.1269
+     },
+     {
+      "name": "The Magnus Archives",
+      "lift": 1.1225
+     }
+    ],
+    "movie": [
+     {
+      "name": "Heathers: The Musical",
+      "lift": 1.1407
+     },
+     {
+      "name": "The House",
+      "lift": 1.1364
+     },
+     {
+      "name": "Wendell & Wild",
+      "lift": 1.1342
+     },
+     {
+      "name": "The Secret World of Arrietty",
+      "lift": 1.1293
+     },
+     {
+      "name": "My Father's Dragon",
+      "lift": 1.1227
+     },
+     {
+      "name": "Okko's Inn",
+      "lift": 1.1221
+     }
+    ],
+    "brand": [
+     {
+      "name": "Niantic",
+      "lift": 1.0496
+     },
+     {
+      "name": "Steam",
+      "lift": 1.0406
+     },
+     {
+      "name": "Funimation",
+      "lift": 1.0355
+     },
+     {
+      "name": "Crunchyroll",
+      "lift": 1.0351
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0283
+     },
+     {
+      "name": "Square Enix",
+      "lift": 1.0258
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Animal Crossing: New Horizons Soundtrack",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Kacey Musgraves",
+      "entity_id": "9AAE0224-F8E2-447A-BD05-26D2A9E72573",
+      "qloo_name": "Kacey Musgraves",
+      "lift": 0.9895,
+      "image_url": "https://images.qloo.com/i/9AAE0224-F8E2-447A-BD05-26D2A9E72573-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Laufey",
+      "entity_id": "6C2BE7A7-4154-4F0B-BE10-E751AC9061CF",
+      "qloo_name": "Laufey",
+      "lift": 1.0261,
+      "image_url": "https://images.qloo.com/i/6C2BE7A7-4154-4F0B-BE10-E751AC9061CF-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Paper Kites",
+      "entity_id": "4A9E2A72-C26C-48E6-B8F5-73730803B993",
+      "qloo_name": "The Paper Kites",
+      "lift": 0.9957,
+      "image_url": "https://images.qloo.com/i/4A9E2A72-C26C-48E6-B8F5-73730803B993-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Iron & Wine",
+      "entity_id": "7BCCB9FC-D4B9-4DB4-93CA-80028E1F9AC9",
+      "qloo_name": "Iron & Wine",
+      "lift": 1.0438,
+      "image_url": "https://images.qloo.com/i/7BCCB9FC-D4B9-4DB4-93CA-80028E1F9AC9-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Norah Jones",
+      "entity_id": "CFB97CDA-1B2D-4F1A-B707-415E76AFC016",
+      "qloo_name": "Norah Jones",
+      "lift": 1.0567,
+      "image_url": "https://images.qloo.com/i/CFB97CDA-1B2D-4F1A-B707-415E76AFC016-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Anthropocene Reviewed",
+      "entity_id": "F47C2B62-03C6-4B64-B026-BA35587CB10C",
+      "qloo_name": "The Anthropocene Reviewed",
+      "lift": 1.0336,
+      "image_url": "https://images.qloo.com/i/F47C2B62-03C6-4B64-B026-BA35587CB10C-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Stuff You Should Know",
+      "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+      "qloo_name": "Stuff You Should Know",
+      "lift": 0.958,
+      "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Ologies",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Modern Love",
+      "entity_id": "682ABACA-B1C8-4737-89C2-E95A75EEEA63",
+      "qloo_name": "Modern Love",
+      "lift": 1.0348,
+      "image_url": "https://images.qloo.com/i/682ABACA-B1C8-4737-89C2-E95A75EEEA63-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Wait Wait... Don't Tell Me!",
+      "entity_id": "C11C2123-5E6B-4D08-B696-08F6F48AD694",
+      "qloo_name": "Wait Wait... Don't Tell Me!",
+      "lift": 0.9754,
+      "image_url": "https://images.qloo.com/i/C11C2123-5E6B-4D08-B696-08F6F48AD694-420x-auto.jpg",
+      "result_id": "q34"
+     }
+    ],
+    "movie": [
+     {
+      "name": "My Neighbor Totoro",
+      "entity_id": "E146CA3A-10FD-4C7F-ACFA-AD4E9955F08E",
+      "qloo_name": "My Neighbor Totoro",
+      "lift": 1.1216,
+      "image_url": "https://images.qloo.com/i/E146CA3A-10FD-4C7F-ACFA-AD4E9955F08E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kiki's Delivery Service",
+      "entity_id": "D712D169-BCE2-487F-8977-0CE9459125C3",
+      "qloo_name": "Kiki's Delivery Service",
+      "lift": 1.1132,
+      "image_url": "https://images.qloo.com/i/D712D169-BCE2-487F-8977-0CE9459125C3-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Fantastic Mr. Fox",
+      "entity_id": "053A809A-DA41-42F2-AAD8-FF8B8CB6CEFD",
+      "qloo_name": "Fantastic Mr. Fox",
+      "lift": 1.0725,
+      "image_url": "https://images.qloo.com/i/053A809A-DA41-42F2-AAD8-FF8B8CB6CEFD-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The Secret World of Arrietty",
+      "entity_id": "09B90B23-FBA7-478A-AB61-9F9D6AA94B95",
+      "qloo_name": "The Secret World of Arrietty",
+      "lift": 1.1293,
+      "image_url": "https://images.qloo.com/i/09B90B23-FBA7-478A-AB61-9F9D6AA94B95-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Paddington 2",
+      "entity_id": "FD27AC52-4880-404E-BECF-E99DEDEAE2FC",
+      "qloo_name": "Paddington 2",
+      "lift": 1.0054,
+      "image_url": "https://images.qloo.com/i/FD27AC52-4880-404E-BECF-E99DEDEAE2FC-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Nintendo",
+      "entity_id": "FFD31D42-DF50-4B60-932C-7497C8E73A80",
+      "qloo_name": "Nintendo",
+      "lift": 1.0152,
+      "image_url": "https://images.qloo.com/i/FFD31D42-DF50-4B60-932C-7497C8E73A80-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "IKEA",
+      "entity_id": "7E9A2E74-1CB5-43E9-8B74-69CA8283BFBD",
+      "qloo_name": "IKEA",
+      "lift": 1.0021,
+      "image_url": "https://images.qloo.com/i/7E9A2E74-1CB5-43E9-8B74-69CA8283BFBD-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "MUJI",
+      "entity_id": "E12201A5-CC50-40AF-97AE-C54A2CA303F7",
+      "qloo_name": "Muji",
+      "lift": 1.0124,
+      "image_url": "https://images.qloo.com/i/E12201A5-CC50-40AF-97AE-C54A2CA303F7-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Studio Ghibli",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Patagonia",
+      "entity_id": "DB4CE34E-3A63-4947-946F-9D52502C5762",
+      "qloo_name": "Patagonia",
+      "lift": 0.9527,
+      "image_url": "https://images.qloo.com/i/DB4CE34E-3A63-4947-946F-9D52502C5762-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "LEGO",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "horde-survivor": {
+   "game": "Swarmline: a cheap, fast bullet-heaven roguelite",
+   "qloo": {
+    "artist": [
+     {
+      "name": "長沼英樹",
+      "lift": 1.0948
+     },
+     {
+      "name": "Mykah",
+      "lift": 1.0928
+     },
+     {
+      "name": "Masafumi Takada",
+      "lift": 1.0899
+     },
+     {
+      "name": "Smooth McGroove",
+      "lift": 1.0885
+     },
+     {
+      "name": "Lena Raine",
+      "lift": 1.0799
+     },
+     {
+      "name": "Tee Lopes",
+      "lift": 1.0779
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Empty Bowl",
+      "lift": 1.154
+     },
+     {
+      "name": "Wonderful!",
+      "lift": 1.1405
+     },
+     {
+      "name": "Bubble",
+      "lift": 1.1404
+     },
+     {
+      "name": "Trends Like These",
+      "lift": 1.1294
+     },
+     {
+      "name": "Minority Korner",
+      "lift": 1.1288
+     },
+     {
+      "name": "Shmanners",
+      "lift": 1.1268
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Imposter",
+      "lift": 1.2929
+     },
+     {
+      "name": "Searching for Sugar Man",
+      "lift": 1.2804
+     },
+     {
+      "name": "Into the Abyss",
+      "lift": 1.2692
+     },
+     {
+      "name": "Stories We Tell",
+      "lift": 1.2673
+     },
+     {
+      "name": "The Act of Killing",
+      "lift": 1.2656
+     },
+     {
+      "name": "The Thin Blue Line",
+      "lift": 1.2631
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.0398
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0231
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.0221
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.0216
+     },
+     {
+      "name": "Turtle Beach",
+      "lift": 1.0209
+     },
+     {
+      "name": "Origin PC",
+      "lift": 1.0206
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Mick Gordon",
+      "entity_id": "14EC48D6-119C-4468-9145-3E9F006310BC",
+      "qloo_name": "Mick Gordon",
+      "lift": 1.0351,
+      "image_url": "https://images.qloo.com/i/14EC48D6-119C-4468-9145-3E9F006310BC-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Perturbator",
+      "entity_id": "EF2CF2AD-E84C-4C67-B635-56559BF57E29",
+      "qloo_name": "Perturbator",
+      "lift": 1.0467,
+      "image_url": "https://images.qloo.com/i/EF2CF2AD-E84C-4C67-B635-56559BF57E29-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Carpenter Brut",
+      "entity_id": "A339386A-3655-4C00-BE91-6AC879ACC2E9",
+      "qloo_name": "Carpenter Brut",
+      "lift": 1.0425,
+      "image_url": "https://images.qloo.com/i/A339386A-3655-4C00-BE91-6AC879ACC2E9-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Daniel Deluxe",
+      "entity_id": "30371F0D-2112-42D5-9CB9-87F7594562C8",
+      "qloo_name": "Daniel Deluxe",
+      "lift": 1.0057,
+      "image_url": "https://images.qloo.com/i/30371F0D-2112-42D5-9CB9-87F7594562C8-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Gesaffelstein",
+      "entity_id": "20898517-9B69-4DC0-A397-1CBBB8B5B05B",
+      "qloo_name": "Gesaffelstein",
+      "lift": 0.9532,
+      "image_url": "https://images.qloo.com/i/20898517-9B69-4DC0-A397-1CBBB8B5B05B-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Lorn",
+      "entity_id": "66FA754F-CD67-4D5D-8A13-7BE08FD8BFC0",
+      "qloo_name": "Lorn",
+      "lift": 1.0063,
+      "image_url": "https://images.qloo.com/i/66FA754F-CD67-4D5D-8A13-7BE08FD8BFC0-420x-auto.jpg",
+      "result_id": "q34"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Giant Bombcast",
+      "entity_id": "79012B13-F952-486D-A680-36D72A84BB53",
+      "qloo_name": "Giant Bombcast",
+      "lift": 0.9878,
+      "image_url": "https://images.qloo.com/i/79012B13-F952-486D-A680-36D72A84BB53-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kinda Funny Games",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Game Collider",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Pause Assist",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Mad Max: Fury Road",
+      "entity_id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+      "qloo_name": "Mad Max: Fury Road",
+      "lift": 0.9786,
+      "image_url": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "John Wick",
+      "entity_id": "0D3D9B8F-EA18-49CB-85EC-72DE3FD8F007",
+      "qloo_name": "John Wick",
+      "lift": 0.9251,
+      "image_url": "https://images.qloo.com/i/0D3D9B8F-EA18-49CB-85EC-72DE3FD8F007-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Matrix",
+      "entity_id": "C6046119-7760-4733-B84E-374E029B14DC",
+      "qloo_name": "The Matrix",
+      "lift": 0.9395,
+      "image_url": "https://images.qloo.com/i/C6046119-7760-4733-B84E-374E029B14DC-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Edge of Tomorrow",
+      "entity_id": "A0BE131E-F0C4-47B7-BEBE-DA53A57FD9EB",
+      "qloo_name": "Edge of Tomorrow",
+      "lift": 0.9737,
+      "image_url": "https://images.qloo.com/i/A0BE131E-F0C4-47B7-BEBE-DA53A57FD9EB-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore Henry",
+      "entity_id": "A5DC9C82-6D61-4248-B4AD-B613843C8D82",
+      "qloo_name": "Hardcore Henry",
+      "lift": 0.978,
+      "image_url": "https://images.qloo.com/i/A5DC9C82-6D61-4248-B4AD-B613843C8D82-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Akira",
+      "entity_id": "0E84F600-B861-4A93-AC5E-6E1DF4AC5826",
+      "qloo_name": "Akira",
+      "lift": 1.03,
+      "image_url": "https://images.qloo.com/i/0E84F600-B861-4A93-AC5E-6E1DF4AC5826-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9774,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.991,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Discord",
+      "entity_id": "868E00FF-465A-4802-881A-60A8C266E72E",
+      "qloo_name": "Discord",
+      "lift": 0.9801,
+      "image_url": "https://images.qloo.com/i/868E00FF-465A-4802-881A-60A8C266E72E-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Steam",
+      "entity_id": "C1AAE8AA-0A79-4807-8B4B-64DD06F64B08",
+      "qloo_name": "Steam",
+      "lift": 1.0162,
+      "image_url": "https://images.qloo.com/i/C1AAE8AA-0A79-4807-8B4B-64DD06F64B08-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Elgato",
+      "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
+      "qloo_name": "Elgato",
+      "lift": 1.0179,
+      "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "mobile-moba": {
+   "game": "Lane Legends: a 5v5 mobile MOBA with 10-minute matches",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Afrojack",
+      "lift": 1.0984
+     },
+     {
+      "name": "Tiësto",
+      "lift": 1.0966
+     },
+     {
+      "name": "David Guetta",
+      "lift": 1.0952
+     },
+     {
+      "name": "Swedish House Mafia",
+      "lift": 1.095
+     },
+     {
+      "name": "Skrillex",
+      "lift": 1.0935
+     },
+     {
+      "name": "Nicky Romero",
+      "lift": 1.0887
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Jeselnik & Rosenthal Vanity Project",
+      "lift": 1.1515
+     },
+     {
+      "name": "The Connect",
+      "lift": 1.1513
+     },
+     {
+      "name": "The Watch",
+      "lift": 1.1479
+     },
+     {
+      "name": "The Ringer Fantasy Football Show",
+      "lift": 1.1357
+     },
+     {
+      "name": "All Fantasy Everything",
+      "lift": 1.1316
+     },
+     {
+      "name": "The Bill Simmons Podcast",
+      "lift": 1.1125
+     }
+    ],
+    "movie": [
+     {
+      "name": "Deadpool",
+      "lift": 1.0883
+     },
+     {
+      "name": "Avengers: Age of Ultron",
+      "lift": 1.0851
+     },
+     {
+      "name": "X-Men: Apocalypse",
+      "lift": 1.0837
+     },
+     {
+      "name": "Captain America: Civil War",
+      "lift": 1.0801
+     },
+     {
+      "name": "Guardians of the Galaxy",
+      "lift": 1.0767
+     },
+     {
+      "name": "Batman v Superman: Dawn of Justice",
+      "lift": 1.0762
+     }
+    ],
+    "brand": [
+     {
+      "name": "Hyper X",
+      "lift": 1.0255
+     },
+     {
+      "name": "Cooler Master",
+      "lift": 1.0217
+     },
+     {
+      "name": "Intel",
+      "lift": 1.0215
+     },
+     {
+      "name": "Nvidia",
+      "lift": 1.0202
+     },
+     {
+      "name": "Advanced Micro Devices",
+      "lift": 1.0177
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.0174
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Imagine Dragons",
+      "entity_id": "13087295-1C74-4EA7-8D1B-9C3A87A6A1E4",
+      "qloo_name": "Imagine Dragons",
+      "lift": 1.037,
+      "image_url": "https://images.qloo.com/i/13087295-1C74-4EA7-8D1B-9C3A87A6A1E4-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "K/DA",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "League of Legends",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Glitch Mob",
+      "entity_id": "4C8B8527-7B4D-49DF-93DD-49589B57DF76",
+      "qloo_name": "The Glitch Mob",
+      "lift": 1.0822,
+      "image_url": "https://images.qloo.com/i/4C8B8527-7B4D-49DF-93DD-49589B57DF76-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Skrillex",
+      "entity_id": "B9FA2A2C-A59B-4536-B92F-74026D690C8F",
+      "qloo_name": "Skrillex",
+      "lift": 1.0935,
+      "image_url": "https://images.qloo.com/i/B9FA2A2C-A59B-4536-B92F-74026D690C8F-420x-auto.jpg",
+      "result_id": "q34"
+     },
+     {
+      "name": "Marshmello",
+      "entity_id": "A3638115-B086-4475-996A-E19EB5CF3C15",
+      "qloo_name": "Marshmello",
+      "lift": 0.9798,
+      "image_url": "https://images.qloo.com/i/A3638115-B086-4475-996A-E19EB5CF3C15-420x-auto.jpg",
+      "result_id": "q34"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Game Awards",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "League of Legends Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Dota 2 Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Loading Bar",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Ready Player One",
+      "entity_id": "BC6FC94F-845E-41D1-B8B3-4219E80AF339",
+      "qloo_name": "Ready Player One",
+      "lift": 1.0089,
+      "image_url": "https://images.qloo.com/i/BC6FC94F-845E-41D1-B8B3-4219E80AF339-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Free Guy",
+      "entity_id": "4CA917FE-C8E8-423D-AB4D-D25784041F27",
+      "qloo_name": "Free Guy",
+      "lift": 0.931,
+      "image_url": "https://images.qloo.com/i/4CA917FE-C8E8-423D-AB4D-D25784041F27-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Tron: Legacy",
+      "entity_id": "9520D308-3488-4866-93CB-F9410D21A0FF",
+      "qloo_name": "Tron: Legacy",
+      "lift": 1.0405,
+      "image_url": "https://images.qloo.com/i/9520D308-3488-4866-93CB-F9410D21A0FF-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Warcraft",
+      "entity_id": "7592674A-42C2-40CD-99CB-3A7C94D6D007",
+      "qloo_name": "Warcraft",
+      "lift": 1.0816,
+      "image_url": "https://images.qloo.com/i/7592674A-42C2-40CD-99CB-3A7C94D6D007-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9924,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q32"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 1.0101,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q32"
+     },
+     {
+      "name": "Red Bull",
+      "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+      "qloo_name": "Red Bull",
+      "lift": 0.9809,
+      "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+      "result_id": "q32"
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9842,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q32"
+     },
+     {
+      "name": "Secretlab",
+      "entity_id": "649F2917-15A2-41C8-A1D9-CD70DB767EEF",
+      "qloo_name": "Secretlab",
+      "lift": 0.9777,
+      "image_url": "https://images.qloo.com/i/649F2917-15A2-41C8-A1D9-CD70DB767EEF-420x-auto.jpg",
+      "result_id": "q32"
+     }
+    ]
+   }
+  },
+  "football-manager": {
+   "game": "Touchline: a deep football club management sim",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Five Finger Death Punch",
+      "lift": 1.0978
+     },
+     {
+      "name": "Headhunterz",
+      "lift": 1.0937
+     },
+     {
+      "name": "Slipknot",
+      "lift": 1.087
+     },
+     {
+      "name": "Nicky Romero",
+      "lift": 1.0741
+     },
+     {
+      "name": "Blasterjaxx",
+      "lift": 1.0701
+     },
+     {
+      "name": "Avenged Sevenfold",
+      "lift": 1.0685
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Reconcilable Differences",
+      "lift": 1.0977
+     },
+     {
+      "name": "Hello Internet",
+      "lift": 1.0947
+     },
+     {
+      "name": "Cortex",
+      "lift": 1.0933
+     },
+     {
+      "name": "The Talk Show With John Gruber",
+      "lift": 1.0922
+     },
+     {
+      "name": "Upgrade",
+      "lift": 1.0873
+     },
+     {
+      "name": "The Unmade Podcast",
+      "lift": 1.0838
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Fate of the Furious",
+      "lift": 1.1036
+     },
+     {
+      "name": "Assassin's Creed",
+      "lift": 1.0883
+     },
+     {
+      "name": "Ghost in the Shell",
+      "lift": 1.0852
+     },
+     {
+      "name": "The Hitman's Bodyguard",
+      "lift": 1.0836
+     },
+     {
+      "name": "Transformers: The Last Knight",
+      "lift": 1.0801
+     },
+     {
+      "name": "Bright",
+      "lift": 1.0677
+     }
+    ],
+    "brand": [
+     {
+      "name": "Hp",
+      "lift": 1.0369
+     },
+     {
+      "name": "Intel",
+      "lift": 1.0301
+     },
+     {
+      "name": "Nvidia",
+      "lift": 1.0279
+     },
+     {
+      "name": "Cooler Master",
+      "lift": 1.0204
+     },
+     {
+      "name": "Hyper X",
+      "lift": 1.0195
+     },
+     {
+      "name": "Advanced Micro Devices",
+      "lift": 1.0185
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Arctic Monkeys",
+      "entity_id": "E3CF515E-C3EA-46DF-92DD-64A0DC360C90",
+      "qloo_name": "Arctic Monkeys",
+      "lift": 0.9857,
+      "image_url": "https://images.qloo.com/i/E3CF515E-C3EA-46DF-92DD-64A0DC360C90-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The Chemical Brothers",
+      "entity_id": "9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E",
+      "qloo_name": "The Chemical Brothers",
+      "lift": 1.0506,
+      "image_url": "https://images.qloo.com/i/9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kasabian",
+      "entity_id": "A3B4BD45-C548-43B1-91CB-6DD346F4DD6E",
+      "qloo_name": "Kasabian",
+      "lift": 1.0036,
+      "image_url": "https://images.qloo.com/i/A3B4BD45-C548-43B1-91CB-6DD346F4DD6E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Oasis",
+      "entity_id": "892D4014-60ED-4E06-8417-468F0F620D64",
+      "qloo_name": "Oasis",
+      "lift": 0.9971,
+      "image_url": "https://images.qloo.com/i/892D4014-60ED-4E06-8417-468F0F620D64-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Blur",
+      "entity_id": "5FE80424-BB58-456B-83BD-FBE8C9B7DC94",
+      "qloo_name": "Blur",
+      "lift": 0.9777,
+      "image_url": "https://images.qloo.com/i/5FE80424-BB58-456B-83BD-FBE8C9B7DC94-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The Prodigy",
+      "entity_id": "CB948BD9-E6C1-438E-BB33-CC5E537F004A",
+      "qloo_name": "The Prodigy",
+      "lift": 1.0666,
+      "image_url": "https://images.qloo.com/i/CB948BD9-E6C1-438E-BB33-CC5E537F004A-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Athletic Football Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Tifo Football Podcast",
+      "entity_id": "10255895-AC23-4291-BA94-5033FD7B44BC",
+      "qloo_name": "Tifo Football Podcast",
+      "lift": 1.0069,
+      "image_url": "https://images.qloo.com/i/10255895-AC23-4291-BA94-5033FD7B44BC-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Football Weekly",
+      "entity_id": "867AEF90-D33A-468D-8698-F6EC3FB12D5C",
+      "qloo_name": "Football Weekly",
+      "lift": 1.0164,
+      "image_url": "https://images.qloo.com/i/867AEF90-D33A-468D-8698-F6EC3FB12D5C-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Men in Blazers",
+      "entity_id": "AD5BC899-F255-4AF9-9401-1BC61538772D",
+      "qloo_name": "Men In Blazers",
+      "lift": 1.0371,
+      "image_url": "https://images.qloo.com/i/AD5BC899-F255-4AF9-9401-1BC61538772D-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Guardian Football Weekly",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Off the Ball",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Moneyball",
+      "entity_id": "E4BF0EDE-0E1A-4FDD-A209-464004BC6659",
+      "qloo_name": "Moneyball",
+      "lift": 0.9943,
+      "image_url": "https://images.qloo.com/i/E4BF0EDE-0E1A-4FDD-A209-464004BC6659-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Goal!",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Damned United",
+      "entity_id": "7F65BE6B-48D9-4F76-8D51-3F560E7A510B",
+      "qloo_name": "The Damned United",
+      "lift": 0.9663,
+      "image_url": "https://images.qloo.com/i/7F65BE6B-48D9-4F76-8D51-3F560E7A510B-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Green Street Hooligans",
+      "entity_id": "35DA0B1B-9F08-424C-9ACB-3FC94ACF05DE",
+      "qloo_name": "Green Street Hooligans",
+      "lift": 1.0436,
+      "image_url": "https://images.qloo.com/i/35DA0B1B-9F08-424C-9ACB-3FC94ACF05DE-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Bend It Like Beckham",
+      "entity_id": "303423B3-9CB2-44F7-82E4-D096C0FE5CE2",
+      "qloo_name": "Bend It Like Beckham",
+      "lift": 0.9739,
+      "image_url": "https://images.qloo.com/i/303423B3-9CB2-44F7-82E4-D096C0FE5CE2-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Escape to Victory",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "brand": [
+     {
+      "name": "Adidas",
+      "entity_id": "FCEA7CA1-1D40-4680-B337-E74594D9BCF1",
+      "qloo_name": "Adidas",
+      "lift": 0.9867,
+      "image_url": "https://images.qloo.com/i/FCEA7CA1-1D40-4680-B337-E74594D9BCF1-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Nike",
+      "entity_id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+      "qloo_name": "Nike",
+      "lift": 0.9868,
+      "image_url": "https://images.qloo.com/i/C70CE2B8-0AD1-4150-BF18-5A6347F2E860-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Puma",
+      "entity_id": "E50919AC-B1FF-410A-9B0D-DFA914286C3C",
+      "qloo_name": "Puma",
+      "lift": 0.9776,
+      "image_url": "https://images.qloo.com/i/E50919AC-B1FF-410A-9B0D-DFA914286C3C-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Fanatics",
+      "entity_id": "3E132DC6-6429-4A7D-AC2B-0BBA0E8EB4D2",
+      "qloo_name": "Fanatics",
+      "lift": 0.9507,
+      "image_url": "https://images.qloo.com/i/3E132DC6-6429-4A7D-AC2B-0BBA0E8EB4D2-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "EA Sports",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Sky Sports",
+      "entity_id": "BA3100D7-38A2-4AE5-A540-1CF1E4372DA8",
+      "qloo_name": "Sky Sports",
+      "lift": 0.9671,
+      "image_url": "https://images.qloo.com/i/BA3100D7-38A2-4AE5-A540-1CF1E4372DA8-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "truck-sim": {
+   "game": "Long Haul: a relaxing long-distance trucking sim",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Montgomery Gentry",
+      "lift": 1.1894
+     },
+     {
+      "name": "Mel McDaniel",
+      "lift": 1.1873
+     },
+     {
+      "name": "Trent Tomlinson",
+      "lift": 1.187
+     },
+     {
+      "name": "Aaron Lewis",
+      "lift": 1.1859
+     },
+     {
+      "name": "Joe Nichols",
+      "lift": 1.1824
+     },
+     {
+      "name": "Trace Adkins",
+      "lift": 1.1809
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Podcast Beyond - IGN's PlayStation Show",
+      "lift": 1.1156
+     },
+     {
+      "name": "Player One Podcast",
+      "lift": 1.1101
+     },
+     {
+      "name": "Game Scoop!",
+      "lift": 1.1068
+     },
+     {
+      "name": "Garnett on Games",
+      "lift": 1.1052
+     },
+     {
+      "name": "Podcast Unlocked",
+      "lift": 1.1031
+     },
+     {
+      "name": "Rebel FM",
+      "lift": 1.1031
+     }
+    ],
+    "movie": [
+     {
+      "name": "Born a King",
+      "lift": 1.1756
+     },
+     {
+      "name": "Mousa",
+      "lift": 1.1323
+     },
+     {
+      "name": "We Die Young",
+      "lift": 1.1271
+     },
+     {
+      "name": "The Wedding Guest",
+      "lift": 1.1193
+     },
+     {
+      "name": "Greyhound",
+      "lift": 1.0905
+     },
+     {
+      "name": "The Call of the Wild",
+      "lift": 1.0803
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.0389
+     },
+     {
+      "name": "Seagate",
+      "lift": 1.0192
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.0027
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.0023
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0013
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Chris Stapleton",
+      "entity_id": "50D63FB3-3D36-46FD-B047-EC073A3D35BD",
+      "qloo_name": "Chris Stapleton",
+      "lift": 1.0848,
+      "image_url": "https://images.qloo.com/i/50D63FB3-3D36-46FD-B047-EC073A3D35BD-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Luke Combs",
+      "entity_id": "3CBD78B1-D2F2-4551-A342-4621B6BDB5E2",
+      "qloo_name": "Luke Combs",
+      "lift": 1.0732,
+      "image_url": "https://images.qloo.com/i/3CBD78B1-D2F2-4551-A342-4621B6BDB5E2-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Alan Jackson",
+      "entity_id": "A2589897-5975-4489-9171-4CD0D8BFAF1C",
+      "qloo_name": "Alan Jackson",
+      "lift": 1.1563,
+      "image_url": "https://images.qloo.com/i/A2589897-5975-4489-9171-4CD0D8BFAF1C-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "George Strait",
+      "entity_id": "A8A7AEF3-CA81-40DF-B7D3-B3A06652A9F7",
+      "qloo_name": "George Strait",
+      "lift": 1.1711,
+      "image_url": "https://images.qloo.com/i/A8A7AEF3-CA81-40DF-B7D3-B3A06652A9F7-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Zach Bryan",
+      "entity_id": "3221FBAC-2C10-4BAA-ADE0-AB40D02D5670",
+      "qloo_name": "Zach Bryan",
+      "lift": 1.0509,
+      "image_url": "https://images.qloo.com/i/3221FBAC-2C10-4BAA-ADE0-AB40D02D5670-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Colter Wall",
+      "entity_id": "2D3A5E81-92E2-48C4-99F7-9AB7AC02C48D",
+      "qloo_name": "Colter Wall",
+      "lift": 1.0388,
+      "image_url": "https://images.qloo.com/i/2D3A5E81-92E2-48C4-99F7-9AB7AC02C48D-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Joe Rogan Experience",
+      "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+      "qloo_name": "The Joe Rogan Experience",
+      "lift": 0.9155,
+      "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Daily",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Million Dollar Weekend",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The FreightWaves Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Ben Shapiro Show",
+      "entity_id": "1FA0FBFF-6332-4D80-B2BA-4718E3F7666D",
+      "qloo_name": "The Ben Shapiro Show",
+      "lift": 0.9338,
+      "image_url": "https://images.qloo.com/i/1FA0FBFF-6332-4D80-B2BA-4718E3F7666D-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Ramsey Show",
+      "entity_id": "F80EB348-708A-48E7-8CCD-6CDC458676E6",
+      "qloo_name": "The Ramsey Show",
+      "lift": 0.9593,
+      "image_url": "https://images.qloo.com/i/F80EB348-708A-48E7-8CCD-6CDC458676E6-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "movie": [
+     {
+      "name": "Convoy",
+      "entity_id": "B208A119-93B6-412A-9B4E-127A54DB00E2",
+      "qloo_name": "Convoy",
+      "lift": 1.0485,
+      "image_url": "https://images.qloo.com/i/B208A119-93B6-412A-9B4E-127A54DB00E2-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Cars",
+      "entity_id": "D0C32A97-669A-45E3-9B6B-5E442FA6E260",
+      "qloo_name": "Cars",
+      "lift": 0.9276,
+      "image_url": "https://images.qloo.com/i/D0C32A97-669A-45E3-9B6B-5E442FA6E260-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Martian",
+      "entity_id": "583A8819-890C-44CE-AC7E-C64117B318DA",
+      "qloo_name": "The Martian",
+      "lift": 0.9152,
+      "image_url": "https://images.qloo.com/i/583A8819-890C-44CE-AC7E-C64117B318DA-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Mad Max: Fury Road",
+      "entity_id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+      "qloo_name": "Mad Max: Fury Road",
+      "lift": 0.9187,
+      "image_url": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Ford v Ferrari",
+      "entity_id": "D2DF5D6E-1233-4B1C-BB40-45FDD1382819",
+      "qloo_name": "Ford v Ferrari",
+      "lift": 1.0045,
+      "image_url": "https://images.qloo.com/i/D2DF5D6E-1233-4B1C-BB40-45FDD1382819-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Duel",
+      "entity_id": "DE5CE14F-5EA0-4CFE-9A72-3B5F7371E46C",
+      "qloo_name": "Duel",
+      "lift": 0.9801,
+      "image_url": "https://images.qloo.com/i/DE5CE14F-5EA0-4CFE-9A72-3B5F7371E46C-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "CAT",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "John Deere",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Scania",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Volvo Trucks",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Kenworth",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Peterbilt",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "deckbuilder": {
+   "game": "Jackpot Run: a roguelike deckbuilder about chasing huge scoring combos",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Dedf1sh",
+      "lift": 1.1451
+     },
+     {
+      "name": "Manaka Kataoka",
+      "lift": 1.1192
+     },
+     {
+      "name": "Yasunori Nishiki",
+      "lift": 1.1142
+     },
+     {
+      "name": "Masafumi Takada",
+      "lift": 1.1073
+     },
+     {
+      "name": "岡部啓一",
+      "lift": 1.1065
+     },
+     {
+      "name": "Jukio Kallio",
+      "lift": 1.1058
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Empty Bowl",
+      "lift": 1.1308
+     },
+     {
+      "name": "Wonderful!",
+      "lift": 1.1287
+     },
+     {
+      "name": "Trends Like These",
+      "lift": 1.1262
+     },
+     {
+      "name": "The Flop House",
+      "lift": 1.1249
+     },
+     {
+      "name": "The Polygon Show",
+      "lift": 1.1181
+     },
+     {
+      "name": "The Kind Rewind",
+      "lift": 1.1173
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Salt of the Earth",
+      "lift": 1.2165
+     },
+     {
+      "name": "Marina Abramovic: The Artist Is Present",
+      "lift": 1.1968
+     },
+     {
+      "name": "Jiro Dreams of Sushi",
+      "lift": 1.1755
+     },
+     {
+      "name": "The Look of Silence",
+      "lift": 1.175
+     },
+     {
+      "name": "Collective",
+      "lift": 1.173
+     },
+     {
+      "name": "What Happened, Miss Simone?",
+      "lift": 1.1644
+     }
+    ],
+    "brand": [
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0291
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0291
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0215
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0175
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.0141
+     },
+     {
+      "name": "Origin PC",
+      "lift": 1.0128
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 1.009,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Boards of Canada",
+      "entity_id": "6B50D8AA-6A47-4DF3-87D8-3984A4A28952",
+      "qloo_name": "Boards of Canada",
+      "lift": 1.0063,
+      "image_url": "https://images.qloo.com/i/6B50D8AA-6A47-4DF3-87D8-3984A4A28952-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Flying Lotus",
+      "entity_id": "294CF67E-3032-43AC-9D1C-9D3182E92E97",
+      "qloo_name": "Flying Lotus",
+      "lift": 0.9749,
+      "image_url": "https://images.qloo.com/i/294CF67E-3032-43AC-9D1C-9D3182E92E97-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Death Grips",
+      "entity_id": "C4D5B748-690D-4461-8A63-B3231B38920F",
+      "qloo_name": "Death Grips",
+      "lift": 0.9941,
+      "image_url": "https://images.qloo.com/i/C4D5B748-690D-4461-8A63-B3231B38920F-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Perturbator",
+      "entity_id": "EF2CF2AD-E84C-4C67-B635-56559BF57E29",
+      "qloo_name": "Perturbator",
+      "lift": 1.0565,
+      "image_url": "https://images.qloo.com/i/EF2CF2AD-E84C-4C67-B635-56559BF57E29-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Carpenter Brut",
+      "entity_id": "A339386A-3655-4C00-BE91-6AC879ACC2E9",
+      "qloo_name": "Carpenter Brut",
+      "lift": 1.0412,
+      "image_url": "https://images.qloo.com/i/A339386A-3655-4C00-BE91-6AC879ACC2E9-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Stuff You Should Know",
+      "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+      "qloo_name": "Stuff You Should Know",
+      "lift": 0.9612,
+      "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Radiolab",
+      "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+      "qloo_name": "Radiolab",
+      "lift": 0.9715,
+      "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Darknet Diaries",
+      "entity_id": "95E640FA-4EC9-482E-A8E0-84AD7D41DE25",
+      "qloo_name": "Darknet Diaries",
+      "lift": 0.971,
+      "image_url": "https://images.qloo.com/i/95E640FA-4EC9-482E-A8E0-84AD7D41DE25-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Daily",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Lex Fridman Podcast",
+      "entity_id": "CC4ADED4-65CD-4019-ADAE-97E467FCD8D8",
+      "qloo_name": "Lex Fridman Podcast",
+      "lift": 0.9151,
+      "image_url": "https://images.qloo.com/i/CC4ADED4-65CD-4019-ADAE-97E467FCD8D8-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Inception",
+      "entity_id": "18B098FD-3D84-4609-BFF3-ADF9A0B00E40",
+      "qloo_name": "Inception",
+      "lift": 0.9129,
+      "image_url": "https://images.qloo.com/i/18B098FD-3D84-4609-BFF3-ADF9A0B00E40-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Matrix",
+      "entity_id": "C6046119-7760-4733-B84E-374E029B14DC",
+      "qloo_name": "The Matrix",
+      "lift": 0.9023,
+      "image_url": "https://images.qloo.com/i/C6046119-7760-4733-B84E-374E029B14DC-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Primer",
+      "entity_id": "F2D38796-6AEC-489E-A13D-DFEBB8527CB9",
+      "qloo_name": "Primer",
+      "lift": 1.0795,
+      "image_url": "https://images.qloo.com/i/F2D38796-6AEC-489E-A13D-DFEBB8527CB9-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Everything Everywhere All at Once",
+      "entity_id": "F0D354AA-BA7E-49D2-8ABA-9A8250F5C852",
+      "qloo_name": "Everything Everywhere All at Once",
+      "lift": 1.0,
+      "image_url": "https://images.qloo.com/i/F0D354AA-BA7E-49D2-8ABA-9A8250F5C852-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Tenet",
+      "entity_id": "BA911BB0-8B1A-4D62-8E8C-95115272B943",
+      "qloo_name": "Tenet",
+      "lift": 0.9368,
+      "image_url": "https://images.qloo.com/i/BA911BB0-8B1A-4D62-8E8C-95115272B943-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Ex Machina",
+      "entity_id": "6F7EF896-FEF5-4160-B179-1987620E650D",
+      "qloo_name": "Ex Machina",
+      "lift": 0.9996,
+      "image_url": "https://images.qloo.com/i/6F7EF896-FEF5-4160-B179-1987620E650D-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Discord",
+      "entity_id": "868E00FF-465A-4802-881A-60A8C266E72E",
+      "qloo_name": "Discord",
+      "lift": 0.9829,
+      "image_url": "https://images.qloo.com/i/868E00FF-465A-4802-881A-60A8C266E72E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Steam",
+      "entity_id": "C1AAE8AA-0A79-4807-8B4B-64DD06F64B08",
+      "qloo_name": "Steam",
+      "lift": 1.0089,
+      "image_url": "https://images.qloo.com/i/C1AAE8AA-0A79-4807-8B4B-64DD06F64B08-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Mechanical Keyboards",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9785,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Anker",
+      "entity_id": "7CF25973-E678-4B05-8293-0DB0EF5AE4DA",
+      "qloo_name": "Anker",
+      "lift": 0.9803,
+      "image_url": "https://images.qloo.com/i/7CF25973-E678-4B05-8293-0DB0EF5AE4DA-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "extraction-shooter": {
+   "game": "Dead Drop: a hardcore extraction shooter where you keep only what you carry out",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Ephixa",
+      "lift": 1.0633
+     },
+     {
+      "name": "Varien",
+      "lift": 1.0496
+     },
+     {
+      "name": "Diamond Pistols",
+      "lift": 1.0491
+     },
+     {
+      "name": "Razihel",
+      "lift": 1.0476
+     },
+     {
+      "name": "Xillions",
+      "lift": 1.0459
+     },
+     {
+      "name": "Kayzo",
+      "lift": 1.0422
+     }
+    ],
+    "podcast": [
+     {
+      "name": "No Agenda",
+      "lift": 1.0598
+     },
+     {
+      "name": "Talking Reckless (A Gaming Podcast)",
+      "lift": 1.0471
+     },
+     {
+      "name": "The Patch",
+      "lift": 1.0425
+     },
+     {
+      "name": "Get Off My Lawn Podcast w/ Gavin McInnes",
+      "lift": 1.0414
+     },
+     {
+      "name": "The Shaft - A Minecraft Podcast",
+      "lift": 1.0394
+     },
+     {
+      "name": "Louder with Crowder",
+      "lift": 1.037
+     }
+    ],
+    "movie": [
+     {
+      "name": "Spectral",
+      "lift": 1.1119
+     },
+     {
+      "name": "Passengers",
+      "lift": 1.0945
+     },
+     {
+      "name": "Independence Day: Resurgence",
+      "lift": 1.0879
+     },
+     {
+      "name": "Assassin's Creed",
+      "lift": 1.0755
+     },
+     {
+      "name": "Ghost in the Shell",
+      "lift": 1.071
+     },
+     {
+      "name": "Bright",
+      "lift": 1.0571
+     }
+    ],
+    "brand": [
+     {
+      "name": "Alienware",
+      "lift": 1.0263
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0263
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.0256
+     },
+     {
+      "name": "Seagate",
+      "lift": 1.0228
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0223
+     },
+     {
+      "name": "Origin PC",
+      "lift": 1.0195
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Mick Gordon",
+      "entity_id": "14EC48D6-119C-4468-9145-3E9F006310BC",
+      "qloo_name": "Mick Gordon",
+      "lift": 1.0124,
+      "image_url": "https://images.qloo.com/i/14EC48D6-119C-4468-9145-3E9F006310BC-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Trent Reznor",
+      "entity_id": "98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A",
+      "qloo_name": "Trent Reznor",
+      "lift": 1.0262,
+      "image_url": "https://images.qloo.com/i/98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Perturbator",
+      "entity_id": "EF2CF2AD-E84C-4C67-B635-56559BF57E29",
+      "qloo_name": "Perturbator",
+      "lift": 1.0063,
+      "image_url": "https://images.qloo.com/i/EF2CF2AD-E84C-4C67-B635-56559BF57E29-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Gesaffelstein",
+      "entity_id": "20898517-9B69-4DC0-A397-1CBBB8B5B05B",
+      "qloo_name": "Gesaffelstein",
+      "lift": 1.0067,
+      "image_url": "https://images.qloo.com/i/20898517-9B69-4DC0-A397-1CBBB8B5B05B-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Nine Inch Nails",
+      "entity_id": "2E28F9EF-0008-4731-94C3-C195449BA5C2",
+      "qloo_name": "Nine Inch Nails",
+      "lift": 0.9861,
+      "image_url": "https://images.qloo.com/i/2E28F9EF-0008-4731-94C3-C195449BA5C2-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Carpenter Brut",
+      "entity_id": "A339386A-3655-4C00-BE91-6AC879ACC2E9",
+      "qloo_name": "Carpenter Brut",
+      "lift": 1.006,
+      "image_url": "https://images.qloo.com/i/A339386A-3655-4C00-BE91-6AC879ACC2E9-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Joe Rogan Experience",
+      "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+      "qloo_name": "The Joe Rogan Experience",
+      "lift": 0.9964,
+      "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Daily",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "JRE",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Lex Fridman Podcast",
+      "entity_id": "CC4ADED4-65CD-4019-ADAE-97E467FCD8D8",
+      "qloo_name": "Lex Fridman Podcast",
+      "lift": 1.0545,
+      "image_url": "https://images.qloo.com/i/CC4ADED4-65CD-4019-ADAE-97E467FCD8D8-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "JRE Experience",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Sicario",
+      "entity_id": "B3506F73-4A21-4597-85EB-2A7D80CF7047",
+      "qloo_name": "Sicario",
+      "lift": 1.0913,
+      "image_url": "https://images.qloo.com/i/B3506F73-4A21-4597-85EB-2A7D80CF7047-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Children of Men",
+      "entity_id": "BB9AA6CE-8012-44B8-B554-54BE8A374A5E",
+      "qloo_name": "Children of Men",
+      "lift": 1.0463,
+      "image_url": "https://images.qloo.com/i/BB9AA6CE-8012-44B8-B554-54BE8A374A5E-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Road",
+      "entity_id": "475E4B47-7139-4BF9-A0EA-1B737392D0D4",
+      "qloo_name": "The Road",
+      "lift": 1.0902,
+      "image_url": "https://images.qloo.com/i/475E4B47-7139-4BF9-A0EA-1B737392D0D4-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Mad Max: Fury Road",
+      "entity_id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+      "qloo_name": "Mad Max: Fury Road",
+      "lift": 1.0514,
+      "image_url": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Extraction",
+      "entity_id": "52FE7ED5-2A55-4972-BF66-5C7F7017B045",
+      "qloo_name": "Extraction",
+      "lift": 1.0227,
+      "image_url": "https://images.qloo.com/i/52FE7ED5-2A55-4972-BF66-5C7F7017B045-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Apocalypse Now",
+      "entity_id": "018053E6-0DCA-49C9-A23D-4C7C7FF4E42B",
+      "qloo_name": "Apocalypse Now",
+      "lift": 0.9912,
+      "image_url": "https://images.qloo.com/i/018053E6-0DCA-49C9-A23D-4C7C7FF4E42B-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "5.11 Tactical",
+      "entity_id": "548E1DAC-1FBA-43EB-AADD-FAECE2D5119B",
+      "qloo_name": "5.11 Tactical",
+      "lift": 0.9673,
+      "image_url": "https://images.qloo.com/i/548E1DAC-1FBA-43EB-AADD-FAECE2D5119B-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Crye Precision",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.98,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 1.0082,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.9938,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "factory": {
+   "game": "Conveyor: a factory automation game about building ever larger production lines",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Junichi Masuda",
+      "lift": 1.1307
+     },
+     {
+      "name": "Triple-Q",
+      "lift": 1.1254
+     },
+     {
+      "name": "Kevin MacLeod",
+      "lift": 1.1111
+     },
+     {
+      "name": "Sakuzyo",
+      "lift": 1.1101
+     },
+     {
+      "name": "Laura Shigihara",
+      "lift": 1.1033
+     },
+     {
+      "name": "Raito",
+      "lift": 1.0986
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Trends Like These",
+      "lift": 1.14
+     },
+     {
+      "name": "Wonderful!",
+      "lift": 1.1313
+     },
+     {
+      "name": "The Empty Bowl",
+      "lift": 1.1299
+     },
+     {
+      "name": "Minority Korner",
+      "lift": 1.1233
+     },
+     {
+      "name": "The Flop House",
+      "lift": 1.1223
+     },
+     {
+      "name": "Shmanners",
+      "lift": 1.1218
+     }
+    ],
+    "movie": [
+     {
+      "name": "Elemental",
+      "lift": 1.0352
+     },
+     {
+      "name": "Encanto",
+      "lift": 1.035
+     },
+     {
+      "name": "Luca",
+      "lift": 1.0333
+     },
+     {
+      "name": "Soul",
+      "lift": 1.0331
+     },
+     {
+      "name": "The Croods: A New Age",
+      "lift": 1.0323
+     },
+     {
+      "name": "Cruella",
+      "lift": 1.0249
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.0583
+     },
+     {
+      "name": "Steam",
+      "lift": 1.0335
+     },
+     {
+      "name": "Niantic",
+      "lift": 1.029
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0205
+     },
+     {
+      "name": "Turtle Beach",
+      "lift": 1.0201
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.0173
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 1.0145,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Deadmau5",
+      "entity_id": "4493B465-A9F3-48BB-BD1C-2E1A691A35A0",
+      "qloo_name": "deadmau5",
+      "lift": 0.9368,
+      "image_url": "https://images.qloo.com/i/4493B465-A9F3-48BB-BD1C-2E1A691A35A0-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kraftwerk",
+      "entity_id": "202AE914-AF28-4D79-B328-9D848B643B86",
+      "qloo_name": "Kraftwerk",
+      "lift": 1.0086,
+      "image_url": "https://images.qloo.com/i/202AE914-AF28-4D79-B328-9D848B643B86-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Venetian Snares",
+      "entity_id": "0150EF98-5FB1-4082-B184-F0E9521FFD4D",
+      "qloo_name": "Venetian Snares",
+      "lift": 1.0438,
+      "image_url": "https://images.qloo.com/i/0150EF98-5FB1-4082-B184-F0E9521FFD4D-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Carbon Based Lifeforms",
+      "entity_id": "A1F420D1-409C-4311-8DDD-75CD4949CF52",
+      "qloo_name": "Carbon Based Lifeforms",
+      "lift": 1.0209,
+      "image_url": "https://images.qloo.com/i/A1F420D1-409C-4311-8DDD-75CD4949CF52-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Boards of Canada",
+      "entity_id": "6B50D8AA-6A47-4DF3-87D8-3984A4A28952",
+      "qloo_name": "Boards of Canada",
+      "lift": 1.0319,
+      "image_url": "https://images.qloo.com/i/6B50D8AA-6A47-4DF3-87D8-3984A4A28952-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Darknet Diaries",
+      "entity_id": "95E640FA-4EC9-482E-A8E0-84AD7D41DE25",
+      "qloo_name": "Darknet Diaries",
+      "lift": 0.9645,
+      "image_url": "https://images.qloo.com/i/95E640FA-4EC9-482E-A8E0-84AD7D41DE25-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Lex Fridman Podcast",
+      "entity_id": "CC4ADED4-65CD-4019-ADAE-97E467FCD8D8",
+      "qloo_name": "Lex Fridman Podcast",
+      "lift": 0.9,
+      "image_url": "https://images.qloo.com/i/CC4ADED4-65CD-4019-ADAE-97E467FCD8D8-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Amp Hour",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Huberman Lab",
+      "entity_id": "10E08FC9-04BB-4827-9331-7E9ABE1F7DB6",
+      "qloo_name": "Huberman Lab",
+      "lift": 0.8938,
+      "image_url": "https://images.qloo.com/i/10E08FC9-04BB-4827-9331-7E9ABE1F7DB6-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Radiolab",
+      "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+      "qloo_name": "Radiolab",
+      "lift": 0.9617,
+      "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Stuff You Should Know",
+      "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+      "qloo_name": "Stuff You Should Know",
+      "lift": 0.9584,
+      "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "movie": [
+     {
+      "name": "Primer",
+      "entity_id": "F2D38796-6AEC-489E-A13D-DFEBB8527CB9",
+      "qloo_name": "Primer",
+      "lift": 1.0007,
+      "image_url": "https://images.qloo.com/i/F2D38796-6AEC-489E-A13D-DFEBB8527CB9-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Ex Machina",
+      "entity_id": "6F7EF896-FEF5-4160-B179-1987620E650D",
+      "qloo_name": "Ex Machina",
+      "lift": 0.9761,
+      "image_url": "https://images.qloo.com/i/6F7EF896-FEF5-4160-B179-1987620E650D-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Martian",
+      "entity_id": "583A8819-890C-44CE-AC7E-C64117B318DA",
+      "qloo_name": "The Martian",
+      "lift": 0.9644,
+      "image_url": "https://images.qloo.com/i/583A8819-890C-44CE-AC7E-C64117B318DA-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Interstellar",
+      "entity_id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+      "qloo_name": "Interstellar",
+      "lift": 0.942,
+      "image_url": "https://images.qloo.com/i/057DA9D9-399B-437E-8BCA-A80E499125EF-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Tron: Legacy",
+      "entity_id": "9520D308-3488-4866-93CB-F9410D21A0FF",
+      "qloo_name": "Tron: Legacy",
+      "lift": 0.9099,
+      "image_url": "https://images.qloo.com/i/9520D308-3488-4866-93CB-F9410D21A0FF-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Blade Runner 2049",
+      "entity_id": "3A02361C-987B-4F7E-9AAD-071C3853AD92",
+      "qloo_name": "Blade Runner 2049",
+      "lift": 0.9408,
+      "image_url": "https://images.qloo.com/i/3A02361C-987B-4F7E-9AAD-071C3853AD92-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.9705,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Framework",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Intel",
+      "entity_id": "402E671E-E10B-4B9B-A2BD-B808350AF4C2",
+      "qloo_name": "Intel",
+      "lift": 0.9778,
+      "image_url": "https://images.qloo.com/i/402E671E-E10B-4B9B-A2BD-B808350AF4C2-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "AMD",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Valve",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "city-builder": {
+   "game": "Gridlock: a modern city builder about traffic, zoning and services",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Erock",
+      "lift": 1.0777
+     },
+     {
+      "name": "Metal Gear Rising: Revengeance OST",
+      "lift": 1.0761
+     },
+     {
+      "name": "Rozen",
+      "lift": 1.075
+     },
+     {
+      "name": "Yoshiya Terayama",
+      "lift": 1.0578
+     },
+     {
+      "name": "Masayoshi Soken",
+      "lift": 1.0563
+     },
+     {
+      "name": "Fractal Dreamers",
+      "lift": 1.0525
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The British History Podcast",
+      "lift": 1.1496
+     },
+     {
+      "name": "When Diplomacy Fails Podcast",
+      "lift": 1.145
+     },
+     {
+      "name": "The History of Byzantium",
+      "lift": 1.1397
+     },
+     {
+      "name": "Revolutions",
+      "lift": 1.1341
+     },
+     {
+      "name": "The Majority Report with Sam Seder",
+      "lift": 1.1295
+     },
+     {
+      "name": "Russian Rulers History Podcast",
+      "lift": 1.1294
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Peanut Butter Falcon",
+      "lift": 1.036
+     },
+     {
+      "name": "Molly's Game",
+      "lift": 1.0358
+     },
+     {
+      "name": "Welcome to Marwen",
+      "lift": 1.0169
+     },
+     {
+      "name": "BlacKkKlansman",
+      "lift": 1.0098
+     },
+     {
+      "name": "Ad Astra",
+      "lift": 1.0097
+     },
+     {
+      "name": "The Gentlemen",
+      "lift": 1.0097
+     }
+    ],
+    "brand": [
+     {
+      "name": "Oculus",
+      "lift": 1.0347
+     },
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0258
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0158
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.012
+     },
+     {
+      "name": "Digital Storm Online",
+      "lift": 1.0106
+     },
+     {
+      "name": "Nvidia",
+      "lift": 1.0105
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Brian Eno",
+      "entity_id": "1B088E28-0668-4670-A97B-87865A1FCBCF",
+      "qloo_name": "Brian Eno",
+      "lift": 0.9553,
+      "image_url": "https://images.qloo.com/i/1B088E28-0668-4670-A97B-87865A1FCBCF-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 0.9654,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Vangelis",
+      "entity_id": "6A1E2B24-3D86-4E16-86C0-9A8422934BF4",
+      "qloo_name": "Vangelis",
+      "lift": 1.0171,
+      "image_url": "https://images.qloo.com/i/6A1E2B24-3D86-4E16-86C0-9A8422934BF4-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Kraftwerk",
+      "entity_id": "202AE914-AF28-4D79-B328-9D848B643B86",
+      "qloo_name": "Kraftwerk",
+      "lift": 1.0004,
+      "image_url": "https://images.qloo.com/i/202AE914-AF28-4D79-B328-9D848B643B86-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Hans Zimmer",
+      "entity_id": "37DB91E9-9EE1-4C98-AA01-0AF0C34274EC",
+      "qloo_name": "Hans Zimmer",
+      "lift": 1.0297,
+      "image_url": "https://images.qloo.com/i/37DB91E9-9EE1-4C98-AA01-0AF0C34274EC-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Steve Reich",
+      "entity_id": "3EF683F1-E0D5-4099-80B0-A45DD8177CD6",
+      "qloo_name": "Steve Reich",
+      "lift": 1.0013,
+      "image_url": "https://images.qloo.com/i/3EF683F1-E0D5-4099-80B0-A45DD8177CD6-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "99% Invisible",
+      "entity_id": "1B466B0E-323A-4EFD-A314-8737F58F1E1B",
+      "qloo_name": "99% Invisible",
+      "lift": 1.0237,
+      "image_url": "https://images.qloo.com/i/1B466B0E-323A-4EFD-A314-8737F58F1E1B-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Daily",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Planet Money",
+      "entity_id": "345C6867-AB87-4FB0-87C3-C9691D6A0E32",
+      "qloo_name": "Planet Money",
+      "lift": 1.0342,
+      "image_url": "https://images.qloo.com/i/345C6867-AB87-4FB0-87C3-C9691D6A0E32-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Radiolab",
+      "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+      "qloo_name": "Radiolab",
+      "lift": 1.0345,
+      "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Ezra Klein Show",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Inception",
+      "entity_id": "18B098FD-3D84-4609-BFF3-ADF9A0B00E40",
+      "qloo_name": "Inception",
+      "lift": 0.9724,
+      "image_url": "https://images.qloo.com/i/18B098FD-3D84-4609-BFF3-ADF9A0B00E40-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Martian",
+      "entity_id": "583A8819-890C-44CE-AC7E-C64117B318DA",
+      "qloo_name": "The Martian",
+      "lift": 1.0009,
+      "image_url": "https://images.qloo.com/i/583A8819-890C-44CE-AC7E-C64117B318DA-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Blade Runner 2049",
+      "entity_id": "3A02361C-987B-4F7E-9AAD-071C3853AD92",
+      "qloo_name": "Blade Runner 2049",
+      "lift": 0.9638,
+      "image_url": "https://images.qloo.com/i/3A02361C-987B-4F7E-9AAD-071C3853AD92-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Metropolis",
+      "entity_id": "FC89AE03-E0AB-48CB-8A20-5A819D16B6D7",
+      "qloo_name": "Metropolis",
+      "lift": 0.9702,
+      "image_url": "https://images.qloo.com/i/FC89AE03-E0AB-48CB-8A20-5A819D16B6D7-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Tenet",
+      "entity_id": "BA911BB0-8B1A-4D62-8E8C-95115272B943",
+      "qloo_name": "Tenet",
+      "lift": 0.9795,
+      "image_url": "https://images.qloo.com/i/BA911BB0-8B1A-4D62-8E8C-95115272B943-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Interstellar",
+      "entity_id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+      "qloo_name": "Interstellar",
+      "lift": 0.9705,
+      "image_url": "https://images.qloo.com/i/057DA9D9-399B-437E-8BCA-A80E499125EF-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Logitech",
+      "entity_id": "B17B81E9-0DE4-4A82-B307-24F0161CF2AE",
+      "qloo_name": "Logitech",
+      "lift": 0.9951,
+      "image_url": "https://images.qloo.com/i/B17B81E9-0DE4-4A82-B307-24F0161CF2AE-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Dell",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Apple",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Tesla",
+      "entity_id": "29B49E3F-A0EC-42C6-A453-38B1C20D8374",
+      "qloo_name": "Tesla",
+      "lift": 0.9988,
+      "image_url": "https://images.qloo.com/i/29B49E3F-A0EC-42C6-A453-38B1C20D8374-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "LEGO",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Moleskine",
+      "entity_id": "AB06A58F-6962-4663-80A7-EF7D9208969A",
+      "qloo_name": "Moleskine",
+      "lift": 1.0028,
+      "image_url": "https://images.qloo.com/i/AB06A58F-6962-4663-80A7-EF7D9208969A-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "ocean-survival": {
+   "game": "Deep Shelf: an underwater survival and crafting game",
+   "qloo": {
+    "artist": [
+     {
+      "name": "ryo (supercell)",
+      "lift": 1.0853
+     },
+     {
+      "name": "DECO*27",
+      "lift": 1.0812
+     },
+     {
+      "name": "Neru",
+      "lift": 1.0795
+     },
+     {
+      "name": "Warak",
+      "lift": 1.075
+     },
+     {
+      "name": "鬱P",
+      "lift": 1.0702
+     },
+     {
+      "name": "mafumafu",
+      "lift": 1.0693
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Magnus Archives",
+      "lift": 1.1497
+     },
+     {
+      "name": "The White Vault",
+      "lift": 1.1469
+     },
+     {
+      "name": "The Penumbra Podcast",
+      "lift": 1.1318
+     },
+     {
+      "name": "Stellar Firma",
+      "lift": 1.1311
+     },
+     {
+      "name": "Rabbits",
+      "lift": 1.128
+     },
+     {
+      "name": "The Bright Sessions",
+      "lift": 1.1276
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Pervert's Guide to Cinema",
+      "lift": 1.231
+     },
+     {
+      "name": "The Pervert's Guide to Ideology",
+      "lift": 1.2309
+     },
+     {
+      "name": "The Salt of the Earth",
+      "lift": 1.2125
+     },
+     {
+      "name": "Marina Abramovic: The Artist Is Present",
+      "lift": 1.2071
+     },
+     {
+      "name": "Exit Through the Gift Shop",
+      "lift": 1.2068
+     },
+     {
+      "name": "Samsara",
+      "lift": 1.2044
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.0354
+     },
+     {
+      "name": "Alienware",
+      "lift": 1.0239
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0219
+     },
+     {
+      "name": "Origin PC",
+      "lift": 1.0212
+     },
+     {
+      "name": "Maingear",
+      "lift": 1.021
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0174
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Hans Zimmer",
+      "entity_id": "37DB91E9-9EE1-4C98-AA01-0AF0C34274EC",
+      "qloo_name": "Hans Zimmer",
+      "lift": 0.944,
+      "image_url": "https://images.qloo.com/i/37DB91E9-9EE1-4C98-AA01-0AF0C34274EC-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Trent Reznor",
+      "entity_id": "98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A",
+      "qloo_name": "Trent Reznor",
+      "lift": 0.957,
+      "image_url": "https://images.qloo.com/i/98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Lorn",
+      "entity_id": "66FA754F-CD67-4D5D-8A13-7BE08FD8BFC0",
+      "qloo_name": "Lorn",
+      "lift": 1.0127,
+      "image_url": "https://images.qloo.com/i/66FA754F-CD67-4D5D-8A13-7BE08FD8BFC0-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 0.9792,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Ben Frost",
+      "entity_id": "A59F99B6-39B1-439D-B1D9-7ED3FEB14A65",
+      "qloo_name": "Ben Frost",
+      "lift": 1.0295,
+      "image_url": "https://images.qloo.com/i/A59F99B6-39B1-439D-B1D9-7ED3FEB14A65-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Hildur Guðnadóttir",
+      "entity_id": "24259855-E26C-43A3-93E5-5BB4E09ABBBF",
+      "qloo_name": "Hildur Guðnadóttir",
+      "lift": 1.0118,
+      "image_url": "https://images.qloo.com/i/24259855-E26C-43A3-93E5-5BB4E09ABBBF-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Stuff You Should Know",
+      "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
+      "qloo_name": "Stuff You Should Know",
+      "lift": 0.9707,
+      "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Hardcore History",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Radiolab",
+      "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
+      "qloo_name": "Radiolab",
+      "lift": 0.9913,
+      "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "The Joe Rogan Experience",
+      "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+      "qloo_name": "The Joe Rogan Experience",
+      "lift": 0.9059,
+      "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Lex Fridman Podcast",
+      "entity_id": "CC4ADED4-65CD-4019-ADAE-97E467FCD8D8",
+      "qloo_name": "Lex Fridman Podcast",
+      "lift": 0.9619,
+      "image_url": "https://images.qloo.com/i/CC4ADED4-65CD-4019-ADAE-97E467FCD8D8-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Science Vs",
+      "entity_id": "2CFF6795-856A-467C-BD94-55CC7AE72A9A",
+      "qloo_name": "Science Vs",
+      "lift": 1.0245,
+      "image_url": "https://images.qloo.com/i/2CFF6795-856A-467C-BD94-55CC7AE72A9A-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "movie": [
+     {
+      "name": "The Martian",
+      "entity_id": "583A8819-890C-44CE-AC7E-C64117B318DA",
+      "qloo_name": "The Martian",
+      "lift": 0.9594,
+      "image_url": "https://images.qloo.com/i/583A8819-890C-44CE-AC7E-C64117B318DA-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Interstellar",
+      "entity_id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+      "qloo_name": "Interstellar",
+      "lift": 0.9718,
+      "image_url": "https://images.qloo.com/i/057DA9D9-399B-437E-8BCA-A80E499125EF-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Cast Away",
+      "entity_id": "4DA2E9CF-EBBE-40F8-BB91-F80B90EC0098",
+      "qloo_name": "Cast Away",
+      "lift": 0.9961,
+      "image_url": "https://images.qloo.com/i/4DA2E9CF-EBBE-40F8-BB91-F80B90EC0098-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Life of Pi",
+      "entity_id": "D6CC874E-047E-4C0F-8EA3-333740B8ED5F",
+      "qloo_name": "Life of Pi",
+      "lift": 0.9989,
+      "image_url": "https://images.qloo.com/i/D6CC874E-047E-4C0F-8EA3-333740B8ED5F-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "The Abyss",
+      "entity_id": "28507C00-F694-4E49-B349-656351D0EC5B",
+      "qloo_name": "The Abyss",
+      "lift": 0.9711,
+      "image_url": "https://images.qloo.com/i/28507C00-F694-4E49-B349-656351D0EC5B-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Gravity",
+      "entity_id": "7C1683E9-EF56-4674-A6F2-581EEFA6972B",
+      "qloo_name": "Gravity",
+      "lift": 0.9865,
+      "image_url": "https://images.qloo.com/i/7C1683E9-EF56-4674-A6F2-581EEFA6972B-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Patagonia",
+      "entity_id": "DB4CE34E-3A63-4947-946F-9D52502C5762",
+      "qloo_name": "Patagonia",
+      "lift": 0.9319,
+      "image_url": "https://images.qloo.com/i/DB4CE34E-3A63-4947-946F-9D52502C5762-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "YETI",
+      "entity_id": "AA9DBB9A-DEE1-4D84-BC26-0FEBB34BB41B",
+      "qloo_name": "YETI",
+      "lift": 0.9762,
+      "image_url": "https://images.qloo.com/i/AA9DBB9A-DEE1-4D84-BC26-0FEBB34BB41B-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "GoPro",
+      "entity_id": "3381E64E-B7C4-4824-8526-BE33C133C2DF",
+      "qloo_name": "GoPro",
+      "lift": 0.9275,
+      "image_url": "https://images.qloo.com/i/3381E64E-B7C4-4824-8526-BE33C133C2DF-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "North Face",
+      "entity_id": "DB03F250-64F3-47AB-8756-BC1C4E13EBFD",
+      "qloo_name": "The North Face",
+      "lift": 0.9397,
+      "image_url": "https://images.qloo.com/i/DB03F250-64F3-47AB-8756-BC1C4E13EBFD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9768,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ]
+   }
+  },
+  "vr-rhythm": {
+   "game": "Pulse Cutter: a VR rhythm game where you slash blocks to the beat",
+   "qloo": {
+    "artist": [
+     {
+      "name": "American Hi-Fi",
+      "lift": 1.1472
+     },
+     {
+      "name": "Weezer",
+      "lift": 1.1423
+     },
+     {
+      "name": "The All-American Rejects",
+      "lift": 1.1371
+     },
+     {
+      "name": "Afi",
+      "lift": 1.1362
+     },
+     {
+      "name": "Box Car Racer",
+      "lift": 1.1329
+     },
+     {
+      "name": "The Used",
+      "lift": 1.132
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Nintendo Voice Chat",
+      "lift": 1.0566
+     },
+     {
+      "name": "Quality Control",
+      "lift": 1.0374
+     },
+     {
+      "name": "Game Scoop!",
+      "lift": 1.0369
+     },
+     {
+      "name": "Nintendo Power Podcast",
+      "lift": 1.0355
+     },
+     {
+      "name": "The Weekly Planet",
+      "lift": 1.034
+     },
+     {
+      "name": "PS I Love You XOXO: PlayStation Podcast by Kinda Funny",
+      "lift": 1.0331
+     }
+    ],
+    "movie": [
+     {
+      "name": "Waste Land",
+      "lift": 1.3229
+     },
+     {
+      "name": "Dark Days",
+      "lift": 1.2835
+     },
+     {
+      "name": "The Imposter",
+      "lift": 1.2458
+     },
+     {
+      "name": "The Devil and Daniel Johnston",
+      "lift": 1.236
+     },
+     {
+      "name": "Catfish",
+      "lift": 1.2343
+     },
+     {
+      "name": "Mister Lonely",
+      "lift": 1.2277
+     }
+    ],
+    "brand": [
+     {
+      "name": "Gamestop",
+      "lift": 1.0227
+     },
+     {
+      "name": "Oculus",
+      "lift": 1.0212
+     },
+     {
+      "name": "Electronic Arts",
+      "lift": 1.019
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0166
+     },
+     {
+      "name": "Unreal Engine",
+      "lift": 1.0163
+     },
+     {
+      "name": "ASTRO Gaming",
+      "lift": 1.0159
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Muse",
+      "entity_id": "580FAEF2-B61F-438A-9E59-98B2DEEB95F0",
+      "qloo_name": "Muse",
+      "lift": 1.1166,
+      "image_url": "https://images.qloo.com/i/580FAEF2-B61F-438A-9E59-98B2DEEB95F0-420x-auto.jpg",
+      "result_id": "q29"
+     },
+     {
+      "name": "Bring Me The Horizon",
+      "entity_id": "F53567AE-3B54-4484-8CF6-658A49B443D1",
+      "qloo_name": "Bring Me the Horizon",
+      "lift": 1.0082,
+      "image_url": "https://images.qloo.com/i/F53567AE-3B54-4484-8CF6-658A49B443D1-420x-auto.jpg",
+      "result_id": "q29"
+     },
+     {
+      "name": "Pendulum",
+      "entity_id": "AF200264-8D46-49AE-A245-81B11FC03FC2",
+      "qloo_name": "Pendulum",
+      "lift": 0.9679,
+      "image_url": "https://images.qloo.com/i/AF200264-8D46-49AE-A245-81B11FC03FC2-420x-auto.jpg",
+      "result_id": "q29"
+     },
+     {
+      "name": "Deadmau5",
+      "entity_id": "4493B465-A9F3-48BB-BD1C-2E1A691A35A0",
+      "qloo_name": "deadmau5",
+      "lift": 0.9757,
+      "image_url": "https://images.qloo.com/i/4493B465-A9F3-48BB-BD1C-2E1A691A35A0-420x-auto.jpg",
+      "result_id": "q29"
+     },
+     {
+      "name": "Daft Punk",
+      "entity_id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+      "qloo_name": "Daft Punk",
+      "lift": 1.0,
+      "image_url": "https://images.qloo.com/i/012EF80C-B187-4ECB-9C3D-9CA5228B503C-420x-auto.jpg",
+      "result_id": "q29"
+     },
+     {
+      "name": "Linkin Park",
+      "entity_id": "ABB725B5-B689-431B-A90F-A06FF9313F0F",
+      "qloo_name": "Linkin Park",
+      "lift": 1.0596,
+      "image_url": "https://images.qloo.com/i/ABB725B5-B689-431B-A90F-A06FF9313F0F-420x-auto.jpg",
+      "result_id": "q29"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Joe Rogan Experience",
+      "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
+      "qloo_name": "The Joe Rogan Experience",
+      "lift": 0.9477,
+      "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Waveform: The MKBHD Podcast",
+      "entity_id": "7AE2A666-D64C-4599-8A86-A0B9061B3DD2",
+      "qloo_name": "Waveform: The MKBHD Podcast",
+      "lift": 0.9799,
+      "image_url": "https://images.qloo.com/i/7AE2A666-D64C-4599-8A86-A0B9061B3DD2-420x-auto.jpg",
+      "result_id": "q31"
+     }
+    ],
+    "movie": [
+     {
+      "name": "Baby Driver",
+      "entity_id": "E733F23E-E077-4B2C-A30F-7FA112FDFEE5",
+      "qloo_name": "Baby Driver",
+      "lift": 0.8837,
+      "image_url": "https://images.qloo.com/i/E733F23E-E077-4B2C-A30F-7FA112FDFEE5-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Tron: Legacy",
+      "entity_id": "9520D308-3488-4866-93CB-F9410D21A0FF",
+      "qloo_name": "Tron: Legacy",
+      "lift": 0.9369,
+      "image_url": "https://images.qloo.com/i/9520D308-3488-4866-93CB-F9410D21A0FF-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Scott Pilgrim vs. the World",
+      "entity_id": "778B5BD8-0C41-4C7B-BF22-B670E0426998",
+      "qloo_name": "Scott Pilgrim vs. the World",
+      "lift": 1.0205,
+      "image_url": "https://images.qloo.com/i/778B5BD8-0C41-4C7B-BF22-B670E0426998-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Whiplash",
+      "entity_id": "65745A20-2FE5-44EC-8349-BDA0C8522CEB",
+      "qloo_name": "Whiplash",
+      "lift": 1.0532,
+      "image_url": "https://images.qloo.com/i/65745A20-2FE5-44EC-8349-BDA0C8522CEB-420x-auto.jpg",
+      "result_id": "q33"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9916,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.9857,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 0.9916,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Beats by Dre",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9924,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q35"
+     }
+    ]
+   }
+  },
+  "sim-racing": {
+   "game": "Apex Line: a realistic circuit racing sim for car lovers",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Mike Ault",
+      "lift": 1.0223
+     },
+     {
+      "name": "Keith Ape",
+      "lift": 1.0186
+     },
+     {
+      "name": "HUNCHO JACK",
+      "lift": 1.0174
+     },
+     {
+      "name": "Vicetone",
+      "lift": 1.0173
+     },
+     {
+      "name": "Offset",
+      "lift": 1.0158
+     },
+     {
+      "name": "The Chainsmokers",
+      "lift": 1.0119
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Dale Jr. Download",
+      "lift": 1.1653
+     },
+     {
+      "name": "The Smoking Tire",
+      "lift": 1.1625
+     },
+     {
+      "name": "Spike's Car Radio",
+      "lift": 1.1607
+     },
+     {
+      "name": "Everyday Driver Car Debate",
+      "lift": 1.154
+     },
+     {
+      "name": "Shift and Steer",
+      "lift": 1.1526
+     },
+     {
+      "name": "Hooniverse",
+      "lift": 1.1336
+     }
+    ],
+    "movie": [
+     {
+      "name": "Indiana Jones and the Dial of Destiny",
+      "lift": 1.0812
+     },
+     {
+      "name": "Jurassic World: Dominion",
+      "lift": 1.0727
+     },
+     {
+      "name": "F9: The Fast Saga",
+      "lift": 1.0723
+     },
+     {
+      "name": "The King's Man",
+      "lift": 1.0652
+     },
+     {
+      "name": "No Time to Die",
+      "lift": 1.0536
+     },
+     {
+      "name": "The Adam Project",
+      "lift": 1.0488
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mercedes AMG Petronas F1 Team",
+      "lift": 1.2352
+     },
+     {
+      "name": "Alfa Romeo",
+      "lift": 1.2196
+     },
+     {
+      "name": "Scuderia Ferrari",
+      "lift": 1.217
+     },
+     {
+      "name": "W Motors",
+      "lift": 1.2169
+     },
+     {
+      "name": "Scuderia Alphatauri",
+      "lift": 1.2123
+     },
+     {
+      "name": "McLaren Racing",
+      "lift": 1.2049
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Kraftwerk",
+      "entity_id": "202AE914-AF28-4D79-B328-9D848B643B86",
+      "qloo_name": "Kraftwerk",
+      "lift": 1.0261,
+      "image_url": "https://images.qloo.com/i/202AE914-AF28-4D79-B328-9D848B643B86-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Daft Punk",
+      "entity_id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+      "qloo_name": "Daft Punk",
+      "lift": 1.0113,
+      "image_url": "https://images.qloo.com/i/012EF80C-B187-4ECB-9C3D-9CA5228B503C-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "The Chemical Brothers",
+      "entity_id": "9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E",
+      "qloo_name": "The Chemical Brothers",
+      "lift": 1.0244,
+      "image_url": "https://images.qloo.com/i/9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Justice",
+      "entity_id": "066EBC51-DB40-4F86-A121-1D2B625D9185",
+      "qloo_name": "Justice",
+      "lift": 1.0123,
+      "image_url": "https://images.qloo.com/i/066EBC51-DB40-4F86-A121-1D2B625D9185-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Deadmau5",
+      "entity_id": "4493B465-A9F3-48BB-BD1C-2E1A691A35A0",
+      "qloo_name": "deadmau5",
+      "lift": 1.0345,
+      "image_url": "https://images.qloo.com/i/4493B465-A9F3-48BB-BD1C-2E1A691A35A0-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Tame Impala",
+      "entity_id": "D1AE8792-9129-46E0-AEE7-2C3A81E91385",
+      "qloo_name": "Tame Impala",
+      "lift": 0.9776,
+      "image_url": "https://images.qloo.com/i/D1AE8792-9129-46E0-AEE7-2C3A81E91385-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Race",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Motorsport.com",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Paddock Pass",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "The Race Hub",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Talking Cars",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Formula 1 Podcast",
+      "entity_id": "CB514C50-FD43-47B4-85B7-05AE07636100",
+      "qloo_name": "Formula 1 Podcast",
+      "lift": 1.0857,
+      "image_url": "https://images.qloo.com/i/CB514C50-FD43-47B4-85B7-05AE07636100-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "movie": [
+     {
+      "name": "Ford v Ferrari",
+      "entity_id": "D2DF5D6E-1233-4B1C-BB40-45FDD1382819",
+      "qloo_name": "Ford v Ferrari",
+      "lift": 1.0149,
+      "image_url": "https://images.qloo.com/i/D2DF5D6E-1233-4B1C-BB40-45FDD1382819-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Rush",
+      "entity_id": "8BA29099-ADAA-4ABA-9AA6-B342F7B7CB78",
+      "qloo_name": "Rush",
+      "lift": 1.0188,
+      "image_url": "https://images.qloo.com/i/8BA29099-ADAA-4ABA-9AA6-B342F7B7CB78-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Le Mans",
+      "entity_id": "417A1708-6EA7-4C92-BF47-1BFA893808D3",
+      "qloo_name": "Le Mans",
+      "lift": 1.0893,
+      "image_url": "https://images.qloo.com/i/417A1708-6EA7-4C92-BF47-1BFA893808D3-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Grand Prix",
+      "entity_id": "90DC327A-530D-4E0D-992A-3A71DEEA4DEC",
+      "qloo_name": "Grand Prix",
+      "lift": null,
+      "image_url": "https://images.qloo.com/i/90DC327A-530D-4E0D-992A-3A71DEEA4DEC-420x-auto.jpg",
+      "result_id": null
+     },
+     {
+      "name": "Days of Thunder",
+      "entity_id": "896DF05C-4C90-4975-AAA7-AEF585EEDDE9",
+      "qloo_name": "Days of Thunder",
+      "lift": 1.0713,
+      "image_url": "https://images.qloo.com/i/896DF05C-4C90-4975-AAA7-AEF585EEDDE9-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Senna",
+      "entity_id": "AA4EB530-8815-4A7A-9B28-C318118FF821",
+      "qloo_name": "Senna",
+      "lift": 1.0424,
+      "image_url": "https://images.qloo.com/i/AA4EB530-8815-4A7A-9B28-C318118FF821-420x-auto.jpg",
+      "result_id": "q40"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Porsche",
+      "entity_id": "96C5629A-CC62-45C7-9CD2-971331E403D1",
+      "qloo_name": "Porsche",
+      "lift": 1.1436,
+      "image_url": "https://images.qloo.com/i/96C5629A-CC62-45C7-9CD2-971331E403D1-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Ferrari",
+      "entity_id": "3AC9684D-1579-453A-A4EE-827BE7151520",
+      "qloo_name": "Ferrari",
+      "lift": 1.1479,
+      "image_url": "https://images.qloo.com/i/3AC9684D-1579-453A-A4EE-827BE7151520-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "BMW",
+      "entity_id": "A5D43F6A-FCAF-4FF3-AFCA-719B028F1530",
+      "qloo_name": "BMW",
+      "lift": 1.1571,
+      "image_url": "https://images.qloo.com/i/A5D43F6A-FCAF-4FF3-AFCA-719B028F1530-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Pagani",
+      "entity_id": "E79050D7-0CBF-44B3-AE31-3A0EBD0DE400",
+      "qloo_name": "Pagani",
+      "lift": 1.1998,
+      "image_url": "https://images.qloo.com/i/E79050D7-0CBF-44B3-AE31-3A0EBD0DE400-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Pirelli",
+      "entity_id": "EBBA4BFB-A4BB-4172-BE28-4B7217DD8D95",
+      "qloo_name": "Pirelli",
+      "lift": 1.2393,
+      "image_url": "https://images.qloo.com/i/EBBA4BFB-A4BB-4172-BE28-4B7217DD8D95-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Fanatec",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "fighting": {
+   "game": "Knockdown: a 3D one-on-one fighting game",
+   "qloo": {
+    "artist": [
+     {
+      "name": "岡部啓一",
+      "lift": 1.1208
+     },
+     {
+      "name": "SQUARE ENIX MUSIC",
+      "lift": 1.1198
+     },
+     {
+      "name": "Masafumi Takada",
+      "lift": 1.1132
+     },
+     {
+      "name": "Laura Shigihara",
+      "lift": 1.1113
+     },
+     {
+      "name": "Yasunori Nishiki",
+      "lift": 1.1089
+     },
+     {
+      "name": "Keigo Hoashi",
+      "lift": 1.1087
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Retronauts",
+      "lift": 1.1232
+     },
+     {
+      "name": "Nintendo Voice Chat",
+      "lift": 1.1195
+     },
+     {
+      "name": "8-4 Play",
+      "lift": 1.1182
+     },
+     {
+      "name": "Player One Podcast",
+      "lift": 1.113
+     },
+     {
+      "name": "What's Good Games: A Video Game Podcast",
+      "lift": 1.1076
+     },
+     {
+      "name": "Game Scoop!",
+      "lift": 1.1068
+     }
+    ],
+    "movie": [
+     {
+      "name": "Sonic the Hedgehog 3",
+      "lift": 1.0752
+     },
+     {
+      "name": "Turtles Forever",
+      "lift": 1.071
+     },
+     {
+      "name": "The Super Mario Bros. Movie",
+      "lift": 1.0701
+     },
+     {
+      "name": "Codename: Kids Next Door - Operation Z.E.R.O.",
+      "lift": 1.0657
+     },
+     {
+      "name": "Demon Slayer: Kimetsu No Yaiba - To the Hashira Training",
+      "lift": 1.0624
+     },
+     {
+      "name": "My Hero Academia: World Heroes' Mission",
+      "lift": 1.0616
+     }
+    ],
+    "brand": [
+     {
+      "name": "Square Enix",
+      "lift": 1.0462
+     },
+     {
+      "name": "Control",
+      "lift": 1.0445
+     },
+     {
+      "name": "Funimation",
+      "lift": 1.0371
+     },
+     {
+      "name": "Atari",
+      "lift": 1.0289
+     },
+     {
+      "name": "Crunchyroll",
+      "lift": 1.0265
+     },
+     {
+      "name": "Mixer",
+      "lift": 1.0207
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Koji Kondo",
+      "entity_id": "08A2620F-D697-4D66-9A99-4DF5DCC0BE98",
+      "qloo_name": "Koji Kondo",
+      "lift": 1.1003,
+      "image_url": "https://images.qloo.com/i/08A2620F-D697-4D66-9A99-4DF5DCC0BE98-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Mick Gordon",
+      "entity_id": "14EC48D6-119C-4468-9145-3E9F006310BC",
+      "qloo_name": "Mick Gordon",
+      "lift": 1.0361,
+      "image_url": "https://images.qloo.com/i/14EC48D6-119C-4468-9145-3E9F006310BC-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "The spheres",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Gesaffelstein",
+      "entity_id": "20898517-9B69-4DC0-A397-1CBBB8B5B05B",
+      "qloo_name": "Gesaffelstein",
+      "lift": 0.9481,
+      "image_url": "https://images.qloo.com/i/20898517-9B69-4DC0-A397-1CBBB8B5B05B-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 1.0234,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Daft Punk",
+      "entity_id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+      "qloo_name": "Daft Punk",
+      "lift": 0.9623,
+      "image_url": "https://images.qloo.com/i/012EF80C-B187-4ECB-9C3D-9CA5228B503C-420x-auto.jpg",
+      "result_id": "q35"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Game Changer",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Fighting Game Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Combo Breaker Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Enter the Dragon",
+      "entity_id": "4F20AB01-E6F6-4886-9B11-948F387E7E58",
+      "qloo_name": "Enter the Dragon",
+      "lift": 1.0299,
+      "image_url": "https://images.qloo.com/i/4F20AB01-E6F6-4886-9B11-948F387E7E58-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "The Raid: Redemption",
+      "entity_id": "74682C9D-9027-41C1-9FF4-32A82A93491C",
+      "qloo_name": "The Raid: Redemption",
+      "lift": 0.962,
+      "image_url": "https://images.qloo.com/i/74682C9D-9027-41C1-9FF4-32A82A93491C-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Ip Man",
+      "entity_id": "AE7EBF79-EE29-4DD4-A8B9-268AFC95243F",
+      "qloo_name": "Ip Man",
+      "lift": 1.0119,
+      "image_url": "https://images.qloo.com/i/AE7EBF79-EE29-4DD4-A8B9-268AFC95243F-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Warrior",
+      "entity_id": "561DD88C-8A81-480B-96BE-2141A941534B",
+      "qloo_name": "Warrior",
+      "lift": 0.9922,
+      "image_url": "https://images.qloo.com/i/561DD88C-8A81-480B-96BE-2141A941534B-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Blood and Bone",
+      "entity_id": "1D49A0DB-261D-4CA8-B8AF-2DB92ACC1828",
+      "qloo_name": "Blood and Bone",
+      "lift": 1.0175,
+      "image_url": "https://images.qloo.com/i/1D49A0DB-261D-4CA8-B8AF-2DB92ACC1828-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Ong Bak",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9763,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "HyperX",
+      "entity_id": "1680C451-3A9C-42F1-AB27-4A55017A545D",
+      "qloo_name": "Hyper X",
+      "lift": 0.9708,
+      "image_url": "https://images.qloo.com/i/1680C451-3A9C-42F1-AB27-4A55017A545D-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 0.9745,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Red Bull",
+      "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+      "qloo_name": "Red Bull",
+      "lift": 0.9369,
+      "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9555,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ]
+   }
+  },
+  "asym-horror": {
+   "game": "Last Light: asymmetric multiplayer horror, four survivors against one killer",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Omori",
+      "lift": 1.0793
+     },
+     {
+      "name": "Masayoshi Soken",
+      "lift": 1.074
+     },
+     {
+      "name": "Mili",
+      "lift": 1.0644
+     },
+     {
+      "name": "Dan Salvato",
+      "lift": 1.0637
+     },
+     {
+      "name": "Kensuke Ushio",
+      "lift": 1.0603
+     },
+     {
+      "name": "Steven Universe",
+      "lift": 1.0599
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Empty Bowl",
+      "lift": 1.1079
+     },
+     {
+      "name": "Wonderful!",
+      "lift": 1.1024
+     },
+     {
+      "name": "The McElroy Brothers Will Be In Trolls World Tour",
+      "lift": 1.102
+     },
+     {
+      "name": "Shmanners",
+      "lift": 1.1005
+     },
+     {
+      "name": "Trends Like These",
+      "lift": 1.0996
+     },
+     {
+      "name": "Hey Riddle Riddle",
+      "lift": 1.0951
+     }
+    ],
+    "movie": [
+     {
+      "name": "I Saw the TV Glow",
+      "lift": 1.1812
+     },
+     {
+      "name": "The Love Witch",
+      "lift": 1.1608
+     },
+     {
+      "name": "As You Are",
+      "lift": 1.1406
+     },
+     {
+      "name": "My Old Ass",
+      "lift": 1.1352
+     },
+     {
+      "name": "Spree",
+      "lift": 1.1277
+     },
+     {
+      "name": "It's What's Inside",
+      "lift": 1.1268
+     }
+    ],
+    "brand": [
+     {
+      "name": "Mixer",
+      "lift": 1.0319
+     },
+     {
+      "name": "Turtle Beach",
+      "lift": 1.0203
+     },
+     {
+      "name": "ASTRO Gaming",
+      "lift": 1.0193
+     },
+     {
+      "name": "Elgato",
+      "lift": 1.0165
+     },
+     {
+      "name": "Newegg",
+      "lift": 1.0138
+     },
+     {
+      "name": "Origin PC",
+      "lift": 1.0135
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "Mick Gordon",
+      "entity_id": "14EC48D6-119C-4468-9145-3E9F006310BC",
+      "qloo_name": "Mick Gordon",
+      "lift": 1.0161,
+      "image_url": "https://images.qloo.com/i/14EC48D6-119C-4468-9145-3E9F006310BC-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Perturbator",
+      "entity_id": "EF2CF2AD-E84C-4C67-B635-56559BF57E29",
+      "qloo_name": "Perturbator",
+      "lift": 1.0225,
+      "image_url": "https://images.qloo.com/i/EF2CF2AD-E84C-4C67-B635-56559BF57E29-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Carpenter Brut",
+      "entity_id": "A339386A-3655-4C00-BE91-6AC879ACC2E9",
+      "qloo_name": "Carpenter Brut",
+      "lift": 1.0164,
+      "image_url": "https://images.qloo.com/i/A339386A-3655-4C00-BE91-6AC879ACC2E9-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Trent Reznor",
+      "entity_id": "98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A",
+      "qloo_name": "Trent Reznor",
+      "lift": 1.0223,
+      "image_url": "https://images.qloo.com/i/98CBB99E-2FC9-4AA0-926D-1BC0CBCA5C4A-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Health",
+      "entity_id": "50C39897-F690-41C3-8158-B38AB798F7E8",
+      "qloo_name": "Health",
+      "lift": 1.0126,
+      "image_url": "https://images.qloo.com/i/50C39897-F690-41C3-8158-B38AB798F7E8-420x-auto.jpg",
+      "result_id": "q38"
+     },
+     {
+      "name": "Nine Inch Nails",
+      "entity_id": "2E28F9EF-0008-4731-94C3-C195449BA5C2",
+      "qloo_name": "Nine Inch Nails",
+      "lift": 0.979,
+      "image_url": "https://images.qloo.com/i/2E28F9EF-0008-4731-94C3-C195449BA5C2-420x-auto.jpg",
+      "result_id": "q38"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Magnus Archives",
+      "entity_id": "0DD29CBA-D9B5-48F9-B3F4-1FEA71868387",
+      "qloo_name": "The Magnus Archives",
+      "lift": 1.0507,
+      "image_url": "https://images.qloo.com/i/0DD29CBA-D9B5-48F9-B3F4-1FEA71868387-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Radio Rental",
+      "entity_id": "BCDDC74D-0058-4A73-870E-2517968D2736",
+      "qloo_name": "Radio Rental",
+      "lift": 1.0029,
+      "image_url": "https://images.qloo.com/i/BCDDC74D-0058-4A73-870E-2517968D2736-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Lore",
+      "entity_id": "289AF533-A998-4BCE-A847-1CA47448BC56",
+      "qloo_name": "Lore",
+      "lift": 0.9897,
+      "image_url": "https://images.qloo.com/i/289AF533-A998-4BCE-A847-1CA47448BC56-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Astonishing Legends",
+      "entity_id": "0583C4CC-EF60-4BE3-885D-EE4F3A1FB69A",
+      "qloo_name": "Astonishing Legends",
+      "lift": 0.9967,
+      "image_url": "https://images.qloo.com/i/0583C4CC-EF60-4BE3-885D-EE4F3A1FB69A-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "Casefile True Crime",
+      "entity_id": "0BC76223-8383-4CAF-9B5D-D0B13F6C6A0B",
+      "qloo_name": "Casefile True Crime",
+      "lift": 0.9604,
+      "image_url": "https://images.qloo.com/i/0BC76223-8383-4CAF-9B5D-D0B13F6C6A0B-420x-auto.jpg",
+      "result_id": "q40"
+     },
+     {
+      "name": "My Favorite Murder",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Texas Chain Saw Massacre",
+      "entity_id": "EA73D268-F204-4111-9EB1-BFC73298A344",
+      "qloo_name": "Texas Chainsaw Massacre",
+      "lift": 1.0226,
+      "image_url": "https://images.qloo.com/i/EA73D268-F204-4111-9EB1-BFC73298A344-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Halloween",
+      "entity_id": "6DAD7E0A-32B3-43A1-A561-4FC8179B8FDD",
+      "qloo_name": "Halloween",
+      "lift": 1.0137,
+      "image_url": "https://images.qloo.com/i/6DAD7E0A-32B3-43A1-A561-4FC8179B8FDD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "The Conjuring",
+      "entity_id": "9D0B5ADD-CDFB-489A-A8C9-093DA1244CCD",
+      "qloo_name": "The Conjuring",
+      "lift": 0.9964,
+      "image_url": "https://images.qloo.com/i/9D0B5ADD-CDFB-489A-A8C9-093DA1244CCD-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Evil Dead II",
+      "entity_id": "F2AC5664-AF68-4EE9-A284-8552A2F75F08",
+      "qloo_name": "Evil Dead II",
+      "lift": 1.0153,
+      "image_url": "https://images.qloo.com/i/F2AC5664-AF68-4EE9-A284-8552A2F75F08-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "It Follows",
+      "entity_id": "EFC7990B-7BEB-44F9-AE1F-F090F5E488FC",
+      "qloo_name": "It Follows",
+      "lift": 1.1233,
+      "image_url": "https://images.qloo.com/i/EFC7990B-7BEB-44F9-AE1F-F090F5E488FC-420x-auto.jpg",
+      "result_id": "q42"
+     },
+     {
+      "name": "Barbarian",
+      "entity_id": "E2532FDD-442C-4561-8ED5-B698904EA7DC",
+      "qloo_name": "Barbarian",
+      "lift": 1.1068,
+      "image_url": "https://images.qloo.com/i/E2532FDD-442C-4561-8ED5-B698904EA7DC-420x-auto.jpg",
+      "result_id": "q42"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 0.9935,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Corsair",
+      "entity_id": "9AF96B7A-6AD0-4A20-819F-091582B82B74",
+      "qloo_name": "Corsair",
+      "lift": 0.9945,
+      "image_url": "https://images.qloo.com/i/9AF96B7A-6AD0-4A20-819F-091582B82B74-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9789,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Discord",
+      "entity_id": "868E00FF-465A-4802-881A-60A8C266E72E",
+      "qloo_name": "Discord",
+      "lift": 0.9894,
+      "image_url": "https://images.qloo.com/i/868E00FF-465A-4802-881A-60A8C266E72E-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 1.0061,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q36"
+     },
+     {
+      "name": "Elgato",
+      "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
+      "qloo_name": "Elgato",
+      "lift": 1.0165,
+      "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+      "result_id": "q36"
+     }
+    ]
+   }
+  },
+  "car-ball": {
+   "game": "Turbo Goal: arcade ball games played with rocket-powered cars",
+   "qloo": {
+    "artist": [
+     {
+      "name": "Roddy Ricch",
+      "lift": 1.0839
+     },
+     {
+      "name": "21 Savage",
+      "lift": 1.0831
+     },
+     {
+      "name": "NLE Choppa",
+      "lift": 1.0824
+     },
+     {
+      "name": "Metro Boomin",
+      "lift": 1.0796
+     },
+     {
+      "name": "JACKBOYS",
+      "lift": 1.0791
+     },
+     {
+      "name": "DaBaby",
+      "lift": 1.0778
+     }
+    ],
+    "podcast": [
+     {
+      "name": "Roderick on the Line",
+      "lift": 1.0809
+     },
+     {
+      "name": "Cortex",
+      "lift": 1.0724
+     },
+     {
+      "name": "Hello Internet",
+      "lift": 1.072
+     },
+     {
+      "name": "The Unmade Podcast",
+      "lift": 1.0708
+     },
+     {
+      "name": "You Look Nice Today",
+      "lift": 1.0653
+     },
+     {
+      "name": "Uhh Yeah Dude",
+      "lift": 1.056
+     }
+    ],
+    "movie": [
+     {
+      "name": "Nobody",
+      "lift": 1.0739
+     },
+     {
+      "name": "The Peanut Butter Falcon",
+      "lift": 1.0644
+     },
+     {
+      "name": "Palm Springs",
+      "lift": 1.0601
+     },
+     {
+      "name": "Uncut Gems",
+      "lift": 1.0577
+     },
+     {
+      "name": "The Gentlemen",
+      "lift": 1.0494
+     },
+     {
+      "name": "Don't Look Up",
+      "lift": 1.0431
+     }
+    ],
+    "brand": [
+     {
+      "name": "Lian Li Industrial",
+      "lift": 1.0353
+     },
+     {
+      "name": "Aoc Gaming",
+      "lift": 1.0219
+     },
+     {
+      "name": "Paysafecard",
+      "lift": 1.0199
+     },
+     {
+      "name": "MSI",
+      "lift": 1.0188
+     },
+     {
+      "name": "Discord",
+      "lift": 1.0186
+     },
+     {
+      "name": "Call of Duty: Mobile",
+      "lift": 1.0181
+     }
+    ]
+   },
+   "llm": {
+    "artist": [
+     {
+      "name": "The Prodigy",
+      "entity_id": "CB948BD9-E6C1-438E-BB33-CC5E537F004A",
+      "qloo_name": "The Prodigy",
+      "lift": 0.9465,
+      "image_url": "https://images.qloo.com/i/CB948BD9-E6C1-438E-BB33-CC5E537F004A-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Daft Punk",
+      "entity_id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+      "qloo_name": "Daft Punk",
+      "lift": 0.9325,
+      "image_url": "https://images.qloo.com/i/012EF80C-B187-4ECB-9C3D-9CA5228B503C-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Justice",
+      "entity_id": "066EBC51-DB40-4F86-A121-1D2B625D9185",
+      "qloo_name": "Justice",
+      "lift": 0.9584,
+      "image_url": "https://images.qloo.com/i/066EBC51-DB40-4F86-A121-1D2B625D9185-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Deadmau5",
+      "entity_id": "4493B465-A9F3-48BB-BD1C-2E1A691A35A0",
+      "qloo_name": "deadmau5",
+      "lift": 0.9155,
+      "image_url": "https://images.qloo.com/i/4493B465-A9F3-48BB-BD1C-2E1A691A35A0-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Skrillex",
+      "entity_id": "B9FA2A2C-A59B-4536-B92F-74026D690C8F",
+      "qloo_name": "Skrillex",
+      "lift": 0.9068,
+      "image_url": "https://images.qloo.com/i/B9FA2A2C-A59B-4536-B92F-74026D690C8F-420x-auto.jpg",
+      "result_id": "q31"
+     },
+     {
+      "name": "Aphex Twin",
+      "entity_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "qloo_name": "Aphex Twin",
+      "lift": 1.025,
+      "image_url": "https://images.qloo.com/i/4278382F-4991-4D63-B207-942D86A26ACB-420x-auto.jpg",
+      "result_id": "q31"
+     }
+    ],
+    "podcast": [
+     {
+      "name": "The Game Awards Podcast",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Giant Bombcast",
+      "entity_id": "79012B13-F952-486D-A680-36D72A84BB53",
+      "qloo_name": "Giant Bombcast",
+      "lift": 0.9841,
+      "image_url": "https://images.qloo.com/i/79012B13-F952-486D-A680-36D72A84BB53-420x-auto.jpg",
+      "result_id": "q33"
+     },
+     {
+      "name": "Kinda Funny Games",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     }
+    ],
+    "movie": [
+     {
+      "name": "Rocket League",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Wreck-It Ralph",
+      "entity_id": "8DDF3A49-3B09-4556-B1D5-F849924BB674",
+      "qloo_name": "Wreck-It Ralph",
+      "lift": 0.9359,
+      "image_url": "https://images.qloo.com/i/8DDF3A49-3B09-4556-B1D5-F849924BB674-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Speed Racer",
+      "entity_id": "469708EC-006D-43C2-8ECB-D80FC1E806B0",
+      "qloo_name": "Speed Racer",
+      "lift": 0.9183,
+      "image_url": "https://images.qloo.com/i/469708EC-006D-43C2-8ECB-D80FC1E806B0-420x-auto.jpg",
+      "result_id": "q37"
+     },
+     {
+      "name": "Mad Max: Fury Road",
+      "entity_id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+      "qloo_name": "Mad Max: Fury Road",
+      "lift": 0.9489,
+      "image_url": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg",
+      "result_id": "q37"
+     }
+    ],
+    "brand": [
+     {
+      "name": "Razer",
+      "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
+      "qloo_name": "Razer",
+      "lift": 1.0035,
+      "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Red Bull",
+      "entity_id": "409FAF5A-BC5F-4DC3-943D-E3B5F20B471D",
+      "qloo_name": "Red Bull",
+      "lift": 1.0002,
+      "image_url": "https://images.qloo.com/i/409FAF5A-BC5F-4DC3-943D-E3B5F20B471D-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Logitech G",
+      "entity_id": null,
+      "qloo_name": null,
+      "lift": null,
+      "image_url": null,
+      "result_id": null
+     },
+     {
+      "name": "Monster Energy",
+      "entity_id": "8376EDE4-3EA9-440B-B424-6BBFB13EB6F0",
+      "qloo_name": "Monster Energy",
+      "lift": 0.9871,
+      "image_url": "https://images.qloo.com/i/8376EDE4-3EA9-440B-B424-6BBFB13EB6F0-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "Discord",
+      "entity_id": "868E00FF-465A-4802-881A-60A8C266E72E",
+      "qloo_name": "Discord",
+      "lift": 1.0186,
+      "image_url": "https://images.qloo.com/i/868E00FF-465A-4802-881A-60A8C266E72E-420x-auto.jpg",
+      "result_id": "q35"
+     },
+     {
+      "name": "SteelSeries",
+      "entity_id": "9C5B755A-1BCE-48F6-8890-A44ADE5E16BD",
+      "qloo_name": "Steel Series",
+      "lift": 1.0066,
+      "image_url": "https://images.qloo.com/i/9C5B755A-1BCE-48F6-8890-A44ADE5E16BD-420x-auto.jpg",
+      "result_id": "q35"
+     }
+    ]
+   }
+  }
+ }
+}

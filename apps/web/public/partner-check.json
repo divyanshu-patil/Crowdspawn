@@ -1,0 +1,89 @@
+{
+ "collected": "2026-10-21",
+ "games": 20,
+ "model": "gemma4:31b",
+ "recur": 3,
+ "rows": [
+  {
+   "kind": "artist",
+   "qloo_generic_pct": 5,
+   "llm_generic_pct": 32,
+   "llm_found": 115,
+   "llm_picks": 120,
+   "llm_median_lift": 1.006,
+   "qloo_median_lift": 1.096,
+   "llm_not_above_1": 50,
+   "llm_scored": 115,
+   "llm_most_repeated": [
+    "aphex twin",
+    "mick gordon",
+    "carpenter brut"
+   ],
+   "qloo_most_repeated": [
+    "square enix music",
+    "masafumi takada"
+   ]
+  },
+  {
+   "kind": "podcast",
+   "qloo_generic_pct": 20,
+   "llm_generic_pct": 32,
+   "llm_found": 51,
+   "llm_picks": 103,
+   "llm_median_lift": 0.988,
+   "qloo_median_lift": 1.126,
+   "llm_not_above_1": 30,
+   "llm_scored": 51,
+   "llm_most_repeated": [
+    "hardcore history",
+    "radiolab",
+    "the daily"
+   ],
+   "qloo_most_repeated": [
+    "the empty bowl",
+    "wonderful!",
+    "trends like these"
+   ]
+  },
+  {
+   "kind": "movie",
+   "qloo_generic_pct": 3,
+   "llm_generic_pct": 15,
+   "llm_found": 107,
+   "llm_picks": 113,
+   "llm_median_lift": 0.998,
+   "qloo_median_lift": 1.108,
+   "llm_not_above_1": 56,
+   "llm_scored": 105,
+   "llm_most_repeated": [
+    "mad max: fury road",
+    "the martian",
+    "blade runner 2049"
+   ],
+   "qloo_most_repeated": [
+    "the imposter"
+   ]
+  },
+  {
+   "kind": "brand",
+   "qloo_generic_pct": 67,
+   "llm_generic_pct": 51,
+   "llm_found": 88,
+   "llm_picks": 119,
+   "llm_median_lift": 0.986,
+   "qloo_median_lift": 1.023,
+   "llm_not_above_1": 63,
+   "llm_scored": 88,
+   "llm_most_repeated": [
+    "razer",
+    "logitech g",
+    "steel series"
+   ],
+   "qloo_most_repeated": [
+    "mixer",
+    "oculus",
+    "newegg"
+   ]
+  }
+ ]
+}

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import results from "../public/eval-results.json";
 import audience from "../public/audience-check.json";
+import partnerCheck from "../public/partner-check.json";
 import { Notice } from "./ui";
 
-/** Written by apps/api/scripts/audience_check.py and scenarios.py score: never edit these numbers by hand. */
+/** Written by apps/api/scripts/audience_check.py, partner_check.py and scenarios.py: never edit these numbers by hand. */
 export const AUDIENCE = audience;
+export const PARTNERS = partnerCheck;
 export const EVAL = results;
 
 type Method = { method: string; n: number; top1: number; top3: number; rho: number };
@@ -19,6 +21,7 @@ export function AccuracySummary() {
   const llm = byName(h.methods, "LLM only");
   const pop = byName(h.methods, "Popularity");
   const top = h.top_cities[0]!;
+  const artists = PARTNERS.rows.find((r) => r.kind === "artist");
   return (
     <section className="section stack" aria-labelledby="acc-h">
       <h2 id="acc-h" className="h2">
@@ -48,6 +51,14 @@ export function AccuracySummary() {
         , and the ranking has a city bias: {top.city} came first for {top.games} of the {h.n} games. Trends measures
         search interest, not sales, and the samples are small. Use the ranking as a starting hypothesis, not a forecast.
       </p>
+      {artists && (
+        <p style={{ maxWidth: 760 }}>
+          <b>Partners are where Qloo differs most.</b> Asked for artists for {PARTNERS.games} different games, an LLM
+          without Qloo data repeated the same names: {artists.llm_generic_pct}% of its picks came up for{" "}
+          {PARTNERS.recur} or more games, against {artists.qloo_generic_pct}% of Qloo&apos;s. Every plan shows the
+          comparison side by side.
+        </p>
+      )}
       <p style={{ maxWidth: 760 }}>
         <b>The audience data checks out.</b> Qloo&apos;s gender skew orders {AUDIENCE.rows.length} genres the way a
         survey of about 270,000 gamers does (ρ {AUDIENCE.rho_qloo}). An LLM&apos;s guess matched too (ρ{" "}
@@ -243,6 +254,48 @@ export function AccuracyReport() {
         </div>
       </section>
 
+      <section className="section stack" aria-labelledby="pc-h">
+        <h2 id="pc-h" className="h2">
+          Partner check: Qloo&apos;s lists vs an LLM&apos;s
+        </h2>
+        <p className="muted" style={{ maxWidth: 760 }}>
+          For {partnerCheck.games} games, an LLM ({partnerCheck.model}, no Qloo data) and Qloo each name 6 artists,
+          podcasts, films and brands that fans of the game&apos;s comps like more than gamers in general. &quot;Generic&quot;
+          is the share of names a method gives for {partnerCheck.recur} or more of the games, whatever the game: it
+          doesn&apos;t use Qloo&apos;s scores. Lift for the LLM&apos;s names is measured with Qloo, which picked its own list
+          by lift, so that column favours Qloo by design. Design fixed before any call.
+        </p>
+        <div className="table-wrap">
+          <table className="trace" data-testid="partner-check">
+            <caption className="sr-only">Partner lists: Qloo vs an LLM alone</caption>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Generic names: Qloo</th>
+                <th>Generic names: LLM</th>
+                <th>LLM names found in Qloo</th>
+                <th>Median lift: Qloo</th>
+                <th>Median lift: LLM&apos;s names</th>
+              </tr>
+            </thead>
+            <tbody>
+              {partnerCheck.rows.map((r) => (
+                <tr key={r.kind}>
+                  <td>{r.kind}</td>
+                  <td className="num">{r.qloo_generic_pct}%</td>
+                  <td className="num">{r.llm_generic_pct}%</td>
+                  <td className="num">
+                    {r.llm_found} of {r.llm_picks}
+                  </td>
+                  <td className="num">×{r.qloo_median_lift ?? "–"}</td>
+                  <td className="num">×{r.llm_median_lift ?? "–"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section className="section limits" aria-labelledby="cav-h">
         <h2 id="cav-h" className="h3">
           Caveats
@@ -254,7 +307,8 @@ export function AccuracyReport() {
           <li>Each LLM ran once, at temperature 0, on one prompt.</li>
           <li>
             Method, code and every number: <code>docs/scenario-results.md</code>,{" "}
-            <code>docs/backtest-results.md</code> and <code>docs/audience-check.md</code> in the repository.
+            <code>docs/backtest-results.md</code>, <code>docs/audience-check.md</code> and{" "}
+            <code>docs/partner-check.md</code> in the repository.
           </li>
         </ul>
       </section>
