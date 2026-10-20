@@ -3,8 +3,9 @@
 Each step the model returns {"thought", "tool", "args"}; the server runs the tool against Qloo and feeds
 back a compact observation. Guards keep the "Qloo is the only data source" rule:
 - entities are referred to by handles the server issued (g1, c2, p1), so the model cannot invent ids;
-- the final answer may only use numbers and bold names that appeared in observations, or a template
-  built from the last city ranking replaces it;
+- the final answer may only use numbers and bold names that appeared in observations, and each sentence
+  that names a city or entity or quotes a number must cite the step that shows it ([s3]); after two
+  rejected answers a template built from the last city ranking replaces it;
 - caps: 10 steps, 12 LLM calls, 150 Qloo calls; auth, budget and rate-limit errors fail the run closed.
 """
 
@@ -17,7 +18,16 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, ValidationError
 
 from ..errors import AppError, QlooError
-from ..grounding import BOLD, EXTRA_CITIES, NUMBER, _to_float, city_numbers, misattributed
+from ..grounding import (
+    BOLD,
+    EXTRA_CITIES,
+    NUMBER,
+    SENTENCE,
+    _to_float,
+    city_numbers,
+    mentions,
+    misattributed,
+)
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
 from ..qloo.client import QlooClient, QlooRun
@@ -45,6 +55,8 @@ MAX_STEPS = 10
 MAX_LLM_CALLS = 12
 MAX_QLOO_CALLS = 150
 OBS_CHARS = 900
+MAX_REJECTED = 2  # rejected answers before the template answer is used
+STEP_CITE = re.compile(r"\[s(\d+(?:\s*,\s*s?\d+)*)\]")  # [s3] or [s3, s5]
 Tool = Literal[
     "search_games",
     "search_culture",
@@ -109,6 +121,7 @@ class Memory:
     signals: dict[tuple[str, ...], list[str]] = field(default_factory=dict)
     ranking: list[City] = field(default_factory=list)
     rank_args: RankArgs | None = None
+    rank_step: int | None = None  # the step whose observation holds the ranking
     observations: list[str] = field(default_factory=list)
 
     def handle(self, kind: str, store: dict[str, Any]) -> str:
@@ -309,6 +322,37 @@ def grounded(answer: str, mem: Memory, goal: str) -> list[str]:
     return problems
 
 
+def cited(answer: str, seen: dict[int, str], goal: str) -> list[str]:
+    """J24: a sentence naming a city or entity, or quoting a number, cites steps whose observations hold it."""
+    places = {r.name for r in scout.scout_points().values()} | set(EXTRA_CITIES)
+    own = {_to_float(n) for n in NUMBER.findall(goal)}  # the user's numbers need no source
+    problems = []
+    for sentence in SENTENCE.split(answer):
+        refs = [int(x) for g in STEP_CITE.findall(sentence) for x in re.findall(r"\d+", g)]
+        problems += [f"unknown citation [s{r}]" for r in refs if r not in seen]
+        text = STEP_CITE.sub(" ", sentence)
+        names = set(BOLD.findall(text)) | mentions(text, places)
+        numbers = [
+            n
+            for n in NUMBER.findall(BOLD.sub(" ", text))
+            if _to_float(n) not in own
+            and not (_to_float(n).is_integer() and _to_float(n) <= 10 and n.isdigit())
+        ]
+        if not names and not numbers:
+            continue
+        if not refs:
+            problems.append(f'cite the step behind "{text.strip()[:60]}" with [sN]')
+            continue
+        source = "\n".join(seen.get(r, "") for r in refs)
+        where = ", ".join(f"s{r}" for r in refs)
+        have = {_to_float(n) for n in NUMBER.findall(source)}
+        problems += [f"{n} is not in {where}" for n in numbers if _to_float(n) not in have]
+        problems += [
+            f"{x} is not in {where}" for x in sorted(names) if x.lower() not in source.lower()
+        ]
+    return problems
+
+
 def template_answer(mem: Memory) -> str:
     if not mem.ranking:
         return "The agent could not finish a city ranking, so it has no recommendation. Try a more specific goal."
@@ -319,8 +363,9 @@ def template_answer(mem: Memory) -> str:
     cities_txt = "; ".join(
         f"**{c.name}** (spawn score {c.score:.2f}, {c.confidence} confidence)" for c in top
     )
+    cite = f" [s{mem.rank_step}]" if mem.rank_step else ""
     return (
-        f"For players of {games or 'your comparable games'}, the strongest spawn points are {cities_txt}. "
+        f"For players of {games or 'your comparable games'}, the strongest spawn points are {cities_txt}{cite}. "
         "The spawn score multiplies taste lift, platform fit and culture fit from Qloo heatmaps. "
         "It is an affinity index, not a sales forecast."
     )
@@ -430,6 +475,7 @@ async def run_agent(
         return await fail("llm_unavailable", "No LLM provider is configured")
 
     budget = CallBudget(MAX_LLM_CALLS)
+    rejected = 0
     model_name = f"{llm.name} · {llm.model}"
     all_ids = ", ".join(cities.regions())
     try:
@@ -459,7 +505,9 @@ async def run_agent(
                 except ValidationError as e:
                     obs, ok = f"bad args for finish: {e.errors()[0]['msg']}", False
                 else:
-                    problems = grounded(fin.answer, mem, goal)
+                    seen = {s.n: s.observation for s in steps if s.ok and s.tool != "finish"}
+                    problems = grounded(STEP_CITE.sub(" ", fin.answer), mem, goal)
+                    problems += cited(fin.answer, seen, goal)
                     if not problems:
                         steps.append(
                             AgentStepOut(
@@ -476,15 +524,29 @@ async def run_agent(
                     obs, ok = (
                         "Answer rejected: "
                         + "; ".join(problems[:4])
-                        + ". Use only observed names and numbers.",
+                        + ". Use only observed names and numbers, and cite the step behind each claim.",
                         False,
                     )
-                    if n == MAX_STEPS:
+                    rejected += 1
+                    if rejected >= MAX_REJECTED or n == MAX_STEPS:
+                        steps.append(
+                            AgentStepOut(
+                                n=n,
+                                thought=step.thought,
+                                tool="finish",
+                                args=step.args,
+                                observation=obs,
+                                ok=False,
+                            )
+                        )
+                        await emit("observation", {"n": n, "text": obs, "ok": False})
                         return await end(template_answer(mem), "template", fin, None)
             else:
                 try:
                     obs, ok = await call_tool(run, mem, step.tool, step.args), True
                     mem.observations.append(obs)
+                    if step.tool == "rank_cities":
+                        mem.rank_step = n
                 except ToolError as e:
                     obs, ok = f"error: {e}", False
                 except QlooError as e:

@@ -56,6 +56,7 @@ export function LaunchAgent() {
   const [result, setResult] = useState<AgentRun | null>(null);
   const [error, setError] = useState<{ code: string; message: string } | null>(null);
   const [busy, setBusy] = useState(false);
+  const [lit, setLit] = useState<number | null>(null); // the step a citation chip points at
   const stop = useRef<() => void>(() => {});
   useEffect(() => () => stop.current(), []);
 
@@ -147,6 +148,12 @@ export function LaunchAgent() {
     router.push("/plan/new");
   }
 
+  function showStep(n: number) {
+    document.getElementById(`step-${n}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setLit(n);
+    setTimeout(() => setLit((x) => (x === n ? null : x)), 2000);
+  }
+
   const names = useMemo(() => handleNames(steps), [steps]);
   const ready = goal.trim().length >= 10;
 
@@ -214,7 +221,11 @@ export function LaunchAgent() {
       {steps.length > 0 && (
         <ol className="agent-steps" aria-live="polite">
           {steps.map((s) => (
-            <li key={s.n} className={`agent-step ${s.ok === false ? "bad" : ""} ${s.obs === undefined ? "pending" : ""}`}>
+            <li
+              key={s.n}
+              id={`step-${s.n}`}
+              className={`agent-step ${s.ok === false ? "bad" : ""} ${s.obs === undefined ? "pending" : ""} ${lit === s.n ? "lit" : ""}`}
+            >
               <span className="step-n num">{s.n}</span>
               <div className="stack" style={{ gap: 6 }}>
                 <div className="row" style={{ alignItems: "center", gap: 8 }}>
@@ -247,11 +258,11 @@ export function LaunchAgent() {
             {result.answer_source === "llm" ? `Answer by ${result.model}, checked against Qloo` : "Answer from the Qloo ranking"}
           </span>
           <p className="lede" style={{ fontSize: 19 }}>
-            <RichText text={result.answer} traceHref="#" />
+            <RichText text={result.answer} traceHref="#" onStep={showStep} />
           </p>
           <p className="hint">
-            {result.steps.length} steps · {result.calls.live} live / {result.calls.cached} cached Qloo calls · names and
-            numbers come only from tool results · affinity index, not a sales forecast.
+            {result.steps.length} steps · {result.calls.live} live / {result.calls.cached} cached Qloo calls · each claim
+            cites the step it came from (click a chip) · affinity index, not a sales forecast.
           </p>
           {result.draft && (
             <div>

@@ -85,7 +85,7 @@ GOOD = [
     step(
         "finish",
         {
-            "answer": "Launch first in **Tokyo** (spawn score 1.19), then **London** (1.16). Partner with **Top artist**.",
+            "answer": "Launch first in **Tokyo** (spawn score 1.19), then **London** (1.16) [s3]. Partner with **Top artist** [s4].",
             "games": ["g1", "g2"],
             "cities": ["tyo", "lon", "nyc"],
             "title": "Moss Hollow",
@@ -122,7 +122,12 @@ async def test_agent_plans_with_qloo_tools_and_hands_off_a_plan_draft(
 async def test_invented_handles_are_rejected_and_the_agent_recovers(
     tmp_path: Path, tools: dict[str, Any]
 ) -> None:
-    replies = [step("rank_cities", {"games": ["g7"]}), *GOOD]
+    answer = "Launch first in **Tokyo** (spawn score 1.19) [s4]. Partner with **Top artist** [s5]."
+    replies = [
+        step("rank_cities", {"games": ["g7"]}),
+        *GOOD[:4],
+        step("finish", {"answer": answer}),
+    ]
     r, _, _ = await go(tmp_path, replies)
     assert not r.steps[0].ok and "unknown game handles ['g7']" in r.steps[0].observation
     assert r.status == "done" and r.answer_source == "llm"
@@ -136,7 +141,7 @@ async def test_answer_with_invented_numbers_is_sent_back(
     )
     ok = step(
         "finish",
-        {"answer": "Launch first in **Tokyo** (spawn score 1.19), then **London** (1.16)."},
+        {"answer": "Launch first in **Tokyo** (spawn score 1.19), then **London** (1.16) [s3]."},
     )
     r, _, _ = await go(tmp_path, [*GOOD[:3], bad, ok])
     rejected = r.steps[3]
@@ -152,6 +157,7 @@ async def test_out_of_steps_answers_from_the_qloo_ranking(
     r, _, _ = await go(tmp_path, loop)
     assert r.status == "done" and r.answer_source == "template" and len(r.steps) == agent.MAX_STEPS
     assert "**Tokyo** (spawn score 1.19, high confidence)" in (r.answer or "")
+    assert "[s2]." in (r.answer or "")  # the template cites its ranking step
     assert r.draft and r.draft.regions[:2] == ["tyo", "lon"]
 
 
@@ -204,6 +210,40 @@ def test_grounding_binds_numbers_to_their_city() -> None:
     assert agent.grounded(right, mem, "goal") == []
     # Numbers the user gave, or Qloo gave with no city, are not tied to any city.
     assert agent.grounded("**Warsaw** fits a $1,029 budget.", mem, "budget $1,029") == []
+
+
+def test_answers_cite_the_step_behind_each_claim() -> None:
+    """J24: a sentence with a city, a bold name or a number cites a step whose observation holds it."""
+    seen = {1: "g1 Stardew Valley (2016)", 3: "1. Tokyo (tyo, JP): spawn score 1.19"}
+    assert agent.cited("Launch in **Tokyo** (spawn score 1.19) [s3].", seen, "goal") == []
+    assert agent.cited("Fans of **Stardew Valley** [s1] love **Tokyo** [s3].", seen, "goal") == []
+    assert agent.cited("Launch in **Tokyo** first.", seen, "goal") == [
+        'cite the step behind "Launch in **Tokyo** first." with [sN]'
+    ]
+    assert agent.cited("Launch in **Tokyo** (1.19) [s1].", seen, "goal") == [
+        "1.19 is not in s1",
+        "Tokyo is not in s1",
+    ]
+    assert agent.cited("Tokyo leads [s9].", seen, "goal") == [
+        "unknown citation [s9]",
+        "Tokyo is not in s9",
+    ]
+    # No claim, no citation needed; the user's own numbers and small counts need none either.
+    assert agent.cited("It is an affinity index. Test the top 3 with $5,000.", seen, "$5,000") == []
+
+
+async def test_two_rejected_answers_fall_back_to_the_template(
+    tmp_path: Path, tools: dict[str, Any]
+) -> None:
+    uncited = step("finish", {"answer": "Launch first in **Tokyo**, the strongest city by far."})
+    r, _, _ = await go(tmp_path, [*GOOD[:3], uncited, uncited])
+    assert r.status == "done" and r.answer_source == "template"
+    assert [s.ok for s in r.steps[3:]] == [False, False] and "cite the step" in r.steps[
+        3
+    ].observation
+    assert "**Tokyo** (spawn score 1.19, high confidence)" in (r.answer or "") and "[s3]" in (
+        r.answer or ""
+    )
 
 
 def test_agent_route_runs_and_streams(client: TestClient, tools: dict[str, Any]) -> None:

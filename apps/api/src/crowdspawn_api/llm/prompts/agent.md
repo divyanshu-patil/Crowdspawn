@@ -20,7 +20,7 @@ How to work:
 4. Then finish. If a result is weak or a search finds nothing, change your plan and say why in your thought.
 5. Stay within 8 steps. Use only handles and city ids that appeared in observations or the lists above.
 
-Answer rules (finish.answer): 4-6 sentences of plain English. Use only names and numbers that appear in observations, copied exactly; write city and entity names in **bold**. Call scores an affinity index, never a sales forecast. "title" is a short working title for the game taken from the goal, or "Your game".
+Answer rules (finish.answer): 4-6 sentences of plain English. Use only names and numbers that appear in observations, copied exactly; write city and entity names in **bold**. End every sentence that names a city, game, artist or partner, or quotes a number, with the step(s) whose observation shows it, like [s3] or [s3, s5]. Call scores an affinity index, never a sales forecast. "title" is a short working title for the game taken from the goal, or "Your game".
 
 Steps so far:
 {{history}}

@@ -103,12 +103,36 @@ export function ErrorScreen({
 }
 
 /** Render brief text: **Name** becomes a highlighted name, [q1, q2] become trace chips. */
-export function RichText({ text, traceHref }: { text: string; traceHref: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*|\[q\d+(?:\s*,\s*q\d+)*\])/g);
+export function RichText({
+  text,
+  traceHref,
+  onStep,
+}: {
+  text: string;
+  traceHref: string;
+  onStep?: (n: number) => void; // agent answers cite steps: [s3] or [s3, s5]
+}) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\[q\d+(?:\s*,\s*q\d+)*\]|\[s\d+(?:\s*,\s*s?\d+)*\])/g);
   return (
     <>
       {parts.map((p, i) => {
         if (p.startsWith("**") && p.endsWith("**")) return <strong key={i}>{p.slice(2, -2)}</strong>;
+        if (/^\[s\d+/.test(p))
+          return (
+            <span key={i}>
+              {[...p.matchAll(/\d+/g)].map(([n]) => (
+                <button
+                  key={n}
+                  type="button"
+                  className="cite"
+                  aria-label={`Show step ${n}`}
+                  onClick={() => onStep?.(Number(n))}
+                >
+                  s{n}
+                </button>
+              ))}
+            </span>
+          );
         if (/^\[q\d+/.test(p))
           return (
             <span key={i}>

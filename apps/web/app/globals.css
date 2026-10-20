@@ -2263,6 +2263,18 @@ footer.foot {
   box-shadow: 4px 4px 0 var(--marker);
 }
 
+/* A citation chip in the answer points here (J24). */
+.agent-step.lit {
+  box-shadow: 4px 4px 0 var(--marker);
+  outline: 2px solid var(--marker);
+}
+
+button.cite {
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
 .step-n {
   display: grid;
   place-items: center;
