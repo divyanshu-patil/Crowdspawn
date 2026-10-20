@@ -17,7 +17,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, ValidationError
 
 from ..errors import AppError, QlooError
-from ..grounding import BOLD, EXTRA_CITIES, NUMBER, _to_float
+from ..grounding import BOLD, EXTRA_CITIES, NUMBER, _to_float, city_numbers, misattributed
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
 from ..qloo.client import QlooClient, QlooRun
@@ -162,13 +162,21 @@ async def call_tool(run: QlooRun, mem: Memory, tool: str, args: dict[str, Any]) 
             hits = await resolve.search_games(run, q.query, take=5)
             if not hits:
                 raise ToolError(f"no Qloo video games match '{q.query}'; try the official title")
+            # Search ranks cheap clones ("Truck Simulator 2023 - Driver Europe") next to the real game,
+            # and popularity does not separate them: keep exact titles plus one other for disambiguation.
+            exact = [h for h in hits if resolve.name_matches(q.query, h.name)]
+            note = ""
+            if exact:
+                hits = exact + [h for h in hits if h not in exact][:1]
+            else:
+                note = "; no exact title match"
             lines = []
             for h in hits:
                 existing = next((k for k, v in mem.games.items() if v[0] == h.entity_id), None)
                 key = existing or mem.handle("g", mem.games)
                 mem.games[key] = (h.entity_id, h.name)
                 lines.append(f"{key} {h.name}" + (f" ({h.year})" if h.year else ""))
-            return "Games: " + "; ".join(lines)
+            return "Games: " + "; ".join(lines) + note
 
         if tool == "search_culture":
             q = Query.model_validate(args)
@@ -208,7 +216,13 @@ async def call_tool(run: QlooRun, mem: Memory, tool: str, args: dict[str, Any]) 
                 raise ToolError("no city could be scored")
             mem.ranking, mem.rank_args = ranked, a
             top = "\n".join(f"{i + 1}. {fmt_city(c)}" for i, c in enumerate(ranked[:8]))
-            return f"Ranked {len(ranked)} cities (spawn score > 1 means over-indexing):\n{top}"
+            hidden = "; ".join(
+                f"{h.name} #{h.rank} for this game, #{h.gamer_rank} for gamers overall"
+                for h in cities.hidden_markets(ranked)
+            )
+            return f"Ranked {len(ranked)} cities (spawn score > 1 means over-indexing):\n{top}" + (
+                f"\nHidden markets: {hidden}" if hidden else ""
+            )
 
         if tool == "scout_place":
             pa = PlaceArgs.model_validate(args)
@@ -281,6 +295,11 @@ def grounded(answer: str, mem: Memory, goal: str) -> list[str]:
         and p.lower() not in bad_bold
         and re.search(rf"\b{re.escape(p)}\b", answer, re.IGNORECASE)
     ]
+    # A number must belong to the city it is written next to, not to another city in the ranking.
+    lines = [x for o in mem.observations for x in re.split(r"\n|; ", o)]
+    lines.append(" ".join(NUMBER.findall(goal)))  # the user's own numbers belong to no city
+    seen_places = {p for p in places if p.lower() in low}  # unseen ones are rejected above
+    problems += misattributed(answer, city_numbers(lines, seen_places), seen_places)
     return problems
 
 

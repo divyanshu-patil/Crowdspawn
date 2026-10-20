@@ -29,6 +29,11 @@ const FAILURE_COPY: Record<string, { title: string; message: string }> = {
     title: "Call budget spent",
     message: "This run hit the per-plan Qloo call cap, so partial results were discarded. Pick fewer cities and retry.",
   },
+  qloo_daily_cap: {
+    title: "Out of Qloo calls for today",
+    message:
+      "Today's live Qloo budget is used up. The sample plan and popular places still work. Try again after 00:00 UTC.",
+  },
   comp_unresolved: {
     title: "No comps found",
     message: "None of the comparable games exist in Qloo. Go back and pick different comps.",

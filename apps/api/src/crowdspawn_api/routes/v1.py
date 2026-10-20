@@ -304,7 +304,7 @@ async def scout_fit(request: Request, body: ScoutFitIn) -> ScoutFit:
 
 @router.post("/scout/judge", response_model=ScoutJudge)
 async def scout_judge(request: Request, body: ScoutJudgeIn) -> ScoutJudge:
-    """Would the game I describe work here? LLM proposes names, Qloo scores, verdict with probability."""
+    """Would the game I describe work here? LLM proposes names, Qloo scores, verdict from spawn-score bands."""
     d = deps(request)
     llm = _ready(d)
     _limit(request, _scout_hits, d.settings.scouts_per_ip_per_hour)

@@ -681,7 +681,7 @@ function WhatWorks({ area }: { area: AreaView }) {
   );
 }
 
-/** Verdict colours by rarity; the words themselves come from the API (JUDGE_TIERS in judge.py). */
+/** Verdict colours by rarity; the words and their score bands come from the API (JUDGE_BANDS in judge.py). */
 const TONE: Record<string, string> = {
   Legendary: "legendary",
   Epic: "epic",
@@ -689,17 +689,6 @@ const TONE: Record<string, string> = {
   Uncommon: "uncommon",
   Common: "common",
 };
-
-function Gauge({ p }: { p: number }) {
-  const r = 52;
-  const c = Math.PI * r; // half circle
-  return (
-    <svg className="gauge" viewBox="0 0 128 72" aria-hidden>
-      <path d="M12 64a52 52 0 0 1 104 0" className="track" />
-      <path d="M12 64a52 52 0 0 1 104 0" className="value" style={{ strokeDasharray: c, strokeDashoffset: c * (1 - p) }} />
-    </svg>
-  );
-}
 
 function Fit({ pick }: { pick: Pick }) {
   const [title, setTitle] = useState("");
@@ -727,7 +716,7 @@ function Fit({ pick }: { pick: Pick }) {
         comp_entity_ids: comps.map((c) => c.entity_id),
       });
       setResult(r);
-      play(r.probability >= 0.58 ? "win" : r.probability >= 0.42 ? "level" : "error");
+      play(r.verdict === "Common" ? "error" : r.verdict === "Uncommon" ? "level" : "win");
     } catch (e) {
       setError((e as ApiError).message);
       play("error");
@@ -814,7 +803,6 @@ function Fit({ pick }: { pick: Pick }) {
 }
 
 function JudgeResult({ r }: { r: ScoutJudge }) {
-  const pct = Math.round(r.probability * 100);
   const max = Math.max(...r.ranking.map((x) => x.score), 1.01);
   return (
     <div className="stack judge">
@@ -824,12 +812,13 @@ function JudgeResult({ r }: { r: ScoutJudge }) {
             <span className="label">Verdict</span>
             <strong className="verdict-title">{r.verdict}</strong>
             <span className="hint">
-              Estimated chance players here over-index for your game. A model estimate from taste data, not sales odds.
+              {r.bands.map((b) => `${b.verdict} ≥ ${fmt(b.min_score)}`).join(" · ")} · Common below, at {r.confidence}{" "}
+              confidence. Weaker evidence needs a higher score. An affinity index from taste data, not sales odds.
             </span>
           </div>
-          <div className="gauge-wrap" aria-label={`${pct} percent`}>
-            <Gauge p={r.probability} />
-            <span className="num gauge-num">{pct}%</span>
+          <div className="score-big">
+            <span className="label">Spawn score</span>
+            <span className="num">×{fmt(r.score)}</span>
           </div>
         </div>
         <p className="breakdown num" aria-label="Spawn score breakdown">

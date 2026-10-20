@@ -1,0 +1,707 @@
+{
+  "request": {
+    "path": "/search",
+    "params": {
+      "query": "Euro Truck Simulator 2",
+      "types": "urn:entity:videogame",
+      "take": "5"
+    }
+  },
+  "status": 200,
+  "body": {
+    "results": [
+      {
+        "name": "Euro Truck Simulator 2",
+        "entity_id": "E1C3D578-D7D7-4733-8D89-C0F7777D6C01",
+        "types": [
+          "urn:entity:videogame"
+        ],
+        "properties": {
+          "akas": [
+            {
+              "language": "ar",
+              "value": "يورو ترك سيميولايتر ٢"
+            },
+            {
+              "language": "cs",
+              "value": "ETS2"
+            },
+            {
+              "language": "et",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "fi",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "he",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "ja",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "ko",
+              "value": "유로 트럭 시뮬레이터 2"
+            },
+            {
+              "language": "pl",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "pt",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "pt_pt",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "ro",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "ru",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "sv",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "th",
+              "value": "ยูโร ทรัค ซิมูเลเตอร์ 2"
+            },
+            {
+              "language": "tr",
+              "value": "Euro Truck Simulator 2"
+            },
+            {
+              "language": "zh",
+              "value": "欧洲卡车模拟2"
+            }
+          ],
+          "content_rating": "",
+          "description": "Euro Truck Simulator 2 is a long-haul vehicle simulation that puts you behind the wheel of heavy trucks delivering cargo across a detailed, realistic recreation of Europe; build a company, manage deliveries and upgrades, and explore dozens of cities and road networks.",
+          "developer": "SCS Software",
+          "external": {
+            "facebook": {
+              "id": "eurotrucksimulator2"
+            },
+            "igdb": {
+              "id": "euro-truck-simulator-2"
+            },
+            "metacritic": {
+              "critic_rating": 79,
+              "id": "1400152064"
+            },
+            "steam": {
+              "id": "227300"
+            },
+            "twitch": {
+              "id": "euro truck simulator 2"
+            },
+            "wikidata": {
+              "id": "q2632206"
+            }
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/E1C3D578-D7D7-4733-8D89-C0F7777D6C01-420x-auto.jpg"
+          },
+          "platforms": [
+            "PC (Windows)",
+            "Xbox Series X",
+            "PlayStation 5"
+          ],
+          "publisher": "SCS Software",
+          "release_date": "2013-01-16",
+          "release_year": 2013,
+          "short_description": "Drive heavy trucks across a realistic recreation of Europe, delivering cargo, managing a trucking company and upgrading equipment to expand your long-haul empire.",
+          "short_descriptions": [
+            {
+              "language": "eo",
+              "value": "videoludo de 2012"
+            },
+            {
+              "language": "id",
+              "value": "permainan video tahun 2012"
+            },
+            {
+              "language": "uk",
+              "value": "відеогра 2012 року"
+            },
+            {
+              "language": "ro",
+              "value": "joc video din 2012"
+            },
+            {
+              "language": "ru",
+              "value": "компьютерная 2012 года игра в жанре симулятора водителя-дальнобойщика"
+            },
+            {
+              "language": "ig",
+              "value": "egwuregwu vidīò ịme anwansị ụgbọ ala 2012 nke SCS Software mere"
+            },
+            {
+              "language": "gl",
+              "value": "videoxogo de 2012"
+            },
+            {
+              "language": "bg",
+              "value": "видеоигра от 2012 година"
+            },
+            {
+              "language": "lt",
+              "value": "2012 metų kompiuterinis žaidimas"
+            },
+            {
+              "language": "nb",
+              "value": "videospill fra 2012"
+            },
+            {
+              "language": "be",
+              "value": "камп’ютарная гульня 2012 года"
+            },
+            {
+              "language": "de",
+              "value": "Computerspiel aus dem Jahr 2012"
+            },
+            {
+              "language": "lv",
+              "value": "2012. gadā videospēle"
+            },
+            {
+              "language": "ca",
+              "value": "videojoc de l'any 2012"
+            },
+            {
+              "language": "ka",
+              "value": "2012 წლის ვიდეო თამაში"
+            },
+            {
+              "language": "ms",
+              "value": "permainan video terbitan tahun 2012"
+            },
+            {
+              "language": "sv",
+              "value": "datorspel från 2012"
+            },
+            {
+              "language": "bn",
+              "value": "২০১২ ভিডিও গেম"
+            },
+            {
+              "language": "hy",
+              "value": "համակարգչային խաղ բեռնատար մեքենայի սիմուլյատորի ժանրում"
+            },
+            {
+              "language": "az",
+              "value": "2012-ci ilin video oyunu"
+            },
+            {
+              "language": "su",
+              "value": "kaulinan video"
+            },
+            {
+              "language": "sk",
+              "value": "počítačová hra z 2012"
+            },
+            {
+              "language": "fa",
+              "value": "بازی ویدئویی در سبک شبیه‌ساز متعلق به اس‌سی‌اس"
+            },
+            {
+              "language": "hi",
+              "value": "२०१२ वीडियो गेममेम0"
+            },
+            {
+              "language": "el",
+              "value": "βιντεοπαιχνίδι του 2012"
+            },
+            {
+              "language": "ar",
+              "value": "لعبة محاكاة الشاحنات"
+            },
+            {
+              "language": "is",
+              "value": "2012 tölvuleikur"
+            },
+            {
+              "language": "pt",
+              "value": "videojogo de 2012"
+            },
+            {
+              "language": "lb",
+              "value": "Computerspill aus dem Joer 2012"
+            },
+            {
+              "language": "ko",
+              "value": "2012년 발매된 차량 시뮬레이터 비디오 게임"
+            },
+            {
+              "language": "es",
+              "value": "videojuego de 2012"
+            },
+            {
+              "language": "sl",
+              "value": "videoigra iz leta 2012"
+            },
+            {
+              "language": "nl",
+              "value": "computerspel uit 2012"
+            },
+            {
+              "language": "fi",
+              "value": "2012 videopeli"
+            },
+            {
+              "language": "eu",
+              "value": "2012 bideo-joko"
+            },
+            {
+              "language": "he",
+              "value": "משחק מחשב משנת 2012"
+            },
+            {
+              "language": "sr",
+              "value": "видео-игра из 2012. године"
+            },
+            {
+              "language": "oc",
+              "value": "videojòc de 2012"
+            },
+            {
+              "language": "it",
+              "value": "videogioco del 2012"
+            },
+            {
+              "language": "et",
+              "value": "2012. aastal videomäng"
+            },
+            {
+              "language": "pl",
+              "value": "gra komputerowa z 2012 roku"
+            },
+            {
+              "language": "en",
+              "value": "2012 vehicle simulation video game made by SCS Software"
+            },
+            {
+              "language": "vi",
+              "value": "video game của SCS Software"
+            },
+            {
+              "language": "sc",
+              "value": "videojòcu de 2012"
+            },
+            {
+              "language": "fr",
+              "value": "jeu vidéo de 2012"
+            },
+            {
+              "language": "jv",
+              "value": "gim vidéo"
+            },
+            {
+              "language": "cs",
+              "value": "videohra z roku 2012"
+            },
+            {
+              "language": "nn",
+              "value": "dataspel frå 2012"
+            },
+            {
+              "language": "hu",
+              "value": "2012-es videójáték"
+            },
+            {
+              "language": "zh",
+              "value": "運輸模擬類電腦遊戲"
+            },
+            {
+              "language": "tr",
+              "value": "2012 video oyunu"
+            },
+            {
+              "language": "da",
+              "value": "lastbilssimulationsspil lavet af SCS Software"
+            },
+            {
+              "language": "te",
+              "value": "2012 వీడియో గేమ్"
+            },
+            {
+              "language": "mk",
+              "value": "видеоигра од 2012 година"
+            },
+            {
+              "language": "hr",
+              "value": "videoigra iz 2012. godine"
+            },
+            {
+              "language": "de",
+              "value": "Fahre quer durch Europa und liefere Fracht aus, während du verschiedene Städte und Herausforderungen als erfahrener Lkw-Fahrer meisterst."
+            },
+            {
+              "language": "es",
+              "value": "Conduce por Europa entregando carga mientras navegas por diversas ciudades y desafíos como un hábil conductor de camiones."
+            },
+            {
+              "language": "fr",
+              "value": "Conduisez à travers l'Europe en livrant des cargaisons tout en naviguant dans diverses villes et défis en tant que chauffeur de camion expérimenté."
+            },
+            {
+              "language": "en",
+              "value": "Drive across Europe delivering cargo while navigating various cities and challenges as a skilled truck driver."
+            }
+          ]
+        },
+        "popularity": 0.9455870362985898,
+        "disambiguation": "2013-01-16, SCS Software",
+        "tags": [
+          {
+            "name": "3D",
+            "tag_id": "urn:tag:art_style:qloo:3d",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "name": "Realistic",
+            "tag_id": "urn:tag:art_style:qloo:realistic",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "name": "Photorealistic",
+            "tag_id": "urn:tag:art_style:qloo:photorealistic",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "name": "realistic driving",
+            "tag_id": "urn:tag:audience:qloo:realistic_driving",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "name": "long sessions",
+            "tag_id": "urn:tag:audience:qloo:long_sessions",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "name": "community-driven",
+            "tag_id": "urn:tag:audience:qloo:community_driven",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "name": "mod-friendly",
+            "tag_id": "urn:tag:audience:qloo:mod_friendly",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "name": "career-building",
+            "tag_id": "urn:tag:audience:qloo:career_building",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "name": "Calm",
+            "tag_id": "urn:tag:emotional_tone:qloo:calm",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "name": "Relaxing",
+            "tag_id": "urn:tag:emotional_tone:qloo:relaxing",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "name": "Satisfying",
+            "tag_id": "urn:tag:emotional_tone:qloo:satisfying",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "name": "Focused",
+            "tag_id": "urn:tag:emotional_tone:qloo:focused",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "name": "Single-player",
+            "tag_id": "urn:tag:gameplay_type:qloo:single_player",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Multiplayer",
+            "tag_id": "urn:tag:gameplay_type:qloo:multiplayer",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Co-op",
+            "tag_id": "urn:tag:gameplay_type:qloo:co_op",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Open world",
+            "tag_id": "urn:tag:gameplay_type:qloo:open_world",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Sandbox",
+            "tag_id": "urn:tag:gameplay_type:qloo:sandbox",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Career progression",
+            "tag_id": "urn:tag:gameplay_type:qloo:career_progression",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "name": "Simulation",
+            "tag_id": "urn:tag:genre:qloo:simulation",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "name": "Driving",
+            "tag_id": "urn:tag:genre:qloo:driving",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "name": "Vehicle Simulation",
+            "tag_id": "urn:tag:genre:qloo:vehicle_simulation",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "name": "PC (Windows)",
+            "tag_id": "urn:tag:platform:qloo:pc_windows_",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "name": "Xbox Series X",
+            "tag_id": "urn:tag:platform:qloo:xbox_series_x",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "name": "PlayStation 5",
+            "tag_id": "urn:tag:platform:qloo:playstation_5",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "name": "Single-player and Multiplayer",
+            "tag_id": "urn:tag:player_mode:qloo:single_player_and_multiplayer",
+            "type": "urn:tag:player_mode:qloo"
+          },
+          {
+            "name": "Accessible to casual players with depth and realism for hardcore simulation fans",
+            "tag_id": "urn:tag:skill_level:qloo:accessible_to_casual_players_with_depth_and_realism_for_hardcore_simulation_fans",
+            "type": "urn:tag:skill_level:qloo"
+          },
+          {
+            "name": "Simulation",
+            "tag_id": "urn:tag:category:qloo:simulation",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Driving",
+            "tag_id": "urn:tag:category:qloo:driving",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Vehicles",
+            "tag_id": "urn:tag:category:qloo:vehicles",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Open World",
+            "tag_id": "urn:tag:category:qloo:open_world",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Economy",
+            "tag_id": "urn:tag:category:qloo:economy",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Singleplayer",
+            "tag_id": "urn:tag:category:qloo:singleplayer",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Multiplayer",
+            "tag_id": "urn:tag:category:qloo:multiplayer",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Mods",
+            "tag_id": "urn:tag:category:qloo:mods",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "name": "Realistic",
+            "tag_id": "urn:tag:category:qloo:realistic",
+            "type": "urn:tag:category:qloo"
+          }
+        ]
+      },
+      {
+        "name": "Truck Simulator Cargo Driver 2024 - EURO",
+        "entity_id": "9F9A4676-8AE2-4101-8CBC-092A69737FBE",
+        "types": [
+          "urn:entity:videogame"
+        ],
+        "properties": {
+          "akas": [],
+          "content_rating": "",
+          "description": "",
+          "developer": "GOGAME CONSOLE PUBLISHER",
+          "external": {
+            "metacritic": {
+              "id": "1400784421"
+            }
+          },
+          "image": {},
+          "platforms": [
+            "PlayStation 4"
+          ],
+          "publisher": "GOGAME CONSOLE PUBLISHER",
+          "release_date": "2024-08-15",
+          "release_year": 2024,
+          "short_descriptions": []
+        },
+        "popularity": 0.9543719137169681,
+        "disambiguation": "2024-08-15, GOGAME CONSOLE PUBLISHER",
+        "tags": [
+          {
+            "name": "Vehicle Sim",
+            "tag_id": "urn:tag:genre:media:vehicle_sim",
+            "type": "urn:tag:genre:media",
+            "value": "urn:tag:genre:media:vehicle_sim"
+          }
+        ]
+      },
+      {
+        "name": "Garbage Euro Truck Driver Simulator 24",
+        "entity_id": "DFC66109-5908-490A-89F1-3027E76275BF",
+        "types": [
+          "urn:entity:videogame"
+        ],
+        "properties": {
+          "akas": [],
+          "content_rating": "",
+          "description": "",
+          "developer": "DEZVOLT GAMES",
+          "external": {
+            "metacritic": {
+              "id": "1400796516"
+            }
+          },
+          "image": {},
+          "platforms": [
+            "PlayStation 4"
+          ],
+          "publisher": "DEZVOLT GAMES",
+          "release_date": "2024-10-23",
+          "release_year": 2024,
+          "short_descriptions": []
+        },
+        "popularity": 0.9450733495927586,
+        "disambiguation": "2024-10-23, DEZVOLT GAMES",
+        "tags": [
+          {
+            "name": "Vehicle Sim",
+            "tag_id": "urn:tag:genre:media:vehicle_sim",
+            "type": "urn:tag:genre:media",
+            "value": "urn:tag:genre:media:vehicle_sim"
+          }
+        ]
+      },
+      {
+        "name": "Truck Simulator 2023 - Driver Europe",
+        "entity_id": "42054A00-D4D6-4E79-8A1C-9038B7E6D3C8",
+        "types": [
+          "urn:entity:videogame"
+        ],
+        "properties": {
+          "akas": [],
+          "content_rating": "E",
+          "description": "Rev up your engines and prepare for the ultimate trucking experience in “TRUCK SIMULATOR 2023 - DRIVER EUROPE”!\\r\\nTraverse magnificent cities, navigate through picturesque countryside, and conquer challenging mountainous terrains.\\r\\nCustomise your rig with a variety of upgrades, from engine enhancements to sleek visual modifications, and create a truck that truly reflects your style.\\r\\nBut it's not just about the trucks - it's about the thrill of the ride. Our game offers stunning visuals and realistic physics that will make you feel every bump and turn, immersing you in the thrilling experience.",
+          "developer": "Success Games",
+          "external": {
+            "metacritic": {
+              "id": "1400727324"
+            }
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/42054A00-D4D6-4E79-8A1C-9038B7E6D3C8-420x-auto.jpg"
+          },
+          "platforms": [
+            "Nintendo Switch"
+          ],
+          "publisher": "Success Games",
+          "release_date": "2023-09-02",
+          "release_year": 2023,
+          "short_description": "Experience the thrill of trucking across Europe, customizing your rig and navigating diverse terrains in a realistic simulation.",
+          "short_descriptions": [
+            {
+              "language": "de",
+              "value": "Erlebe den Nervenkitzel des Truckfahrens quer durch Europa, passe deinen LKW an und meistere verschiedene Gelände in einer realistischen Simulation."
+            },
+            {
+              "language": "es",
+              "value": "Experimenta la emoción de conducir camiones por Europa, personalizando tu vehículo y navegando terrenos diversos en una simulación realista."
+            },
+            {
+              "language": "fr",
+              "value": "Vivez l'excitation du transport routier à travers l'Europe, personnalisez votre camion et naviguez sur des terrains variés dans une simulation réaliste."
+            },
+            {
+              "language": "en",
+              "value": "Experience the thrill of trucking across Europe, customizing your rig and navigating diverse terrains in a realistic simulation."
+            }
+          ]
+        },
+        "popularity": 0.9699572442182353,
+        "disambiguation": "2023-09-02, Success Games",
+        "tags": [
+          {
+            "name": "Vehicle Sim",
+            "tag_id": "urn:tag:genre:media:vehicle_sim",
+            "type": "urn:tag:genre:media",
+            "value": "urn:tag:genre:media:vehicle_sim"
+          }
+        ]
+      },
+      {
+        "name": "Truck Simulator Driver 2023: Europe Cargo",
+        "entity_id": "552D3077-CF5A-44DD-A4C9-8024879173EA",
+        "types": [
+          "urn:entity:videogame"
+        ],
+        "properties": {
+          "akas": [],
+          "content_rating": "",
+          "description": "",
+          "developer": "Midnight Works",
+          "external": {
+            "metacritic": {
+              "id": "1400731964"
+            }
+          },
+          "image": {},
+          "platforms": [
+            "PlayStation 4"
+          ],
+          "publisher": "Midnight Works",
+          "release_date": "2023-09-20",
+          "release_year": 2023,
+          "short_descriptions": []
+        },
+        "popularity": 0.9611776094165835,
+        "disambiguation": "2023-09-20, Midnight Works",
+        "tags": [
+          {
+            "name": "Vehicle Sim",
+            "tag_id": "urn:tag:genre:media:vehicle_sim",
+            "type": "urn:tag:genre:media",
+            "value": "urn:tag:genre:media:vehicle_sim"
+          }
+        ]
+      }
+    ]
+  }
+}

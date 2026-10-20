@@ -2,13 +2,14 @@
 
 import json
 from pathlib import Path
+from typing import Any
 
 import pytest
 
 from crowdspawn_api.grounding import validate
 from crowdspawn_api.pipeline.brief import check, template_brief
 from crowdspawn_api.pipeline.budget import largest_remainder, split_budget
-from crowdspawn_api.pipeline.cities import regions
+from crowdspawn_api.pipeline.cities import hidden_markets, regions
 from crowdspawn_api.pipeline.confidence import confidence
 from crowdspawn_api.pipeline.resolve import name_matches
 from crowdspawn_api.pipeline.scoring import CityMetrics, spawn_scores
@@ -166,6 +167,16 @@ def test_grounding_accepts_facts() -> None:
     assert ground(plan, body) == []
 
 
+def test_grounding_rejects_a_number_moved_to_another_city() -> None:
+    """J3 in the brief: the second city's sentence quotes the first city's spawn score."""
+    plan = sample_plan()
+    a, b = plan.cities[0], plan.cities[1]
+    swapped = f"**{b.name}** has spawn score {a.score:.2f} [{b.result_ids[0]}]."
+    assert ground(plan, swapped) == [f"{a.score:.2f} belongs to {a.name}, not {b.name}"]
+    both = f"**{a.name}** leads at {a.score:.2f}, ahead of **{b.name}** [{a.result_ids[0]}]."
+    assert ground(plan, both) == []
+
+
 def test_grounding_rejects_invented_city() -> None:
     plan = sample_plan()
     errors = ground(plan, "Launch in **Melbourne** first [q1].")
@@ -234,3 +245,24 @@ async def test_culture_lookup_keeps_films_shows_artists_and_drops_unknown_ids() 
     }
     assert missing == ["NOT-A-REAL-ID"] and all(a.result_id == "q2" for a in anchors)
     assert await lookup_culture(StubRun({}), []) == ([], [])  # type: ignore[arg-type]
+
+
+def test_hidden_markets_rank_far_higher_for_the_game_than_for_gamers() -> None:
+    """J12: pure arithmetic over S3; only over-indexing cities 3+ places up count."""
+    plan = sample_plan()
+    base = plan.cities[0]
+
+    def c(rid: str, score: float, gamers: float) -> Any:
+        return base.model_copy(
+            update={"region_id": rid, "name": rid, "score": score, "baseline_score": gamers}
+        )
+
+    ranked = [
+        c("ist", 1.3, 0.70),
+        c("tyo", 1.2, 0.95),
+        c("lon", 1.1, 0.90),
+        c("nyc", 1.05, 0.85),
+        c("waw", 0.9, 0.60),
+    ]
+    assert [(h.name, h.rank, h.gamer_rank) for h in hidden_markets(ranked)] == [("ist", 1, 4)]
+    assert hidden_markets(ranked, gap=5) == []

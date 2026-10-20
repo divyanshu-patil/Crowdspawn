@@ -64,8 +64,49 @@ EXTRA_CITIES = (
 )
 
 
+SENTENCE = re.compile(r"(?<=[.!?])\s+")
+
+
 def _to_float(token: str) -> float:
     return float(token.replace("$", "").replace(",", "").replace("%", ""))
+
+
+def mentions(text: str, cities: set[str]) -> set[str]:
+    return {c for c in cities if re.search(rf"\b{re.escape(c)}\b", text, re.IGNORECASE)}
+
+
+def city_numbers(lines: list[str], cities: set[str]) -> dict[float, set[str]]:
+    """Number -> the cities Qloo reported it for. Numbers also seen with no city are free and left out."""
+    owners: dict[float, set[str]] = {}
+    free: set[float] = set()
+    for line in lines:
+        named = mentions(line, cities)
+        for n in NUMBER.findall(line):
+            v = round(_to_float(n), 2)
+            if named:
+                owners.setdefault(v, set()).update(named)
+            else:
+                free.add(v)
+    return {v: c for v, c in owners.items() if v not in free}
+
+
+def misattributed(text: str, owners: dict[float, set[str]], cities: set[str]) -> list[str]:
+    """A sentence that names a city but quotes a number Qloo only reported for other cities."""
+    errors = []
+    for sentence in SENTENCE.split(text):
+        named = mentions(sentence, cities)
+        if not named:
+            continue
+        for n in NUMBER.findall(sentence):
+            v = _to_float(n)
+            if v.is_integer() and v <= 10:  # ranks and counts
+                continue
+            who = owners.get(round(v, 2))
+            if who and not who & named:
+                errors.append(
+                    f"{n} belongs to {', '.join(sorted(who))}, not {', '.join(sorted(named))}"
+                )
+    return errors
 
 
 def validate(
@@ -75,6 +116,7 @@ def validate(
     plan_cities: set[str],
     known_names: set[str],
     allowed_numbers: set[float],
+    city_owners: dict[float, set[str]] | None = None,
 ) -> list[str]:
     errors: list[str] = []
     known = {normalize(n) for n in known_names | plan_cities}
@@ -95,6 +137,8 @@ def validate(
             if re.search(rf"\b{re.escape(city)}\b", plain):
                 errors.append(f"city not in results: {city}")
 
+        if city_owners:
+            errors += misattributed(CITE.sub(" ", s.body), city_owners, plan_cities)
         numbers = NUMBER.findall(BOLD.sub(" ", CITE.sub(" ", text)))
         for n in numbers:
             v = _to_float(n)

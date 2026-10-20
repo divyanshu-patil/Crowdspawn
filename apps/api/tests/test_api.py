@@ -99,6 +99,19 @@ def test_kill_switch_invalid_key(client: TestClient, fake_qloo: FakeQloo) -> Non
     assert plan["brief"] is None and fake.calls == []
     events = sse_events(client, plan["id"])
     assert events[-1][1] == "failed" and events[-1][2]["code"] == "qloo_auth"
+    trace = client.get(f"/v1/plans/{plan['id']}/trace").json()
+    assert trace[-1]["status"] == 401  # the trace shows what Qloo said [J2]
+
+
+def test_daily_cap_fails_the_plan_closed(make_client: Any, fake_qloo: FakeQloo) -> None:
+    """J8: at the global daily cap a plan fails like a budget stop, and /health shows 0 left."""
+    client = make_client(qloo_daily_call_cap=3)
+    assert client.get("/health").json()["qloo_calls_left_today"] == 2  # health spent one
+    plan = run_plan(client)
+    assert plan["status"] == "failed" and plan["error"]["code"] == "qloo_daily_cap"
+    assert plan["cities"] == [] and plan["brief"] is None
+    assert len(fake_qloo.requests) == 3
+    assert client.get("/health").json()["qloo_calls_left_today"] == 0
 
 
 def test_llm_calls_limited_to_brief(client: TestClient) -> None:

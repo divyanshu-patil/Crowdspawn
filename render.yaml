@@ -19,6 +19,15 @@ services:
       - key: CORS_ORIGINS
         sync: false # e.g. https://crowdspawn.vercel.app
       - key: PLANS_PER_IP_PER_HOUR
-        value: "20"
+        value: "6" # plans and agent runs; a cold plan costs about 100 Qloo calls
+      - key: QLOO_DAILY_CALL_CAP
+        value: "400" # live Qloo calls per UTC day for everyone; cached answers stay free
       - key: SCOUTS_PER_IP_PER_HOUR
         value: "120"
+    # Keeps the SQLite cache (Qloo answers, plans) across restarts and deploys. Without it every restart
+    # starts cold and the first judges pay ~100 Qloo calls per plan. Disks need a paid instance type:
+    # on the free plan, delete this block. Owner's decision.
+    disk:
+      name: crowdspawn-data
+      mountPath: /app/data
+      sizeGB: 1

@@ -1,5 +1,6 @@
-"""Scout judge: LLM names -> Qloo scoring -> verdict with probability (fakes for Qloo and the LLM)."""
+"""Scout judge: LLM names -> Qloo scoring -> verdict from score bands (fakes for Qloo and the LLM)."""
 
+import math
 from typing import Any
 
 import pytest
@@ -13,32 +14,35 @@ from crowdspawn_api.settings import PLATFORM_PANELS
 PANEL_IDS = {ids[0] for ids in PLATFORM_PANELS.values()}
 
 
-@pytest.mark.parametrize(
-    ("score", "conf", "p"),
-    [
-        (1.0, "high", 0.5),
-        (1.10, "high", 0.767),
-        (1.10, "low", 0.633),
-        (5.0, "high", 0.97),
-        (0.2, "high", 0.03),
-    ],
-)
-def test_probability_is_capped_and_shrinks_with_weak_evidence(
-    score: float, conf: str, p: float
-) -> None:
-    assert judge.probability(score, conf) == pytest.approx(p, abs=1e-3)
+def old_verdict(score: float, conf: str) -> str:
+    """The retired probability verdict (logistic, never calibrated), kept only to check the bands."""
+    p = 1 / (1 + math.exp(-math.log(score) / 0.08))
+    p = 0.5 + (p - 0.5) * {"high": 1.0, "medium": 0.75, "low": 0.5}[conf]
+    p = min(0.97, max(0.03, p))
+    cuts = ((0.85, "Legendary"), (0.72, "Epic"), (0.58, "Rare"), (0.42, "Uncommon"))
+    return next((w for c, w in cuts if p >= c), "Common")
+
+
+@pytest.mark.parametrize("conf", ["high", "medium", "low"])
+def test_score_bands_reproduce_the_old_verdicts(conf: str) -> None:
+    """J4: same words as before, from the spawn score alone (3-decimal scores, 0.500 to 2.000)."""
+    for i in range(500, 2001):
+        score = i / 1000
+        assert judge.tier(score, conf) == old_verdict(score, conf), (score, conf)
+    assert judge.bands(conf)[0].min_score > 1
 
 
 def test_tiers_and_number_check() -> None:
-    assert [judge.tier(x) for x in (0.9, 0.8, 0.6, 0.5, 0.2)] == [
+    assert [judge.tier(x, "high") for x in (1.2, 1.1, 1.03, 1.0, 0.9)] == [
         "Legendary",
         "Epic",
         "Rare",
         "Uncommon",
         "Common",
     ]
-    facts = {"probability": "77%", "spawn score": "1.10"}
-    assert judge.numbers_ok("Yes, 77% and 1.10.", facts)
+    assert judge.tier(5.0, "low") == "Epic"  # weak evidence never reaches Legendary
+    facts = {"spawn score": "1.10", "taste lift": "1.05"}
+    assert judge.numbers_ok("Yes, 1.10 from 1.05.", facts)
     assert not judge.numbers_ok("Yes, 90% likely.", facts)
 
 
@@ -103,8 +107,9 @@ def test_judge_scores_here_against_reference_cities(
     assert (
         d["ranking"][0]["here"] and len(d["ranking"]) == 8
     )  # Delhi itself is not its own reference
-    assert d["verdict"] == "Legendary" and d["probability"] == 0.97
-    assert d["summary_source"] == "llm" and d["summary"].startswith("Legendary with 97%")
+    assert d["verdict"] == "Legendary" and "probability" not in d
+    assert [b["verdict"] for b in d["bands"]] == ["Legendary", "Epic", "Rare", "Uncommon"]
+    assert d["summary_source"] == "llm" and d["summary"].startswith("Legendary with spawn score")
 
 
 def test_judge_summary_with_invented_numbers_falls_back_to_template(

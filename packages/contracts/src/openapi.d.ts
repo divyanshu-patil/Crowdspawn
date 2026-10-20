@@ -254,7 +254,7 @@ export interface paths {
         put?: never;
         /**
          * Scout Judge
-         * @description Would the game I describe work here? LLM proposes names, Qloo scores, verdict with probability.
+         * @description Would the game I describe work here? LLM proposes names, Qloo scores, verdict from spawn-score bands.
          */
         post: operations["scout_judge_v1_scout_judge_post"];
         delete?: never;
@@ -650,6 +650,22 @@ export interface components {
             llm: components["schemas"]["LLMStatus"];
             /** Version */
             version: string;
+            /** Qloo Calls Left Today */
+            qloo_calls_left_today?: number | null;
+        };
+        /**
+         * HiddenMarket
+         * @description A city that ranks much higher for this game than for gamers in general.
+         */
+        HiddenMarket: {
+            /** Region Id */
+            region_id: string;
+            /** Name */
+            name: string;
+            /** Rank */
+            rank: number;
+            /** Gamer Rank */
+            gamer_rank: number;
         };
         /** LLMStatus */
         LLMStatus: {
@@ -768,6 +784,11 @@ export interface components {
              * @default []
              */
             cities: components["schemas"]["City"][];
+            /**
+             * Hidden Markets
+             * @default []
+             */
+            hidden_markets: components["schemas"]["HiddenMarket"][];
             audience?: components["schemas"]["Audience"] | null;
             /**
              * @default {
@@ -1017,8 +1038,8 @@ export interface components {
             radius_km: number;
             /** Verdict */
             verdict: string;
-            /** Probability */
-            probability: number;
+            /** Bands */
+            bands: components["schemas"]["VerdictBand"][];
             /** Score */
             score: number;
             /** Lift */
@@ -1163,6 +1184,13 @@ export interface components {
             input?: unknown;
             /** Context */
             ctx?: Record<string, never>;
+        };
+        /** VerdictBand */
+        VerdictBand: {
+            /** Verdict */
+            verdict: string;
+            /** Min Score */
+            min_score: number;
         };
         /** Warning_ */
         Warning_: {

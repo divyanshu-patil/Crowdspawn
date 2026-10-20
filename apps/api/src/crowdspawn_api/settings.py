@@ -148,6 +148,9 @@ class Settings(BaseSettings):
     qloo_max_calls_per_run: int = 120
     qloo_cache_ttl_seconds: int = 86400
     qloo_timeout_seconds: float = 20
+    # Live Qloo calls per UTC day across all users (cache hits are free). Unset: 400 in production,
+    # off elsewhere; 0 turns it off.
+    qloo_daily_call_cap: int | None = None
 
     llm_provider: str = "ollama_cloud"
     llm_timeout_seconds: float = 60
@@ -170,6 +173,12 @@ class Settings(BaseSettings):
     log_level: str = "info"
     plans_per_ip_per_hour: int = 10
     scouts_per_ip_per_hour: int = 60
+
+    @property
+    def daily_cap(self) -> int:
+        if self.qloo_daily_call_cap is not None:
+            return self.qloo_daily_call_cap
+        return 400 if self.app_env == "production" else 0
 
     @property
     def cors_list(self) -> list[str]:

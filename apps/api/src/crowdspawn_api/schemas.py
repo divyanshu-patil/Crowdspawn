@@ -204,6 +204,15 @@ class Problem(BaseModel):
     message: str
 
 
+class HiddenMarket(BaseModel):
+    """A city that ranks much higher for this game than for gamers in general."""
+
+    region_id: str
+    name: str
+    rank: int  # by spawn score, 1-based
+    gamer_rank: int  # by the all-gamers panels (baseline_score)
+
+
 class Plan(BaseModel):
     id: str
     status: PlanStatus
@@ -213,6 +222,7 @@ class Plan(BaseModel):
     culture: list[CultureAnchor] = []
     expanded: list[ExpandedGame] = []
     cities: list[City] = []
+    hidden_markets: list[HiddenMarket] = []
     audience: Audience | None = None
     partners: Partners = Partners()
     gap: Gap | None = None
@@ -246,6 +256,7 @@ class Health(BaseModel):
     qloo: Literal["ok", "unconfigured", "error"]
     llm: LLMStatus
     version: str
+    qloo_calls_left_today: int | None = None  # under QLOO_DAILY_CALL_CAP; None when there is no cap
 
 
 # Region scout: what works in an area, and would my game work there.
@@ -352,14 +363,17 @@ class RankedPlace(BaseModel):
     here: bool
 
 
+class VerdictBand(BaseModel):
+    verdict: str
+    min_score: float  # lowest spawn score that earns this word at the result's confidence
+
+
 class ScoutJudge(BaseModel):
     lat: float
     lon: float
     radius_km: int
-    verdict: str  # one of JUDGE_TIERS words
-    probability: (
-        float  # model estimate that this area over-indexes for the game (0-1), not a sales odds
-    )
+    verdict: str  # a JUDGE_BANDS word, or "Common"
+    bands: list[VerdictBand]  # the cut-offs for this confidence, highest first
     score: float
     lift: float
     platform_fit: float

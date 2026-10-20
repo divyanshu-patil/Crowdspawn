@@ -30,4 +30,12 @@ async def health(request: Request) -> Health:
         model=model_name(d.settings),
         status="configured" if d.llm else "unconfigured",
     )
-    return Health(status="ok" if qloo == "ok" else "degraded", qloo=qloo, llm=llm, version=VERSION)
+    cap = d.settings.daily_cap
+    left = max(0, cap - await d.store.daily_calls()) if cap else None
+    return Health(
+        status="ok" if qloo == "ok" else "degraded",
+        qloo=qloo,
+        llm=llm,
+        version=VERSION,
+        qloo_calls_left_today=left,
+    )

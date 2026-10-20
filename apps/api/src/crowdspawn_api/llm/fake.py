@@ -36,7 +36,7 @@ class FakeProvider:
                 facts = json.loads(joined.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
                 text = json.dumps(
                     {
-                        "summary": f"{facts['verdict']} with {facts['probability']}, spawn score {facts['spawn score']}."
+                        "summary": f"{facts['verdict']} with spawn score {facts['spawn score']} at {facts['confidence']} confidence."
                     }
                 )
             elif FACTS_START in joined:

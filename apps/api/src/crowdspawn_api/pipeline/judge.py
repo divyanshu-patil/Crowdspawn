@@ -3,13 +3,12 @@
 1. The LLM turns the description into comparable games and culture anchors (names only).
 2. Qloo resolves every name; unknown names are dropped, never invented.
 3. Spawn score for the area and for 8 reference cities (same math as a plan: lift x platform x culture).
-4. A probability-style estimate from the score, shrunk toward 50% when confidence is low.
+4. A verdict word from the spawn score, with stricter bands when confidence is lower.
 5. The LLM writes a short explanation over the facts; numbers are checked, else a template is used.
 """
 
 import asyncio
 import json
-import math
 from typing import Any
 
 from pydantic import BaseModel, Field
@@ -19,23 +18,22 @@ from ..grounding import NUMBER, _to_float
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
 from ..qloo.client import QlooRun
-from ..schemas import Comp, CultureSuggestion, RankedPlace, ScoutJudge
+from ..schemas import Comp, CultureSuggestion, RankedPlace, ScoutJudge, VerdictBand
 from ..settings import PANEL_TTL_SECONDS, PLATFORM_PANELS
 from . import cities, culture, expand, resolve, scout
 from .confidence import confidence
 from .scoring import CityMetrics, spawn_scores
 
 REFERENCE = ("nyc", "lon", "tyo", "sao", "del", "ist", "jkt", "syd")  # one per major market
-# Verdict words by estimated probability (highest first), as loot rarities. Change the words here.
-JUDGE_TIERS: tuple[tuple[float, str], ...] = (
-    (0.85, "Legendary"),
-    (0.72, "Epic"),
-    (0.58, "Rare"),
-    (0.42, "Uncommon"),
-    (0.0, "Common"),
-)
-SHRINK = {"high": 1.0, "medium": 0.75, "low": 0.5}  # pull weak evidence toward a coin flip
-SCALE = 0.08  # ln(score) / SCALE -> logit: 1.10 -> 77%, 1.25 -> 94%, 0.90 -> 21%
+# Verdict words (loot rarities) as spawn-score bands: the minimum score for each word, per confidence.
+# Weaker evidence needs a stronger score; low confidence never reaches Legendary. The cut-offs reproduce
+# the earlier probability-based verdicts (decisions log, 2026-10-20) without claiming a probability.
+JUDGE_BANDS: dict[str, tuple[tuple[float, str], ...]] = {
+    "high": ((1.149, "Legendary"), (1.079, "Epic"), (1.027, "Rare"), (0.975, "Uncommon")),
+    "medium": ((1.310, "Legendary"), (1.114, "Epic"), (1.036, "Rare"), (0.966, "Uncommon")),
+    "low": ((1.247, "Epic"), (1.055, "Rare"), (0.949, "Uncommon")),
+}
+LOWEST = "Common"
 
 
 class Names(BaseModel):
@@ -50,17 +48,12 @@ class Summary(BaseModel):
     summary: str = Field(min_length=20, max_length=900)
 
 
-CAP = 0.97  # taste data never makes anything certain
+def tier(score: float, conf: str) -> str:
+    return next((word for cut, word in JUDGE_BANDS[conf] if score >= cut), LOWEST)
 
 
-def probability(score: float, conf: str) -> float:
-    p = 1 / (1 + math.exp(-math.log(max(score, 1e-6)) / SCALE))
-    p = 0.5 + (p - 0.5) * SHRINK[conf]
-    return round(min(CAP, max(1 - CAP, p)), 3)
-
-
-def tier(p: float) -> str:
-    return next(word for cut, word in JUDGE_TIERS if p >= cut)
+def bands(conf: str) -> list[VerdictBand]:
+    return [VerdictBand(verdict=w, min_score=cut) for cut, w in JUDGE_BANDS[conf]]
 
 
 def numbers_ok(text: str, facts: dict[str, Any]) -> bool:
@@ -73,8 +66,8 @@ def template(f: dict[str, Any]) -> str:
         f" x culture fit {f['culture fit']}" if f.get("culture fit") else ""
     )
     return (
-        f"{f['verdict']}: an estimated {f['probability']} chance that players here over-index for "
-        f"{f['game']}, with a spawn score of {f['spawn score']} ({drivers}). "
+        f"{f['verdict']} for {f['game']}: a spawn score of {f['spawn score']} ({drivers}) at "
+        f"{f['confidence']} confidence. "
         f"It ranks {f['rank']} of {f['places compared']} places compared. "
         "This is an affinity estimate from Qloo taste data, not a sales forecast."
     )
@@ -190,7 +183,7 @@ async def judge(
     scores = spawn_scores(all_metrics, platforms)
     s = scores["here"]
     conf = confidence(s.score, cells)
-    p = probability(s.score, conf)
+    verdict = tier(s.score, conf)
     ranked = sorted(scores, key=lambda k: -scores[k].score)
     ranking = [
         RankedPlace(
@@ -202,8 +195,7 @@ async def judge(
     # 5. Explanation over facts only.
     facts = {
         "game": title or "your game",
-        "verdict": tier(p),
-        "probability": f"{round(p * 100)}%",
+        "verdict": verdict,
         "spawn score": f"{s.score:.2f}",
         "taste lift": f"{s.lift:.2f}",
         "platform fit": f"{s.platform_fit:.2f}",
@@ -235,8 +227,8 @@ async def judge(
         lat=area.lat,
         lon=area.lon,
         radius_km=area.radius_m // 1000,
-        verdict=tier(p),
-        probability=p,
+        verdict=verdict,
+        bands=bands(conf),
         score=round(s.score, 3),
         lift=round(s.lift, 3),
         platform_fit=round(s.platform_fit, 3),

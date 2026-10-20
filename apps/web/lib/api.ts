@@ -30,16 +30,45 @@ export class ApiError extends Error {
   }
 }
 
+/** "waking": a request has waited over SLOW_MS (a sleeping free host takes 30-60 s); "down": one failed to connect. */
+export type ServerState = "ok" | "waking" | "down";
+export const SLOW_MS = 3000;
+const listeners = new Set<(s: ServerState) => void>();
+let serverState: ServerState = "ok";
+let slowPending = 0;
+
+function setServerState(s: ServerState) {
+  serverState = s;
+  listeners.forEach((f) => f(s));
+}
+
+export function onServerState(fn: (s: ServerState) => void): () => void {
+  listeners.add(fn);
+  fn(serverState);
+  return () => listeners.delete(fn);
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
+  let slow = false;
+  const timer = setTimeout(() => {
+    slow = true;
+    slowPending++;
+    setServerState("waking");
+  }, SLOW_MS);
   try {
     res = await fetch(`${API_URL}${path}`, {
       ...init,
       headers: { "content-type": "application/json", ...init?.headers },
     });
   } catch {
-    throw new ApiError("api_unreachable", 0, `Can't reach the Crowdspawn API at ${API_URL}. Is it running?`);
+    setServerState("down");
+    throw new ApiError("api_unreachable", 0, `Can't reach the Crowdspawn API at ${API_URL}. It may be starting up: try again in a minute.`);
+  } finally {
+    clearTimeout(timer);
+    if (slow) slowPending--;
   }
+  if (serverState !== "ok" && slowPending === 0) setServerState("ok");
   if (!res.ok) {
     const p = (await res.json().catch(() => null)) as Problem | null;
     throw new ApiError(p?.code ?? "http_error", res.status, p?.detail ?? `Request failed (${res.status})`);

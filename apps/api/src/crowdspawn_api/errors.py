@@ -34,6 +34,7 @@ class QlooError(AppError):
     status = 502
     code = "qloo_unavailable"
     title = "Qloo request failed"
+    upstream: int | None = None  # Qloo's own HTTP status, for the trace (ours stays 5xx)
 
 
 class QlooUnconfigured(QlooError):
@@ -57,6 +58,18 @@ class QlooBudgetExceeded(QlooError):
     status = 503
     code = "qloo_budget_exceeded"
     title = "Per-run Qloo call budget exceeded"
+
+
+class QlooDailyCap(QlooError):
+    status = 503
+    code = "qloo_daily_cap"
+    title = "Today's live Qloo budget is used up"
+
+
+DAILY_CAP_MESSAGE = (
+    "Today's live Qloo budget is used up. The sample plan and popular places still work. "
+    "Try again after 00:00 UTC."
+)
 
 
 class QlooFilterIgnored(QlooError):

@@ -8,5 +8,6 @@ RUN uv sync --frozen --no-dev --no-install-project
 COPY src ./src
 RUN uv sync --frozen --no-dev
 # Keys come from the host's environment (never baked into the image). SQLite lives in /app/data.
+# Behind Render's proxy, trust X-Forwarded-For so the per-IP limits see each visitor, not the proxy.
 EXPOSE 8000
-CMD ["sh", "-c", "uv run --no-sync uvicorn crowdspawn_api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-c", "uv run --no-sync uvicorn crowdspawn_api.main:app --host 0.0.0.0 --port ${PORT:-8000} --proxy-headers --forwarded-allow-ips='*'"]

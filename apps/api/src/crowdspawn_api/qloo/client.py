@@ -11,8 +11,10 @@ from typing import Any
 import httpx
 
 from ..errors import (
+    DAILY_CAP_MESSAGE,
     QlooAuthError,
     QlooBudgetExceeded,
+    QlooDailyCap,
     QlooError,
     QlooRateLimited,
     QlooUnconfigured,
@@ -66,7 +68,10 @@ class QlooClient:
         if not key:
             raise QlooUnconfigured("Set QLOO_API_KEY in apps/api/.env")
         last = "no response"
+        cap = self.settings.daily_cap
         for attempt in range(ATTEMPTS):
+            if cap and not await self.store.take_daily_call(cap):
+                raise QlooDailyCap(DAILY_CAP_MESSAGE)
             await self.bucket.acquire()
             self.live_calls += 1
             try:
@@ -77,7 +82,9 @@ class QlooClient:
                 last = type(e).__name__
             else:
                 if r.status_code in (401, 403):
-                    raise QlooAuthError(f"Qloo returned {r.status_code}")
+                    err = QlooAuthError(f"Qloo returned {r.status_code}")
+                    err.upstream = r.status_code
+                    raise err
                 if r.status_code not in RETRY_STATUSES:
                     try:
                         return r.status_code, r.json()
@@ -85,7 +92,9 @@ class QlooClient:
                         raise QlooError("Qloo returned a non-JSON body") from e
                 last = f"HTTP {r.status_code}"
                 if r.status_code == 429 and attempt == ATTEMPTS - 1:
-                    raise QlooRateLimited("Qloo kept returning 429")
+                    limited = QlooRateLimited("Qloo kept returning 429")
+                    limited.upstream = 429
+                    raise limited
             await self.backoff(0.5 * 2**attempt)
         raise QlooError(f"Qloo unavailable after {ATTEMPTS} attempts ({last})")
 
@@ -119,7 +128,7 @@ class QlooRun:
                         key, body, ttl or self.client.settings.qloo_cache_ttl_seconds
                     )
         except QlooError as e:
-            status = getattr(e, "status", 502)
+            status = e.upstream or e.status
             raise
         finally:
             await self.trace.add(

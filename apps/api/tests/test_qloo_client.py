@@ -11,6 +11,7 @@ import respx
 from crowdspawn_api.errors import (
     QlooAuthError,
     QlooBudgetExceeded,
+    QlooDailyCap,
     QlooError,
     QlooFilterIgnored,
     QlooUnconfigured,
@@ -93,6 +94,35 @@ async def test_budget_cap_stops_run(tmp_path: Path, store: Store) -> None:
 
 
 @respx.mock
+async def test_daily_cap_counts_live_calls_only_and_survives_restart(tmp_path: Path) -> None:
+    """J8: one global counter per UTC day in SQLite; cache hits are free."""
+    route = respx.get(url__regex=r".*").mock(return_value=httpx.Response(200, json={"r": 1}))
+    db = tmp_path / "cap.sqlite3"
+    store = await Store.open(db)
+    run = client_for(tmp_path, store, qloo_daily_call_cap=2).run()
+    await run.get("S1", "/search", {"query": "a"})
+    await run.get("S1", "/search", {"query": "a"})  # cache hit: not counted
+    assert await store.daily_calls() == 1
+    await store.close()
+
+    store = await Store.open(db)  # a restart: new store, new client, same day
+    run = client_for(tmp_path, store, qloo_daily_call_cap=2).run()
+    await run.get("S1", "/search", {"query": "b"})
+    with pytest.raises(QlooDailyCap) as e:
+        await run.get("S1", "/search", {"query": "c"})
+    assert e.value.code == "qloo_daily_cap" and "00:00 UTC" in e.value.detail
+    await run.get("S1", "/search", {"query": "a"})  # cached inputs still work at the cap
+    assert route.call_count == 2 and await store.daily_calls() == 2
+    await store.close()
+
+
+def test_daily_cap_defaults() -> None:
+    assert make_settings(Path("."), app_env="production").daily_cap == 400
+    assert make_settings(Path(".")).daily_cap == 0  # off in test
+    assert make_settings(Path("."), qloo_daily_call_cap=0, app_env="production").daily_cap == 0
+
+
+@respx.mock
 async def test_retries_then_succeeds(tmp_path: Path, store: Store) -> None:
     route = respx.get(url__regex=r".*").mock(
         side_effect=[
@@ -124,7 +154,7 @@ async def test_auth_error_and_bad_request(tmp_path: Path, store: Store) -> None:
         await run.get("S1", "/search", {"q": "a"})
     with pytest.raises(QlooError, match="bad signal"):
         await run.get("S2", "/v2/insights", {"q": "a"})
-    assert [e.status for e in run.trace.entries] == [502, 400]
+    assert [e.status for e in run.trace.entries] == [403, 400]  # Qloo's real status, not ours [J2]
 
 
 async def test_unconfigured_makes_no_call(tmp_path: Path, store: Store) -> None:

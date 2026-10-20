@@ -5,6 +5,7 @@ import "./globals.css";
 import { TileField } from "../components/TileField";
 import { SfxListener, SoundToggle } from "../components/Sfx";
 import { Tour } from "../components/Tour";
+import { ServerStatus } from "../components/ServerStatus";
 
 const display = Schibsted_Grotesk({ subsets: ["latin"], weight: ["500"], variable: "--font-schibsted" });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono" });
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               </Link>
             </div>
           </nav>
+          <ServerStatus />
           <main id="main">{children}</main>
           <footer className="foot spread">
             <span className="label muted">Data: Qloo Taste AI · Affinity index, not a sales forecast</span>

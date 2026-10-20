@@ -10,7 +10,7 @@ from statistics import fmean
 from ..errors import QlooError, QlooFilterIgnored
 from ..qloo.client import QlooRun
 from ..qloo.models import HeatmapCell, HeatmapInsights
-from ..schemas import City, Region, Warning_
+from ..schemas import City, HiddenMarket, Region, Warning_
 from ..settings import PANEL_TTL_SECONDS, PLATFORM_PANELS
 from .confidence import confidence
 from .scoring import CityMetrics, Score, spawn_scores
@@ -132,3 +132,16 @@ async def score_cities(
         if c.confidence == "low"
     ]
     return cities, warnings
+
+
+def hidden_markets(ranked: list[City], gap: int = 3) -> list[HiddenMarket]:
+    """Over-indexing cities that rank `gap`+ places higher for the game than for gamers overall."""
+    by_gamers = sorted(ranked, key=lambda c: (-c.baseline_score, c.region_id))
+    gamer_rank = {c.region_id: i + 1 for i, c in enumerate(by_gamers)}
+    return [
+        HiddenMarket(
+            region_id=c.region_id, name=c.name, rank=i + 1, gamer_rank=gamer_rank[c.region_id]
+        )
+        for i, c in enumerate(ranked)
+        if c.score > 1 and gamer_rank[c.region_id] - (i + 1) >= gap
+    ]

@@ -2092,47 +2092,17 @@ footer.foot {
   gap: 6px;
 }
 
-.gauge-wrap {
-  position: relative;
-  width: 150px;
+.score-big {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
   flex: none;
 }
 
-.gauge {
-  display: block;
-  width: 100%;
-}
-
-.gauge path {
-  fill: none;
-  stroke-width: 12;
-  stroke-linecap: round;
-}
-
-.gauge .track {
-  stroke: color-mix(in srgb, var(--ink) 15%, transparent);
-}
-
-.gauge .value {
-  stroke: var(--ink);
-  transition: stroke-dashoffset 900ms var(--ease-out);
-  animation: gauge-in 1100ms var(--ease-out) both;
-}
-
-@keyframes gauge-in {
-  from {
-    stroke-dashoffset: 163.4;
-  }
-}
-
-.gauge-num {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  font-size: 28px;
+.score-big .num {
+  font-size: 40px;
   font-weight: 700;
+  line-height: 1;
 }
 
 /* Loot rarity colours: legendary and rare match the partner cards; epic purple and uncommon green are gamer convention. */

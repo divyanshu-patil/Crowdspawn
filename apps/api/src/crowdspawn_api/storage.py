@@ -3,6 +3,7 @@
 import asyncio
 import json
 import time
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -28,7 +29,12 @@ CREATE TABLE IF NOT EXISTS traces (
 CREATE TABLE IF NOT EXISTS cache (
   key TEXT PRIMARY KEY, value TEXT NOT NULL, expires_at REAL NOT NULL
 );
+CREATE TABLE IF NOT EXISTS qloo_daily (day TEXT PRIMARY KEY, calls INTEGER NOT NULL);
 """
+
+
+def utc_day() -> str:
+    return datetime.now(UTC).date().isoformat()
 
 
 class Store:
@@ -62,6 +68,23 @@ class Store:
             (key, json.dumps(value), time.time() + ttl),
         )
         await self.db.commit()
+
+    # global daily Qloo budget, keyed by UTC date
+    async def take_daily_call(self, cap: int) -> bool:
+        """Count one live Qloo call for today; False (and no count) once `cap` calls are used."""
+        async with self.db.execute(
+            "INSERT INTO qloo_daily VALUES (?, 1) ON CONFLICT(day) DO UPDATE "
+            "SET calls = calls + 1 WHERE calls < ? RETURNING calls",
+            (utc_day(), cap),
+        ) as c:
+            row = await c.fetchone()
+        await self.db.commit()
+        return row is not None
+
+    async def daily_calls(self) -> int:
+        async with self.db.execute("SELECT calls FROM qloo_daily WHERE day=?", (utc_day(),)) as c:
+            row = await c.fetchone()
+        return int(row[0]) if row else 0
 
     # plans
     async def create_plan(self, plan_id: str, input_: dict[str, Any]) -> None:

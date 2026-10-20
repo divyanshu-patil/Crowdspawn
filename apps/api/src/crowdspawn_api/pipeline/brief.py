@@ -6,7 +6,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
-from ..grounding import NUMBER, _to_float, validate
+from ..grounding import NUMBER, _to_float, city_numbers, validate
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
 from ..schemas import Brief, BriefSection, Plan
@@ -98,6 +98,14 @@ def known_names(plan: Plan) -> set[str]:
     return names
 
 
+def owners(plan: Plan) -> dict[float, set[str]]:
+    """Which city each number belongs to; audience and budget numbers belong to none."""
+    f = _strip_ids(facts(plan))
+    lines = [json.dumps(c) for c in f["cities"]]
+    lines.append(json.dumps({"audience": f["audience"], "budget": f["budget_total"]}))
+    return city_numbers(lines, {c.name for c in plan.cities})
+
+
 def check(plan: Plan, sections: list[BriefSection], trace_ids: set[str]) -> list[str]:
     return validate(
         sections,
@@ -105,6 +113,7 @@ def check(plan: Plan, sections: list[BriefSection], trace_ids: set[str]) -> list
         plan_cities={c.name for c in plan.cities},
         known_names=known_names(plan),
         allowed_numbers=allowed_numbers(plan),
+        city_owners=owners(plan),
     )
 
 

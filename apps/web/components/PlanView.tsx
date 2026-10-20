@@ -27,6 +27,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
   const top = plan.cities[0];
   const maxScore = Math.max(...plan.cities.map((c) => c.score), 1.01);
   const culture = plan.culture ?? [];
+  const hidden = plan.hidden_markets ?? []; // plans saved before hidden markets existed have none
   const counts = { high: 0, medium: 0, low: 0 };
   plan.cities.forEach((c) => counts[c.confidence]++);
 
@@ -108,6 +109,22 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
             />
           ))}
         </ol>
+        {hidden.length > 0 && (
+          <div className="card stack hidden-markets" aria-label="Hidden markets">
+            <span className="label">Hidden markets</span>
+            <p className="muted">
+              Cities that rank far higher for your game than for gamers overall. Easy to miss if you only follow market
+              size.
+            </p>
+            <ul style={{ marginLeft: 16 }}>
+              {hidden.map((h) => (
+                <li key={h.region_id}>
+                  <b>{h.name}</b>: #{h.rank} for your game, #{h.gamer_rank} for gamers overall
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* Expanded comps with Qloo's explanations */}

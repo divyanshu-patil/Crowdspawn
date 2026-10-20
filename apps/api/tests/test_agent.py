@@ -4,7 +4,9 @@ import json
 from pathlib import Path
 from typing import Any
 
+import httpx
 import pytest
+import respx
 from fastapi.testclient import TestClient
 
 from crowdspawn_api.llm.fake import FakeProvider
@@ -13,7 +15,7 @@ from crowdspawn_api.qloo.client import QlooClient
 from crowdspawn_api.schemas import City, EntityOut, Partner
 from crowdspawn_api.storage import Store
 
-from .conftest import make_settings
+from .conftest import FIXTURES, make_settings
 
 
 def step(tool: str, args: dict[str, Any], thought: str = "next") -> str:
@@ -186,6 +188,24 @@ def test_grounding_checks_numbers_and_bold_names() -> None:
     assert agent.grounded("Tokyo first, then Paris.", mem, "a story set in Paris") == []
 
 
+def test_grounding_binds_numbers_to_their_city() -> None:
+    """J3: a real number next to the wrong city is still an invention."""
+    mem = agent.Memory(
+        observations=[
+            "1. Istanbul (ist, TR): spawn score 1.29, high confidence\n"
+            "2. Warsaw (waw, PL): spawn score 1.02, low confidence"
+        ]
+    )
+    wrong = "Launch first in **Warsaw** (spawn score 1.29, high confidence)."
+    assert agent.grounded(wrong, mem, "goal") == ["1.29 belongs to Istanbul, not Warsaw"]
+    right = (
+        "Launch first in **Istanbul** (spawn score 1.29, high confidence), then **Warsaw** (1.02)."
+    )
+    assert agent.grounded(right, mem, "goal") == []
+    # Numbers the user gave, or Qloo gave with no city, are not tied to any city.
+    assert agent.grounded("**Warsaw** fits a $1,029 budget.", mem, "budget $1,029") == []
+
+
 def test_agent_route_runs_and_streams(client: TestClient, tools: dict[str, Any]) -> None:
     llm = client.app.state.deps.llm
     assert isinstance(llm, FakeProvider)
@@ -200,3 +220,27 @@ def test_agent_route_runs_and_streams(client: TestClient, tools: dict[str, Any])
     assert "event: step" in body and "event: done" in body
     assert client.get("/v1/agent/nope").status_code == 404
     assert client.post("/v1/agent", json={"goal": "short"}).status_code == 422
+
+
+async def test_search_games_keeps_exact_titles_not_clones(tmp_path: Path) -> None:
+    """J10: live /search for Euro Truck Simulator 2 ranks four clones with it (fixture, 2026-10-20)."""
+    fixture = json.loads((FIXTURES / "search/euro_truck_simulator_2.json").read_text())
+    store = await Store.open(tmp_path / "s.sqlite3")
+    qloo = QlooClient(make_settings(tmp_path), store)
+    try:
+        with respx.mock:
+            respx.get(url__regex=r".*/search").mock(
+                return_value=httpx.Response(200, json=fixture["body"])
+            )
+            mem = agent.Memory()
+            obs = await agent.call_tool(
+                qloo.run(), mem, "search_games", {"query": "Euro Truck Simulator 2"}
+            )
+            names = [n for _, n in mem.games.values()]
+            assert names[0] == "Euro Truck Simulator 2" and len(names) == 2  # exact + one other
+            assert "no exact title match" not in obs
+            obs = await agent.call_tool(qloo.run(), mem, "search_games", {"query": "Truck Sim"})
+            assert obs.endswith("no exact title match") and len(mem.games) == 5
+    finally:
+        await qloo.aclose()
+        await store.close()

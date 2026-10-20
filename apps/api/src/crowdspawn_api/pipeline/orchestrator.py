@@ -7,7 +7,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from ..errors import AppError, QlooBudgetExceeded, QlooError, QlooUnconfigured
+from ..errors import AppError, QlooBudgetExceeded, QlooDailyCap, QlooError, QlooUnconfigured
 from ..llm.base import LLMProvider
 from ..llm.structured import CallBudget
 from ..qloo.client import QlooClient
@@ -35,10 +35,12 @@ LIMITS = [
     "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
     "City-level results cannot be validated with free public data.",
     "Brands are global: Qloo brand affinity ignores location.",
-    "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps. Against Google Trends "
-    "interest for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3 in 8.",
-    "Where Qloo's data is thin (for example mobile MOBAs in Southeast Asia), the ranking misses. Treat it "
-    "as a taste-informed starting hypothesis.",
+    "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps.",
+    "Accuracy: on held-out games with no real-world setting, an LLM without Qloo data found the top "
+    "country (by Google Trends) more often than this ranking, which has a city-level bias. It does "
+    "better when the game has a real-world setting. A Steam-review backtest on 6 shipped games also lost "
+    "to plain popularity. Numbers: docs/scenario-results.md and docs/backtest-results.md.",
+    "Treat the ranking as a taste-informed starting hypothesis and test it with small campaigns.",
 ]
 
 
@@ -161,6 +163,7 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
             culture=anchors,
             expanded=expanded,
             cities=ranked,
+            hidden_markets=cities.hidden_markets(ranked),
             audience=aud,
             partners=found,
             gap=gap,
@@ -200,7 +203,7 @@ async def run_plan(plan_id: str, req: PlanIn, deps: Deps) -> None:
             "Qloo returned a response in an unexpected shape",
         )
     except AppError as e:
-        if isinstance(e, QlooBudgetExceeded):
+        if isinstance(e, QlooBudgetExceeded | QlooDailyCap):
             await warn(
                 Warning_(
                     code="partial_results",
