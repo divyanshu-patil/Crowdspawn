@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Plan } from "@repo/contracts";
-import sample from "../public/sample-plan.json";
+import sample from "../public/sample-delhi-plan.json"; // stable: the hero sample may be regenerated
 import { planToMarkdown, rarity, skew } from "../lib/format";
 import { initialProgress, reduce, xp } from "../lib/progress";
 import { emptyDraft, isValid, toPlanIn, validateAll, validateComps, validateGame, validateRegions } from "../lib/validate";

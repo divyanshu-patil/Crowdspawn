@@ -40,7 +40,7 @@ Big cities have lots of gamers of every kind, so a raw count would always put Ne
 - **Platform fit:** how strong your platforms are in the city compared with gaming overall. Console games drop in PC- and mobile-first markets.
 - **Culture fit:** how concentrated fans of your setting's films, shows and artists are in the city, compared with the average city. Only used when you name a setting.
 
-**Mumbai at 2.49** for Delhi Gullies = taste 1.05 × platform 0.97 × culture 2.45. Below 1 means under-represented. The map's crowd size shows it: one lit tile per +0.02.
+**Mumbai at 2.49** for Delhi Gullies (the second sample, `/sample/delhi`) = taste 1.05 × platform 0.97 × culture 2.45. Below 1 means under-represented. The map's crowd size shows it: one lit tile per +0.02.
 
 On 23 held-out games with no home-country setting, frozen before scoring, Google Trends' top country for a real shipped game like each one was Crowdspawn's #1 in 1 of 23; an LLM with no Qloo data got 4 of 23 and plain popularity 0 of 23. The ranking has a city bias (Stockholm came first for 9 of the 23 games). It does better when a game has a real-world setting, where culture anchors carry the signal. Details: [`scenario-results.md`](scenario-results.md).
 

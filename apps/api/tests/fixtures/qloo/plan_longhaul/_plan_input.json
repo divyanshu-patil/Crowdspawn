@@ -1,0 +1,43 @@
+{
+  "game": {
+    "title": "Long Haul",
+    "description": "A relaxing long-distance trucking sim: haul cargo across open highways at your own pace.",
+    "tags": [
+      "simulation",
+      "driving",
+      "relaxing"
+    ]
+  },
+  "comp_entity_ids": [
+    "4D7B6677-69F6-4805-834A-F80393850EFF",
+    "B639C4C8-5521-4FFA-BDD3-F37E8BAFD3D0",
+    "B02011D8-0274-48B9-B849-0B6C0827DE76"
+  ],
+  "culture_entity_ids": [],
+  "platforms": [
+    "pc"
+  ],
+  "regions": [
+    "nyc",
+    "lax",
+    "chi",
+    "yto",
+    "lon",
+    "ber",
+    "par",
+    "waw",
+    "tyo",
+    "sel",
+    "sao",
+    "mex",
+    "syd",
+    "ist",
+    "del",
+    "bom",
+    "dxb",
+    "jkt"
+  ],
+  "budget_usd": 5000.0,
+  "previous_game_entity_ids": [],
+  "mode": "fast"
+}

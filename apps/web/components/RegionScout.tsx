@@ -143,7 +143,7 @@ export function RegionScout() {
     };
     if (!id) return go(null);
     const load: Promise<Plan> =
-      id === "sample" ? fetch("/sample-plan.json").then((r) => r.json() as Promise<Plan>) : api.plan(id);
+      /^sample(-[a-z]+)?$/.test(id) ? fetch(`/${id}-plan.json`).then((r) => r.json() as Promise<Plan>) : api.plan(id);
     load.then(go, () => go(null));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

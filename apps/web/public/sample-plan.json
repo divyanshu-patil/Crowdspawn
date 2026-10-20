@@ -3,50 +3,42 @@
  "status": "done",
  "input": {
   "game": {
-   "title": "Delhi Gullies",
-   "description": "A GTA-style open-world crime game set in the streets and gullies of Delhi.",
+   "title": "Long Haul",
+   "description": "A relaxing long-distance trucking sim: haul cargo across open highways at your own pace.",
    "tags": [
-    "india",
-    "open world",
-    "crime"
+    "simulation",
+    "driving",
+    "relaxing"
    ]
   },
   "comp_entity_ids": [
-   "FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD",
-   "9B7B8E8D-9122-4A62-88F7-45BC44A038C3",
-   "80564013-F33C-4F3A-A5E5-6B7264CD9091",
-   "43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3",
-   "9ADEC46A-AF2F-45D7-A076-BFC5F6341E52"
+   "4D7B6677-69F6-4805-834A-F80393850EFF",
+   "B639C4C8-5521-4FFA-BDD3-F37E8BAFD3D0",
+   "B02011D8-0274-48B9-B849-0B6C0827DE76"
   ],
-  "culture_entity_ids": [
-   "51A19BB0-E7C3-44AD-A740-22B0A05013BF",
-   "CE300FA0-0752-4DD3-B28F-FC4CFD2D8915",
-   "924C8504-4BD8-4615-AB2D-1C16880A8A62",
-   "F177EC76-D270-4E48-BB34-3180379CEA7A"
-  ],
+  "culture_entity_ids": [],
   "platforms": [
-   "pc",
-   "console"
+   "pc"
   ],
   "regions": [
    "nyc",
    "lax",
    "chi",
    "yto",
-   "mex",
-   "sao",
    "lon",
-   "par",
    "ber",
+   "par",
    "waw",
-   "ist",
-   "dxb",
-   "del",
-   "bom",
    "tyo",
    "sel",
-   "jkt",
-   "syd"
+   "sao",
+   "mex",
+   "syd",
+   "ist",
+   "del",
+   "bom",
+   "dxb",
+   "jkt"
   ],
   "budget_usd": 5000.0,
   "previous_game_entity_ids": [],
@@ -54,282 +46,238 @@
  },
  "comps": [
   {
-   "entity_id": "FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD",
-   "name": "Grand Theft Auto V",
-   "image_url": "https://images.qloo.com/i/FEFD4E0D-D8F2-4BF9-86C9-06949DE82BCD-420x-auto.jpg",
+   "entity_id": "4D7B6677-69F6-4805-834A-F80393850EFF",
+   "name": "Farming Simulator 22",
+   "image_url": "https://images.qloo.com/i/4D7B6677-69F6-4805-834A-F80393850EFF-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "9B7B8E8D-9122-4A62-88F7-45BC44A038C3",
-   "name": "Sleeping Dogs",
-   "image_url": "https://images.qloo.com/i/9B7B8E8D-9122-4A62-88F7-45BC44A038C3-420x-auto.jpg",
+   "entity_id": "B639C4C8-5521-4FFA-BDD3-F37E8BAFD3D0",
+   "name": "SnowRunner",
+   "image_url": "https://images.qloo.com/i/B639C4C8-5521-4FFA-BDD3-F37E8BAFD3D0-420x-auto.jpg",
    "source": "qloo",
    "result_id": "q1"
   },
   {
-   "entity_id": "80564013-F33C-4F3A-A5E5-6B7264CD9091",
-   "name": "Watch Dogs 2",
-   "image_url": "https://images.qloo.com/i/80564013-F33C-4F3A-A5E5-6B7264CD9091-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q1"
-  },
-  {
-   "entity_id": "43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3",
-   "name": "Mafia III",
-   "image_url": "https://images.qloo.com/i/43270D2F-ABA9-42BB-A1FF-7AF00A82A0C3-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q1"
-  },
-  {
-   "entity_id": "9ADEC46A-AF2F-45D7-A076-BFC5F6341E52",
-   "name": "Saints Row",
-   "image_url": "https://images.qloo.com/i/9ADEC46A-AF2F-45D7-A076-BFC5F6341E52-420x-auto.jpg",
+   "entity_id": "B02011D8-0274-48B9-B849-0B6C0827DE76",
+   "name": "BeamNG.drive",
+   "image_url": null,
    "source": "qloo",
    "result_id": "q1"
   }
  ],
  "dropped_comps": [],
- "culture": [
-  {
-   "entity_id": "51A19BB0-E7C3-44AD-A740-22B0A05013BF",
-   "name": "Gully Boy",
-   "type": "urn:entity:movie",
-   "image_url": "https://images.qloo.com/i/51A19BB0-E7C3-44AD-A740-22B0A05013BF-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "CE300FA0-0752-4DD3-B28F-FC4CFD2D8915",
-   "name": "3 Idiots",
-   "type": "urn:entity:movie",
-   "image_url": "https://images.qloo.com/i/CE300FA0-0752-4DD3-B28F-FC4CFD2D8915-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "924C8504-4BD8-4615-AB2D-1C16880A8A62",
-   "name": "Arijit Singh",
-   "type": "urn:entity:artist",
-   "image_url": "https://images.qloo.com/i/924C8504-4BD8-4615-AB2D-1C16880A8A62-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  },
-  {
-   "entity_id": "F177EC76-D270-4E48-BB34-3180379CEA7A",
-   "name": "Sacred Games",
-   "type": "urn:entity:tv_show",
-   "image_url": "https://images.qloo.com/i/F177EC76-D270-4E48-BB34-3180379CEA7A-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q2"
-  }
- ],
+ "culture": [],
  "expanded": [
   {
-   "entity_id": "595097F8-A605-422E-AEB3-C1B124B8A3B9",
-   "name": "Grand Theft Auto Online",
-   "affinity": 0.884,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Watch Dogs 2 22%, Mafia III 21%. Qloo tags: Social, Competitive, Emergent gameplay, Long-term progression.",
+   "entity_id": "BDB196C8-C34A-468B-A870-42E5497F0640",
+   "name": "Wreckfest",
+   "affinity": 0.868,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: Fun crashes, Physics-driven gameplay, Competitive multiplayer, Deep vehicle customization.",
+   "image_url": "https://images.qloo.com/i/BDB196C8-C34A-468B-A870-42E5497F0640-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "93AA049C-1DEB-45E1-BB75-953BF5C9E9C7",
+   "name": "Project CARS 3",
+   "affinity": 0.8638,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: realistic, car, tracks, exciting.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "C64B1C7F-EE8E-4C32-ABE4-8C98061C9B06",
-   "name": "Grand Theft Auto: Vice City Stories",
-   "affinity": 0.8745,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: 1980s Setting, Crime Fiction, Nostalgia, Soundtrack Driven.",
+   "entity_id": "2BC06B8E-5B75-4005-9519-9BB1D2228A60",
+   "name": "American Truck Simulator",
+   "affinity": 0.854,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: realistic physics, long-haul routes, career management, heavy vehicle simulation.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "258BE527-A070-419A-B26B-8D151E2D0BA6",
-   "name": "Mafia II",
-   "affinity": 0.8743,
-   "why": "Driven by fans of Sleeping Dogs 23%, Grand Theft Auto V 21%, Mafia III 20%. Qloo tags: story-rich, period atmosphere, realistic, strong characters.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "7171B6D2-EE3E-4EEC-921F-EC8C108FBCFA",
-   "name": "Tom Clancy's Ghost Recon: Wildlands",
-   "affinity": 0.874,
-   "why": "Driven by fans of Watch Dogs 2 24%, Mafia III 23%, Grand Theft Auto V 20%. Qloo tags: co-op focused, action-packed, teamplay, open-world exploration.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "D806380D-2A95-47F8-85B1-84160EA2466D",
-   "name": "Grand Theft Auto: Chinatown Wars",
-   "affinity": 0.8739,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 20%, Saints Row 19%. Qloo tags: addictive, engaging, intense, suspenseful.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "8A46CAEF-603E-4FF5-A85D-2BBC07F4B5D9",
-   "name": "Grand Theft Auto: Liberty City Stories",
-   "affinity": 0.8685,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Mafia III 19%. Qloo tags: crime-themed, sandbox gameplay, nostalgic, memorable soundtrack.",
-   "image_url": "https://images.qloo.com/i/8A46CAEF-603E-4FF5-A85D-2BBC07F4B5D9-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "B9F9C5FB-FEEE-4405-83BF-DE51624800C1",
-   "name": "Mafia",
-   "affinity": 0.8508,
-   "why": "Driven by fans of Sleeping Dogs 22%, Grand Theft Auto V 22%, Mafia III 21%. Qloo tags: immersive, gritty, narrative-driven, tense.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "18C0FF0D-4582-41E7-93D6-221A6D6301D6",
-   "name": "Grand Theft Auto IV",
-   "affinity": 0.8502,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: realistic city, mature narrative, social satire, complex characters.",
-   "image_url": "https://images.qloo.com/i/18C0FF0D-4582-41E7-93D6-221A6D6301D6-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "3B78563F-7FDD-4672-8652-1DB70624E74E",
-   "name": "Mafia: Definitive Edition",
-   "affinity": 0.8495,
-   "why": "Driven by fans of Mafia III 24%, Watch Dogs 2 23%, Grand Theft Auto V 21%. Qloo tags: mob movie, period setting, authentic 1930s, strong narrative.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "590C5023-F298-4F4A-9EF6-AF10056EAB3D",
-   "name": "Watch Dogs",
-   "affinity": 0.8449,
-   "why": "Driven by fans of Grand Theft Auto V 22%, Watch Dogs 2 20%, Saints Row 20%. Qloo tags: hacking mechanics, revenge narrative, urban atmosphere, open-world freedom.",
-   "image_url": null,
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "F53785DA-79EB-41F7-80E5-130C3AD9D079",
-   "name": "Max Payne 3",
-   "affinity": 0.8449,
-   "why": "Driven by fans of Sleeping Dogs 24%, Grand Theft Auto V 21%, Mafia III 19%. Qloo tags: bullet-time gameplay, cinematic presentation, gritty noir storytelling, action-packed.",
-   "image_url": "https://images.qloo.com/i/F53785DA-79EB-41F7-80E5-130C3AD9D079-420x-auto.jpg",
-   "source": "qloo",
-   "result_id": "q3"
-  },
-  {
-   "entity_id": "788936CC-C07A-4D82-866E-AC0995BC6F15",
-   "name": "Mad Max",
+   "entity_id": "E193F66E-8DD0-40AD-BFA9-022D02F1C27C",
+   "name": "SpinTires",
    "affinity": 0.8432,
-   "why": "Driven by fans of Watch Dogs 2 22%, Mafia III 22%, Grand Theft Auto V 20%. Qloo tags: explosive car combat, satisfying customization, gritty world, fan service to films.",
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: realism, mud racing, vehicle enthusiasts, intense.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "3A6CB953-75A9-4366-81A0-67597DC25D5A",
-   "name": "Saints Row IV",
-   "affinity": 0.8431,
-   "why": "Driven by fans of Sleeping Dogs 25%, Saints Row 19%, Grand Theft Auto V 19%. Qloo tags: over-the-top action, funny, absurdist humor, high customization.",
+   "entity_id": "885BB769-AB46-4AEC-AF62-8FC5D2F888DA",
+   "name": "The Crew 2",
+   "affinity": 0.8235,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: motorsports, vehicle variety, social play, stunt-driven.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "B8E019C6-4BFC-4B3C-985D-C188FB0A49F4",
-   "name": "Bully: Scholarship Edition",
-   "affinity": 0.8429,
-   "why": "Driven by fans of Sleeping Dogs 22%, Grand Theft Auto V 22%, Mafia III 21%. Qloo tags: school setting, teen comedy, pranks, clique dynamics.",
+   "entity_id": "1BCD980C-D4B9-4CA6-AC31-B65F3C94FF90",
+   "name": "Need for Speed Heat",
+   "affinity": 0.8151,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: car culture, deep customization, competitive, high-octane.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "7AD1B6EC-A833-4D47-A4F4-55156B1083D3",
-   "name": "Just Cause 3",
-   "affinity": 0.8383,
-   "why": "Driven by fans of Watch Dogs 2 25%, Mafia III 23%, Grand Theft Auto V 21%. Qloo tags: explosive sandbox, freedom to create chaos, over-the-top action, stunt playground.",
+   "entity_id": "1207B05A-10FE-4B65-987A-604D5F1ED359",
+   "name": "Forza Horizon 4",
+   "affinity": 0.8113,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: car enthusiast, collector-friendly, social, photography fans.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "BF947F01-368A-45AD-8083-CE7BF0C92685",
-   "name": "Bully",
-   "affinity": 0.8376,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 21%, Saints Row 20%. Qloo tags: Cult Classic, Controversial, Character-driven, Replayable.",
+   "entity_id": "A46ACA02-38D7-4624-92FE-639196FC0C5A",
+   "name": "Microsoft Flight Simulator",
+   "affinity": 0.8071,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: realistic flight physics, detailed aircraft, live weather, photorealistic world.",
+   "image_url": "https://images.qloo.com/i/A46ACA02-38D7-4624-92FE-639196FC0C5A-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "417A8B5B-3057-4B84-84AF-C2306FD24DBB",
+   "name": "Microsoft Flight",
+   "affinity": 0.8067,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: Flight Enthusiasts, Simulation Fans, Relaxed, Adventurous.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "514DCDCF-4E91-4D0D-ACED-74C96E3E7037",
-   "name": "Grand Theft Auto: San Andreas",
-   "affinity": 0.8363,
-   "why": "Driven by fans of Grand Theft Auto V 24%, Mafia III 19%, Sleeping Dogs 19%. Qloo tags: cult classic, iconic soundtrack, freedom, moddable.",
-   "image_url": "https://images.qloo.com/i/514DCDCF-4E91-4D0D-ACED-74C96E3E7037-420x-auto.jpg",
+   "entity_id": "F83FFF69-93DC-47CD-9885-FF4934B4A2BA",
+   "name": "Forza Horizon 5",
+   "affinity": 0.8015,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: great visuals, car enthusiast, community-driven, accessible.",
+   "image_url": "https://images.qloo.com/i/F83FFF69-93DC-47CD-9885-FF4934B4A2BA-420x-auto.jpg",
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "C0CC10B0-77E7-426C-8664-78D6A502878C",
-   "name": "Grand Theft Auto III",
-   "affinity": 0.8338,
-   "why": "Driven by fans of Grand Theft Auto V 23%, Sleeping Dogs 20%, Mafia III 19%. Qloo tags: groundbreaking, influential, open-world pioneer, story-driven sandbox.",
+   "entity_id": "4DC545CA-0B9C-4B0D-9040-33A30AC41A06",
+   "name": "Need for Speed: Rivals",
+   "affinity": 0.7967,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: Fast-paced, Competitive, Exciting, Intense.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "D85221EF-80C6-4057-A104-734CDB76FDFE",
-   "name": "L.A. Noire: The Complete Edition",
-   "affinity": 0.8337,
-   "why": "Driven by fans of Sleeping Dogs 23%, Mafia III 23%, Watch Dogs 2 21%. Qloo tags: immersive, detective, noir, story-driven.",
+   "entity_id": "D8039136-7B12-49E8-B8F6-1876F4F36C63",
+   "name": "Hotshot Racing",
+   "affinity": 0.7964,
+   "why": "Driven by fans of SnowRunner 100%.",
    "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
   },
   {
-   "entity_id": "A037A3D7-652E-4009-9F11-42135FA99CE0",
-   "name": "The Godfather",
-   "affinity": 0.8336,
-   "why": "Driven by fans of Sleeping Dogs 23%, Grand Theft Auto V 22%, Saints Row 21%. Qloo tags: crime, gangster, story-driven, dark.",
-   "image_url": "https://images.qloo.com/i/A037A3D7-652E-4009-9F11-42135FA99CE0-420x-auto.jpg",
+   "entity_id": "A2049589-FA8F-4988-84D7-09E5ACE0FC32",
+   "name": "Project CARS 2",
+   "affinity": 0.796,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: realistic, immersion, motorsport, intense.",
+   "image_url": null,
    "source": "qloo",
-   "result_id": "q3"
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "4200EA15-C28A-4062-A91D-7888E1560F77",
+   "name": "iRacing",
+   "affinity": 0.7919,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: sim-focused, realism, training tool, community-driven.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "39B87D14-70B7-4736-A1D8-FCE37F5F937C",
+   "name": "Microsoft Flight Simulator X",
+   "affinity": 0.7896,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: Aviation Enthusiasts, Casual Gamers, Calm, Educational.",
+   "image_url": "https://images.qloo.com/i/39B87D14-70B7-4736-A1D8-FCE37F5F937C-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "A3BF50DC-A0ED-42A0-B886-067C2A728308",
+   "name": "DiRT Rally 2.0",
+   "affinity": 0.7877,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: punishing difficulty, authentic rally experience, physics-driven, skill-based.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "5A89BCA1-E9F0-40EB-8002-650C69CDD77D",
+   "name": "Need for Speed: Underground 2",
+   "affinity": 0.7874,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: car culture, tuning enthusiasts, customization-focused, multiplayer racers.",
+   "image_url": "https://images.qloo.com/i/5A89BCA1-E9F0-40EB-8002-650C69CDD77D-420x-auto.jpg",
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "D6801C9A-4623-4089-B7A7-8C4F1E042DCE",
+   "name": "Horizon Chase Turbo",
+   "affinity": 0.7848,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: casual players, retro enthusiasts, multiplayer fans, exciting.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "0A8A5147-5BBE-4B9E-93FF-93BDB7697DC7",
+   "name": "GRID (2008)",
+   "affinity": 0.7846,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: Racing Fans, Simulation Enthusiasts, Exciting, Competitive.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
+  },
+  {
+   "entity_id": "DBEA31F8-E49D-4FAC-9A2A-D9B14516E146",
+   "name": "Assetto Corsa",
+   "affinity": 0.7822,
+   "why": "Driven by fans of SnowRunner 100%. Qloo tags: simulator, highly realistic physics, mod-friendly, community-driven.",
+   "image_url": null,
+   "source": "qloo",
+   "result_id": "q2"
   }
  ],
  "cities": [
   {
-   "region_id": "bom",
-   "name": "Mumbai",
-   "country": "IN",
-   "lat": 19.08,
-   "lon": 72.88,
-   "score": 2.49,
-   "lift": 1.051,
-   "platform_fit": 0.969,
-   "culture_fit": 2.446,
-   "target_score": 0.9309,
-   "baseline_score": 0.8859,
-   "cells": 822,
+   "region_id": "ist",
+   "name": "Istanbul",
+   "country": "TR",
+   "lat": 41.01,
+   "lon": 28.98,
+   "score": 1.211,
+   "lift": 1.081,
+   "platform_fit": 1.119,
+   "culture_fit": null,
+   "target_score": 0.8992,
+   "baseline_score": 0.8315,
+   "cells": 956,
    "confidence": "high",
-   "budget_share": 25.71,
-   "budget_usd": 1285.73,
+   "budget_share": 21.34,
+   "budget_usd": 1066.79,
+   "radius_m": 30000,
+   "languages": [
+    "Turkish"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q69",
-    "q70",
-    "q71",
-    "q72",
-    "q73"
+    "q55",
+    "q56",
+    "q57",
+    "q58"
    ]
   },
   {
@@ -338,198 +286,27 @@
    "country": "IN",
    "lat": 28.61,
    "lon": 77.21,
-   "score": 2.118,
-   "lift": 1.056,
-   "platform_fit": 0.957,
-   "culture_fit": 2.095,
-   "target_score": 0.9238,
+   "score": 1.125,
+   "lift": 1.041,
+   "platform_fit": 1.08,
+   "culture_fit": null,
+   "target_score": 0.9107,
    "baseline_score": 0.8746,
-   "cells": 1379,
+   "cells": 987,
    "confidence": "high",
-   "budget_share": 21.87,
-   "budget_usd": 1093.65,
-   "source": "qloo",
-   "result_ids": [
-    "q64",
-    "q65",
-    "q66",
-    "q67",
-    "q68"
-   ]
-  },
-  {
-   "region_id": "dxb",
-   "name": "Dubai",
-   "country": "AE",
-   "lat": 25.2,
-   "lon": 55.27,
-   "score": 2.064,
-   "lift": 1.047,
-   "platform_fit": 0.987,
-   "culture_fit": 1.997,
-   "target_score": 0.939,
-   "baseline_score": 0.8966,
-   "cells": 672,
-   "confidence": "high",
-   "budget_share": 21.32,
-   "budget_usd": 1065.76,
+   "budget_share": 19.82,
+   "budget_usd": 991.03,
+   "radius_m": 30000,
+   "languages": [
+    "Hindi",
+    "English"
+   ],
    "source": "qloo",
    "result_ids": [
     "q59",
     "q60",
     "q61",
-    "q62",
-    "q63"
-   ]
-  },
-  {
-   "region_id": "lon",
-   "name": "London",
-   "country": "GB",
-   "lat": 51.51,
-   "lon": -0.13,
-   "score": 1.216,
-   "lift": 1.091,
-   "platform_fit": 0.985,
-   "culture_fit": 1.132,
-   "target_score": 0.8282,
-   "baseline_score": 0.7595,
-   "cells": 2226,
-   "confidence": "high",
-   "budget_share": 12.56,
-   "budget_usd": 627.89,
-   "source": "qloo",
-   "result_ids": [
-    "q34",
-    "q35",
-    "q36",
-    "q37",
-    "q38"
-   ]
-  },
-  {
-   "region_id": "yto",
-   "name": "Toronto",
-   "country": "CA",
-   "lat": 43.65,
-   "lon": -79.38,
-   "score": 1.158,
-   "lift": 0.924,
-   "platform_fit": 1.025,
-   "culture_fit": 1.223,
-   "target_score": 0.7649,
-   "baseline_score": 0.8282,
-   "cells": 963,
-   "confidence": "high",
-   "budget_share": 11.96,
-   "budget_usd": 597.94,
-   "source": "qloo",
-   "result_ids": [
-    "q19",
-    "q20",
-    "q21",
-    "q22",
-    "q23"
-   ]
-  },
-  {
-   "region_id": "syd",
-   "name": "Sydney",
-   "country": "AU",
-   "lat": -33.87,
-   "lon": 151.21,
-   "score": 1.062,
-   "lift": 0.971,
-   "platform_fit": 1.003,
-   "culture_fit": 1.09,
-   "target_score": 0.8174,
-   "baseline_score": 0.8414,
-   "cells": 932,
-   "confidence": "medium",
-   "budget_share": 6.58,
-   "budget_usd": 329.03,
-   "source": "qloo",
-   "result_ids": [
-    "q89",
-    "q90",
-    "q91",
-    "q92",
-    "q93"
-   ]
-  },
-  {
-   "region_id": "par",
-   "name": "Paris",
-   "country": "FR",
-   "lat": 48.86,
-   "lon": 2.35,
-   "score": 0.854,
-   "lift": 0.979,
-   "platform_fit": 1.009,
-   "culture_fit": 0.864,
-   "target_score": 0.8032,
-   "baseline_score": 0.8209,
-   "cells": 1136,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
-   "source": "qloo",
-   "result_ids": [
-    "q39",
-    "q40",
-    "q41",
-    "q42",
-    "q43"
-   ]
-  },
-  {
-   "region_id": "nyc",
-   "name": "New York",
-   "country": "US",
-   "lat": 40.73,
-   "lon": -73.99,
-   "score": 0.759,
-   "lift": 0.984,
-   "platform_fit": 1.008,
-   "culture_fit": 0.765,
-   "target_score": 0.8442,
-   "baseline_score": 0.8583,
-   "cells": 2351,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
-   "source": "qloo",
-   "result_ids": [
-    "q4",
-    "q5",
-    "q6",
-    "q7",
-    "q8"
-   ]
-  },
-  {
-   "region_id": "ist",
-   "name": "Istanbul",
-   "country": "TR",
-   "lat": 41.01,
-   "lon": 28.98,
-   "score": 0.692,
-   "lift": 0.987,
-   "platform_fit": 0.945,
-   "culture_fit": 0.742,
-   "target_score": 0.8204,
-   "baseline_score": 0.8315,
-   "cells": 1209,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
-   "source": "qloo",
-   "result_ids": [
-    "q54",
-    "q55",
-    "q56",
-    "q57",
-    "q58"
+    "q62"
    ]
   },
   {
@@ -538,48 +315,85 @@
    "country": "PL",
    "lat": 52.23,
    "lon": 21.01,
-   "score": 0.692,
-   "lift": 0.98,
-   "platform_fit": 0.994,
-   "culture_fit": 0.71,
-   "target_score": 0.7545,
+   "score": 1.119,
+   "lift": 1.048,
+   "platform_fit": 1.068,
+   "culture_fit": null,
+   "target_score": 0.8068,
    "baseline_score": 0.7699,
-   "cells": 407,
+   "cells": 291,
    "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
+   "budget_share": 19.71,
+   "budget_usd": 985.75,
+   "radius_m": 20000,
+   "languages": [
+    "Polish"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q49",
-    "q50",
-    "q51",
-    "q52",
-    "q53"
+    "q31",
+    "q32",
+    "q33",
+    "q34"
    ]
   },
   {
-   "region_id": "ber",
-   "name": "Berlin",
-   "country": "DE",
-   "lat": 52.52,
-   "lon": 13.4,
-   "score": 0.668,
-   "lift": 0.984,
-   "platform_fit": 1.016,
-   "culture_fit": 0.668,
-   "target_score": 0.7791,
-   "baseline_score": 0.7916,
-   "cells": 661,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
+   "region_id": "bom",
+   "name": "Mumbai",
+   "country": "IN",
+   "lat": 19.08,
+   "lon": 72.88,
+   "score": 1.082,
+   "lift": 1.028,
+   "platform_fit": 1.052,
+   "culture_fit": null,
+   "target_score": 0.9111,
+   "baseline_score": 0.8859,
+   "cells": 676,
+   "confidence": "medium",
+   "budget_share": 11.44,
+   "budget_usd": 571.89,
+   "radius_m": 30000,
+   "languages": [
+    "Hindi",
+    "Marathi",
+    "English"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q44",
-    "q45",
-    "q46",
-    "q47",
-    "q48"
+    "q63",
+    "q64",
+    "q65",
+    "q66"
+   ]
+  },
+  {
+   "region_id": "dxb",
+   "name": "Dubai",
+   "country": "AE",
+   "lat": 25.2,
+   "lon": 55.27,
+   "score": 1.062,
+   "lift": 1.043,
+   "platform_fit": 1.019,
+   "culture_fit": null,
+   "target_score": 0.9349,
+   "baseline_score": 0.8966,
+   "cells": 528,
+   "confidence": "medium",
+   "budget_share": 11.23,
+   "budget_usd": 561.32,
+   "radius_m": 25000,
+   "languages": [
+    "Arabic",
+    "English"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q67",
+    "q68",
+    "q69",
+    "q70"
    ]
   },
   {
@@ -588,73 +402,26 @@
    "country": "ID",
    "lat": -6.21,
    "lon": 106.85,
-   "score": 0.63,
-   "lift": 0.96,
-   "platform_fit": 0.973,
-   "culture_fit": 0.674,
-   "target_score": 0.8115,
+   "score": 1.052,
+   "lift": 1.014,
+   "platform_fit": 1.037,
+   "culture_fit": null,
+   "target_score": 0.8569,
    "baseline_score": 0.8451,
-   "cells": 1921,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
+   "cells": 1592,
+   "confidence": "medium",
+   "budget_share": 11.12,
+   "budget_usd": 556.04,
+   "radius_m": 30000,
+   "languages": [
+    "Indonesian"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q84",
-    "q85",
-    "q86",
-    "q87",
-    "q88"
-   ]
-  },
-  {
-   "region_id": "mex",
-   "name": "Mexico City",
-   "country": "MX",
-   "lat": 19.43,
-   "lon": -99.13,
-   "score": 0.615,
-   "lift": 1.023,
-   "platform_fit": 1.012,
-   "culture_fit": 0.594,
-   "target_score": 0.9078,
-   "baseline_score": 0.8871,
-   "cells": 1574,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
-   "source": "qloo",
-   "result_ids": [
-    "q24",
-    "q25",
-    "q26",
-    "q27",
-    "q28"
-   ]
-  },
-  {
-   "region_id": "chi",
-   "name": "Chicago",
-   "country": "US",
-   "lat": 41.88,
-   "lon": -87.63,
-   "score": 0.613,
-   "lift": 0.937,
-   "platform_fit": 1.009,
-   "culture_fit": 0.649,
-   "target_score": 0.8009,
-   "baseline_score": 0.8547,
-   "cells": 1113,
-   "confidence": "high",
-   "budget_share": 0.0,
-   "budget_usd": 0.0,
-   "source": "qloo",
-   "result_ids": [
-    "q14",
-    "q15",
-    "q16",
-    "q17",
-    "q18"
+    "q71",
+    "q72",
+    "q73",
+    "q74"
    ]
   },
   {
@@ -663,23 +430,222 @@
    "country": "BR",
    "lat": -23.55,
    "lon": -46.63,
-   "score": 0.553,
-   "lift": 1.068,
-   "platform_fit": 1.009,
-   "culture_fit": 0.513,
-   "target_score": 0.9183,
+   "score": 1.011,
+   "lift": 1.027,
+   "platform_fit": 0.984,
+   "culture_fit": null,
+   "target_score": 0.8833,
    "baseline_score": 0.8599,
-   "cells": 2450,
+   "cells": 1967,
+   "confidence": "low",
+   "budget_share": 5.34,
+   "budget_usd": 267.18,
+   "radius_m": 30000,
+   "languages": [
+    "Portuguese (Brazil)"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q43",
+    "q44",
+    "q45",
+    "q46"
+   ]
+  },
+  {
+   "region_id": "par",
+   "name": "Paris",
+   "country": "FR",
+   "lat": 48.86,
+   "lon": 2.35,
+   "score": 0.965,
+   "lift": 0.978,
+   "platform_fit": 0.987,
+   "culture_fit": null,
+   "target_score": 0.8028,
+   "baseline_score": 0.8209,
+   "cells": 767,
+   "confidence": "medium",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 25000,
+   "languages": [
+    "French"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q27",
+    "q28",
+    "q29",
+    "q30"
+   ]
+  },
+  {
+   "region_id": "lon",
+   "name": "London",
+   "country": "GB",
+   "lat": 51.51,
+   "lon": -0.13,
+   "score": 0.952,
+   "lift": 1.123,
+   "platform_fit": 0.848,
+   "culture_fit": null,
+   "target_score": 0.8526,
+   "baseline_score": 0.7595,
+   "cells": 1632,
+   "confidence": "medium",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "English"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q19",
+    "q20",
+    "q21",
+    "q22"
+   ]
+  },
+  {
+   "region_id": "ber",
+   "name": "Berlin",
+   "country": "DE",
+   "lat": 52.52,
+   "lon": 13.4,
+   "score": 0.941,
+   "lift": 0.982,
+   "platform_fit": 0.958,
+   "culture_fit": null,
+   "target_score": 0.7778,
+   "baseline_score": 0.7916,
+   "cells": 426,
+   "confidence": "medium",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 25000,
+   "languages": [
+    "German"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q23",
+    "q24",
+    "q25",
+    "q26"
+   ]
+  },
+  {
+   "region_id": "syd",
+   "name": "Sydney",
+   "country": "AU",
+   "lat": -33.87,
+   "lon": 151.21,
+   "score": 0.931,
+   "lift": 1.007,
+   "platform_fit": 0.924,
+   "culture_fit": null,
+   "target_score": 0.8474,
+   "baseline_score": 0.8414,
+   "cells": 616,
+   "confidence": "medium",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "English"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q51",
+    "q52",
+    "q53",
+    "q54"
+   ]
+  },
+  {
+   "region_id": "mex",
+   "name": "Mexico City",
+   "country": "MX",
+   "lat": 19.43,
+   "lon": -99.13,
+   "score": 0.894,
+   "lift": 0.949,
+   "platform_fit": 0.942,
+   "culture_fit": null,
+   "target_score": 0.8417,
+   "baseline_score": 0.8871,
+   "cells": 955,
    "confidence": "high",
    "budget_share": 0.0,
    "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "Spanish (Latin America)"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q29",
-    "q30",
-    "q31",
-    "q32",
-    "q33"
+    "q47",
+    "q48",
+    "q49",
+    "q50"
+   ]
+  },
+  {
+   "region_id": "yto",
+   "name": "Toronto",
+   "country": "CA",
+   "lat": 43.65,
+   "lon": -79.38,
+   "score": 0.876,
+   "lift": 0.966,
+   "platform_fit": 0.907,
+   "culture_fit": null,
+   "target_score": 0.8002,
+   "baseline_score": 0.8282,
+   "cells": 661,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "English"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q15",
+    "q16",
+    "q17",
+    "q18"
+   ]
+  },
+  {
+   "region_id": "nyc",
+   "name": "New York",
+   "country": "US",
+   "lat": 40.73,
+   "lon": -73.99,
+   "score": 0.846,
+   "lift": 0.921,
+   "platform_fit": 0.919,
+   "culture_fit": null,
+   "target_score": 0.7906,
+   "baseline_score": 0.8583,
+   "cells": 1597,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "English"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q3",
+    "q4",
+    "q5",
+    "q6"
    ]
   },
   {
@@ -688,48 +654,55 @@
    "country": "US",
    "lat": 34.05,
    "lon": -118.25,
-   "score": 0.5,
-   "lift": 0.946,
-   "platform_fit": 1.013,
-   "culture_fit": 0.522,
-   "target_score": 0.8068,
+   "score": 0.842,
+   "lift": 0.926,
+   "platform_fit": 0.909,
+   "culture_fit": null,
+   "target_score": 0.7901,
    "baseline_score": 0.8531,
-   "cells": 3359,
+   "cells": 2336,
    "confidence": "high",
    "budget_share": 0.0,
    "budget_usd": 0.0,
+   "radius_m": 40000,
+   "languages": [
+    "English",
+    "Spanish (Latin America)"
+   ],
    "source": "qloo",
    "result_ids": [
+    "q7",
+    "q8",
     "q9",
-    "q10",
-    "q11",
-    "q12",
-    "q13"
+    "q10"
    ]
   },
   {
-   "region_id": "tyo",
-   "name": "Tokyo",
-   "country": "JP",
-   "lat": 35.68,
-   "lon": 139.69,
-   "score": 0.468,
-   "lift": 0.568,
-   "platform_fit": 0.948,
-   "culture_fit": 0.868,
-   "target_score": 0.4193,
-   "baseline_score": 0.738,
-   "cells": 1024,
+   "region_id": "chi",
+   "name": "Chicago",
+   "country": "US",
+   "lat": 41.88,
+   "lon": -87.63,
+   "score": 0.816,
+   "lift": 0.895,
+   "platform_fit": 0.912,
+   "culture_fit": null,
+   "target_score": 0.7648,
+   "baseline_score": 0.8547,
+   "cells": 606,
    "confidence": "high",
    "budget_share": 0.0,
    "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "English"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q74",
-    "q75",
-    "q76",
-    "q77",
-    "q78"
+    "q11",
+    "q12",
+    "q13",
+    "q14"
    ]
   },
   {
@@ -738,513 +711,839 @@
    "country": "KR",
    "lat": 37.57,
    "lon": 126.98,
-   "score": 0.302,
-   "lift": 0.67,
-   "platform_fit": 1.008,
-   "culture_fit": 0.446,
-   "target_score": 0.559,
+   "score": 0.781,
+   "lift": 0.814,
+   "platform_fit": 0.959,
+   "culture_fit": null,
+   "target_score": 0.6788,
    "baseline_score": 0.8338,
-   "cells": 868,
+   "cells": 569,
    "confidence": "high",
    "budget_share": 0.0,
    "budget_usd": 0.0,
+   "radius_m": 25000,
+   "languages": [
+    "Korean"
+   ],
    "source": "qloo",
    "result_ids": [
-    "q79",
-    "q80",
-    "q81",
-    "q82",
-    "q83"
+    "q39",
+    "q40",
+    "q41",
+    "q42"
    ]
+  },
+  {
+   "region_id": "tyo",
+   "name": "Tokyo",
+   "country": "JP",
+   "lat": 35.68,
+   "lon": 139.69,
+   "score": 0.539,
+   "lift": 0.794,
+   "platform_fit": 0.679,
+   "culture_fit": null,
+   "target_score": 0.586,
+   "baseline_score": 0.738,
+   "cells": 680,
+   "confidence": "high",
+   "budget_share": 0.0,
+   "budget_usd": 0.0,
+   "radius_m": 30000,
+   "languages": [
+    "Japanese"
+   ],
+   "source": "qloo",
+   "result_ids": [
+    "q35",
+    "q36",
+    "q37",
+    "q38"
+   ]
+  }
+ ],
+ "hidden_markets": [
+  {
+   "region_id": "ist",
+   "name": "Istanbul",
+   "rank": 1,
+   "gamer_rank": 12
+  },
+  {
+   "region_id": "waw",
+   "name": "Warsaw",
+   "rank": 3,
+   "gamer_rank": 16
+  },
+  {
+   "region_id": "jkt",
+   "name": "Jakarta",
+   "rank": 6,
+   "gamer_rank": 9
   }
  ],
  "audience": {
   "age": [
    {
     "band": "24 and under",
-    "index": -0.084
+    "index": -0.057
    },
    {
     "band": "25-29",
-    "index": 0.008
+    "index": -0.105
    },
    {
     "band": "30-34",
-    "index": -0.174
+    "index": -0.146
    },
    {
     "band": "35-44",
-    "index": -0.117
+    "index": 0.018
    },
    {
     "band": "45-54",
-    "index": -0.158
+    "index": -0.289
    },
    {
     "band": "55+",
-    "index": -0.253
+    "index": -0.214
    }
   ],
   "gender": [
    {
     "label": "male",
-    "index": 0.28
+    "index": 0.371
    },
    {
     "label": "female",
-    "index": -0.28
+    "index": -0.371
    }
   ],
   "source": "qloo",
-  "result_id": "q94"
+  "result_id": "q75"
  },
  "partners": {
   "artist": [
    {
-    "entity_id": "D1AA6C1F-F7E4-4A9F-96A3-6A088BA2587A",
-    "name": "blink-182",
-    "affinity": 0.9018,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 11%, Grand Theft Auto Online 11%, Grand Theft Auto V 10%. Qloo tags: Youthful, Vocals, Relationships, The Ramones.",
+    "entity_id": "34824EF2-ADF2-4D87-999F-7F8D55B5DA49",
+    "name": "Jaroslav Beck",
+    "affinity": 0.9281,
+    "lift": 1.0395,
+    "why": "Driven by fans of Forza Horizon 4 13%, Wreckfest 13%, American Truck Simulator 13%. Qloo tags: Electronic Dance Music, Digital Audio Workstations, Hans Zimmer, Samplers.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/D1AA6C1F-F7E4-4A9F-96A3-6A088BA2587A-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/34824EF2-ADF2-4D87-999F-7F8D55B5DA49-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "20367368-EAAF-41B2-B3BC-BAA4B22E65D3",
-    "name": "Limp Bizkit",
-    "affinity": 0.8984,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Mafia II 10%. Qloo tags: Rapcore, Nu Metal, Turntables, Rap Metal.",
+    "entity_id": "9256B998-2F8B-49D2-9B6E-822694584AE9",
+    "name": "FamilyJules",
+    "affinity": 0.9203,
+    "lift": 1.0385,
+    "why": "Driven by fans of Forza Horizon 4 14%, Project CARS 3 13%, Wreckfest 13%. Qloo tags: Guitar Driven, Fusion, Acoustic Guitar, Metal Covers.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/20367368-EAAF-41B2-B3BC-BAA4B22E65D3-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/9256B998-2F8B-49D2-9B6E-822694584AE9-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "157BE139-42EB-4D34-BB35-AB6C83C56870",
-    "name": "DrefGold",
-    "affinity": 0.8951,
-    "why": "Driven by fans of Mafia III 10%, Grand Theft Auto: Liberty City Stories 10%, Mafia 9%. Qloo tags: Loyal, Latin Trap, Urban Life, 4.",
+    "entity_id": "14EC48D6-119C-4468-9145-3E9F006310BC",
+    "name": "Mick Gordon",
+    "affinity": 0.9303,
+    "lift": 1.0368,
+    "why": "Driven by fans of Forza Horizon 4 14%, Project CARS 3 14%, Wreckfest 13%. Qloo tags: Video Game Music, 3, Industrial Metal, Metallica.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/157BE139-42EB-4D34-BB35-AB6C83C56870-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/14EC48D6-119C-4468-9145-3E9F006310BC-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "CCED2E0D-F6C1-42CA-8BF1-118C70D946E8",
-    "name": "Red Hot Chili Peppers",
-    "affinity": 0.8923,
-    "why": "Driven by fans of Grand Theft Auto Online 12%, Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto V 11%. Qloo tags: Dynamic, Funk Rock, Psychedelic Rock, The Clash.",
+    "entity_id": "85C213AD-ED46-4706-A99B-5BD46962ABF3",
+    "name": "Mike Ault",
+    "affinity": 0.9217,
+    "lift": 1.0342,
+    "why": "Driven by fans of Forza Horizon 4 14%, Project CARS 3 13%, Wreckfest 13%. Qloo tags: Electronic, 7, Pop, Electro.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/CCED2E0D-F6C1-42CA-8BF1-118C70D946E8-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/85C213AD-ED46-4706-A99B-5BD46962ABF3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "4070A9DA-CD52-4E86-84EA-CA7F9EF78E37",
-    "name": "Rage Against the Machine",
-    "affinity": 0.8915,
-    "why": "Driven by fans of Grand Theft Auto Online 12%, Tom Clancy's Ghost Recon: Wildlands 11%, Grand Theft Auto V 11%. Qloo tags: Political, Engaging, Passionate, Alternative Metal.",
+    "entity_id": "8BBB6242-6344-4DA3-9E57-F623C189881B",
+    "name": "Friedrich Habetler",
+    "affinity": 0.9286,
+    "lift": 1.032,
+    "why": "Driven by fans of Project CARS 3 14%, Forza Horizon 4 14%, Wreckfest 13%. Qloo tags: 10.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/4070A9DA-CD52-4E86-84EA-CA7F9EF78E37-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/8BBB6242-6344-4DA3-9E57-F623C189881B-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "76922890-5BBA-42BB-B3F9-1AF72114CF44",
-    "name": "Green Day",
-    "affinity": 0.8896,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Grand Theft Auto V 11%. Qloo tags: 2, Alternative Rock, Tenor, Relationships.",
+    "entity_id": "0C48D963-0FFA-415A-8A7D-0B2F08A4A239",
+    "name": "Brian Tuey",
+    "affinity": 0.9377,
+    "lift": 1.0301,
+    "why": "Driven by fans of Project CARS 3 13%, Forza Horizon 4 13%, Wreckfest 13%. Qloo tags: Electronic.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/76922890-5BBA-42BB-B3F9-1AF72114CF44-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/0C48D963-0FFA-415A-8A7D-0B2F08A4A239-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "A0E6E19F-AE13-40AA-8AAC-972C102D2EAA",
-    "name": "Superheaven",
-    "affinity": 0.8896,
-    "why": "Driven by fans of Mafia II 10%, Grand Theft Auto: Vice City Stories 10%, Sleeping Dogs 9%. Qloo tags: Post Grunge, Grunge, Drums, Shoegaze.",
+    "entity_id": "27F92066-B9E8-4A14-95B6-8FDBC6F9631B",
+    "name": "FalKKonE",
+    "affinity": 0.9164,
+    "lift": 1.03,
+    "why": "Driven by fans of Forza Horizon 4 13%, Project CARS 3 13%, Wreckfest 13%. Qloo tags: Engaging, Innovative, Synthwave, Danceable.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/A0E6E19F-AE13-40AA-8AAC-972C102D2EAA-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/27F92066-B9E8-4A14-95B6-8FDBC6F9631B-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "E8B40967-26BF-4298-875E-C17F2CAFA499",
-    "name": "The Offspring",
-    "affinity": 0.8891,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 12%, Grand Theft Auto V 11%. Qloo tags: Hardcore Punk, Dynamic, Engaging, Skate Punk.",
+    "entity_id": "17A91425-7195-4334-B48E-175D770FBBFD",
+    "name": "Casey Edwards",
+    "affinity": 0.9397,
+    "lift": 1.0288,
+    "why": "Driven by fans of Forza Horizon 4 14%, Project CARS 3 13%, Wreckfest 13%. Qloo tags: Dynamic, Power, Energetic.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/E8B40967-26BF-4298-875E-C17F2CAFA499-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/17A91425-7195-4334-B48E-175D770FBBFD-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q95"
+    "result_id": "q76"
    },
    {
-    "entity_id": "ABB725B5-B689-431B-A90F-A06FF9313F0F",
-    "name": "Linkin Park",
-    "affinity": 0.9385,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 12%, Grand Theft Auto Online 11%, Mafia II 10%. Qloo tags: Dynamic, Hope, Diverse, Emotional.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/ABB725B5-B689-431B-A90F-A06FF9313F0F-420x-auto.jpg",
+    "entity_id": "6FFDDA98-A950-4594-8F71-F0F46A4BFC15",
+    "name": "Treyarch Sound",
+    "affinity": 0.9497,
+    "lift": 1.012,
+    "why": "Driven by fans of Forza Horizon 4 13%, Project CARS 3 13%, Wreckfest 13%. Qloo tags: Energetic, Video Game Music, Dedicated, Metal.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/6FFDDA98-A950-4594-8F71-F0F46A4BFC15-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q99"
+    "result_id": "q80"
    },
    {
-    "entity_id": "1651869C-3277-47AC-8535-62784C799EDF",
-    "name": "Travis Scott",
-    "affinity": 0.9379,
-    "why": "Driven by fans of Grand Theft Auto: Liberty City Stories 11%, Saints Row 10%, Grand Theft Auto: Chinatown Wars 10%. Qloo tags: Vocals, Cloud Rap, Drum Machine, Loyal.",
-    "city": "Dubai",
-    "image_url": "https://images.qloo.com/i/1651869C-3277-47AC-8535-62784C799EDF-420x-auto.jpg",
+    "entity_id": "C9D325C3-FBD1-4C13-AE45-FF653E26EFE8",
+    "name": "Rick and Morty",
+    "affinity": 0.9464,
+    "lift": 1.0103,
+    "why": "Driven by fans of Wreckfest 14%, Project CARS 3 14%, Forza Horizon 4 13%. Qloo tags: Science Fiction, Adult Animation, Animation, Absurd.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/C9D325C3-FBD1-4C13-AE45-FF653E26EFE8-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q105"
+    "result_id": "q80"
+   },
+   {
+    "entity_id": "284CF776-6B45-4F43-B08F-78738DA8DD92",
+    "name": "Elon \u201cEDM\u201d Musk",
+    "affinity": 0.9389,
+    "lift": 1.0074,
+    "why": "Driven by fans of Wreckfest 13%, The Crew 2 13%, Forza Horizon 4 13%. Qloo tags: Melodic, Synthesizer, Innovation, Avicii.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/284CF776-6B45-4F43-B08F-78738DA8DD92-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q80"
+   },
+   {
+    "entity_id": "F6D2BDF5-98D9-4539-A311-E88C4EFBF33C",
+    "name": "Mike Shinoda",
+    "affinity": 0.9474,
+    "lift": 1.0061,
+    "why": "Driven by fans of Need for Speed Heat 15%, The Crew 2 13%, Wreckfest 13%. Qloo tags: Emotional, Electronic Rock, Rap, Rap Metal.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/F6D2BDF5-98D9-4539-A311-E88C4EFBF33C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q80"
+   },
+   {
+    "entity_id": "AF33A1CE-9414-480A-84E7-1516380752B7",
+    "name": "Aero Chord",
+    "affinity": 0.9456,
+    "lift": 1.0106,
+    "why": "Driven by fans of SpinTires 13%, The Crew 2 13%, Wreckfest 13%. Qloo tags: Baauer, Digital Audio Workstation (DAW), Electronic, Skrillex.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/AF33A1CE-9414-480A-84E7-1516380752B7-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q83"
+   },
+   {
+    "entity_id": "AA8C0BC8-0E82-47CC-BA35-2BCAB04E87F2",
+    "name": "Brain",
+    "affinity": 0.9439,
+    "lift": 1.0082,
+    "why": "Driven by fans of Wreckfest 14%, The Crew 2 14%, Need for Speed Heat 13%. Qloo tags: Electronic, Metalcore, Acid Techno.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/AA8C0BC8-0E82-47CC-BA35-2BCAB04E87F2-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q83"
+   },
+   {
+    "entity_id": "6EC0239A-8FE4-4BB6-A8CA-36612FD75F8A",
+    "name": "Slushii",
+    "affinity": 0.9468,
+    "lift": 1.0056,
+    "why": "Driven by fans of The Crew 2 13%, Wreckfest 13%, SpinTires 13%. Qloo tags: Emotions, Electronic, Skrillex, Dynamic.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/6EC0239A-8FE4-4BB6-A8CA-36612FD75F8A-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q83"
+   },
+   {
+    "entity_id": "75AD3340-3D54-4C47-B6C7-F8738A284986",
+    "name": "Neffex",
+    "affinity": 0.9475,
+    "lift": 1.0053,
+    "why": "Driven by fans of Need for Speed Heat 14%, The Crew 2 14%, Wreckfest 14%. Qloo tags: Dynamic, Linkin Park, Versatile, Independent Rap.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/75AD3340-3D54-4C47-B6C7-F8738A284986-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q83"
+   },
+   {
+    "entity_id": "50519E96-14A1-4C7A-9F0E-97C792E4251C",
+    "name": "Riot Games Music Team",
+    "affinity": 0.9476,
+    "lift": 1.0059,
+    "why": "Driven by fans of Need for Speed Heat 13%, Wreckfest 13%, Project CARS 3 13%. Qloo tags: Rock, Video Game Music, Electronic, Dedicated.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/50519E96-14A1-4C7A-9F0E-97C792E4251C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q86"
+   },
+   {
+    "entity_id": "56331C41-1432-4197-B2D9-795C0220FBDB",
+    "name": "Scrim",
+    "affinity": 0.9391,
+    "lift": 1.0037,
+    "why": "Driven by fans of Wreckfest 14%, The Crew 2 14%, Need for Speed Heat 13%. Qloo tags: Cloud-Textured, Three 6 Mafia, Emo Rap, Dark.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/56331C41-1432-4197-B2D9-795C0220FBDB-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q86"
+   },
+   {
+    "entity_id": "D0CD8FE6-B416-4048-9148-F1E7A3930B1C",
+    "name": "Jake Paul",
+    "affinity": 0.9401,
+    "lift": 1.0025,
+    "why": "Driven by fans of The Crew 2 15%, Wreckfest 14%, Need for Speed Heat 13%. Qloo tags: Trap Rap, Energetic, No Wave, Provocative.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/D0CD8FE6-B416-4048-9148-F1E7A3930B1C-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q86"
    }
   ],
   "podcast": [
    {
-    "entity_id": "86BC43F3-A5EA-4EB2-942B-999F5AE69B4F",
-    "name": "Stuff You Should Know",
-    "affinity": 0.9285,
-    "why": "Driven by fans of Sleeping Dogs 10%, Grand Theft Auto: Liberty City Stories 10%, Mafia 10%. Qloo tags: Society & Culture, Podcasts.",
+    "entity_id": "6BF4899A-BA42-4702-8F25-A5DF71072F24",
+    "name": "Nintendo Voice Chat",
+    "affinity": 0.9339,
+    "lift": 1.0841,
+    "why": "Driven by fans of Project CARS 3 14%, Forza Horizon 4 14%, SnowRunner 14%. Qloo tags: Video Games, Leisure, Podcasts, Technology.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/86BC43F3-A5EA-4EB2-942B-999F5AE69B4F-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/6BF4899A-BA42-4702-8F25-A5DF71072F24-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "405AF1BB-3CA8-46A6-BE6D-9907438F0F0D",
-    "name": "StarTalk Radio",
-    "affinity": 0.9098,
-    "why": "Driven by fans of Grand Theft Auto Online 9%, Grand Theft Auto: Liberty City Stories 9%, Sleeping Dogs 9%. Qloo tags: Podcasts, Science, Education.",
+    "entity_id": "A6AE6E81-E095-4B6C-9B5C-39F007BB5C13",
+    "name": "Game Scoop!",
+    "affinity": 0.9328,
+    "lift": 1.0804,
+    "why": "Driven by fans of Wreckfest 14%, Forza Horizon 4 14%, SnowRunner 14%. Qloo tags: Podcasts, Video Games, Leisure.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/405AF1BB-3CA8-46A6-BE6D-9907438F0F0D-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/A6AE6E81-E095-4B6C-9B5C-39F007BB5C13-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA",
-    "name": "Radiolab",
-    "affinity": 0.9077,
-    "why": "Driven by fans of Mafia II 10%, Mafia 10%, Grand Theft Auto V 10%. Qloo tags: Podcasts, Natural Sciences, Society & Culture, Documentary.",
+    "entity_id": "BB6D70A5-52AB-43A2-997E-6D345F351FB4",
+    "name": "Podcast Beyond - IGN's PlayStation Show",
+    "affinity": 0.9452,
+    "lift": 1.0793,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Need for Speed Heat 14%. Qloo tags: Leisure, Entertainment News, Podcasts, Video Games.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/B4D6B6FD-7146-4E1C-AE48-B8EBD2BB71DA-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/BB6D70A5-52AB-43A2-997E-6D345F351FB4-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "BF80E280-A231-44B0-B98C-31C541F007E2",
-    "name": "This American Life",
-    "affinity": 0.9039,
-    "why": "Driven by fans of Mafia 10%, Grand Theft Auto V 10%, Mafia II 10%. Qloo tags: Arts, Podcasts, Society & Culture.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/BF80E280-A231-44B0-B98C-31C541F007E2-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q96"
-   },
-   {
-    "entity_id": "B64B6DC3-AFA9-4619-B4A0-23788193492B",
-    "name": "Stuff To Blow Your Mind",
+    "entity_id": "9D25C4FD-7969-432A-8C0C-7FDA79449625",
+    "name": "Rebel FM",
     "affinity": 0.9032,
-    "why": "Driven by fans of Sleeping Dogs 11%, Grand Theft Auto: Liberty City Stories 10%, Mafia 9%. Qloo tags: Natural Sciences, Life Sciences, Podcasts, Science.",
+    "lift": 1.0779,
+    "why": "Driven by fans of Wreckfest 14%, Forza Horizon 4 14%, SnowRunner 14%. Qloo tags: Podcasts, News, Tech News, Leisure.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/B64B6DC3-AFA9-4619-B4A0-23788193492B-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/9D25C4FD-7969-432A-8C0C-7FDA79449625-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "4F1F6CCE-D6CB-4678-953F-6CF91E14B691",
-    "name": "Welcome to Night Vale",
-    "affinity": 0.8968,
-    "why": "Driven by fans of Grand Theft Auto: Liberty City Stories 10%, Sleeping Dogs 10%, Mafia II 9%. Qloo tags: Science Fiction, Fiction, Podcasts.",
+    "entity_id": "0A111EEE-22BC-48A6-89D9-A98643DDC90A",
+    "name": "Sacred Symbols: A PlayStation Podcast",
+    "affinity": 0.9201,
+    "lift": 1.0777,
+    "why": "Driven by fans of Need for Speed Heat 14%, Project CARS 3 14%, SnowRunner 14%. Qloo tags: Video Games, Podcasts, Leisure, Games.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/4F1F6CCE-D6CB-4678-953F-6CF91E14B691-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/0A111EEE-22BC-48A6-89D9-A98643DDC90A-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "A853E5FD-30E2-4ECC-9E9A-D3B939AC742D",
-    "name": "TED Radio Hour",
-    "affinity": 0.8896,
-    "why": "Driven by fans of Grand Theft Auto Online 10%, Mafia II 10%, Mafia 10%. Qloo tags: Science, Technology, Podcasts, Social Sciences.",
+    "entity_id": "904C4BDB-AB4D-4363-A7D2-1A1378C0B2BA",
+    "name": "DLC",
+    "affinity": 0.8946,
+    "lift": 1.0772,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Forza Horizon 4 14%. Qloo tags: Podcasts, Technology, Video Games, Leisure.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/A853E5FD-30E2-4ECC-9E9A-D3B939AC742D-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/904C4BDB-AB4D-4363-A7D2-1A1378C0B2BA-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q77"
    },
    {
-    "entity_id": "6FD93241-4920-4325-8983-F0A0AFE2219A",
-    "name": "How To Do Everything",
-    "affinity": 0.8884,
-    "why": "Driven by fans of Mafia II 10%, Mafia 10%, Grand Theft Auto Online 10%. Qloo tags: Podcasts, Society & Culture.",
+    "entity_id": "7AC32C05-AE2D-4210-95F4-785E07AA597E",
+    "name": "Weekend Confirmed: The Video Game Show",
+    "affinity": 0.9122,
+    "lift": 1.0749,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Forza Horizon 4 14%. Qloo tags: Leisure, Technology, Video Games, Podcasts.",
     "city": null,
+    "image_url": "https://images.qloo.com/i/7AC32C05-AE2D-4210-95F4-785E07AA597E-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q77"
+   },
+   {
+    "entity_id": "DD70BA47-4868-405F-BB88-DFD09AAABD34",
+    "name": "Podcast Unlocked",
+    "affinity": 0.9305,
+    "lift": 1.0734,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Forza Horizon 4 14%. Qloo tags: News, Tech News, Leisure, Podcasts.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/DD70BA47-4868-405F-BB88-DFD09AAABD34-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q77"
+   },
+   {
+    "entity_id": "251F8255-0B43-4053-BDD2-8831B93DC46B",
+    "name": "PS I Love You XOXO: PlayStation Podcast by Kinda Funny",
+    "affinity": 0.9285,
+    "lift": 1.0321,
+    "why": "Driven by fans of Wreckfest 14%, Forza Horizon 4 14%, SnowRunner 14%. Qloo tags: Leisure, Games, Video Games, Podcasts.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/251F8255-0B43-4053-BDD2-8831B93DC46B-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q81"
+   },
+   {
+    "entity_id": "004A2088-7050-40EC-A9B3-9DA2E51CA61F",
+    "name": "The Talk Show With John Gruber",
+    "affinity": 0.9061,
+    "lift": 1.0204,
+    "why": "Driven by fans of SpinTires 14%, American Truck Simulator 14%, Forza Horizon 4 12%. Qloo tags: Technology, Podcasts.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/004A2088-7050-40EC-A9B3-9DA2E51CA61F-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q81"
+   },
+   {
+    "entity_id": "0C27CB6C-BE83-4120-AF59-78BF0FC0C888",
+    "name": "The Indoor Kids with Kumail Nanjiani and Emily V. Gordon",
+    "affinity": 0.9123,
+    "lift": 1.0104,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Forza Horizon 4 14%.",
+    "city": "Istanbul",
     "image_url": null,
     "source": "qloo",
-    "result_id": "q96"
+    "result_id": "q81"
    },
    {
-    "entity_id": "B3E6D9CD-28AE-4ABE-8592-C8E2949657AD",
-    "name": "Freakonomics Radio",
-    "affinity": 0.927,
-    "why": "Driven by fans of Grand Theft Auto Online 10%, Mafia 10%, Mafia II 10%. Qloo tags: Society & Culture, Podcasts, Documentary.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/B3E6D9CD-28AE-4ABE-8592-C8E2949657AD-420x-auto.jpg",
+    "entity_id": "7AE2A666-D64C-4599-8A86-A0B9061B3DD2",
+    "name": "Waveform: The MKBHD Podcast",
+    "affinity": 0.9212,
+    "lift": 1.008,
+    "why": "Driven by fans of SpinTires 13%, American Truck Simulator 13%, Need for Speed Heat 13%. Qloo tags: Podcasts, Technology, News, Tech News.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/7AE2A666-D64C-4599-8A86-A0B9061B3DD2-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q100"
+    "result_id": "q81"
    },
    {
-    "entity_id": "2BBC8913-13CA-47A3-BCD0-B48E70D6B005",
-    "name": "The Joe Rogan Experience",
-    "affinity": 0.924,
-    "why": "Driven by fans of Grand Theft Auto: Chinatown Wars 9%, Grand Theft Auto Online 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Podcasts, Comedy.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/2BBC8913-13CA-47A3-BCD0-B48E70D6B005-420x-auto.jpg",
+    "entity_id": "CC4ADED4-65CD-4019-ADAE-97E467FCD8D8",
+    "name": "Lex Fridman Podcast",
+    "affinity": 0.8952,
+    "lift": 1.0037,
+    "why": "Driven by fans of SpinTires 15%, American Truck Simulator 15%, The Crew 2 13%. Qloo tags: Science, Podcasts, Technology.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/CC4ADED4-65CD-4019-ADAE-97E467FCD8D8-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q100"
+    "result_id": "q84"
    },
    {
-    "entity_id": "462310FD-79D1-4909-9EFC-9D5C7A9D66C2",
-    "name": "The Steve Austin Show",
-    "affinity": 0.9219,
-    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 12%, Grand Theft Auto: Chinatown Wars 12%, Mafia III 9%. Qloo tags: Society & Culture, Podcasts, Sports, Wrestling.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/462310FD-79D1-4909-9EFC-9D5C7A9D66C2-420x-auto.jpg",
+    "entity_id": "54D37AF1-071B-4E26-A1C8-D41CC826B8D9",
+    "name": "MMA Fighting",
+    "affinity": 0.9046,
+    "lift": 1.0033,
+    "why": "Driven by fans of Need for Speed Heat 13%, Project CARS 3 13%, SnowRunner 13%. Qloo tags: News, Sports News, Sports, Podcasts.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/54D37AF1-071B-4E26-A1C8-D41CC826B8D9-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q100"
+    "result_id": "q84"
+   },
+   {
+    "entity_id": "D13E13AE-8808-454C-B298-B71F68C82A21",
+    "name": "Hello Internet",
+    "affinity": 0.9002,
+    "lift": 1.0017,
+    "why": "Driven by fans of American Truck Simulator 16%, SpinTires 16%, Project CARS 3 12%. Qloo tags: Education, Podcasts.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/D13E13AE-8808-454C-B298-B71F68C82A21-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q84"
+   },
+   {
+    "entity_id": "79012B13-F952-486D-A680-36D72A84BB53",
+    "name": "Giant Bombcast",
+    "affinity": 0.9327,
+    "lift": 1.029,
+    "why": "Driven by fans of Wreckfest 14%, SnowRunner 14%, Forza Horizon 4 14%. Qloo tags: Technology, Leisure, Video Games, Podcasts.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/79012B13-F952-486D-A680-36D72A84BB53-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q87"
+   },
+   {
+    "entity_id": "D3D6C80A-85A9-4729-A461-FCC2EBBCCB4F",
+    "name": "The Comedy Button",
+    "affinity": 0.9126,
+    "lift": 1.0233,
+    "why": "Driven by fans of Wreckfest 14%, Forza Horizon 4 14%, SnowRunner 14%. Qloo tags: Leisure, Podcasts, Comedy, Video Games.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/D3D6C80A-85A9-4729-A461-FCC2EBBCCB4F-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q87"
+   },
+   {
+    "entity_id": "B0301BD4-0C7E-406B-AF4C-4D618EC47182",
+    "name": "Shut Up & Sit Down",
+    "affinity": 0.8892,
+    "lift": 1.0113,
+    "why": "Driven by fans of Wreckfest 13%, Forza Horizon 4 13%, Project CARS 3 13%. Qloo tags: Podcasts, Leisure, Games.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/B0301BD4-0C7E-406B-AF4C-4D618EC47182-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q87"
    }
   ],
   "movie": [
    {
-    "entity_id": "4BBDFF4E-CAA6-4762-A1C7-0232698D5375",
-    "name": "Cartel Land",
-    "affinity": 0.9002,
-    "why": "Driven by fans of Mafia III 9%, Mafia II 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Illegal drug trade, Listening to a radio, Murder of an innocent person, Interrogation.",
+    "entity_id": "3D983422-7472-4A4C-B1E0-C6E276AD9620",
+    "name": "Sicario: Day of the Soldado",
+    "affinity": 0.8992,
+    "lift": 1.0658,
+    "why": "Driven by fans of Need for Speed Heat 14%, Wreckfest 14%, The Crew 2 13%. Qloo tags: Ziptied restraints, Terrorist plot, Federal agent, News report.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/4BBDFF4E-CAA6-4762-A1C7-0232698D5375-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/3D983422-7472-4A4C-B1E0-C6E276AD9620-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "B6CF3B6B-C5B8-46B8-B305-9A2A84F0229B",
-    "name": "The Imposter",
-    "affinity": 0.8976,
-    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 10%, Sleeping Dogs 10%, Mafia II 9%. Qloo tags: Identity, Biographical documentary, Home video, Moody.",
+    "entity_id": "0E3F7B94-E60E-4943-BDC1-3BBE448CE97C",
+    "name": "The Equalizer 2",
+    "affinity": 0.8987,
+    "lift": 1.065,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 14%, Forza Horizon 4 14%. Qloo tags: Apartment, Old friends reunited, One against many, Home invasion.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/B6CF3B6B-C5B8-46B8-B305-9A2A84F0229B-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/0E3F7B94-E60E-4943-BDC1-3BBE448CE97C-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "E2E67E68-DD05-4607-926F-F8CB8DB9653F",
-    "name": "Victoria",
-    "affinity": 0.8913,
-    "why": "Driven by fans of Grand Theft Auto: Chinatown Wars 9%, Sleeping Dogs 9%, Grand Theft Auto: Vice City Stories 9%. Qloo tags: Disguise, Intimate, Stalled car, Consequences.",
+    "entity_id": "7EE7F3A1-5A0B-47C7-8AE9-EFF23AF0AAEE",
+    "name": "Triple Frontier",
+    "affinity": 0.9015,
+    "lift": 1.0649,
+    "why": "Driven by fans of Need for Speed Heat 14%, Wreckfest 14%, The Crew 2 13%. Qloo tags: Drug cartel, Punched in the face, Snow, Special forces.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/E2E67E68-DD05-4607-926F-F8CB8DB9653F-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/7EE7F3A1-5A0B-47C7-8AE9-EFF23AF0AAEE-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "126D71E7-467C-4665-BE23-F7310D988F5D",
-    "name": "Citizenfour",
-    "affinity": 0.8912,
-    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 9%, Mafia II 9%, Mafia 9%. Qloo tags: Government surveillance, Cia central intelligence agency, Telecommunication, Journalist.",
+    "entity_id": "CC6C9740-3AAA-42BD-B268-F83F9F09875C",
+    "name": "Bad Boys for Life",
+    "affinity": 0.9048,
+    "lift": 1.0457,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Taser, Desert eagle, Kicking in a door, Laptop computer.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/126D71E7-467C-4665-BE23-F7310D988F5D-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/CC6C9740-3AAA-42BD-B268-F83F9F09875C-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "FF7A2377-967C-4BF5-A321-5CA978E46597",
-    "name": "The Overnighters",
-    "affinity": 0.8897,
-    "why": "Driven by fans of Mafia III 9%, Grand Theft Auto: Vice City Stories 9%, Mafia II 9%. Qloo tags: Americana, Motor home, Amtrak, Arrest photograph.",
+    "entity_id": "D4E27EC5-8F3F-465A-9FC5-6BBB904655D3",
+    "name": "Gemini Man",
+    "affinity": 0.9021,
+    "lift": 1.036,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 15%, Forza Horizon 4 15%. Qloo tags: Escape, Fight, Rescue, Warrior.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/FF7A2377-967C-4BF5-A321-5CA978E46597-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/D4E27EC5-8F3F-465A-9FC5-6BBB904655D3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "908A2CF3-B8F1-47CD-BFB3-BB11B52B3763",
-    "name": "The Internet's Own Boy: The Story of Aaron Swartz",
-    "affinity": 0.8893,
-    "why": "Driven by fans of Mafia II 9%, Grand Theft Auto: Vice City Stories 9%, Watch Dogs 2 9%. Qloo tags: Technology, Technically literate, Apostrophe in title, Archive footage.",
+    "entity_id": "C6EC2D1E-80D8-4D69-9F40-4A1CE0CCCB8A",
+    "name": "6 Underground",
+    "affinity": 0.9037,
+    "lift": 1.0316,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 14%, Forza Horizon 4 14%. Qloo tags: Deadpan humor, Nonlinear timeline, The rebel, California.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/908A2CF3-B8F1-47CD-BFB3-BB11B52B3763-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/C6EC2D1E-80D8-4D69-9F40-4A1CE0CCCB8A-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE",
-    "name": "Drive",
-    "affinity": 0.8891,
-    "why": "Driven by fans of Sleeping Dogs 10%, Grand Theft Auto V 10%, Mafia II 9%. Qloo tags: Ambient music, Ford mustang, Breaking hand, Movie camera.",
+    "entity_id": "EA88B246-E177-42D6-9853-0CAABCC09B97",
+    "name": "Shaft",
+    "affinity": 0.9008,
+    "lift": 1.0312,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Family dramas, Warrior, Sociopath, Pistol.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/81AD2DF6-5C6E-4093-BF8A-A12EE901D6BE-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/EA88B246-E177-42D6-9853-0CAABCC09B97-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "59DF86CF-3705-4FA4-ABF8-E62966696AA3",
-    "name": "Going Clear: Scientology & the Prison of Belief",
-    "affinity": 0.8877,
-    "why": "Driven by fans of Mafia II 9%, Grand Theft Auto: Vice City Stories 9%, Mafia III 9%. Qloo tags: Reference to las vegas nevada, Lake, Bucket on head, Year 1987.",
+    "entity_id": "D2DF5D6E-1233-4B1C-BB40-45FDD1382819",
+    "name": "Ford v Ferrari",
+    "affinity": 0.9015,
+    "lift": 1.0302,
+    "why": "Driven by fans of Wreckfest 14%, Need for Speed Heat 14%, The Crew 2 13%. Qloo tags: Man wears eyeglasses, Telephone call, Drama, Ferrari car.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/59DF86CF-3705-4FA4-ABF8-E62966696AA3-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/D2DF5D6E-1233-4B1C-BB40-45FDD1382819-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q97"
+    "result_id": "q78"
    },
    {
-    "entity_id": "7E20CCDC-5D12-42B4-9376-DA9B7925B1A4",
-    "name": "Hotel Mumbai",
-    "affinity": 0.8818,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Watch Dogs 2 10%, Mafia III 9%. Qloo tags: Cafe, Place name in title, Islam, Automatic gunfire.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/7E20CCDC-5D12-42B4-9376-DA9B7925B1A4-420x-auto.jpg",
+    "entity_id": "D5D711E5-14A8-4FC1-BA77-63B74B12557D",
+    "name": "Creed II",
+    "affinity": 0.9445,
+    "lift": 1.0172,
+    "why": "Driven by fans of Wreckfest 16%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Knocked unconscious, Visiting fathers grave, Mother son relationship, Ex boxer.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/D5D711E5-14A8-4FC1-BA77-63B74B12557D-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q101"
+    "result_id": "q82"
    },
    {
-    "entity_id": "E523E848-A767-4F4B-9ED4-4FFF7B770242",
-    "name": "The White Tiger",
-    "affinity": 0.881,
-    "why": "Driven by fans of Watch Dogs 2 10%, Tom Clancy's Ghost Recon: Wildlands 10%, Sleeping Dogs 9%. Qloo tags: Drama, Neo noir, Entrepreneurship, Ambitious.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/E523E848-A767-4F4B-9ED4-4FFF7B770242-420x-auto.jpg",
+    "entity_id": "193E3A06-27B2-4368-AD69-A227A3EBE635",
+    "name": "The Gentlemen",
+    "affinity": 0.9355,
+    "lift": 1.0167,
+    "why": "Driven by fans of Need for Speed Heat 14%, Wreckfest 14%, The Crew 2 13%. Qloo tags: Drugs, Newspaper headline, Gay, Camera.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/193E3A06-27B2-4368-AD69-A227A3EBE635-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q101"
-   },
-   {
-    "entity_id": "E0025A3E-7DA7-4ED7-91A0-6B305B35FA09",
-    "name": "Naa Peru Surya, Naa Illu India",
-    "affinity": 0.881,
-    "why": "Driven by fans of Mafia III 10%, Grand Theft Auto Online 9%, Sleeping Dogs 9%. Qloo tags: Polished, Redemption, Drama, Ambitious.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/E0025A3E-7DA7-4ED7-91A0-6B305B35FA09-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q101"
-   },
-   {
-    "entity_id": "C785D047-628D-43ED-89E5-0A6874D43FFF",
-    "name": "Deva",
-    "affinity": 0.8808,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Grand Theft Auto: Liberty City Stories 9%, Watch Dogs 2 9%. Qloo tags: Charismatic, Villain as protagonist, Character name as title, Twist ending.",
-    "city": "Mumbai",
-    "image_url": "https://images.qloo.com/i/C785D047-628D-43ED-89E5-0A6874D43FFF-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q101"
+    "result_id": "q82"
    },
    {
     "entity_id": "AB64C7F6-60F4-4C15-A0F8-8E2D59174595",
     "name": "The Irishman",
-    "affinity": 0.8811,
-    "why": "Driven by fans of Sleeping Dogs 9%, Watch Dogs 2 9%, Tom Clancy's Ghost Recon: Wildlands 9%. Qloo tags: Cigarette smoking, Character driven, Crime, Near death experience.",
-    "city": "Delhi",
+    "affinity": 0.9377,
+    "lift": 1.0129,
+    "why": "Driven by fans of Need for Speed Heat 14%, Wreckfest 14%, The Crew 2 13%. Qloo tags: Cigarette smoking, Character driven, Crime, Near death experience.",
+    "city": "Istanbul",
     "image_url": "https://images.qloo.com/i/AB64C7F6-60F4-4C15-A0F8-8E2D59174595-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q104"
+    "result_id": "q82"
    },
    {
-    "entity_id": "5F98082A-A0AC-4453-8D8B-FCFBCB9ED4C0",
-    "name": "Joker",
-    "affinity": 0.879,
-    "why": "Driven by fans of Grand Theft Auto Online 11%, Watch Dogs 2 10%, Tom Clancy's Ghost Recon: Wildlands 9%. Qloo tags: Money problems, Cynicism, Bus, Happy face.",
+    "entity_id": "4B2FE1FB-5234-4F3F-90C1-5B713C3E6A49",
+    "name": "No Time to Die",
+    "affinity": 0.9389,
+    "lift": 1.0102,
+    "why": "Driven by fans of Project CARS 3 15%, Wreckfest 15%, Need for Speed Heat 15%. Qloo tags: Bravery, Little girl, Wine cellar, One against many.",
+    "city": "Istanbul",
+    "image_url": "https://images.qloo.com/i/4B2FE1FB-5234-4F3F-90C1-5B713C3E6A49-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q82"
+   },
+   {
+    "entity_id": "7E20CCDC-5D12-42B4-9376-DA9B7925B1A4",
+    "name": "Hotel Mumbai",
+    "affinity": 0.9184,
+    "lift": 1.0279,
+    "why": "Driven by fans of Need for Speed Heat 14%, The Crew 2 14%, Wreckfest 14%. Qloo tags: Cafe, Place name in title, Islam, Automatic gunfire.",
     "city": "Delhi",
-    "image_url": "https://images.qloo.com/i/5F98082A-A0AC-4453-8D8B-FCFBCB9ED4C0-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/7E20CCDC-5D12-42B4-9376-DA9B7925B1A4-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q104"
+    "result_id": "q85"
    },
    {
-    "entity_id": "E2894C83-A497-4A2F-A3C6-E7DDF4A835EC",
-    "name": "Borat Subsequent Moviefilm",
-    "affinity": 0.8829,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 10%, Grand Theft Auto Online 10%, Watch Dogs 2 10%. Qloo tags: Reference to rudy giuliani, Cringe comedy, Reading a story, Farce comedy.",
-    "city": "Dubai",
-    "image_url": "https://images.qloo.com/i/E2894C83-A497-4A2F-A3C6-E7DDF4A835EC-420x-auto.jpg",
+    "entity_id": "A7C3208D-E9AB-4D36-B0FE-24664503DF09",
+    "name": "Mission: Impossible - Fallout",
+    "affinity": 0.9363,
+    "lift": 1.0091,
+    "why": "Driven by fans of Forza Horizon 4 15%, Wreckfest 15%, Need for Speed Heat 14%. Qloo tags: Gun, Nurse, High stakes, Chases.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/A7C3208D-E9AB-4D36-B0FE-24664503DF09-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q107"
+    "result_id": "q85"
+   },
+   {
+    "entity_id": "D60AC5D8-86C8-403C-8EE4-670DAB60F168",
+    "name": "Fighting with My Family",
+    "affinity": 0.9202,
+    "lift": 1.0074,
+    "why": "Driven by fans of Wreckfest 16%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Ford van, Tryouts, Name calling, Sports documentaries.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/D60AC5D8-86C8-403C-8EE4-670DAB60F168-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q85"
+   },
+   {
+    "entity_id": "5FBD6E83-5887-41CC-B9D4-C6A2C8931448",
+    "name": "John Wick: Chapter 3 - Parabellum",
+    "affinity": 0.9332,
+    "lift": 1.0062,
+    "why": "Driven by fans of Wreckfest 16%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Drama, Umbrella, Consequences, Teleportation.",
+    "city": "Delhi",
+    "image_url": "https://images.qloo.com/i/5FBD6E83-5887-41CC-B9D4-C6A2C8931448-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q85"
+   },
+   {
+    "entity_id": "DCA9DBE4-3700-4A9E-9315-C06BD6CEA4EC",
+    "name": "Ad Astra",
+    "affinity": 0.9321,
+    "lift": 1.0096,
+    "why": "Driven by fans of Wreckfest 14%, Need for Speed Heat 14%, Forza Horizon 4 13%. Qloo tags: Characters point of view camera shot, Co written by director, Intimate, Brawl.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/DCA9DBE4-3700-4A9E-9315-C06BD6CEA4EC-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q88"
+   },
+   {
+    "entity_id": "BA911BB0-8B1A-4D62-8E8C-95115272B943",
+    "name": "Tenet",
+    "affinity": 0.9313,
+    "lift": 1.005,
+    "why": "Driven by fans of Wreckfest 14%, Need for Speed Heat 14%, Project CARS 3 14%. Qloo tags: Brave, Mission, Father son relationship, Sailing.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/BA911BB0-8B1A-4D62-8E8C-95115272B943-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q88"
+   },
+   {
+    "entity_id": "601B4DBE-43C1-4290-A5D2-90AF73AEF9DF",
+    "name": "Glass",
+    "affinity": 0.9505,
+    "lift": 1.0024,
+    "why": "Driven by fans of Wreckfest 15%, Forza Horizon 4 15%, Need for Speed Heat 14%. Qloo tags: Headphones, Murder of son, Electronic monitoring, Female psychiatrist.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/601B4DBE-43C1-4290-A5D2-90AF73AEF9DF-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q88"
+   },
+   {
+    "entity_id": "C28B27A0-014C-4000-ACBC-342E1ED0DC99",
+    "name": "Bohemian Rhapsody",
+    "affinity": 0.9422,
+    "lift": 1.0016,
+    "why": "Driven by fans of Wreckfest 15%, Need for Speed Heat 15%, Forza Horizon 4 14%. Qloo tags: Polyamory, Songwriting, Polished, Crying man.",
+    "city": "Warsaw",
+    "image_url": "https://images.qloo.com/i/C28B27A0-014C-4000-ACBC-342E1ED0DC99-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q88"
    }
   ],
   "brand": [
    {
-    "entity_id": "13C23581-CFEB-4865-8878-79109D14BAD3",
-    "name": "Twitch",
-    "affinity": 0.9775,
-    "why": "Driven by fans of Sleeping Dogs 8%, Watch Dogs 2 8%, Mafia III 8%. Qloo tags: Energetic, Inclusive, Interactive, Authentic.",
+    "entity_id": "423CD022-0BFB-43F5-89E5-00829C8206EB",
+    "name": "Newegg",
+    "affinity": 0.932,
+    "lift": 1.0149,
+    "why": "Driven by fans of Wreckfest 13%, SpinTires 13%, American Truck Simulator 13%. Qloo tags: Knowledgeable, Technical, Empowering, Enthusiastic.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/13C23581-CFEB-4865-8878-79109D14BAD3-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/423CD022-0BFB-43F5-89E5-00829C8206EB-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q98"
+    "result_id": "q79"
    },
    {
-    "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
-    "name": "Elgato",
-    "affinity": 0.977,
-    "why": "Driven by fans of Watch Dogs 2 8%, Mafia III 8%, Grand Theft Auto: Chinatown Wars 8%. Qloo tags: Technical, Efficient, Creative, Precise.",
+    "entity_id": "25DBF2FB-D374-48D1-943C-BCE947AB3679",
+    "name": "Digital Storm Online",
+    "affinity": 0.9625,
+    "lift": 1.0145,
+    "why": "Driven by fans of Wreckfest 13%, SpinTires 13%, American Truck Simulator 13%. Qloo tags: Precise, Powerful, Professional, Dedicated.",
     "city": null,
-    "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+    "image_url": "https://images.qloo.com/i/25DBF2FB-D374-48D1-943C-BCE947AB3679-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q98"
-   },
-   {
-    "entity_id": "1E282763-BA57-45E7-A0AE-D664F3D93EBF",
-    "name": "Electronic Arts",
-    "affinity": 0.975,
-    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 9%, Saints Row 9%, Grand Theft Auto: Liberty City Stories 8%. Qloo tags: Exciting, Competitive, Immersive, Engaging.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/1E282763-BA57-45E7-A0AE-D664F3D93EBF-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q98"
-   },
-   {
-    "entity_id": "75D1595F-016E-4050-A30F-2378CDCEB3C0",
-    "name": "Xbox",
-    "affinity": 0.9745,
-    "why": "Driven by fans of Grand Theft Auto: Vice City Stories 8%, Saints Row 8%, Grand Theft Auto: Liberty City Stories 8%. Qloo tags: Exciting, Engaging, Competitive, Innovative.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/75D1595F-016E-4050-A30F-2378CDCEB3C0-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q98"
-   },
-   {
-    "entity_id": "D73F5D9A-6A4B-447F-9041-09813F22F85E",
-    "name": "Razer",
-    "affinity": 0.9725,
-    "why": "Driven by fans of Grand Theft Auto Online 9%, Grand Theft Auto: Chinatown Wars 8%, Grand Theft Auto V 8%. Qloo tags: Bold, Aggressive, High-Tech, Immersive.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/D73F5D9A-6A4B-447F-9041-09813F22F85E-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q98"
-   },
-   {
-    "entity_id": "5F55E5CB-3F3A-4B04-B794-E134A0835CD5",
-    "name": "Nvidia",
-    "affinity": 0.971,
-    "why": "Driven by fans of Grand Theft Auto V 9%, Grand Theft Auto: Chinatown Wars 8%, Saints Row 8%. Qloo tags: Innovative, Advanced, Reliable, Powerful.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/5F55E5CB-3F3A-4B04-B794-E134A0835CD5-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q98"
-   },
-   {
-    "entity_id": "1E74E760-63C9-48E9-89A0-6716C9C14E8B",
-    "name": "Playstation",
-    "affinity": 0.9646,
-    "why": "Driven by fans of Mafia II 8%, Grand Theft Auto: Liberty City Stories 8%, Grand Theft Auto V 8%. Qloo tags: Exciting, Immersive, Innovative, Dynamic.",
-    "city": null,
-    "image_url": "https://images.qloo.com/i/1E74E760-63C9-48E9-89A0-6716C9C14E8B-420x-auto.jpg",
-    "source": "qloo",
-    "result_id": "q98"
+    "result_id": "q79"
    },
    {
     "entity_id": "AD151998-3985-48D3-B8D1-EE22DE1101F3",
     "name": "ASTRO Gaming",
-    "affinity": 0.9636,
-    "why": "Driven by fans of Tom Clancy's Ghost Recon: Wildlands 8%, Grand Theft Auto: Liberty City Stories 8%, Mafia III 8%. Qloo tags: Competitive, Technical, Immersive, Precise.",
+    "affinity": 0.9525,
+    "lift": 1.0135,
+    "why": "Driven by fans of Forza Horizon 4 13%, The Crew 2 13%, Need for Speed Heat 13%. Qloo tags: Competitive, Technical, Immersive, Precise.",
     "city": null,
     "image_url": "https://images.qloo.com/i/AD151998-3985-48D3-B8D1-EE22DE1101F3-420x-auto.jpg",
     "source": "qloo",
-    "result_id": "q98"
+    "result_id": "q79"
+   },
+   {
+    "entity_id": "0EFBE144-D084-4FAA-899B-546E22CACA24",
+    "name": "Turtle Beach",
+    "affinity": 0.9411,
+    "lift": 1.0109,
+    "why": "Driven by fans of Forza Horizon 4 13%, Need for Speed Heat 13%, Wreckfest 13%. Qloo tags: Competitive, Technical, Focused, Immersive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/0EFBE144-D084-4FAA-899B-546E22CACA24-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q79"
+   },
+   {
+    "entity_id": "833AE07F-49EA-41CB-824E-0FB6118F2D1D",
+    "name": "EVGA Corporation",
+    "affinity": 0.9663,
+    "lift": 1.0097,
+    "why": "Driven by fans of American Truck Simulator 13%, SpinTires 13%, Wreckfest 13%. Qloo tags: Technical, Reliable, Performance-Driven, Competitive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/833AE07F-49EA-41CB-824E-0FB6118F2D1D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q79"
+   },
+   {
+    "entity_id": "1680C451-3A9C-42F1-AB27-4A55017A545D",
+    "name": "Hyper X",
+    "affinity": 0.9677,
+    "lift": 1.0086,
+    "why": "Driven by fans of American Truck Simulator 13%, SpinTires 13%, Wreckfest 13%. Qloo tags: Competitive, Empowering, Reliable, Inclusive.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/1680C451-3A9C-42F1-AB27-4A55017A545D-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q79"
+   },
+   {
+    "entity_id": "308D55EE-BF6C-4A6D-9497-4F853EE91579",
+    "name": "Elgato",
+    "affinity": 0.972,
+    "lift": 1.0082,
+    "why": "Driven by fans of Forza Horizon 4 13%, The Crew 2 13%, Need for Speed Heat 13%. Qloo tags: Technical, Efficient, Creative, Precise.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/308D55EE-BF6C-4A6D-9497-4F853EE91579-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q79"
+   },
+   {
+    "entity_id": "7C51CEE5-FADC-4E9F-8A43-2EF50017D5DE",
+    "name": "Cooler Master",
+    "affinity": 0.9576,
+    "lift": 1.0082,
+    "why": "Driven by fans of American Truck Simulator 13%, SpinTires 13%, Wreckfest 13%. Qloo tags: Innovative, Technical, Empowering, Reliable.",
+    "city": null,
+    "image_url": "https://images.qloo.com/i/7C51CEE5-FADC-4E9F-8A43-2EF50017D5DE-420x-auto.jpg",
+    "source": "qloo",
+    "result_id": "q79"
    }
   ]
  },
@@ -1253,23 +1552,23 @@
   "sections": [
    {
     "heading": "Where to Launch",
-    "body": "According to the affinity index, the top three cities are **Mumbai** (spawn score 2.49, confidence high) [q69], **Delhi** (spawn score 2.12, confidence high) [q64], and **Dubai** (spawn score 2.06, confidence high) [q59]. The ranking of these cities is influenced by the setting's audience, which includes culture anchors such as **Gully Boy**, **3 Idiots**, **Arijit Singh**, and **Sacred Games** [q2]."
+    "body": "Based on the affinity index, the top three cities for **Long Haul** are **Istanbul** with a spawn score of 1.21 and high confidence [q55], **Delhi** with a spawn score of 1.12 and high confidence [q59], and **Warsaw** with a spawn score of 1.12 and high confidence [q31]."
    },
    {
     "heading": "Who the Players Are",
-    "body": "The audience skews male +28.0% and female -28.0% [q94]. Age skews include +0.8% for 25-29, -8.4% for 24 and under, -17.4% for 30-34, -11.7% for 35-44, -15.8% for 45-54, and -25.3% for 55+ [q94]."
+    "body": "The audience skews male by +37.1% and female by -37.1% [q75]. Age skews include +1.8% for 35-44, -5.7% for 24 and under, -10.5% for 25-29, -14.6% for 30-34, -28.9% for 45-54, and -21.4% for 55+ [q75]."
    },
    {
     "heading": "Who to Partner With",
-    "body": "Potential brand partners include **Twitch**, **Elgato**, **Electronic Arts**, **Xbox**, and **Razer** [q98]. Artist partnerships could include **blink-182**, **Limp Bizkit**, **DrefGold**, **Red Hot Chili Peppers**, or **Rage Against the Machine** [q95]."
+    "body": "Potential partners include artists **Jaroslav Beck**, **FamilyJules**, **Mick Gordon**, **Mike Ault**, and **Friedrich Habetler** [q76]. Brand partnerships could include **Newegg**, **Digital Storm Online**, **ASTRO Gaming**, **Turtle Beach**, and **EVGA Corporation** [q79]."
    },
    {
     "heading": "How to Split the Budget",
-    "body": "From a total budget of $5,000.00, allocate $1,285.73 (25.71%) to **Mumbai** [q69, q73], $1,093.65 (21.87%) to **Delhi** [q64, q68], and $1,065.76 (21.32%) to **Dubai** [q59, q63]."
+    "body": "From a total budget of $5,000.00, allocate 21.34% ($1,066.79) to **Istanbul** [q55], 19.82% ($991.03) to **Delhi** [q59], and 19.71% ($985.75) to **Warsaw** [q31]."
    },
    {
     "heading": "Caveats",
-    "body": "The game **Delhi Gullies** is designed for pc and console platforms. It shares similarities with titles such as **Grand Theft Auto V**, **Sleeping Dogs**, **Watch Dogs 2**, **Mafia III**, and **Saints Row** [q1]."
+    "body": "The game is compared to **Farming Simulator 22**, **SnowRunner**, and **BeamNG.drive** [q1]. Similar titles include **Wreckfest**, **Project CARS 3**, **American Truck Simulator**, **SpinTires**, **The Crew 2**, **Need for Speed Heat**, **Forza Horizon 4**, and **Microsoft Flight Simulator** [q2]."
    }
   ],
   "source": "llm",
@@ -1277,20 +1576,27 @@
   "model": "gemma4:31b",
   "notice": null
  },
- "warnings": [],
+ "warnings": [
+  {
+   "code": "low_confidence_city",
+   "message": "Sao Paulo: low confidence"
+  }
+ ],
  "limits": [
   "Affinity index, not a sales forecast.",
   "Qloo measures taste affinity from consumption data, not sales or wishlists.",
   "New indie games are usually not in Qloo yet, so the plan works through comparable games.",
   "City-level results cannot be validated with free public data.",
   "Brands are global: Qloo brand affinity ignores location.",
-  "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps. Against Google Trends interest for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3 in 8.",
-  "Where Qloo's data is thin (for example mobile MOBAs in Southeast Asia), the ranking misses. Treat it as a taste-informed starting hypothesis."
+  "Spawn score = taste lift x platform fit x culture fit, all from Qloo heatmaps.",
+  "Accuracy: on held-out games with no real-world setting, an LLM without Qloo data found the top country (by Google Trends) more often than this ranking, which has a city-level bias. It does better when the game has a real-world setting. A Steam-review backtest on 6 shipped games also lost to plain popularity. Numbers: docs/scenario-results.md and docs/backtest-results.md.",
+  "Treat the ranking as a taste-informed starting hypothesis and test it with small campaigns.",
+  "Launch actions: languages come from a static table, not Qloo. The geo-target radius is the one Qloo's heatmap used."
  ],
  "error": null,
- "created_at": "2026-10-16T13:05:06.576928+00:00",
+ "created_at": "2026-10-20T05:29:23.771367+00:00",
  "calls": {
-  "live": 10,
-  "cached": 97
+  "live": 0,
+  "cached": 101
  }
 }

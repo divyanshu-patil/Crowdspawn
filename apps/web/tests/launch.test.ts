@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Plan } from "@repo/contracts";
-import sample from "../public/sample-plan.json";
+import sample from "../public/sample-delhi-plan.json"; // stable: the hero sample may be regenerated
 import { audienceLine, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
 
 // The sample plan with the J11/J18 fields a new plan carries: lift on partners, languages and radius on cities.

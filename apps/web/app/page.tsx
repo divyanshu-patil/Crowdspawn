@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { SpawnMap } from "../components/SpawnMap";
@@ -27,10 +28,13 @@ export default function Home() {
       <section className="section stack">
         <SpawnMap cities={plan.cities} />
         <p className="muted" style={{ maxWidth: 720 }}>
-          Sample run for <b>{plan.input.game.title}</b>, an open-world crime game set in Delhi, with comps{" "}
-          {plan.comps.map((c) => c.name).join(", ")} and the setting read through{" "}
-          {(plan.culture ?? []).map((c) => c.name).join(", ")}. Each crowd shows how much a city over-indexes on taste,
-          platform and culture together.
+          Sample run for <b>{plan.input.game.title}</b>, a {plan.input.game.tags.join(", ")} game, with comps{" "}
+          {plan.comps.map((c) => c.name).join(", ")}
+          {(plan.culture ?? []).length > 0 && <> and the setting read through {plan.culture!.map((c) => c.name).join(", ")}</>}
+          . Each crowd shows how much a city over-indexes on taste and platform together.{" "}
+          <Link className="textlink" href="/sample">
+            Open the plan
+          </Link>
         </p>
       </section>
 

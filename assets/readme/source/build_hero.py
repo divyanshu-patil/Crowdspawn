@@ -22,9 +22,10 @@ MARKER, EMBER, SIGNAL = "#fecc33", "#ff8400", "#30a81d"
 SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
 MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
 
-# Map crop in tile units (cols 106-146 = 32E-112E, rows 16-39 = 42N-4S) and its place in the hero.
-C0, R0, CW, RH = 106, 16, 40, 23
-S = 11.4
+# Map crop in tile units (cols 96-144 = 12E-108E, rows 8-34 = 58N-6N: Warsaw, Istanbul and Delhi for the
+# Long Haul sample) and its place in the hero. A new sample may need a new crop.
+C0, R0, CW, RH = 96, 8, 48, 26
+S = 9.4
 MX, MY = 690, 64
 
 
@@ -87,7 +88,7 @@ W, H = 1200, 440
 mw, mh = CW * S, RH * S
 svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
   <title id="title">Crowdspawn: find where your players already are, and who else they love, before launch day</title>
-  <desc id="desc">Pixel map of the Middle East and India with the sample plan's top spawn points: {", ".join(f"{c['name']} {c['score']:.2f}" for c in top)}.</desc>
+  <desc id="desc">Pixel map from Central Europe to India with the sample plan's top spawn points: {", ".join(f"{c['name']} {c['score']:.2f}" for c in top)}.</desc>
   <defs>
     <pattern id="sketch" width="36" height="36" patternUnits="userSpaceOnUse" x="-1" y="-1">
       <path d="M36 0H0V36" fill="none" stroke="{HAIR}" stroke-width="1"/>
@@ -130,7 +131,7 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
       <rect x="{C0}" y="{R0}" width="{CW}" height="{RH}" fill="url(#pix)"/>
     </g>
     {"".join(badges)}
-    <g id="spawn-card" transform="translate({MX + mw + 14 - 232} {MY + mh - 94})">
+    <g id="spawn-card" transform="translate({MX - 14} {MY + mh - 94})">
       <rect x="5" y="5" width="232" height="160" rx="12" fill="{INK}"/>
       <rect width="232" height="160" rx="12" fill="{PAPER}" stroke="{INK}" stroke-width="2.5"/>
       <g transform="translate(16 0)">
@@ -138,8 +139,8 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
         {rows}
       </g>
     </g>
-    <text x="{MX - 14}" y="{MY + mh + 48}" font-family="{MONO}" font-size="15" letter-spacing="1" fill="{SOFT}">SAMPLE PLAN</text>
-    <text x="{MX - 14}" y="{MY + mh + 72}" font-family="{MONO}" font-size="15" letter-spacing="1" fill="{SOFT}">{esc(PLAN["input"]["game"]["title"].upper())}</text>
+    <text x="{MX + mw + 14}" y="{MY + mh + 48}" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="1" fill="{SOFT}">SAMPLE PLAN</text>
+    <text x="{MX + mw + 14}" y="{MY + mh + 72}" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="1" fill="{SOFT}">{esc(PLAN["input"]["game"]["title"].upper())}</text>
   </g>
 </svg>
 """

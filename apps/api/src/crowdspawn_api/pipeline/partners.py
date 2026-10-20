@@ -63,7 +63,11 @@ async def fetch_kind(
         g = gamers.get(e.entity_id)
         return round(e.query.affinity / g, 4) if e.query.affinity and g else None
 
-    ranked = sorted(((e, lift(e)) for e in entities), key=lambda x: -(x[1] or 0))
+    # A lift at or below 1 means these fans like it no more than gamers there do: not a lead.
+    scored = [(e, lift(e)) for e in entities]
+    ranked = sorted(
+        ((e, lf) for e, lf in scored if lf is None or lf > 1), key=lambda x: -(x[1] or 0)
+    )
     return [
         Partner(
             entity_id=e.entity_id,

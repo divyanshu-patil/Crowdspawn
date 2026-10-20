@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
-  <title id="title">The spawn score, worked for Mumbai in the sample plan</title>
+  <title id="title">The spawn score, worked for Mumbai in the Delhi Gullies sample</title>
   <desc id="desc">Taste lift 1.05 times platform fit 0.97 times culture fit 2.45 equals a spawn score of 2.49. Taste lift compares fans of your comparable games with all gamers in the city; platform fit is how strong your platforms are there; culture fit is how much people there love the films, shows and music of your game's setting.</desc>
   <defs>
     <pattern id="sketch" width="36" height="36" patternUnits="userSpaceOnUse" x="-1" y="-1">
@@ -10,7 +10,7 @@
   <rect width="1200" height="360" rx="24" fill="#f5f5f5"/>
   <rect width="1200" height="360" rx="24" fill="url(#sketch)"/>
 
-  <text x="48" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" letter-spacing="1.5" fill="#5c5c5c">THE SPAWN SCORE · MUMBAI IN THE SAMPLE PLAN</text>
+  <text x="48" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" letter-spacing="1.5" fill="#5c5c5c">THE SPAWN SCORE · MUMBAI FOR DELHI GULLIES (SECOND SAMPLE)</text>
 
   <g id="terms" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" fill="#141414">
     <g transform="translate(48 90)">

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="Crowdspawn, a launch planner for indie games: find where your players already are, and who else they love, before launch day. A pixel map shows the sample plan's top spawn points: Mumbai 2.49, Delhi 2.12, Dubai 2.06.">
+  <img src="./assets/readme/hero.svg" width="100%" alt="Crowdspawn, a launch planner for indie games: find where your players already are, and who else they love, before launch day. A pixel map shows the sample plan's top spawn points for Long Haul, a trucking sim: Istanbul 1.21, Delhi 1.13, Warsaw 1.12.">
 </p>
 
 <p align="center">
@@ -87,7 +87,7 @@ Click anywhere, search a town or hover a popular place to zoom to it. You see th
 Every city is ranked by one transparent score. Each factor is a ratio of Qloo affinity ranks, with no tuned weights:
 
 <p align="center">
-  <img src="./assets/readme/spawn-score.svg" width="100%" alt="Spawn score for Mumbai in the sample plan: taste lift 1.05 times platform fit 0.97 times culture fit 2.45 equals 2.49.">
+  <img src="./assets/readme/spawn-score.svg" width="100%" alt="Spawn score for Mumbai in the Delhi Gullies sample (a game with culture anchors): taste lift 1.05 times platform fit 0.97 times culture fit 2.45 equals 2.49.">
 </p>
 
 - **Taste lift:** how much fans of your comparable games concentrate in the city, compared with all gamers there. "All gamers" is the mean of PC, console and mobile player panels.

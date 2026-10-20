@@ -268,29 +268,39 @@ def test_hidden_markets_rank_far_higher_for_the_game_than_for_gamers() -> None:
     assert hidden_markets(ranked, gap=5) == []
 
 
-async def test_partners_rank_by_lift_against_all_gamers(tmp_path: Path, fake_qloo: Any) -> None:
-    """J11: recorded roguelike calls (2026-10-20). Lift = comp affinity / all gamers' affinity there."""
+async def replay_partners(tmp_path: Path, recorded: dict[Any, Any]) -> Any:
+    """Run S5 on a plan's recorded partner calls (signal and top cities read from them)."""
+    import respx
+
     from crowdspawn_api.pipeline import partners
     from crowdspawn_api.qloo.client import QlooClient
     from crowdspawn_api.storage import Store
 
-    from .conftest import RECORDED, make_settings
+    from .conftest import FakeQloo, make_settings
 
-    calls = [
-        dict(k[1])
-        for k in RECORDED
-        if k[1] and dict(k[1]).get("filter.type", "").endswith("artist")
-    ]
+    calls = [dict(k[1]) for k in recorded if dict(k[1]).get("filter.type", "").endswith("artist")]
     signal = next(p for p in calls if "feature.explainability" in p)["signal.interests.entities"]
     points = {p["signal.location"] for p in calls if "signal.location" in p}
     top = [r for r in regions().values() if f"POINT({r.lon} {r.lat})" in points]
     store = await Store.open(tmp_path / "p.sqlite3")
     qloo = QlooClient(make_settings(tmp_path), store)
     try:
-        out = await partners.partners(qloo.run(), signal.split(","), {}, top)  # type: ignore[arg-type]
+        with respx.mock(assert_all_called=False) as router:
+            router.route(host="hackathon.api.qloo.com").mock(side_effect=FakeQloo(recorded))
+            out = await partners.partners(qloo.run(), signal.split(","), {}, top)  # type: ignore[arg-type]
     finally:
         await qloo.aclose()
         await store.close()
+    return top, out
+
+
+async def test_partners_rank_by_lift_against_all_gamers(tmp_path: Path) -> None:
+    """J11: recorded roguelike calls (2026-10-20). Lift = comp affinity / all gamers' affinity there."""
+    from crowdspawn_api.pipeline import partners
+
+    from .conftest import RECORDED
+
+    top, out = await replay_partners(tmp_path, RECORDED)
     assert len(top) == 3 and len(out.artist) == 8 + 3 * 4 and len(out.brand) == 8
     for kind in partners.ALL_TYPES:
         items = getattr(out, kind)
@@ -304,3 +314,22 @@ async def test_partners_rank_by_lift_against_all_gamers(tmp_path: Path, fake_qlo
     # Comp call affinity 0.93112 over the baseline call's 0.81725 for the same id (qp fixtures).
     best = out.podcast[0]
     assert (best.name, best.affinity, best.lift) == ("Retronauts", 0.9311, 1.1393)
+
+
+async def test_trucking_partners_in_istanbul_differ_from_the_global_lists(tmp_path: Path) -> None:
+    """J11 on the Long Haul sample (2026-10-20): local lists are their own, and never below lift 1.
+
+    Honest note: they differ, but they do not look Turkish (US gaming podcasts, Hollywood films) and
+    their lifts are small (1.006-1.032), so local partners are weak leads for this game.
+    """
+    from .conftest import load_recorded
+
+    top, out = await replay_partners(tmp_path, load_recorded(FIXTURES / "plan_longhaul"))
+    assert {c.name for c in top} == {"Istanbul", "Delhi", "Warsaw"}
+    for kind in ("artist", "podcast", "movie"):
+        items = getattr(out, kind)
+        here = {p.name for p in items if p.city == "Istanbul"}
+        world = {p.name for p in items if p.city is None}
+        assert here and world and not here & world
+        assert all(p.lift is None or p.lift > 1 for p in items)
+    assert [p.name for p in out.artist if p.city == "Istanbul"][0] == "Treyarch Sound"

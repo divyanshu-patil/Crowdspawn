@@ -1,5 +1,6 @@
 import Link from "next/link";
 import results from "../public/eval-results.json";
+import { Notice } from "./ui";
 
 /** Written by apps/api/scripts/scenarios.py score: never edit these numbers by hand. */
 export const EVAL = results;
@@ -51,6 +52,32 @@ export function AccuracySummary() {
         </Link>
       </p>
     </section>
+  );
+}
+
+const country = (a2: string) => new Intl.DisplayNames(["en"], { type: "region" }).of(a2) ?? a2;
+
+/** On a sample plan: what the evaluation found for this one game, from the same JSON (J19). Facts only. */
+export function SampleCallout({ game }: { game: string }) {
+  const row = EVAL.tuning.scenarios.find((r) => r.game.startsWith(`${game}:`));
+  if (!row) return null;
+  const ours = byName(EVAL.holdout.methods, "Crowdspawn")!;
+  const llm = byName(EVAL.holdout.methods, "LLM only");
+  return (
+    <Notice>
+      <b>Checked for this game:</b> among the countries we score, Google Trends puts{" "}
+      {country(row.truth_top3[0]!)} first for {row.truth}
+      {row.cancelled ? " (cancelled, never shipped)" : ""}, a real game like it. In our evaluation Crowdspawn&apos;s #1
+      city was {row.crowdspawn_city}; an LLM without Qloo data put {country(row.llm_top3[0]!)} first. This game is
+      from the set the scorer was designed on
+      {llm && llm.top1 > ours.top1
+        ? `, and on ${EVAL.holdout.n} held-out games the LLM found the top country more often (${llm.top1} vs ${ours.top1})`
+        : ""}
+      .{" "}
+      <Link className="textlink" href="/accuracy">
+        All results
+      </Link>
+    </Notice>
   );
 }
 
