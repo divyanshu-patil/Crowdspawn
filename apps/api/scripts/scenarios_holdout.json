@@ -1,0 +1,486 @@
+{
+ "_about": "Held-out accuracy scenarios, frozen on 2026-10-20 before any held-out scoring run. Games with no home-country setting, so neither the app nor an LLM can lean on a culture shortcut. Each truth is a real shipped game (release year and a source given), is never a comp, and any game whose name starts with its series name is removed from the expanded signal. Platforms are the analogue's real platforms. Comps were checked only for whether Qloo search resolves them; nothing was scored before this file was committed. Never edit after the first run.",
+ "scenarios": [
+  {
+   "id": "deckbuilder",
+   "game": "Jackpot Run: a roguelike deckbuilder about chasing huge scoring combos",
+   "comps": [
+    "Slay the Spire",
+    "Monster Train",
+    "Inscryption"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Balatro",
+    "mid": "/g/11styzdjcv",
+    "year": 2024,
+    "series": "Balatro",
+    "source": "https://en.wikipedia.org/wiki/Balatro_(video_game)"
+   },
+   "platforms": [
+    "pc",
+    "console",
+    "mobile"
+   ]
+  },
+  {
+   "id": "extraction-shooter",
+   "game": "Dead Drop: a hardcore extraction shooter where you keep only what you carry out",
+   "comps": [
+    "Hunt: Showdown",
+    "DayZ",
+    "Arma 3"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Escape from Tarkov",
+    "mid": "/g/11bxfkqm1s",
+    "year": 2017,
+    "series": "Escape from Tarkov",
+    "source": "https://en.wikipedia.org/wiki/Escape_from_Tarkov"
+   },
+   "platforms": [
+    "pc"
+   ]
+  },
+  {
+   "id": "factory",
+   "game": "Conveyor: a factory automation game about building ever larger production lines",
+   "comps": [
+    "Satisfactory",
+    "Dyson Sphere Program",
+    "Mindustry"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Factorio",
+    "mid": "/m/010ls0q7",
+    "year": 2020,
+    "series": "Factorio",
+    "source": "https://en.wikipedia.org/wiki/Factorio"
+   },
+   "platforms": [
+    "pc"
+   ]
+  },
+  {
+   "id": "city-builder",
+   "game": "Gridlock: a modern city builder about traffic, zoning and services",
+   "comps": [
+    "SimCity",
+    "Anno 1800",
+    "Frostpunk"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Cities: Skylines",
+    "mid": "/m/011x40ng",
+    "year": 2015,
+    "series": "Cities: Skylines",
+    "source": "https://en.wikipedia.org/wiki/Cities:_Skylines"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "ocean-survival",
+   "game": "Deep Shelf: an underwater survival and crafting game",
+   "comps": [
+    "The Forest",
+    "Raft",
+    "Don't Starve"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Subnautica",
+    "mid": "/g/11c3jbpyz1",
+    "year": 2018,
+    "series": "Subnautica",
+    "source": "https://en.wikipedia.org/wiki/Subnautica"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "vr-rhythm",
+   "game": "Pulse Cutter: a VR rhythm game where you slash blocks to the beat",
+   "comps": [
+    "Guitar Hero III: Legends of Rock",
+    "Rock Band 4",
+    "Thumper"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Beat Saber",
+    "mid": "/g/11f6154n1j",
+    "year": 2019,
+    "series": "Beat Saber",
+    "source": "https://en.wikipedia.org/wiki/Beat_Saber"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "sim-racing",
+   "game": "Apex Line: a realistic circuit racing sim for car lovers",
+   "comps": [
+    "Forza Motorsport 7",
+    "Project CARS 2",
+    "Assetto Corsa"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Gran Turismo 7",
+    "mid": "/g/11b6ct5wv3",
+    "year": 2022,
+    "series": "Gran Turismo",
+    "source": "https://en.wikipedia.org/wiki/Gran_Turismo_7"
+   },
+   "platforms": [
+    "console"
+   ]
+  },
+  {
+   "id": "fighting",
+   "game": "Knockdown: a 3D one-on-one fighting game",
+   "comps": [
+    "Street Fighter 6",
+    "Mortal Kombat 1",
+    "Dragon Ball FighterZ"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Tekken 8",
+    "mid": "/g/11mc7hqf9w",
+    "year": 2024,
+    "series": "Tekken",
+    "source": "https://en.wikipedia.org/wiki/Tekken_8"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "asym-horror",
+   "game": "Last Light: asymmetric multiplayer horror, four survivors against one killer",
+   "comps": [
+    "Friday the 13th: The Game",
+    "Phasmophobia",
+    "Evil Dead: The Game"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Dead by Daylight",
+    "mid": "/g/11bz0b32b7",
+    "year": 2016,
+    "series": "Dead by Daylight",
+    "source": "https://en.wikipedia.org/wiki/Dead_by_Daylight"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "car-ball",
+   "game": "Turbo Goal: arcade ball games played with rocket-powered cars",
+   "comps": [
+    "Trackmania",
+    "Brawlhalla",
+    "Gang Beasts"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Rocket League",
+    "mid": "/m/013bd3tm",
+    "year": 2015,
+    "series": "Rocket League",
+    "source": "https://en.wikipedia.org/wiki/Rocket_League"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "battle-royale",
+   "game": "Drop Zone: a realistic 100-player battle royale shooter",
+   "comps": [
+    "Apex Legends",
+    "Fortnite",
+    "Call of Duty: Warzone"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "PUBG: Battlegrounds",
+    "mid": "/g/11dxbkyrq3",
+    "year": 2017,
+    "series": "PUBG",
+    "source": "https://en.wikipedia.org/wiki/PUBG:_Battlegrounds"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "gacha-rpg",
+   "game": "Starfall Chronicles: an open-world action RPG where you collect characters through gacha banners",
+   "comps": [
+    "Honkai: Star Rail",
+    "Wuthering Waves",
+    "Tower of Fantasy"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Genshin Impact",
+    "mid": "/g/11hznck6gj",
+    "year": 2020,
+    "series": "Genshin Impact",
+    "source": "https://en.wikipedia.org/wiki/Genshin_Impact"
+   },
+   "platforms": [
+    "mobile",
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "idle",
+   "game": "Tap Empire: an idle incremental game about making numbers grow",
+   "comps": [
+    "AdVenture Capitalist",
+    "Egg, Inc.",
+    "Melvor Idle"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Cookie Clicker",
+    "mid": "/m/0y4_81q",
+    "year": 2013,
+    "series": "Cookie Clicker",
+    "source": "https://en.wikipedia.org/wiki/Cookie_Clicker"
+   },
+   "platforms": [
+    "pc",
+    "mobile"
+   ]
+  },
+  {
+   "id": "metroidvania",
+   "game": "Lantern Deep: a hand-drawn metroidvania about exploring a ruined underground kingdom",
+   "comps": [
+    "Ori and the Blind Forest",
+    "Dead Cells",
+    "Axiom Verge"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Hollow Knight",
+    "mid": "/g/11dxdxgghq",
+    "year": 2017,
+    "series": "Hollow Knight",
+    "source": "https://en.wikipedia.org/wiki/Hollow_Knight"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "soulslike",
+   "game": "Ashen Crown: an open-world dark fantasy soulslike",
+   "comps": [
+    "Dark Souls III",
+    "Bloodborne",
+    "Lies of P"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Elden Ring",
+    "mid": "/g/11h3z4_20j",
+    "year": 2022,
+    "series": "Elden Ring",
+    "source": "https://en.wikipedia.org/wiki/Elden_Ring"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "squad-tactics",
+   "game": "Squad Zero: turn-based squad tactics against an alien invasion",
+   "comps": [
+    "Into the Breach",
+    "Gears Tactics",
+    "Phoenix Point"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "XCOM 2",
+    "mid": "/m/013b3s8x",
+    "year": 2016,
+    "series": "XCOM",
+    "source": "https://en.wikipedia.org/wiki/XCOM_2"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "garage-sim",
+   "game": "Wrench Time: a garage sim about repairing and restoring cars",
+   "comps": [
+    "PowerWash Simulator",
+    "House Flipper",
+    "Gas Station Simulator"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Car Mechanic Simulator 2021",
+    "mid": "/g/11r9w4fgjx",
+    "year": 2021,
+    "series": "Car Mechanic Simulator",
+    "source": "https://en.wikipedia.org/wiki/Car_Mechanic_Simulator_2021"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "2d-sandbox",
+   "game": "Dig Deep: a 2D sandbox adventure of digging, building and boss fights",
+   "comps": [
+    "Starbound",
+    "Minecraft",
+    "Don't Starve Together"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Terraria",
+    "mid": "/m/0gttlrk",
+    "year": 2011,
+    "series": "Terraria",
+    "source": "https://en.wikipedia.org/wiki/Terraria"
+   },
+   "platforms": [
+    "pc",
+    "console",
+    "mobile"
+   ]
+  },
+  {
+   "id": "party-knockout",
+   "game": "Wobble Rush: a chaotic party game where dozens of players race through obstacle courses",
+   "comps": [
+    "Human: Fall Flat",
+    "Party Animals",
+    "Gang Beasts"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Fall Guys",
+    "mid": "/g/11hyjkpzj9",
+    "year": 2020,
+    "series": "Fall Guys",
+    "source": "https://en.wikipedia.org/wiki/Fall_Guys"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "space-explore",
+   "game": "Far Drift: space exploration and survival across endless planets",
+   "comps": [
+    "Elite Dangerous",
+    "Space Engineers",
+    "Starfield"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "No Man's Sky",
+    "mid": "/m/0zn020m",
+    "year": 2016,
+    "series": "No Man's Sky",
+    "source": "https://en.wikipedia.org/wiki/No_Man%27s_Sky"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  },
+  {
+   "id": "tactical-shooter",
+   "game": "Breach Point: a 5v5 tactical shooter with hero abilities",
+   "comps": [
+    "Counter-Strike 2",
+    "Tom Clancy's Rainbow Six Siege",
+    "Overwatch"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Valorant",
+    "mid": "/g/11j8wvrz8z",
+    "year": 2020,
+    "series": "Valorant",
+    "source": "https://en.wikipedia.org/wiki/Valorant"
+   },
+   "platforms": [
+    "pc"
+   ]
+  },
+  {
+   "id": "mobile-cards",
+   "game": "Lane Clash: real-time card battles in three-minute mobile matches",
+   "comps": [
+    "Clash of Clans",
+    "Brawl Stars",
+    "Marvel Snap"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Clash Royale",
+    "mid": "/g/11cjj5lkf_",
+    "year": 2016,
+    "series": "Clash Royale",
+    "source": "https://en.wikipedia.org/wiki/Clash_Royale"
+   },
+   "platforms": [
+    "mobile"
+   ]
+  },
+  {
+   "id": "farming-sim",
+   "game": "Harvest Machine: a realistic farming sim with heavy machinery",
+   "comps": [
+    "Ranch Simulator",
+    "Pure Farming 2018",
+    "Spintires: MudRunner"
+   ],
+   "culture": [],
+   "truth": {
+    "title": "Farming Simulator 22",
+    "mid": "/g/11rb9s8ych",
+    "year": 2021,
+    "series": "Farming Simulator",
+    "source": "https://en.wikipedia.org/wiki/Farming_Simulator_22"
+   },
+   "platforms": [
+    "pc",
+    "console"
+   ]
+  }
+ ]
+}
