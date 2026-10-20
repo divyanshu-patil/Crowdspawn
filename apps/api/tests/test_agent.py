@@ -9,6 +9,7 @@ import pytest
 import respx
 from fastapi.testclient import TestClient
 
+from crowdspawn_api.grounding import sentences
 from crowdspawn_api.llm.fake import FakeProvider
 from crowdspawn_api.pipeline import agent, cities, partners, resolve
 from crowdspawn_api.qloo.client import QlooClient
@@ -230,6 +231,23 @@ def test_answers_cite_the_step_behind_each_claim() -> None:
     ]
     # No claim, no citation needed; the user's own numbers and small counts need none either.
     assert agent.cited("It is an affinity index. Test the top 3 with $5,000.", seen, "$5,000") == []
+
+
+def test_citations_survive_punctuation_inside_bold_names() -> None:
+    """Live 1920s Paris runs (2026-10-20): **L.A. Noire** and **Where Should We Begin?** split sentences."""
+    seen = {
+        1: "g1 L.A. Noire (2011)",
+        5: "Partners fans love in London: podcasts: Where Should We Begin? with Esther Perel (x1.0748 vs all gamers)",
+    }
+    answer = (
+        "In **London**, partner with **Where Should We Begin? with Esther Perel** (x1.0748) [s5]. "
+        "Fans of **L.A. Noire** [s1] in **London** [s5] like it."
+    )
+    assert agent.cited(answer, seen, "goal") == []
+    assert sentences("Fans of **L.A. Noire** like it. Next.") == [
+        "Fans of **L.A. Noire** like it.",
+        "Next.",
+    ]
 
 
 async def test_two_rejected_answers_fall_back_to_the_template(

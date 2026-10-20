@@ -67,6 +67,17 @@ EXTRA_CITIES = (
 SENTENCE = re.compile(r"(?<=[.!?])\s+")
 
 
+def sentences(text: str) -> list[str]:
+    """Split at sentence ends, but never inside a **bold name** such as **L.A. Noire** or **Where Should We Begin?**."""
+    out: list[str] = []
+    for part in SENTENCE.split(text):
+        if out and out[-1].count("**") % 2:
+            out[-1] += " " + part
+        else:
+            out.append(part)
+    return out
+
+
 def _to_float(token: str) -> float:
     return float(token.replace("$", "").replace(",", "").replace("%", ""))
 
@@ -93,7 +104,7 @@ def city_numbers(lines: list[str], cities: set[str]) -> dict[float, set[str]]:
 def misattributed(text: str, owners: dict[float, set[str]], cities: set[str]) -> list[str]:
     """A sentence that names a city but quotes a number Qloo only reported for other cities."""
     errors = []
-    for sentence in SENTENCE.split(text):
+    for sentence in sentences(text):
         named = mentions(sentence, cities)
         if not named:
             continue

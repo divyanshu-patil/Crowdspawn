@@ -833,8 +833,13 @@ img {
   transition: opacity 300ms;
 }
 
-.quest li.pending {
+/* Pending steps: fade the box only, so the text keeps AA contrast. */
+.quest li.pending .box {
   opacity: 0.4;
+}
+
+.quest li.pending .q-name {
+  color: var(--ink-soft);
 }
 
 .quest .box {

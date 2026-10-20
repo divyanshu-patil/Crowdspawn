@@ -22,11 +22,11 @@ from ..grounding import (
     BOLD,
     EXTRA_CITIES,
     NUMBER,
-    SENTENCE,
     _to_float,
     city_numbers,
     mentions,
     misattributed,
+    sentences,
 )
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
@@ -327,7 +327,7 @@ def cited(answer: str, seen: dict[int, str], goal: str) -> list[str]:
     places = {r.name for r in scout.scout_points().values()} | set(EXTRA_CITIES)
     own = {_to_float(n) for n in NUMBER.findall(goal)}  # the user's numbers need no source
     problems = []
-    for sentence in SENTENCE.split(answer):
+    for sentence in sentences(answer):
         refs = [int(x) for g in STEP_CITE.findall(sentence) for x in re.findall(r"\d+", g)]
         problems += [f"unknown citation [s{r}]" for r in refs if r not in seen]
         text = STEP_CITE.sub(" ", sentence)

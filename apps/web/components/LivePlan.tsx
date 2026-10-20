@@ -175,7 +175,7 @@ export function QuestLog({ progress, conn }: { progress: Progress; conn: "open" 
           <span className="label">Quest progress</span>
           <span className="label num">{Math.round(v * 100)} / 100 XP</span>
         </div>
-        <div className={`xp ${v >= 1 ? "done" : ""}`} role="progressbar" aria-valuenow={Math.round(v * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <div className={`xp ${v >= 1 ? "done" : ""}`} role="progressbar" aria-valuenow={Math.round(v * 100)} aria-valuemin={0} aria-valuemax={100} aria-label="Plan progress">
           <i style={{ ["--v" as string]: v }} />
         </div>
       </div>
