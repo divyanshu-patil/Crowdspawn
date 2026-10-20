@@ -1,8 +1,10 @@
 import Link from "next/link";
 import results from "../public/eval-results.json";
+import audience from "../public/audience-check.json";
 import { Notice } from "./ui";
 
 /** Written by apps/api/scripts/scenarios.py score: never edit these numbers by hand. */
+export const AUDIENCE = audience;
 export const EVAL = results;
 
 type Method = { method: string; n: number; top1: number; top3: number; rho: number };
@@ -45,6 +47,11 @@ export function AccuracySummary() {
           : "On these games Crowdspawn found it at least as often as an LLM without Qloo data"}
         , and the ranking has a city bias: {top.city} came first for {top.games} of the {h.n} games. Trends measures
         search interest, not sales, and the samples are small. Use the ranking as a starting hypothesis, not a forecast.
+      </p>
+      <p style={{ maxWidth: 760 }}>
+        <b>The audience data checks out.</b> Qloo&apos;s gender skew orders {AUDIENCE.rows.length} genres the way a
+        survey of about 270,000 gamers does (ρ {AUDIENCE.rho_qloo}). An LLM&apos;s guess matched too (ρ{" "}
+        {AUDIENCE.rho_llm}), but Qloo measures it for your exact comp set.
       </p>
       <p>
         <Link className="textlink" href="/accuracy">
@@ -176,7 +183,8 @@ export function AccuracyReport() {
         <p className="muted" style={{ maxWidth: 760 }}>
           Written and committed before it was ever scored, with the scorer frozen.{" "}
           {llm && llm.top1 > ours.top1 ? "Crowdspawn lost to an LLM with no Qloo data here. " : ""}Its #1 city was {h.top_cities.map((c) => `${c.city} for ${c.games}`).join(" and ")} of the{" "}
-          {h.n} games, whatever the genre: a city-level bias that the scorer does not yet remove.
+          {h.n} games, whatever the genre. Removing that city bias afterwards did not close the gap (section 4 of{" "}
+          <code>docs/scenario-results.md</code>).
         </p>
         <MethodTable methods={h.methods} caption="Held-out results by method" />
         <ScenarioTable rows={h.scenarios} caption="Held-out results by game" />
@@ -196,6 +204,45 @@ export function AccuracyReport() {
         <ScenarioTable rows={t.scenarios} caption="Tuning results by game" />
       </section>
 
+      <section className="section stack" aria-labelledby="aud-h">
+        <h2 id="aud-h" className="h2">
+          Audience check: Qloo&apos;s gender skew vs a player survey
+        </h2>
+        <p className="muted" style={{ maxWidth: 760 }}>
+          For {audience.rows.length} genres, Qloo&apos;s female index for a panel of well-known games against the female
+          share of each genre&apos;s players in Quantic Foundry&apos;s 2017 survey (about 270,000 gamers). Design fixed
+          before any call. Spearman ρ <b>{audience.rho_qloo}</b>
+          {audience.rho_llm !== null && (
+            <>
+              ; an LLM&apos;s guess ({audience.llm_model}) {audience.rho_llm}, which may be recall of this published
+              survey. Qloo measures the skew for any comp set, including ones no survey covers
+            </>
+          )}
+          .
+        </p>
+        <div className="table-wrap">
+          <table className="trace" data-testid="audience-check">
+            <caption className="sr-only">Female share by genre: survey vs Qloo</caption>
+            <thead>
+              <tr>
+                <th>Genre</th>
+                <th>Survey: % female</th>
+                <th>Qloo female index</th>
+              </tr>
+            </thead>
+            <tbody>
+              {audience.rows.map((r) => (
+                <tr key={r.genre}>
+                  <td>{r.genre}</td>
+                  <td className="num">{r.survey_female_pct}</td>
+                  <td className="num">{(r.qloo_female_index > 0 ? "+" : "") + r.qloo_female_index.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section className="section limits" aria-labelledby="cav-h">
         <h2 id="cav-h" className="h3">
           Caveats
@@ -206,8 +253,8 @@ export function AccuracyReport() {
           <li>Small samples: one game moves a hit rate by several points.</li>
           <li>Each LLM ran once, at temperature 0, on one prompt.</li>
           <li>
-            Method, code and every number: <code>docs/scenario-results.md</code> and{" "}
-            <code>docs/backtest-results.md</code> in the repository.
+            Method, code and every number: <code>docs/scenario-results.md</code>,{" "}
+            <code>docs/backtest-results.md</code> and <code>docs/audience-check.md</code> in the repository.
           </li>
         </ul>
       </section>

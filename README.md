@@ -120,6 +120,8 @@ Not yet, on its own. We wrote 23 held-out test games with no home-country settin
 
 An LLM with no Qloo data did better. The ranking has a city bias: its #1 city was Stockholm for 9 and Istanbul for 6 of the 23 games, whatever the genre. It does better when a game has a real-world setting, where culture anchors carry the signal. On the 10-game tuning set (9 shipped games and 1 cancelled one, Mumbai Gullies) it found the #1 in 6 of 10 (5 of the 9 shipped), the same as the LLM (6 of 10), but the scorer was designed on those games. A Steam-review backtest on 6 shipped games also lost to plain popularity. After the loss we tried the obvious fixes on all 33 games (removing each city's average lift, the old mainstream baseline, blending Qloo's ranking into the LLM's); none closed the gap, so the scorer is unchanged. Everything is published: [`docs/scenario-results.md`](docs/scenario-results.md), [`docs/backtest-results.md`](docs/backtest-results.md), and the app's "How accurate is it?" page (`/accuracy`). Beyond the country ranking, Qloo supplies what an LLM would have to guess: the audience skew, partners measured against all gamers in each city, and a trace for every number.
 
+**The audience skew checks out.** For 10 genres, Qloo's female index for a panel of well-known games orders them exactly as Quantic Foundry's 2017 survey of about 270,000 gamers does (Spearman ρ 0.997; design fixed before any call). An LLM's guess also matched (ρ 0.991), likely from memory of that published survey; Qloo measures the skew for whatever comp set a studio picks. Details: [`docs/audience-check.md`](docs/audience-check.md).
+
 <details>
 <summary><b>The Qloo call chain</b>: each plan step and the call behind it</summary>
 

@@ -1,0 +1,59 @@
+{
+ "collected": "2026-10-20",
+ "source": "https://gameinformer.com/b/news/archive/2017/01/21/study-breaks-down-game-genre-playerbases-by-gender.aspx",
+ "rho_qloo": 0.997,
+ "rho_llm": 0.991,
+ "llm_model": "gemma4:31b",
+ "rows": [
+  {
+   "genre": "Match 3",
+   "survey_female_pct": 69,
+   "qloo_female_index": 0.369
+  },
+  {
+   "genre": "Family/Farm Sim",
+   "survey_female_pct": 69,
+   "qloo_female_index": 0.5
+  },
+  {
+   "genre": "Casual Puzzle",
+   "survey_female_pct": 42,
+   "qloo_female_index": 0.1
+  },
+  {
+   "genre": "Atmospheric Exploration",
+   "survey_female_pct": 41,
+   "qloo_female_index": 0.099
+  },
+  {
+   "genre": "High Fantasy MMO",
+   "survey_female_pct": 36,
+   "qloo_female_index": -0.08
+  },
+  {
+   "genre": "Sci-Fi MMO",
+   "survey_female_pct": 16,
+   "qloo_female_index": -0.285
+  },
+  {
+   "genre": "Fighting",
+   "survey_female_pct": 13.4,
+   "qloo_female_index": -0.293
+  },
+  {
+   "genre": "Racing",
+   "survey_female_pct": 6,
+   "qloo_female_index": -0.388
+  },
+  {
+   "genre": "Tactical Shooter",
+   "survey_female_pct": 4,
+   "qloo_female_index": -0.43
+  },
+  {
+   "genre": "Sports",
+   "survey_female_pct": 2,
+   "qloo_female_index": -0.48
+  }
+ ]
+}

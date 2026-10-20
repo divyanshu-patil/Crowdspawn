@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { AccuracySummary, EVAL, SampleCallout } from "../components/Accuracy";
+import { AUDIENCE, AccuracyReport, AccuracySummary, EVAL, SampleCallout } from "../components/Accuracy";
 
 describe("accuracy evidence (J15)", () => {
   it("renders the held-out numbers straight from the evaluation JSON", () => {
@@ -32,5 +32,14 @@ describe("accuracy evidence (J15)", () => {
     expect(text).toContain("designed on");
     cleanup();
     expect(render(<SampleCallout game="Not in the evaluation" />).container.textContent).toBe("");
+  });
+
+  it("the audience check in the app and the README quote the same numbers", () => {
+    const { getByTestId } = render(<AccuracyReport />);
+    const rows = getByTestId("audience-check").querySelectorAll("tbody tr");
+    expect(rows).toHaveLength(AUDIENCE.rows.length);
+    const readme = readFileSync(resolve(process.cwd(), "../../README.md"), "utf8");
+    expect(readme).toContain(`ρ ${AUDIENCE.rho_qloo}`);
+    expect(readme).toContain(`ρ ${AUDIENCE.rho_llm}`);
   });
 });

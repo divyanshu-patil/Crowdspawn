@@ -1,0 +1,127 @@
+{
+ "collected": "2026-10-20",
+ "source": "https://gameinformer.com/b/news/archive/2017/01/21/study-breaks-down-game-genre-playerbases-by-gender.aspx",
+ "genres": {
+  "Match 3": {
+   "games": [
+    "Candy Crush Saga",
+    "Bejeweled 3"
+   ],
+   "dropped": [
+    "Farm Heroes Saga"
+   ],
+   "female": 0.369,
+   "male": -0.369
+  },
+  "Family/Farm Sim": {
+   "games": [
+    "Stardew Valley",
+    "The Sims 4",
+    "Unpacking",
+    "Spiritfarer"
+   ],
+   "dropped": [],
+   "female": 0.5,
+   "male": -0.5
+  },
+  "Casual Puzzle": {
+   "games": [
+    "Cut the Rope",
+    "Monument Valley"
+   ],
+   "dropped": [
+    "Two Dots"
+   ],
+   "female": 0.1,
+   "male": -0.1
+  },
+  "Atmospheric Exploration": {
+   "games": [
+    "Journey",
+    "Firewatch",
+    "Gone Home"
+   ],
+   "dropped": [],
+   "female": 0.099,
+   "male": -0.099
+  },
+  "High Fantasy MMO": {
+   "games": [
+    "World of Warcraft",
+    "Final Fantasy XIV Online",
+    "Lost Ark",
+    "Black Desert Online"
+   ],
+   "dropped": [],
+   "female": -0.08,
+   "male": 0.08
+  },
+  "Sci-Fi MMO": {
+   "games": [
+    "EVE Online",
+    "Star Wars: The Old Republic",
+    "Star Trek Online"
+   ],
+   "dropped": [],
+   "female": -0.285,
+   "male": 0.285
+  },
+  "Fighting": {
+   "games": [
+    "Tekken 7",
+    "Street Fighter 6",
+    "Mortal Kombat 11",
+    "Dragon Ball FighterZ"
+   ],
+   "dropped": [],
+   "female": -0.293,
+   "male": 0.293
+  },
+  "Racing": {
+   "games": [
+    "Forza Horizon 5",
+    "Gran Turismo 7",
+    "Need for Speed Heat",
+    "Asphalt 9: Legends"
+   ],
+   "dropped": [],
+   "female": -0.388,
+   "male": 0.388
+  },
+  "Tactical Shooter": {
+   "games": [
+    "Tom Clancy's Rainbow Six Siege",
+    "Counter-Strike: Global Offensive",
+    "Arma 3"
+   ],
+   "dropped": [],
+   "female": -0.43,
+   "male": 0.43
+  },
+  "Sports": {
+   "games": [
+    "EA Sports FC 24",
+    "NBA 2K24",
+    "Rocket League"
+   ],
+   "dropped": [],
+   "female": -0.48,
+   "male": 0.48
+  }
+ },
+ "llm": {
+  "model": "gemma4:31b",
+  "female_percent": {
+   "Match 3": 70.0,
+   "Family/Farm Sim": 75.0,
+   "Casual Puzzle": 65.0,
+   "Atmospheric Exploration": 45.0,
+   "High Fantasy MMO": 35.0,
+   "Sci-Fi MMO": 20.0,
+   "Fighting": 15.0,
+   "Racing": 15.0,
+   "Tactical Shooter": 10.0,
+   "Sports": 10.0
+  }
+ }
+}
