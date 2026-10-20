@@ -27,7 +27,7 @@ The API runs eight steps in order, each using the previous step's results:
 | S2 | Asks Qloo for ~20 similar games | "Fans of these also love Loop Hero, Hollow Knight…", with Qloo's reasons |
 | S3 | Scores every city on three things | Taste (fans of your games vs gamers in general), platform (how big your platforms are there) and culture (where fans of your setting's films and music are) |
 | S4 | Gets the audience's age and gender | e.g. "skews female, 25–29" |
-| S5 | Finds partners | Artists, podcasts, films and brands this audience over-indexes on, worldwide and in the top 3 cities |
+| S5 | Finds partners | Artists, podcasts, films and brands this audience likes more than gamers in general do, worldwide and in the top 3 cities |
 | S6 | Compares with your last game (optional) | Tastes you share vs. new ground |
 | S7 | Splits the budget | Plain math: more money to cities with a higher spawn score and confidence |
 | S8 | Writes the brief | An AI turns the results into readable advice |

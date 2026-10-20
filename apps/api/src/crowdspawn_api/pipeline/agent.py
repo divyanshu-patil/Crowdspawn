@@ -264,7 +264,13 @@ async def call_tool(run: QlooRun, mem: Memory, tool: str, args: dict[str, Any]) 
             out = []
             for kind in kinds:
                 found = await partners.fetch_kind(run, kind, sig, names, region)
-                out.append(f"{kind}s: " + ", ".join(p.name for p in found[:3]))
+                out.append(
+                    f"{kind}s: "
+                    + ", ".join(
+                        f"{p.name} (x{p.lift} vs all gamers)" if p.lift else p.name
+                        for p in found[:3]
+                    )
+                )
             where = f" in {region.name}" if region else " worldwide"
             return f"Partners fans love{where}: " + "; ".join(out)
     except ValidationError as e:

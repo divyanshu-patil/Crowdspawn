@@ -1618,6 +1618,17 @@
             "type": "number",
             "title": "Affinity"
           },
+          "lift": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lift"
+          },
           "why": {
             "type": "string",
             "title": "Why"

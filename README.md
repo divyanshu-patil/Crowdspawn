@@ -117,12 +117,12 @@ All parameters were verified live and recorded in [`docs/qloo-contract.md`](docs
 | S2 Expand | `/v2/insights` video games + explainability | 20 similar games with the comps that drive each one |
 | S3 Cities | `urn:heatmap` for the comps, the platform panels and the culture anchors | Spawn score with confidence |
 | S4 Audience | `urn:demographics` | Age and gender over/under-index |
-| S5 Partners | `/v2/insights` artist, podcast, movie, brand (+ `signal.location` for the top 3 cities) | Partners with affinity and Qloo's reasons |
+| S5 Partners | `/v2/insights` artist, podcast, movie, brand (+ `signal.location` for the top 3 cities), each re-scored against all gamers with `filter.entities` | Partners ranked by lift vs all gamers, with Qloo's reasons |
 | S6 Gap (optional) | `/v2/analysis/compare` | Tastes shared with your last game vs new ground |
 | S7 Budget | none, deterministic | Split by spawn score × confidence, sums to exactly 100% |
 | S8 Brief | none, LLM over S1–S7 facts | Prose citing `[q12]` result ids, validated before display |
 
-A plan with 5 comps, 4 culture anchors and 18 cities uses about 107 Qloo calls. Player panels are shared and cached, so a new plan usually costs about 2 live calls per city, and 0 on repeat.
+A plan with 5 comps, 4 culture anchors and 18 cities uses about 120 Qloo calls, 26 of them for partners. The per-run cap is 140. Player panels are shared and cached, so a new plan usually costs about 2 live calls per city, and 0 on repeat.
 
 </details>
 

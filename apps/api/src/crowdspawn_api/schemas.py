@@ -154,6 +154,7 @@ class Partner(BaseModel):
     entity_id: str
     name: str
     affinity: float
+    lift: float | None = None  # affinity / all gamers' affinity in the same place
     why: str
     city: str | None = None
     image_url: str | None = None

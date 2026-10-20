@@ -266,3 +266,41 @@ def test_hidden_markets_rank_far_higher_for_the_game_than_for_gamers() -> None:
     ]
     assert [(h.name, h.rank, h.gamer_rank) for h in hidden_markets(ranked)] == [("ist", 1, 4)]
     assert hidden_markets(ranked, gap=5) == []
+
+
+async def test_partners_rank_by_lift_against_all_gamers(tmp_path: Path, fake_qloo: Any) -> None:
+    """J11: recorded roguelike calls (2026-10-20). Lift = comp affinity / all gamers' affinity there."""
+    from crowdspawn_api.pipeline import partners
+    from crowdspawn_api.qloo.client import QlooClient
+    from crowdspawn_api.storage import Store
+
+    from .conftest import RECORDED, make_settings
+
+    calls = [
+        dict(k[1])
+        for k in RECORDED
+        if k[1] and dict(k[1]).get("filter.type", "").endswith("artist")
+    ]
+    signal = next(p for p in calls if "feature.explainability" in p)["signal.interests.entities"]
+    points = {p["signal.location"] for p in calls if "signal.location" in p}
+    top = [r for r in regions().values() if f"POINT({r.lon} {r.lat})" in points]
+    store = await Store.open(tmp_path / "p.sqlite3")
+    qloo = QlooClient(make_settings(tmp_path), store)
+    try:
+        out = await partners.partners(qloo.run(), signal.split(","), {}, top)  # type: ignore[arg-type]
+    finally:
+        await qloo.aclose()
+        await store.close()
+    assert len(top) == 3 and len(out.artist) == 8 + 3 * 4 and len(out.brand) == 8
+    for kind in partners.ALL_TYPES:
+        items = getattr(out, kind)
+        for where in {p.city for p in items}:
+            lifts = [p.lift for p in items if p.city == where]
+            assert all(lifts) and lifts == sorted(lifts, reverse=True)  # type: ignore[type-var]
+        ids = [p.entity_id for p in items]
+        assert len(ids) == len(set(ids))  # a local list never repeats a global name
+    tokyo = [p.name for p in out.artist if p.city == "Tokyo"]
+    assert tokyo[0] == "Ichiko Aoba" and not set(tokyo) & {p.name for p in out.artist if not p.city}
+    # Comp call affinity 0.93112 over the baseline call's 0.81725 for the same id (qp fixtures).
+    best = out.podcast[0]
+    assert (best.name, best.affinity, best.lift) == ("Retronauts", 0.9311, 1.1393)

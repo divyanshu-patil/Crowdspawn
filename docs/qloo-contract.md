@@ -71,3 +71,11 @@ Spawn score = (target ÷ all-gamers) × (platform panels ÷ all-gamers) × ((cul
 - `urn:heatmap` works at any point with data (Lagos: 604 cells); open sea or empty land returns no cells, which the scout reports as `no_area_data` after widening the radius once.
 - Genre panels (15 × 3-4 games) and the activity snapshot for 67 cities are cached for 7 days.
 
+## Partner lift (verified live 2026-10-20, J11)
+
+14 calls, saved in `apps/api/tests/fixtures/qloo/partners_lift/` (q01–q14; comps Hades, Stardew Valley and Celeste unless noted).
+
+- **(a) Is entity `query.affinity` comparable across requests?** Partly. It is a 0–1 score, but not rank-normalised per request the way heatmap `affinity` is: the same artist gets the same affinity at `take=10` and `take=50` (q01 vs q02), and different signals give different ranges (comps 0.911–0.940, all-gamers 0.910–0.929 for artists). There is no rank field. `query` also carries `measurements.audience_growth`.
+- **(b) Does an all-gamers request share enough entities?** Not without help. Top-50 overlap with the comp list was 0 of 50 for artists and movies, 8 for podcasts and 43 for brands (q01/q03, q04/q05, q06/q07, q11/q12). **`filter.entities=<ids>`** solves it: with the all-gamers signal (union of the 21 `PLATFORM_PANELS` ids) it returns exactly the requested ids with their affinity (q13). `filter.results.entities` behaves identically (q14). The docs describe `filter.entities` as "often used to assess the affinity of an entity towards input".
+- **(c) Popularity and location parameters.** `filter.popularity.max=0.9` works for artists (q10: highest popularity returned 0.891, against 0.996 unfiltered). No location-weighting parameter is documented. `signal.location` with `signal.location.radius` changes the list (q08 Istanbul vs q01 global share 1 of 50). `bias.trends` is documented only for "select categories" and was not tested.
+- **Method used.** Lift = comp-signal affinity ÷ all-gamers affinity for the same ids in the same place. Each list is Qloo's top 30 by comp affinity, re-ranked by lift (8 global, 4 per city). Lifts are small (1.03–1.27) because both are affinities near 1. Ranking by lift demotes names every gamer likes, such as game-studio sound teams and 100 gecs (q01/q13), and keeps names specific to these fans. It costs one extra call per list: 26 instead of 13 per plan.

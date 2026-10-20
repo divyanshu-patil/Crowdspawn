@@ -698,6 +698,8 @@ export interface components {
             name: string;
             /** Affinity */
             affinity: number;
+            /** Lift */
+            lift?: number | null;
             /** Why */
             why: string;
             /** City */

@@ -397,7 +397,8 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
       </div>
       <p className="muted" style={{ marginTop: 8, maxWidth: 760 }}>
         Co-marketing and sponsorship leads: artists for launch events and streams, podcasts for ad reads, films and brands
-        for collaborations. Local picks are what fans in your top cities love.
+        for collaborations. Sorted by how much more your fans like each one than gamers in general (×lift). Local picks
+        compare against gamers in that city.
       </p>
       <div className="tabs" role="tablist" style={{ marginTop: 20 }}>
         {TABS.map((t) => (
@@ -435,7 +436,10 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
                     <span className="label muted">{p.city ? `Local · ${p.city}` : "Global"}</span>
                   </div>
                   <span className="name">{p.name}</span>
-                  <span className="label">Affinity {(p.affinity * 100).toFixed(1)}</span>
+                  <span className="label">
+                    Affinity {(p.affinity * 100).toFixed(1)}
+                    {p.lift != null && ` · ×${p.lift.toFixed(2)} vs all gamers${p.city ? " here" : ""}`}
+                  </span>
                   <span className="why">{p.why}</span>
                   <span>
                     <Cite id={p.result_id} traceHref={traceHref} />
