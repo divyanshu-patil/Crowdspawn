@@ -196,7 +196,8 @@ To put a demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup and con
 
 ## Who it's for
 
-- **Indie studios and small publishers** planning a launch on a small marketing budget. About 20,000 games launched on Steam in 2025.
+- **Indie studios and small publishers** planning a launch on a small marketing budget. About 20,000 games launched on Steam in 2025 ([How To Market A Game](https://howtomarketagame.com/2026/01/08/how-many-games-were-released-in-2025/)).
+- **The decision today:** studios pick localisation languages from Steam's wishlists by country, read with "gut feel and common knowledge" ([GameDiscoverCo case study, 2021](https://www.gamedeveloper.com/game-platforms/case-study-how-localization-amps-up-game-discovery)). Before a game has wishlists there is nothing to read. Crowdspawn's launch actions give a starting point from the games it resembles, to check against wishlists once they come in.
 - **Next:** any entertainment launch, such as a film's release cities, a tour, a podcast or an esports team's next market.
 
 <details>
