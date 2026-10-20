@@ -4,6 +4,51 @@ Does the city ranking point where real players are? We compare it with Google Tr
 
 **Method.** Each scenario is a hypothetical game with its own comps and, when the game has a setting, culture anchors (films, shows, artists) resolved through Qloo search. Each truth game is never used as a comp and is removed, with the rest of its series, from the expanded signal. Every candidate city is scored; country score = mean of its cities. Truth = Google Trends interest for the analogue (last 5 years), restricted to candidate countries. ρ = Spearman over candidate countries with Trends data (needs ≥ 5).
 
+## 1. Held-out set (23 games, no home-country setting)
+
+Frozen in `scripts/scenarios_holdout.json` and committed before any held-out run; the scorer was frozen at commit `2825a51`. Qloo data collected 2026-10-20; Trends fetched 2026-10-20. None of these games has a home-country setting, so neither method can lean on "a game set in Delhi sells in India".
+
+| Method | What it ranks by | Truth #1 is our #1 | Truth #1 in our top 3 | Mean ρ |
+|---|---|---|---|---|
+| **Crowdspawn** (`spawn score`) | lift × platform fit × culture fit | 1/23 | 1/23 | 0.11 |
+| LLM only (gemma4:31b) | an LLM given the same inputs (description, comps, culture anchors, platforms, candidate countries), no Qloo data, temperature 0, asked to rank the countries where such players most over-index | 4/23 | 7/23 | 0.54 |
+| popularity | all gamers alone (mean of the PC, mobile, console panels): no game signal at all | 0/23 | 1/23 | -0.33 |
+
+### What this shows
+
+- **LLM only (gemma4:31b) found the top market more often than Crowdspawn on games with no setting:** #1 in 4/23 vs 1/23, top 3 in 7/23 vs 1/23, mean ρ 0.54 vs 0.11.
+- **The spawn score has a city bias.** Its #1 city was Stockholm in 9, Istanbul in 6, Delhi in 2 of the 23 games, whatever the genre. Averaged over all 23 games, taste lift is Istanbul 1.05, Stockholm 1.05, Warsaw 1.01 but Tokyo 0.91, Mexico City 0.92. A city with no bias would sit near 1.00 for every game. On games without a home-country setting this offset outweighs the game-specific signal.
+- **What still holds:** on the tuning set, 4 of the 5 games with a real-world setting had the true #1 country as our #1, against 2 of 5 without one: culture anchors carry the signal there. Partners, audience skew and city-level heat come from Qloo and are not measured by this test.
+- **Not changed after this run.** Removing the city offset (dividing each city's lift by its mean lift across many games) is the obvious fix, but changing the scorer after seeing held-out results would make this test meaningless. It needs a new held-out set first.
+
+### Per scenario
+
+| Scenario | Platforms | Comps | Culture anchors | Truth analogue | Truth top 3 | Crowdspawn top 3 | Our #1 city | Top-3 hit | ρ | LLM only (gemma4:31b) top 3 | LLM top-3 hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Jackpot Run: a roguelike deckbuilder about chasing huge scoring combos | pc, console, mobile | Slay the Spire, Monster Train, Inscryption | none | Balatro | CA, KR, AU | SE, PL, DE | Stockholm | no | 0.32 | PL, SE, CA | yes |
+| Dead Drop: a hardcore extraction shooter where you keep only what you carry out | pc | Hunt: Showdown, DayZ, Arma 3 | none | Escape from Tarkov | KR, SE, CA | TR, IN, ID | Delhi | no | -0.44 | PL, CZ, SE | no |
+| Conveyor: a factory automation game about building ever larger production lines | pc | Satisfactory, Dyson Sphere Program, Mindustry | none | Factorio | CZ, SE, DE | TR, PL, SE | Istanbul | no | 0.19 | DE, PL, SE | no |
+| Gridlock: a modern city builder about traffic, zoning and services | pc, console | SimCity, Anno 1800, Frostpunk | none | Cities: Skylines | KR, SE, PL | GB, AU, SE | London | no | 0.3 | DE, PL, CZ | no |
+| Deep Shelf: an underwater survival and crafting game | pc, console | The Forest, Raft, Don't Starve | none | Subnautica | CZ, AU, CA | ID, TR, IN | Jakarta | no | -0.49 | SE, CA, AU | no |
+| Pulse Cutter: a VR rhythm game where you slash blocks to the beat | pc, console | Guitar Hero III: Legends of Rock, Rock Band 4, Thumper | none | Beat Saber | CZ, CA, US | SE, CA, PH | Stockholm | no | 0.23 | JP, KR, US | no |
+| Apex Line: a realistic circuit racing sim for car lovers | console | Forza Motorsport 7, Project CARS 2, Assetto Corsa | none | Gran Turismo 7 | JP, DE, AU | SE, CA, GB | Stockholm | no | 0.59 | DE, GB, SE | no |
+| Knockdown: a 3D one-on-one fighting game | pc, console | Street Fighter 6, Mortal Kombat 1, Dragon Ball FighterZ | none | Tekken 8 | KR, PH, AU | GB, SE, DE | London | no | -0.2 | JP, KR, US | yes |
+| Last Light: asymmetric multiplayer horror, four survivors against one killer | pc, console | Friday the 13th: The Game, Phasmophobia, Evil Dead: The Game | none | Dead by Daylight | JP, KR, US | PL, AR, CZ | Warsaw | no | -0.03 | BR, MX, PH | no |
+| Turbo Goal: arcade ball games played with rocket-powered cars | pc, console | Trackmania, Brawlhalla, Gang Beasts | none | Rocket League | FR, GB, AU | TR, ID, IN | Istanbul | no | -0.55 | BR, TR, PL | no |
+| Drop Zone: a realistic 100-player battle royale shooter | pc, console | Apex Legends, Fortnite, Call of Duty: Warzone | none | PUBG: Battlegrounds | KR, TR, IN | TR, IN, ID | Delhi | no | 0.41 | BR, PH, TR | no |
+| Starfall Chronicles: an open-world action RPG where you collect characters through gacha banners | mobile, pc, console | Honkai: Star Rail, Wuthering Waves, Tower of Fantasy | none | Genshin Impact | JP, KR, PH | JP, CA, US | Tokyo | yes | 0.5 | JP, KR, SG | yes |
+| Tap Empire: an idle incremental game about making numbers grow | pc, mobile | AdVenture Capitalist, Egg, Inc., Melvor Idle | none | Cookie Clicker | SE, AU, US | TR, IN, ID | Istanbul | no | 0.0 | SG, KR, JP | no |
+| Lantern Deep: a hand-drawn metroidvania about exploring a ruined underground kingdom | pc, console | Ori and the Blind Forest, Dead Cells, Axiom Verge | none | Hollow Knight | KR, MX, CA | SE, DE, PL | Stockholm | no | 0.35 | PL, SE, CA | no |
+| Ashen Crown: an open-world dark fantasy soulslike | pc, console | Dark Souls III, Bloodborne, Lies of P | none | Elden Ring | CA, KR, US | SE, PL, JP | Stockholm | no | 0.59 | PL, KR, JP | no |
+| Squad Zero: turn-based squad tactics against an alien invasion | pc, console | Into the Breach, Gears Tactics, Phoenix Point | none | XCOM 2 | KR, SG, CZ | SE, PL, DE | Stockholm | no | 0.65 | PL, CZ, DE | no |
+| Wrench Time: a garage sim about repairing and restoring cars | pc, console | PowerWash Simulator, House Flipper, Gas Station Simulator | none | Car Mechanic Simulator 2021 | PL, CZ, SE | SE, JP, CA | Stockholm | no | 0.24 | PL, CZ, DE | yes |
+| Dig Deep: a 2D sandbox adventure of digging, building and boss fights | pc, console, mobile | Starbound, Minecraft, Don't Starve Together | none | Terraria | KR, PH, AU | TR, IN, ID | Istanbul | no | -0.1 | SE, PL, CZ | no |
+| Wobble Rush: a chaotic party game where dozens of players race through obstacle courses | pc, console | Human: Fall Flat, Party Animals, Gang Beasts | none | Fall Guys | KR, JP, MX | CA, IN, ID | Toronto | no | -0.43 | US, KR, JP | yes |
+| Far Drift: space exploration and survival across endless planets | pc, console | Elite: Dangerous, Space Engineers, Starfield | none | No Man's Sky | CA, US, AU | SE, CZ, PL | Stockholm | no | 0.46 | SE, CZ, PL | no |
+| Breach Point: a 5v5 tactical shooter with hero abilities | pc | Counter-Strike 2, Tom Clancy's Rainbow Six Siege, Overwatch | none | Valorant | KR, PH, SG | TR, IN, PL | Istanbul | no | -0.13 | KR, PL, TR | yes |
+| Lane Clash: real-time card battles in three-minute mobile matches | mobile | Clash of Clans, Brawl Stars, Marvel Snap | none | Clash Royale | MX, AR, ES | TR, IN, ID | Istanbul | no | -0.27 | KR, JP, PH | no |
+| Harvest Machine: a realistic farming sim with heavy machinery | pc, console | Ranch Simulator, Pure Farming 2018, Spintires: MudRunner | none | Farming Simulator 22 | PL, CZ, DE | SE, JP, GB | Stockholm | no | 0.36 | PL, CZ, DE | yes |
+
 ## 2. Tuning set (10 games)
 
 Qloo data collected 2026-10-16; Trends fetched 2026-10-16. The scorer was chosen on these same games, so treat them as a sanity check, not a validation. ‡ Delhi Gullies' truth analogue, Mumbai Gullies, never shipped (development was halted in 2026): **9 shipped games and 1 cancelled one**. Its Trends interest is pre-release search, so every metric is shown with and without it.

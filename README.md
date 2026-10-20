@@ -74,7 +74,7 @@ Click anywhere, search a town or hover a popular place to zoom to it. You see th
 
 ![What works in Mumbai: genres that over-index, platform taste match and games locals love](docs/screenshots/scout-area.jpg)
 
-**Will my game work here?** Describe your game and get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common). It comes with an estimated chance that players there over-index for it, capped at 3–97%; that's a model estimate, not sales odds. You also get a ranking against 8 world cities and the names Qloo matched.
+**Will my game work here?** Describe your game and get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common). Each word is a band of the spawn score, stricter when Qloo's data is thinner: Legendary needs 1.15 or more at high confidence. It is not a probability. You also get a ranking against 8 world cities and the names Qloo matched.
 
 ![Legendary verdict for a Delhi-set game in Mumbai, with the world ranking and what Qloo matched](docs/screenshots/scout-judge.jpg)
 
@@ -94,7 +94,15 @@ Every city is ranked by one transparent score. Each factor is a ratio of Qloo af
 - **Platform fit:** how strong your platforms are in that city.
 - **Culture fit:** how concentrated fans of your setting's films, shows and music are, relative to the average city.
 
-**Is it right?** We tested it on 10 hypothetical games against Google Trends interest for a real shipped game like each one (never used as a comp). The true #1 country was our #1 in **6 of 10** and in our top 3 in **8 of 10**. The earlier ranking scored 2 and 5. The misses are published in [`docs/scenario-results.md`](docs/scenario-results.md).
+**Is it right?** Not yet, on its own. We wrote 23 held-out test games with no home-country setting and froze them before scoring. For each, Google Trends interest for a real shipped game like it (never a comp) is the truth, and every method ranks the same candidate countries:
+
+| Method | Trends #1 is our #1 | Trends #1 in our top 3 | Mean ρ |
+|---|---|---|---|
+| Crowdspawn (Qloo spawn score) | 1 of 23 | 1 of 23 | 0.11 |
+| LLM only (gemma4:31b) | 4 of 23 | 7 of 23 | 0.54 |
+| Popularity (all gamers, no game signal) | 0 of 23 | 1 of 23 | -0.33 |
+
+An LLM with no Qloo data did better. The ranking has a city bias: its #1 city was Stockholm for 9 and Istanbul for 6 of the 23 games, whatever the genre. It does better when a game has a real-world setting, where culture anchors carry the signal. On the 10-game tuning set (9 shipped games and 1 cancelled one, Mumbai Gullies) it found the #1 in 6 of 10 (5 of the 9 shipped), the same as the LLM (6 of 10), but the scorer was designed on those games. A Steam-review backtest on 6 shipped games also lost to plain popularity. Everything is published: [`docs/scenario-results.md`](docs/scenario-results.md), [`docs/backtest-results.md`](docs/backtest-results.md), and the app's "How accurate is it?" page.
 
 <details>
 <summary><b>The Qloo call chain</b>: each plan step and the call behind it</summary>
@@ -161,9 +169,9 @@ To put a demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup and con
 - **The LLM never supplies data.** It proposes names, which Qloo must resolve, and writes words that are checked against Qloo results.
 - **Fail closed.** Without a working Qloo key nothing is produced.
 - **No personal data.** Qloo's taste data is PII-free, Crowdspawn stores none, and keys never reach the browser.
-- **An affinity index, not a sales or wishlist forecast.** Probabilities are capped at 3–97% and labelled as estimates.
+- **An affinity index, not a sales or wishlist forecast.** Scout verdicts (Legendary to Common) are spawn-score bands, not probabilities.
 - **Comparable games.** New indie games are rarely in Qloo, so plans work through comparable games; 16 of 20 recent indie titles we tested resolved.
-- **Accuracy limits.** City-level accuracy can't be validated with free public data, and the ranking misses where Qloo's data is thin, such as mobile MOBAs in Southeast Asia.
+- **Accuracy limits.** On held-out games with no real-world setting the country ranking lost to an LLM without Qloo data, and a [Steam-review backtest](docs/backtest-results.md) lost to plain popularity. City-level accuracy can't be validated with free public data. Treat the ranking as a starting hypothesis.
 - **Brands are global.** Qloo's brand affinity ignores location.
 
 ## Who it's for

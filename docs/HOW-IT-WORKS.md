@@ -42,7 +42,7 @@ Big cities have lots of gamers of every kind, so a raw count would always put Ne
 
 **Mumbai at 2.49** for Delhi Gullies = taste 1.05 × platform 0.97 × culture 2.45. Below 1 means under-represented. The map's crowd size shows it: one lit tile per +0.02.
 
-We checked this against Google Trends for 10 shipped games (details in [`scenario-results.md`](scenario-results.md)): the real #1 country was our #1 in 6 and in our top 3 in 8. The old taste-only ranking managed 2 and 5.
+On 23 held-out games with no home-country setting, frozen before scoring, Google Trends' top country for a real shipped game like each one was Crowdspawn's #1 in 1 of 23; an LLM with no Qloo data got 4 of 23 and plain popularity 0 of 23. The ranking has a city bias (Stockholm came first for 9 of the 23 games). It does better when a game has a real-world setting, where culture anchors carry the signal. Details: [`scenario-results.md`](scenario-results.md).
 
 ## The launch agent
 
@@ -61,7 +61,7 @@ We checked this against Google Trends for 10 shipped games (details in [`scenari
 - **Qloo is the only source of facts.** Every city, number and partner traces back to a specific Qloo call. Small chips like `q21` in the brief link to the trace page, which lists every call the plan made.
 - **The AI only writes words.** It never invents cities or numbers. A checker reads the brief and rejects anything not in Qloo's results, such as an invented city, a made-up percentage or a missing citation. If the AI fails twice, a plain template brief is shown instead.
 - **It fails safely.** Without a Qloo key (or with a wrong one) the app refuses to make a plan rather than guess, and shows an error screen. This is the "kill switch" you can show in the demo.
-- **It's honest about accuracy.** Against Google Trends for 10 shipped games, the real #1 country was our #1 in 6 of 10 and in our top 3 in 8 ([`scenario-results.md`](scenario-results.md)). It misses where Qloo's data is thin, such as mobile MOBAs in the Philippines. The app says so and calls its results a "starting hypothesis", not a prediction.
+- **It's honest about accuracy.** On 23 held-out games with no home-country setting, frozen before scoring, Google Trends' top country for a real shipped game like each one was Crowdspawn's #1 in 1 of 23; an LLM with no Qloo data got 4 of 23 and plain popularity 0 of 23. The ranking has a city bias (Stockholm came first for 9 of the 23 games). It does better when a game has a real-world setting, where culture anchors carry the signal. A Steam-review backtest on 6 shipped games also lost to popularity ([`backtest-results.md`](backtest-results.md)). The app shows these numbers on its "How accurate is it?" page and calls its ranking a starting hypothesis, not a prediction.
 
 ## The pieces
 

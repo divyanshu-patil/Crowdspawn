@@ -16,6 +16,7 @@ import asyncio
 import json
 import statistics
 import sys
+from collections import Counter
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -112,7 +113,17 @@ async def collect(scenarios: str) -> None:
                 "cities": per_city,
                 "calls": run.calls,
             }
-            print(sc["id"], "calls", run.calls, "dropped", dropped, culture_dropped)
+            print(
+                sc["id"],
+                "calls",
+                run.calls,
+                "live so far",
+                qloo.live_calls,
+                "dropped",
+                dropped,
+                culture_dropped,
+                flush=True,
+            )
     finally:
         await qloo.aclose()
         await store.close()
@@ -295,6 +306,81 @@ def per_scenario(which: str, results: dict[str, list[dict[str, Any]]]) -> list[s
     return lines
 
 
+def city_bias(raw: dict[str, Any]) -> dict[str, float]:
+    """Each city's mean taste lift over every game in a set. With no city bias it would sit near 1.00."""
+    lifts: dict[str, list[float]] = {}
+    for d in raw["scenarios"].values():
+        for rid, m in candidates(d).items():
+            lifts.setdefault(rid, []).append(metrics_of(m).lift)
+    return {rid: statistics.fmean(v) for rid, v in lifts.items()}
+
+
+def findings(
+    results: dict[str, list[dict[str, Any]]], raw: dict[str, Any], tuning: list[dict[str, Any]]
+) -> list[str]:
+    ours, n = summary(results[DEFAULT]), len(results[DEFAULT])
+    llms = [(k, summary(v)) for k, v in results.items() if k.startswith("LLM only")]
+    tops = Counter(r["top_city"] for r in results[DEFAULT]).most_common(3)
+    bias = city_bias(raw)
+    names = cities.regions()
+    high = sorted(bias, key=lambda k: -bias[k])[:3]
+    low = sorted(bias, key=lambda k: bias[k])[:2]
+    has_setting = {sc["id"] for sc in load(SETS["tuning"])["scenarios"] if sc["culture"]}
+    set_n = sum(r["id"] in has_setting for r in tuning)
+    set_hits = sum(r["hit_top1"] for r in tuning if r["id"] in has_setting)
+    free_n = len(tuning) - set_n
+    free_hits = sum(r["hit_top1"] for r in tuning if r["id"] not in has_setting)
+    out = ["### What this shows", ""]
+    for k, s in llms:
+        verdict = (
+            "found the top market more often than" if s["top1"] > ours["top1"] else "did not beat"
+        )
+        out.append(
+            f"- **{k} {verdict} Crowdspawn on games with no setting:** #1 in {s['top1']}/{n} vs "
+            f"{ours['top1']}/{n}, top 3 in {s['top3']}/{n} vs {ours['top3']}/{n}, mean ρ {s['rho']} vs {ours['rho']}."
+        )
+    out += [
+        "- **The spawn score has a city bias.** Its #1 city was "
+        + ", ".join(f"{name} in {c}" for name, c in tops)
+        + f" of the {n} games, whatever the genre. Averaged over all {n} games, taste lift is "
+        + ", ".join(f"{names[k].name} {bias[k]:.2f}" for k in high)
+        + " but "
+        + ", ".join(f"{names[k].name} {bias[k]:.2f}" for k in low)
+        + ". A city with no bias would sit near 1.00 for every game. On games without a home-country "
+        "setting this offset outweighs the game-specific signal.",
+        f"- **What still holds:** on the tuning set, {set_hits} of the {set_n} games with a real-world "
+        f"setting had the true #1 country as our #1, against {free_hits} of {free_n} without one: culture "
+        "anchors carry the signal there. Partners, audience skew and city-level heat come from Qloo and "
+        "are not measured by this test.",
+        "- **Not changed after this run.** Removing the city offset (dividing each city's lift by its "
+        "mean lift across many games) is the obvious fix, but changing the scorer after seeing held-out "
+        "results would make this test meaningless. It needs a new held-out set first.",
+    ]
+    return out
+
+
+def web_rows(which: str, results: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    """Per-scenario rows for the app's accuracy page: Crowdspawn and the first LLM baseline."""
+    scen = {sc["id"]: sc for sc in load(SETS[which])["scenarios"]}
+    llm = next(
+        ({r["id"]: r for r in v} for k, v in results.items() if k.startswith("LLM only")), {}
+    )
+    return [
+        {
+            "game": scen[r["id"]]["game"],
+            "truth": scen[r["id"]]["truth"]["title"],
+            "cancelled": r["id"] in CANCELLED,
+            "truth_top3": r["truth_top3"],
+            "crowdspawn_top3": r["ours_top3"],
+            "crowdspawn_city": r["top_city"],
+            "crowdspawn_hit": r["hit_top1"],
+            "llm_top3": llm[r["id"]]["ours_top3"] if llm else [],
+            "llm_hit": llm[r["id"]]["hit_top1"] if llm else False,
+        }
+        for r in results[DEFAULT]
+    ]
+
+
 def methods(results: dict[str, list[dict[str, Any]]], names: list[str]) -> list[dict[str, Any]]:
     """Headline rows for the web page: Crowdspawn, each LLM-only model, popularity."""
     label = {
@@ -350,7 +436,8 @@ def write_report(results: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
             for k in headline
             if k in holdout
         ]
-        lines += ["", "### Per scenario", "", *per_scenario("holdout", holdout), ""]
+        lines += ["", *findings(holdout, raw_h, tuning[DEFAULT]), ""]
+        lines += ["### Per scenario", "", *per_scenario("holdout", holdout), ""]
     lines += [
         "## 2. Tuning set (10 games)",
         "",
@@ -397,8 +484,15 @@ def write_report(results: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
             ),
         },
     }
+    web["tuning"]["scenarios"] = web_rows("tuning", tuning)
     if holdout:
-        web["holdout"] = {"n": len(holdout[DEFAULT]), "methods": methods(holdout, headline)}
+        tops = Counter(r["top_city"] for r in holdout[DEFAULT]).most_common(2)
+        web["holdout"] = {
+            "n": len(holdout[DEFAULT]),
+            "methods": methods(holdout, headline),
+            "top_cities": [{"city": c, "games": k} for c, k in tops],
+            "scenarios": web_rows("holdout", holdout),
+        }
     WEB_JSON.write_text(json.dumps(web, indent=1, ensure_ascii=False) + "\n")
     print("wrote docs/scenario-results.md and", WEB_JSON.relative_to(ROOT))
 
@@ -408,7 +502,7 @@ LLM_DESC = (
     "no Qloo data, temperature 0, asked to rank the countries where such players most over-index"
 )
 WEB_JSON = ROOT / "apps" / "web" / "public" / "eval-results.json"
-SCORER_SHA = "PENDING"  # the commit that froze this scorer before the held-out run
+SCORER_SHA = "2825a51"  # the commit that froze this scorer before the held-out run
 
 
 if __name__ == "__main__":

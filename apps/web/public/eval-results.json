@@ -47,6 +47,805 @@
     "top3": 0,
     "rho": -0.43
    }
+  ],
+  "scenarios": [
+   {
+    "game": "Delhi Gullies: open-world crime game set in the streets of Delhi",
+    "truth": "Mumbai Gullies",
+    "cancelled": true,
+    "truth_top3": [
+     "IN",
+     "US",
+     "CA"
+    ],
+    "crowdspawn_top3": [
+     "IN",
+     "AE",
+     "SG"
+    ],
+    "crowdspawn_city": "Mumbai",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "IN",
+     "AE",
+     "SG"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Neon Kabukicho: a story-driven street brawler set in Tokyo's nightlife district",
+    "truth": "Yakuza (series)",
+    "cancelled": false,
+    "truth_top3": [
+     "JP",
+     "KR",
+     "SG"
+    ],
+    "crowdspawn_top3": [
+     "JP",
+     "KR",
+     "SG"
+    ],
+    "crowdspawn_city": "Tokyo",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "JP",
+     "KR",
+     "US"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Leshy: a dark fantasy RPG built on Slavic folklore",
+    "truth": "The Witcher 3: Wild Hunt",
+    "cancelled": false,
+    "truth_top3": [
+     "PL",
+     "CZ",
+     "SE"
+    ],
+    "crowdspawn_top3": [
+     "PL",
+     "JP",
+     "CA"
+    ],
+    "crowdspawn_city": "Warsaw",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Hanok Online: a fantasy MMORPG from a Seoul studio",
+    "truth": "Lost Ark",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "CA",
+     "SG"
+    ],
+    "crowdspawn_top3": [
+     "PH",
+     "SG",
+     "KR"
+    ],
+    "crowdspawn_city": "Manila",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "KR",
+     "PH",
+     "ID"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Sultan's March: a medieval sandbox of battles and politics in Anatolia",
+    "truth": "Mount & Blade II: Bannerlord",
+    "cancelled": false,
+    "truth_top3": [
+     "TR",
+     "KR",
+     "SE"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "AE",
+     "IN"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "TR",
+     "AE",
+     "ID"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Moss Hollow: a cozy farming and village life sim",
+    "truth": "Stardew Valley",
+    "cancelled": false,
+    "truth_top3": [
+     "CA",
+     "KR",
+     "PH"
+    ],
+    "crowdspawn_top3": [
+     "JP",
+     "GB",
+     "CA"
+    ],
+    "crowdspawn_city": "Tokyo",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "JP",
+     "KR",
+     "US"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Swarmline: a cheap, fast bullet-heaven roguelite",
+    "truth": "Vampire Survivors",
+    "cancelled": false,
+    "truth_top3": [
+     "JP",
+     "KR",
+     "CA"
+    ],
+    "crowdspawn_top3": [
+     "JP",
+     "SE",
+     "GB"
+    ],
+    "crowdspawn_city": "Tokyo",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "PL",
+     "KR",
+     "JP"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Lane Legends: a 5v5 mobile MOBA with 10-minute matches",
+    "truth": "Mobile Legends: Bang Bang",
+    "cancelled": false,
+    "truth_top3": [
+     "PH",
+     "ID",
+     "SG"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "PL",
+     "CZ"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PH",
+     "ID",
+     "KR"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Touchline: a deep football club management sim",
+    "truth": "Football Manager (series)",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "TR",
+     "GB"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Delhi",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "GB",
+     "DE",
+     "ES"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Long Haul: a relaxing long-distance trucking sim",
+    "truth": "Euro Truck Simulator 2",
+    "cancelled": false,
+    "truth_top3": [
+     "TR",
+     "PL",
+     "CZ"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "PL",
+     "IN"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "llm_hit": false
+   }
+  ]
+ },
+ "holdout": {
+  "n": 23,
+  "methods": [
+   {
+    "method": "Crowdspawn (Qloo spawn score)",
+    "n": 23,
+    "top1": 1,
+    "top3": 1,
+    "rho": 0.11
+   },
+   {
+    "method": "LLM only (gemma4:31b)",
+    "n": 23,
+    "top1": 4,
+    "top3": 7,
+    "rho": 0.54
+   },
+   {
+    "method": "Popularity (all gamers, no game signal)",
+    "n": 23,
+    "top1": 0,
+    "top3": 1,
+    "rho": -0.33
+   }
+  ],
+  "top_cities": [
+   {
+    "city": "Stockholm",
+    "games": 9
+   },
+   {
+    "city": "Istanbul",
+    "games": 6
+   }
+  ],
+  "scenarios": [
+   {
+    "game": "Jackpot Run: a roguelike deckbuilder about chasing huge scoring combos",
+    "truth": "Balatro",
+    "cancelled": false,
+    "truth_top3": [
+     "CA",
+     "KR",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "PL",
+     "DE"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "SE",
+     "CA"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Dead Drop: a hardcore extraction shooter where you keep only what you carry out",
+    "truth": "Escape from Tarkov",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "SE",
+     "CA"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Delhi",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "SE"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Conveyor: a factory automation game about building ever larger production lines",
+    "truth": "Factorio",
+    "cancelled": false,
+    "truth_top3": [
+     "CZ",
+     "SE",
+     "DE"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "PL",
+     "SE"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "DE",
+     "PL",
+     "SE"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Gridlock: a modern city builder about traffic, zoning and services",
+    "truth": "Cities: Skylines",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "SE",
+     "PL"
+    ],
+    "crowdspawn_top3": [
+     "GB",
+     "AU",
+     "SE"
+    ],
+    "crowdspawn_city": "London",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "DE",
+     "PL",
+     "CZ"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Deep Shelf: an underwater survival and crafting game",
+    "truth": "Subnautica",
+    "cancelled": false,
+    "truth_top3": [
+     "CZ",
+     "AU",
+     "CA"
+    ],
+    "crowdspawn_top3": [
+     "ID",
+     "TR",
+     "IN"
+    ],
+    "crowdspawn_city": "Jakarta",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "SE",
+     "CA",
+     "AU"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Pulse Cutter: a VR rhythm game where you slash blocks to the beat",
+    "truth": "Beat Saber",
+    "cancelled": false,
+    "truth_top3": [
+     "CZ",
+     "CA",
+     "US"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "CA",
+     "PH"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "JP",
+     "KR",
+     "US"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Apex Line: a realistic circuit racing sim for car lovers",
+    "truth": "Gran Turismo 7",
+    "cancelled": false,
+    "truth_top3": [
+     "JP",
+     "DE",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "CA",
+     "GB"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "DE",
+     "GB",
+     "SE"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Knockdown: a 3D one-on-one fighting game",
+    "truth": "Tekken 8",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "PH",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "GB",
+     "SE",
+     "DE"
+    ],
+    "crowdspawn_city": "London",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "JP",
+     "KR",
+     "US"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Last Light: asymmetric multiplayer horror, four survivors against one killer",
+    "truth": "Dead by Daylight",
+    "cancelled": false,
+    "truth_top3": [
+     "JP",
+     "KR",
+     "US"
+    ],
+    "crowdspawn_top3": [
+     "PL",
+     "AR",
+     "CZ"
+    ],
+    "crowdspawn_city": "Warsaw",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "BR",
+     "MX",
+     "PH"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Turbo Goal: arcade ball games played with rocket-powered cars",
+    "truth": "Rocket League",
+    "cancelled": false,
+    "truth_top3": [
+     "FR",
+     "GB",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "ID",
+     "IN"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "BR",
+     "TR",
+     "PL"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Drop Zone: a realistic 100-player battle royale shooter",
+    "truth": "PUBG: Battlegrounds",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "TR",
+     "IN"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Delhi",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "BR",
+     "PH",
+     "TR"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Starfall Chronicles: an open-world action RPG where you collect characters through gacha banners",
+    "truth": "Genshin Impact",
+    "cancelled": false,
+    "truth_top3": [
+     "JP",
+     "KR",
+     "PH"
+    ],
+    "crowdspawn_top3": [
+     "JP",
+     "CA",
+     "US"
+    ],
+    "crowdspawn_city": "Tokyo",
+    "crowdspawn_hit": true,
+    "llm_top3": [
+     "JP",
+     "KR",
+     "SG"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Tap Empire: an idle incremental game about making numbers grow",
+    "truth": "Cookie Clicker",
+    "cancelled": false,
+    "truth_top3": [
+     "SE",
+     "AU",
+     "US"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "SG",
+     "KR",
+     "JP"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Lantern Deep: a hand-drawn metroidvania about exploring a ruined underground kingdom",
+    "truth": "Hollow Knight",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "MX",
+     "CA"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "DE",
+     "PL"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "SE",
+     "CA"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Ashen Crown: an open-world dark fantasy soulslike",
+    "truth": "Elden Ring",
+    "cancelled": false,
+    "truth_top3": [
+     "CA",
+     "KR",
+     "US"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "PL",
+     "JP"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "KR",
+     "JP"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Squad Zero: turn-based squad tactics against an alien invasion",
+    "truth": "XCOM 2",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "SG",
+     "CZ"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "PL",
+     "DE"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Wrench Time: a garage sim about repairing and restoring cars",
+    "truth": "Car Mechanic Simulator 2021",
+    "cancelled": false,
+    "truth_top3": [
+     "PL",
+     "CZ",
+     "SE"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "JP",
+     "CA"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Dig Deep: a 2D sandbox adventure of digging, building and boss fights",
+    "truth": "Terraria",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "PH",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "SE",
+     "PL",
+     "CZ"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Wobble Rush: a chaotic party game where dozens of players race through obstacle courses",
+    "truth": "Fall Guys",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "JP",
+     "MX"
+    ],
+    "crowdspawn_top3": [
+     "CA",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Toronto",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "US",
+     "KR",
+     "JP"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Far Drift: space exploration and survival across endless planets",
+    "truth": "No Man's Sky",
+    "cancelled": false,
+    "truth_top3": [
+     "CA",
+     "US",
+     "AU"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "CZ",
+     "PL"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "SE",
+     "CZ",
+     "PL"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Breach Point: a 5v5 tactical shooter with hero abilities",
+    "truth": "Valorant",
+    "cancelled": false,
+    "truth_top3": [
+     "KR",
+     "PH",
+     "SG"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "PL"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "KR",
+     "PL",
+     "TR"
+    ],
+    "llm_hit": true
+   },
+   {
+    "game": "Lane Clash: real-time card battles in three-minute mobile matches",
+    "truth": "Clash Royale",
+    "cancelled": false,
+    "truth_top3": [
+     "MX",
+     "AR",
+     "ES"
+    ],
+    "crowdspawn_top3": [
+     "TR",
+     "IN",
+     "ID"
+    ],
+    "crowdspawn_city": "Istanbul",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "KR",
+     "JP",
+     "PH"
+    ],
+    "llm_hit": false
+   },
+   {
+    "game": "Harvest Machine: a realistic farming sim with heavy machinery",
+    "truth": "Farming Simulator 22",
+    "cancelled": false,
+    "truth_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "crowdspawn_top3": [
+     "SE",
+     "JP",
+     "GB"
+    ],
+    "crowdspawn_city": "Stockholm",
+    "crowdspawn_hit": false,
+    "llm_top3": [
+     "PL",
+     "CZ",
+     "DE"
+    ],
+    "llm_hit": true
+   }
   ]
  }
 }

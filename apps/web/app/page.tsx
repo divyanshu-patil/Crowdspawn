@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { SpawnMap } from "../components/SpawnMap";
+import { AccuracySummary } from "../components/Accuracy";
 
 const plan = sample as unknown as Plan;
 
@@ -69,6 +70,8 @@ export default function Home() {
         </ol>
       </section>
 
+      <AccuracySummary />
+
       <section className="section limits">
         <h2 className="h3">Honest limits</h2>
         <ul>
@@ -80,9 +83,9 @@ export default function Home() {
             AI writes is checked against Qloo&apos;s results. No personal data is used anywhere.
           </li>
           <li>
-            Checked against Google Trends for 10 shipped games, the true #1 country was our #1 in 6 and in our top 3
-            in 8. It misses where Qloo&apos;s data is thin, like mobile MOBAs in Southeast Asia. Use it as a starting
-            hypothesis and test with small campaigns.
+            The country ranking has not beaten an LLM without Qloo data on games with no real-world setting (see How
+            accurate is it?), and a Steam-review backtest on 6 shipped games lost to plain popularity. Use it as a
+            starting hypothesis and test with small campaigns.
           </li>
         </ul>
       </section>

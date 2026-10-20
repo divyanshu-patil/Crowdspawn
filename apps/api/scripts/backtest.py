@@ -1,9 +1,10 @@
-"""Accuracy backtest: does Qloo's city lift carry signal beyond popularity?
+"""Accuracy backtest: does the shipped spawn score carry signal beyond popularity?
 
-For each shipped game we run S1-S3 with comps that are NOT the game, aggregate city scores to
-Steam languages, and compare with a public proxy: the game's Steam review share per language
-divided by the mean share of mainstream Steam hits (so the proxy is also an over-index).
-We report top-3 hit rate and Spearman for (a) Qloo lift and (b) the baseline-only ranking.
+For each shipped game we run S1-S3 with comps that are NOT the game, aggregate city spawn scores
+(taste lift x PC platform fit; Steam is PC) to Steam languages, and compare with a public proxy: the
+game's Steam review share per language divided by the mean share of mainstream Steam hits (so the
+proxy is also an over-index). We report top-3 hit rate and Spearman for (a) the spawn score and
+(b) the popularity ranking (all-gamers panels alone).
 
 Live: ~130 Qloo calls on a cold cache, plus Steam's public review endpoint. Writes docs/backtest-results.md.
 Run: uv run python scripts/backtest.py
@@ -107,14 +108,14 @@ async def main() -> None:
                 ]
                 expanded = await expand.expand(run, comps)
                 ranked, _ = await cities.score_cities(
-                    run, list(LANG), expand.signal_ids(comps, expanded)
+                    run, list(LANG), expand.signal_ids(comps, expanded), ["pc"]
                 )
                 by_lang_lift: dict[str, list[float]] = {}
                 by_lang_base: dict[str, list[float]] = {}
                 by_lang_target: dict[str, list[float]] = {}
                 for c in ranked:
                     by_lang_target.setdefault(LANG[c.region_id], []).append(c.target_score)
-                    by_lang_lift.setdefault(LANG[c.region_id], []).append(c.lift)
+                    by_lang_lift.setdefault(LANG[c.region_id], []).append(c.score)
                     by_lang_base.setdefault(LANG[c.region_id], []).append(c.baseline_score)
                 langs = [lang for lang in LANGS if lang in by_lang_lift]
                 q = {lang: statistics.fmean(by_lang_lift[lang]) for lang in langs}
@@ -149,6 +150,7 @@ async def main() -> None:
                 rows.append(row)
                 print(json.dumps(row))
     finally:
+        print("live Qloo calls", qloo.live_calls)
         await qloo.aclose()
         await store.close()
 
@@ -162,7 +164,7 @@ async def main() -> None:
         f"Run on {date.today().isoformat()} with `apps/api/scripts/backtest.py`. City-level truth is not public, so this tests **language-level** signal only.",
         "",
         "**Proxy:** each game's Steam review share per language, divided by the mean share for mainstream Steam hits (GTA V, Elden Ring, Cyberpunk 2077), so it measures over-indexing like Qloo's lift. "
-        "**Qloo ranking:** mean city lift per language. **Baseline-only ranking:** mean mainstream-gamer heatmap score per language (what you'd get from popularity alone). "
+        "**Qloo ranking:** mean city spawn score per language (taste lift × PC platform fit, the shipped scorer). **Baseline-only ranking:** mean all-gamers heatmap score per language (PC, mobile and console panels: what you'd get from popularity alone). "
         f"Languages compared: {', '.join(LANGS)} ({len(LANGS)}); English is the mean of 10 cities.",
         "",
         "| Game | Comps used | Proxy top 3 | Qloo top 3 | Qloo hits in top 3 / top 5 | Qloo ρ | Baseline hits top 3 / top 5 | Baseline ρ |",
@@ -186,7 +188,7 @@ async def main() -> None:
         "",
         "- Steam review language is a rough proxy for where players are: it misses console players, people who review in English from non-English countries, and markets where Steam is small.",
         f"- {len(LANGS)} languages is a small ranking; one swap moves Spearman a lot.",
-        "- Qloo's lift compares against mainstream gamers (Minecraft, Fortnite, GTA V, Warzone), not Steam users specifically.",
+        "- Qloo's lift compares against all gamers (PC, mobile and console panels), not Steam users specifically.",
         "- This says nothing about city-level accuracy. Treat the city ranking as a taste-informed starting hypothesis.",
     ]
     out = ROOT / "docs" / "backtest-results.md"
