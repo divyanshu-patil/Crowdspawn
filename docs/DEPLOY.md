@@ -13,7 +13,8 @@ The hackathon asks for a live demo judges can use end to end. The API runs anywh
 
 - `PLANS_PER_IP_PER_HOUR=6` (plans and agent runs share it) and `SCOUTS_PER_IP_PER_HOUR=120`.
 - `QLOO_DAILY_CALL_CAP=400`: a global limit on live Qloo calls per UTC day, counted in SQLite. Cached answers never count. At the cap, new plans, agent runs and scout lookups fail closed with "Today's live Qloo budget is used up", while `/sample`, the scout map, the 50 popular places and anything already cached keep working. Unset, it defaults to 400 when `APP_ENV=production` and is off elsewhere; `0` turns it off.
-- **A 1 GB persistent disk at `/app/data`.** It keeps the SQLite cache and saved plans across restarts, so judges get cached answers instead of ~100-call cold plans. **Disks need a paid Render instance.** On the free plan, delete the `disk:` block before creating the blueprint; the app still works, it just starts cold after every restart.
+- **`DATABASE_URL` (optional, recommended on the free plan).** A Postgres URL, such as Supabase's transaction pooler (`postgresql://postgres.<ref>:<password>@aws-0-<region>.pooler.supabase.com:6543/postgres`, password URL-encoded). When set, the cache, plans and daily Qloo counter live there instead of SQLite, so they survive restarts without a disk. The tables are created on first start. Check it with `DATABASE_URL=… pnpm --filter api test:live -- tests/test_storage.py`.
+- **A 1 GB persistent disk at `/app/data`.** Not needed when `DATABASE_URL` is set. It keeps the SQLite cache and saved plans across restarts, so judges get cached answers instead of ~100-call cold plans. **Disks need a paid Render instance.** On the free plan, delete the `disk:` block before creating the blueprint; the app still works, it just starts cold after every restart.
 
 The Dockerfile runs uvicorn with `--proxy-headers --forwarded-allow-ips='*'`, so the per-IP limits see each visitor's address behind Render's proxy rather than the proxy's.
 

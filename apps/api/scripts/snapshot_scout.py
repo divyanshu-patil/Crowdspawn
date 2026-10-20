@@ -25,7 +25,7 @@ EXTRA = [  # biggest gaming cities outside the plan's candidate list
 
 async def main() -> None:
     s = get_settings()
-    store = await Store.open(s.db_file)
+    store = await Store.open(s.db_target)
     qloo = QlooClient(s, store)
     points = scout.scout_points()
     ids = list(cities.regions()) + EXTRA

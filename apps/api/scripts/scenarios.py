@@ -63,7 +63,7 @@ def leaks(truth: dict[str, str], name: str) -> bool:
 
 async def collect(scenarios: str) -> None:
     s = get_settings()
-    store = await Store.open(s.db_file)
+    store = await Store.open(s.db_target)
     qloo = QlooClient(s, store)
     regions = cities.regions()
     out: dict[str, Any] = {"collected": date.today().isoformat(), "scenarios": {}}

@@ -33,7 +33,7 @@ async def main(name: str) -> None:
     regions = cities.regions()
     top = [r for r in regions.values() if f"POINT({r.lon} {r.lat})" in points]
     assert len(top) == len(points), (points, top)
-    store = await Store.open(get_settings().db_file)
+    store = await Store.open(get_settings().db_target)
     qloo = QlooClient(get_settings(), store)
     try:
         run = qloo.run()

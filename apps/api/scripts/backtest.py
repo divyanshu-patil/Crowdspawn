@@ -91,7 +91,7 @@ async def steam_shares(http: httpx.AsyncClient, appid: int) -> dict[str, float]:
 
 async def main() -> None:
     s = get_settings()
-    store = await Store.open(s.db_file)
+    store = await Store.open(s.db_target)
     qloo = QlooClient(s, store)
     rows, lines = [], []
     try:

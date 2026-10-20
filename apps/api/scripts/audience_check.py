@@ -50,7 +50,7 @@ class Shares(BaseModel):
 
 async def collect() -> None:
     s = get_settings()
-    store = await Store.open(s.db_file)
+    store = await Store.open(s.db_target)
     qloo = QlooClient(s, store)
     out: dict[str, object] = {"collected": date.today().isoformat(), "source": SOURCE, "genres": {}}
     try:

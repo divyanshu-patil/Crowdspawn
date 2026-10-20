@@ -35,7 +35,7 @@ def trim(body: dict) -> dict:
 
 
 async def main(plan_id: str, name: str, sample: bool) -> None:
-    store = await Store.open(get_settings().db_file)
+    store = await Store.open(get_settings().db_target)
     try:
         await export(store, plan_id, name, sample)
     finally:

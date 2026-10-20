@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 async def plan_from_db(plan_id: str) -> dict[str, Any]:
-    store = await Store.open(get_settings().db_file)
+    store = await Store.open(get_settings().db_target)
     try:
         row = await store.get_plan(plan_id)
     finally:

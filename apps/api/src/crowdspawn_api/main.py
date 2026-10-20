@@ -47,7 +47,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        store = await Store.open(s.db_file)
+        store = await Store.open(s.db_target)
         qloo = QlooClient(s, store)
         llm = build_provider(s)
         app.state.deps = Deps(settings=s, store=store, qloo=qloo, llm=llm)

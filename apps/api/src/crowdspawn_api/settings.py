@@ -169,6 +169,8 @@ class Settings(BaseSettings):
     openai_compat_model: str = ""
 
     database_path: str = "./data/crowdspawn.sqlite3"
+    # Postgres (e.g. Supabase) URL; when set it replaces the SQLite file. Holds the DB password.
+    database_url: SecretStr = SecretStr("")
     cors_origins: str = "http://localhost:3000"
     log_level: str = "info"
     plans_per_ip_per_hour: int = 10
@@ -188,6 +190,10 @@ class Settings(BaseSettings):
     def db_file(self) -> Path:
         p = Path(self.database_path)
         return p if p.is_absolute() else API_ROOT / p
+
+    @property
+    def db_target(self) -> Path | str:
+        return self.database_url.get_secret_value() or self.db_file
 
 
 @lru_cache

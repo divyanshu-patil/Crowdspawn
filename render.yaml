@@ -24,9 +24,11 @@ services:
         value: "400" # live Qloo calls per UTC day for everyone; cached answers stay free
       - key: SCOUTS_PER_IP_PER_HOUR
         value: "120"
+      - key: DATABASE_URL
+        sync: false # Supabase pooler URL; keeps the cache and plans without the disk below
     # Keeps the SQLite cache (Qloo answers, plans) across restarts and deploys. Without it every restart
     # starts cold and the first judges pay ~100 Qloo calls per plan. Disks need a paid instance type:
-    # on the free plan, delete this block. Owner's decision.
+    # on the free plan, delete this block (or set DATABASE_URL, which makes it unnecessary).
     disk:
       name: crowdspawn-data
       mountPath: /app/data
