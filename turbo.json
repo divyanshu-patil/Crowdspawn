@@ -36,6 +36,13 @@
         "^build"
       ],
       "outputs": []
+    },
+    "web#test": {
+      "dependsOn": [
+        "^build",
+        "build"
+      ],
+      "outputs": []
     }
   }
 }

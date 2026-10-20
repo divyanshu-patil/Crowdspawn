@@ -19,6 +19,6 @@ jobs:
           cache: pnpm
       - uses: astral-sh/setup-uv@v6
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run lint check-types build
-      # Own step: vitest gives a worker 5s to start, which a CPU busy with `next build` misses.
-      - run: pnpm turbo run test
+      # One command, as a developer runs it: web#test waits for web#build (turbo.json), and vitest 4.0.18
+      # waits up to 90 s for its worker, so `next build` no longer starves the tests.
+      - run: pnpm turbo run lint check-types test build
