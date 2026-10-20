@@ -32,17 +32,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div className="nav-links">
               <SoundToggle />
               <Tour />
-              <Link className="label" href="/agent">
-                Agent
-              </Link>
-              <Link className="label" href="/scout">
-                Scout
+              <Link className="btn" href="/agent">
+                Plan my launch
               </Link>
               <Link className="label" href="/sample">
                 Sample
               </Link>
-              <Link className="btn" href="/plan/new">
-                New plan
+              <Link className="label" href="/scout">
+                Explore map
               </Link>
             </div>
           </nav>

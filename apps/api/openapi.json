@@ -2647,6 +2647,21 @@
             "maxItems": 5,
             "title": "Comp Entity Ids",
             "default": []
+          },
+          "culture_entity_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 5
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Culture Entity Ids"
           }
         },
         "type": "object",

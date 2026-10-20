@@ -1,8 +1,8 @@
-import Link from "next/link";
 import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { SpawnMap } from "../components/SpawnMap";
 import { AccuracySummary } from "../components/Accuracy";
+import { FrontDoor } from "../components/FrontDoor";
 
 const plan = sample as unknown as Plan;
 
@@ -19,19 +19,10 @@ export default function Home() {
             <br />
             before launch day.
           </p>
-          <div className="row" style={{ justifyContent: "inherit" }}>
-            <Link className="btn btn-lg" href="/plan/new">
-              Start a plan
-            </Link>
-            <Link className="ghost" href="/agent">
-              Ask the launch agent
-            </Link>
-            <Link className="ghost" href="/sample">
-              See a sample plan
-            </Link>
-          </div>
         </div>
       </section>
+
+      <FrontDoor />
 
       <section className="section stack">
         <SpawnMap cities={plan.cities} />

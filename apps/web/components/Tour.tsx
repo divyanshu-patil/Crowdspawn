@@ -9,27 +9,27 @@ type Step = { path: string | null; target: string; title: string; body: string }
 export const STEPS: Step[] = [
   {
     path: "/",
-    target: ".hero",
-    title: "Welcome to Crowdspawn",
-    body: "Launch planning for indie games: where your players already are, and who else they love. Every number comes from Qloo taste data.",
+    target: ".front-door",
+    title: "Start here",
+    body: "Describe your game and what you want to decide. An agent picks comparable games, then ranks cities and partners with live Qloo data, showing every step.",
   },
   {
     path: "/",
-    target: "main > .section",
-    title: "The spawn map",
-    body: "A real plan for a Delhi-set crime game. Orange crowds are the cities where fans of games like it over-index: Mumbai, Delhi, Dubai.",
+    target: "section[aria-labelledby='acc-h']",
+    title: "How accurate is it?",
+    body: "We tested the ranking against Google Trends, an LLM alone and plain popularity, and publish where it loses. Treat it as a starting hypothesis.",
   },
   {
     path: "/sample",
     target: "section[aria-labelledby='cities-h']",
-    title: "Cities, ranked",
-    body: "Spawn score = taste lift × platform fit × culture fit, with confidence and a budget share. Above 1 means the city over-indexes.",
+    title: "Where to launch",
+    body: "Spawn score = taste lift × platform fit × culture fit. Above 1 means the city over-indexes. Open a city to see why, or scout it.",
   },
   {
     path: "/sample",
     target: "section[aria-labelledby='partners-h']",
-    title: "Allies to recruit",
-    body: "Artists, podcasts, films and brands this audience loves, globally and in the top cities. These are your co-marketing leads.",
+    title: "Partners to recruit",
+    body: "Artists, podcasts, films and brands your fans like more than gamers in general do, worldwide and in the top cities.",
   },
   {
     path: "/sample",
@@ -40,26 +40,14 @@ export const STEPS: Step[] = [
   {
     path: "/scout",
     target: ".region-map",
-    title: "Scout any region",
-    body: "Countries shaded by gamer taste match. Hover for PC, console and mobile readings, or click anywhere to see what works there.",
-  },
-  {
-    path: "/scout",
-    target: ".row.popular",
-    title: "Popular places, instantly",
-    body: "Hover a place to zoom to it, click to scout it. Then ask “Will my game work here?” for a Legendary-to-Common verdict.",
-  },
-  {
-    path: "/agent",
-    target: ".agent .field",
-    title: "Or just ask the agent",
-    body: "Describe your game and question. The agent picks Qloo tools step by step, shows its work, and hands its picks to a full plan.",
+    title: "Explore the map",
+    body: "Click anywhere to see what players there love, then ask “Will my game work here?” for a verdict from Qloo's scores.",
   },
   {
     path: null,
-    target: ".nav a.btn[href='/plan/new']",
-    title: "Plan your own launch",
-    body: "Start with your game, a few comparable games and the culture it draws on. The plan streams in live.",
+    target: ".nav a.btn[href='/agent']",
+    title: "Plan your launch",
+    body: "Ready? Describe your game. To pick comparable games yourself instead, use “Advanced: pick comps yourself”.",
   },
 ];
 

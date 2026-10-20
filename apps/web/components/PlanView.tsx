@@ -51,8 +51,8 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
             <CountUp value={plan.cities.length} />
           </Stat>
           <Stat label="Confidence">
-            <span title={CONFIDENCE_HELP} style={{ fontSize: 24 }}>
-              {counts.high}H · {counts.medium}M · {counts.low}L
+            <span title={CONFIDENCE_HELP} style={{ fontSize: 18 }}>
+              {counts.high} high · {counts.medium} medium · {counts.low} low
             </span>
           </Stat>
           <Stat label="Qloo calls (live / cached)">
@@ -82,7 +82,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
       <section className="section stack" aria-labelledby="cities-h">
         <div className="spread">
           <h2 id="cities-h" className="h2">
-            Spawn points
+            Spawn points<span className="h-sub">: where to launch</span>
           </h2>
           <span className="label muted">Spawn score: taste × platform × culture · not a sales forecast</span>
         </div>
@@ -104,6 +104,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
               maxScore={maxScore}
               active={activeCity === c.region_id}
               onToggle={() => setActiveCity(c.region_id)}
+              planId={plan.id}
               traceHref={traceHref}
               hasBudget={plan.input.budget_usd != null}
             />
@@ -130,7 +131,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
       {/* Expanded comps with Qloo's explanations */}
       <section className="section stack" aria-labelledby="comps-h">
         <h2 id="comps-h" className="h2">
-          Your rivals, scouted
+          Rivals<span className="h-sub">: games your fans also love</span>
         </h2>
         <p className="muted">
           Your comps, then the games Qloo says their fans also love, with why. <Cite id={plan.expanded[0]?.result_id ?? "q2"} traceHref={traceHref} />
@@ -179,7 +180,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
         <section className="section two-col" aria-labelledby="aud-h">
           <div className="stack">
             <h2 id="aud-h" className="h2">
-              Who&apos;s in the party
+              Who&apos;s in the party<span className="h-sub">: your audience by age and gender</span>
             </h2>
             <p className="muted">
               How this audience over- or under-indexes against the average, by age and gender. Source: Qloo
@@ -234,7 +235,7 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
         <section className="section stack brief" aria-labelledby="brief-h">
           <div className="spread">
             <h2 id="brief-h" className="h2">
-              Battle plan
+              Battle plan<span className="h-sub">: the brief</span>
             </h2>
             <span className="label muted">
               {plan.brief.source === "llm" ? `Written by ${plan.brief.model}, grounded on Qloo data` : "Template brief"}
@@ -281,6 +282,7 @@ function CityRow({
   onToggle,
   traceHref,
   hasBudget,
+  planId,
 }: {
   c: City;
   i: number;
@@ -289,6 +291,7 @@ function CityRow({
   onToggle: () => void;
   traceHref: string;
   hasBudget: boolean;
+  planId: string;
 }) {
   const v = Math.max(0.04, c.score / maxScore);
   const [target, pc, mobile, console_, cultureId] = c.result_ids;
@@ -378,6 +381,12 @@ function CityRow({
               </>
             )}
           </p>
+          <p>
+            <Link className="textlink" href={`/scout?lat=${c.lat}&lon=${c.lon}&plan=${encodeURIComponent(planId)}`}>
+              Scout this city
+            </Link>{" "}
+            <span className="hint">: what locals play, and a verdict for your game here.</span>
+          </p>
         </div>
       </details>
     </li>
@@ -391,7 +400,7 @@ function Partners({ plan, traceHref }: { plan: Plan; traceHref: string }) {
     <section className="section" aria-labelledby="partners-h">
       <div className="spread">
         <h2 id="partners-h" className="h2">
-          Allies to recruit
+          Allies<span className="h-sub">: partners to recruit</span>
         </h2>
         <span className="label muted">Legendary ≥ 95 affinity · Rare ≥ 90</span>
       </div>
@@ -475,7 +484,7 @@ function Actions({ plan, traceHref }: { plan: Plan; traceHref: string }) {
         Open Qloo trace
       </Link>
       <Link className="textlink" href="/plan/new">
-        Plan another game
+        Advanced: pick comps yourself
       </Link>
     </div>
   );

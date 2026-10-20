@@ -154,3 +154,33 @@ def test_user_picked_comps_are_kept_first(
     monkeypatch.setattr(resolve, "lookup_comps", lookup)
     d = client.post("/v1/scout/judge", json={**BODY, "comp_entity_ids": ["S1"]}).json()
     assert d["comps"] == ["Sleeping Dogs", "Grand Theft Auto V"]
+
+
+def test_scout_from_a_plan_uses_its_names_and_never_asks_the_llm_for_any(
+    client: TestClient, fake_qloo_judge: dict[str, Any], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """J16: "Scout this city" sends the plan's comps and culture anchors; the LLM only writes the summary."""
+    from crowdspawn_api.schemas import CultureAnchor
+
+    async def lookup(run: Any, ids: list[str]) -> tuple[list[Comp], list[str]]:
+        return [Comp(entity_id="S1", name="Sleeping Dogs", result_id="q1")], []
+
+    async def anchors(run: Any, ids: list[str]) -> tuple[list[CultureAnchor], list[str]]:
+        return [
+            CultureAnchor(
+                entity_id="CULT", name="Gully Boy", type="urn:entity:movie", result_id="q2"
+            )
+        ], []
+
+    monkeypatch.setattr(resolve, "lookup_comps", lookup)
+    monkeypatch.setattr(culture, "lookup_culture", anchors)
+    llm = client.app.state.deps.llm
+    assert isinstance(llm, FakeProvider)
+    llm.calls = []
+    body = {**BODY, "comp_entity_ids": ["S1"], "culture_entity_ids": ["CULT"]}
+    d = client.post("/v1/scout/judge", json=body).json()
+    assert d["comps"] == ["Sleeping Dogs"] and d["culture"] == ["Gully Boy"] and d["dropped"] == []
+    assert d["culture_fit"] > 2 and d["summary_source"] == "llm"
+    assert len(llm.calls) == 1 and '{"summary"' in llm.calls[0][0]["content"]  # summary only
+    d = client.post("/v1/scout/judge", json={**body, "culture_entity_ids": []}).json()
+    assert d["comps"] == ["Sleeping Dogs"] and d["culture"] == [] and d["culture_fit"] is None

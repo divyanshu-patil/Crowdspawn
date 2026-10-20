@@ -9,7 +9,7 @@ import { emptyDraft, type Draft } from "../lib/validate";
 import { DRAFT_KEY } from "./NewPlanForm";
 import { Notice, RichText } from "./ui";
 
-const EXAMPLES = [
+export const EXAMPLES = [
   "A cozy farming and village life game for PC and Switch. Where should I launch first, and who should I partner with?",
   "A fast roguelike deckbuilder for PC and mobile. Which cities over-index for players like mine?",
   "A competitive 5v5 MOBA with anime heroes, mobile first. Where are my players, and which artists should we sponsor?",
@@ -54,12 +54,25 @@ export function LaunchAgent() {
   const [steps, setSteps] = useState<StepView[]>([]);
   const [calls, setCalls] = useState({ live: 0, cached: 0 });
   const [result, setResult] = useState<AgentRun | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ code: string; message: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const stop = useRef<() => void>(() => {});
   useEffect(() => () => stop.current(), []);
 
-  async function start() {
+  // From the landing page: /agent?goal=...&run=1 fills the box and starts once (not again on reload).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const g = q.get("goal")?.slice(0, 600) ?? "";
+    if (!g) return;
+    setGoal(g);
+    if (q.get("run") === "1" && g.trim().length >= 10) {
+      history.replaceState(null, "", `/agent?goal=${encodeURIComponent(g)}`);
+      void start(g);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function start(text = goal) {
     stop.current();
     setSteps([]);
     setCalls({ live: 0, cached: 0 });
@@ -67,7 +80,7 @@ export function LaunchAgent() {
     setError(null);
     setBusy(true);
     try {
-      const { id } = await api.startAgent(goal.trim());
+      const { id } = await api.startAgent(text.trim());
       setRunId(id);
       stop.current = streamAgent(
         id,
@@ -89,7 +102,7 @@ export function LaunchAgent() {
               })
               .finally(() => setBusy(false));
           } else if (ev.type === "failed") {
-            setError(ev.data.message);
+            setError(ev.data);
             setBusy(false);
             play("error");
           }
@@ -97,10 +110,21 @@ export function LaunchAgent() {
         () => {},
       );
     } catch (e) {
-      setError((e as ApiError).message);
+      const err = e as ApiError;
+      setError({ code: err.code, message: err.message });
       setBusy(false);
       play("error");
     }
+  }
+
+  /** The LLM is down: carry the description into the form, where comp search needs only Qloo. */
+  function planByHand() {
+    try {
+      sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ draft: { ...emptyDraft(), description: goal.trim() }, step: 0 }));
+    } catch {
+      /* storage blocked: the form opens empty */
+    }
+    router.push("/plan/new");
   }
 
   function openPlan() {
@@ -130,7 +154,7 @@ export function LaunchAgent() {
     <div className="stack agent" style={{ paddingTop: 32 }}>
       <header className="stack">
         <span className="label muted">Launch agent</span>
-        <h1 className="h1">Ask the launch agent</h1>
+        <h1 className="h1">Plan my launch</h1>
         <p className="lede" style={{ maxWidth: 780 }}>
           Describe your game and what you want to know. The agent decides which Qloo tools to use, step by step: it finds
           comparable games, ranks cities, checks partners and audiences, then answers using only what Qloo returned.
@@ -159,7 +183,12 @@ export function LaunchAgent() {
         </div>
       </div>
       <div className="row" style={{ alignItems: "center" }}>
-        <button className="btn btn-lg" data-sfx="select" onClick={start} disabled={busy || !ready}>
+        <button
+          className={result?.draft ? "ghost" : "btn btn-lg"}
+          data-sfx="select"
+          onClick={() => start()}
+          disabled={busy || !ready}
+        >
           {busy ? "Agent at work…" : "Run the agent"}
         </button>
         {runId && (
@@ -169,7 +198,18 @@ export function LaunchAgent() {
         )}
       </div>
 
-      {error && <Notice tone="warn">{error}</Notice>}
+      {error &&
+        (error.code.startsWith("llm_") ? (
+          <Notice tone="warn">
+            The agent&apos;s language model is unavailable right now. You can still build the plan yourself: comp search
+            and every score come from Qloo.{" "}
+            <button className="btn" data-sfx="confirm" onClick={planByHand}>
+              Build the plan yourself
+            </button>
+          </Notice>
+        ) : (
+          <Notice tone="warn">{error.message}</Notice>
+        ))}
 
       {steps.length > 0 && (
         <ol className="agent-steps" aria-live="polite">
@@ -215,7 +255,7 @@ export function LaunchAgent() {
           </p>
           {result.draft && (
             <div>
-              <button className="btn" data-sfx="confirm" onClick={openPlan}>
+              <button className="btn btn-lg" data-sfx="confirm" onClick={openPlan}>
                 Open as a launch plan
               </button>
               <span className="hint" style={{ marginLeft: 12 }}>

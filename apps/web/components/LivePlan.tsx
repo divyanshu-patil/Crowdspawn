@@ -103,8 +103,8 @@ export function LivePlan({ id }: { id: string }) {
         message={`There is no plan with id “${id}”. It may have been made on another server.`}
         action={
           <>
-            <Link className="btn" href="/plan/new">
-              Start a plan
+            <Link className="btn" href="/agent">
+              Plan my launch
             </Link>
             <Link className="ghost" href="/sample">
               See the sample

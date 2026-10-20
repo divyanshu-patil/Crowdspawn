@@ -314,6 +314,20 @@ def test_entity_search(client: TestClient, fake_qloo: FakeQloo) -> None:
     ]
 
 
+def test_form_path_works_without_any_llm(client: TestClient, fake_qloo: FakeQloo) -> None:
+    """J16: the front door's fallback. With no LLM the agent refuses, but comp search and plans work."""
+    client.app.state.deps.llm = None
+    r = client.post("/v1/agent", json={"goal": "A cozy farming game for PC and Switch"})
+    assert r.json()["code"].startswith("llm_")
+    params = (("query", "hades"), ("take", "8"), ("types", "urn:entity:videogame"))
+    fake_qloo.recorded[("/search", params)] = {
+        "results": [{"name": "Hades", "entity_id": "H1", "types": ["urn:entity:videogame"]}]
+    }
+    assert client.get("/v1/entities/search", params={"q": "hades"}).json()[0]["name"] == "Hades"
+    plan = run_plan(client)
+    assert plan["status"] == "done" and plan["brief"]["source"] == "template"
+
+
 def test_openapi_contract_is_current(tmp_path: Path) -> None:
     committed = Path(__file__).parents[1] / "openapi.json"
     live = create_app(make_settings(tmp_path)).openapi()

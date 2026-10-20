@@ -320,6 +320,7 @@ async def scout_judge(request: Request, body: ScoutJudgeIn) -> ScoutJudge:
             tags=body.tags,
             platforms=list(body.platforms),
             comp_ids=body.comp_entity_ids,
+            culture_ids=body.culture_entity_ids,
             timeout=d.settings.llm_timeout_seconds,
         )
     except QlooError as e:

@@ -1124,6 +1124,8 @@ export interface components {
              * @default []
              */
             comp_entity_ids: string[];
+            /** Culture Entity Ids */
+            culture_entity_ids?: string[] | null;
         };
         /** SuggestIn */
         SuggestIn: {

@@ -356,6 +356,8 @@ class ScoutJudgeIn(ScoutAreaIn):
         default=["pc", "mobile", "console"], min_length=1, max_length=3
     )
     comp_entity_ids: list[str] = Field(default=[], max_length=5)  # optional: games the user picked
+    # From a plan: when set (even empty), these and comp_entity_ids are the only names; the LLM proposes none.
+    culture_entity_ids: list[str] | None = Field(default=None, max_length=5)
 
 
 class RankedPlace(BaseModel):

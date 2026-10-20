@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type PointerEvent as RPointerEvent } from "react";
 import Link from "next/link";
-import type { AreaActivity, EntityOut, PlaceHit, PlatformMix, ScoutArea, ScoutJudge } from "@repo/contracts";
+import type { AreaActivity, EntityOut, PlaceHit, Plan, PlatformMix, ScoutArea, ScoutJudge } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
 import { COUNTRIES, GRID, OWNER, type CountryShape } from "../lib/countries";
 import snapshotJson from "../lib/scout-snapshot.json";
@@ -92,6 +92,26 @@ function km(a: { lat: number; lon: number }, b: { lat: number; lon: number }) {
   return 12742 * Math.asin(Math.sqrt(h));
 }
 
+/** "Scout this city" from a plan: the judge form starts from the plan's own names (J16). */
+type Prefill = {
+  title: string;
+  description: string;
+  comps: EntityOut[];
+  culture: { entity_id: string; name: string }[];
+  platforms: Platform[];
+};
+
+function fromPlan(p: Plan): Prefill {
+  const g = p.input.game;
+  return {
+    title: g.title,
+    description: (g.description.trim().length >= 10 ? g.description : `${g.title}, a game like ${p.comps.map((c) => c.name).join(", ")}`).slice(0, 600),
+    comps: p.comps.map((c) => ({ entity_id: c.entity_id, name: c.name, type: "urn:entity:videogame" }) as EntityOut),
+    culture: (p.culture ?? []).map(({ entity_id, name }) => ({ entity_id, name })),
+    platforms: p.input.platforms as Platform[],
+  };
+}
+
 export function RegionScout() {
   // Start from the bundled snapshot so the map is coloured at once; live readings replace it when they arrive.
   const [readings, setReadings] = useState<Map<string, CountryReading> | null>(() => byCountry(SNAPSHOT.activity));
@@ -104,6 +124,29 @@ export function RegionScout() {
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState<"works" | "fit">("works");
   const [spot, setSpot] = useState<Spot | null>(null); // a popular place being hovered in the chip row
+  const [prefill, setPrefill] = useState<Prefill | null>(null);
+
+  // /scout?lat=..&lon=..&plan=<id>: open that city on "Will my game work here?" with the plan's names.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const lat = Number(q.get("lat"));
+    const lon = Number(q.get("lon"));
+    const id = q.get("plan");
+    if (!q.get("lat") || !q.get("lon") || !Number.isFinite(lat) || !Number.isFinite(lon)) return;
+    const go = (p: Plan | null) => {
+      const c = p?.cities.find((x) => Math.abs(x.lat - lat) < 1e-6 && Math.abs(x.lon - lon) < 1e-6);
+      if (p) {
+        setPrefill(fromPlan(p));
+        setTab("fit");
+      }
+      void scout({ lat, lon, label: c ? `${c.name}, ${c.country}` : `${lat.toFixed(2)}°, ${lon.toFixed(2)}°` });
+    };
+    if (!id) return go(null);
+    const load: Promise<Plan> =
+      id === "sample" ? fetch("/sample-plan.json").then((r) => r.json() as Promise<Plan>) : api.plan(id);
+    load.then(go, () => go(null));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     api
@@ -221,7 +264,7 @@ export function RegionScout() {
             {loading && <Skeleton h={220} />}
             {areaError && <Notice tone="warn">{areaError}</Notice>}
             {area && tab === "works" && <WhatWorks area={area} />}
-            {area && tab === "fit" && <Fit pick={pick} />}
+            {area && tab === "fit" && <Fit key={prefill ? "plan" : "free"} pick={pick} prefill={prefill} />}
           </div>
         )}
       </section>
@@ -507,6 +550,8 @@ function RegionMap({
       aria-label="World map of gamer taste match; click a place to scout it"
       style={{ ["--side" as string]: `${0.42 / Math.sqrt(view.k)}px` }}
     >
+      {/* At phone width the map keeps a usable height and swipes sideways inside this strip (J17). */}
+      <div className="map-scroll">
       <svg
         ref={svg}
         viewBox={`${view.x} ${view.y} ${W / view.k} ${H / view.k}`}
@@ -557,6 +602,7 @@ function RegionMap({
           </g>
         )}
       </svg>
+      </div>
 
       <div className="map-zoom" role="group" aria-label="Map zoom">
         <button type="button" aria-label="Zoom in" onClick={() => zoomAt(1.6)} disabled={view.k >= MAX_K}>
@@ -690,11 +736,11 @@ const TONE: Record<string, string> = {
   Common: "common",
 };
 
-function Fit({ pick }: { pick: Pick }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [comps, setComps] = useState<EntityOut[]>([]);
-  const [platforms, setPlatforms] = useState<Platform[]>(["pc", "console", "mobile"]);
+function Fit({ pick, prefill }: { pick: Pick; prefill: Prefill | null }) {
+  const [title, setTitle] = useState(prefill?.title ?? "");
+  const [description, setDescription] = useState(prefill?.description ?? "");
+  const [comps, setComps] = useState<EntityOut[]>(prefill?.comps ?? []);
+  const [platforms, setPlatforms] = useState<Platform[]>(prefill?.platforms ?? ["pc", "console", "mobile"]);
   const [result, setResult] = useState<ScoutJudge | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -714,6 +760,7 @@ function Fit({ pick }: { pick: Pick }) {
         description: description.trim(),
         platforms,
         comp_entity_ids: comps.map((c) => c.entity_id),
+        ...(prefill && { culture_entity_ids: prefill.culture.map((c) => c.entity_id) }),
       });
       setResult(r);
       play(r.verdict === "Common" ? "error" : r.verdict === "Uncommon" ? "level" : "win");
@@ -727,10 +774,18 @@ function Fit({ pick }: { pick: Pick }) {
 
   return (
     <div className="stack">
-      <p className="muted">
-        Describe your game. An LLM picks comparable games and the culture it draws on; Qloo checks every name and scores
-        this spot against 8 cities around the world.
-      </p>
+      {prefill ? (
+        <p className="muted">
+          From your plan: comps {comps.map((c) => c.name).join(", ") || "none"}
+          {prefill.culture.length > 0 && <>, culture anchors {prefill.culture.map((c) => c.name).join(", ")}</>}. Qloo
+          scores this spot against 8 cities around the world with exactly these names; the LLM only writes the summary.
+        </p>
+      ) : (
+        <p className="muted">
+          Describe your game. An LLM picks comparable games and the culture it draws on; Qloo checks every name and
+          scores this spot against 8 cities around the world.
+        </p>
+      )}
       <div className="judge-form">
         <div className="field">
           <label className="label" htmlFor="j-title">
@@ -770,8 +825,8 @@ function Fit({ pick }: { pick: Pick }) {
             );
           })}
         </div>
-        <details className="more">
-          <summary className="label">Name specific comparable games (optional)</summary>
+        <details className="more" open={!!prefill}>
+          <summary className="label">{prefill ? "Comparable games from your plan" : "Name specific comparable games (optional)"}</summary>
           <GameSearch
             label="Search games like yours"
             exclude={comps.map((c) => c.entity_id)}

@@ -95,6 +95,7 @@ async def judge(
     platforms: list[str],
     comp_ids: list[str],
     timeout: float,
+    culture_ids: list[str] | None = None,
 ) -> ScoutJudge:
     budget = CallBudget(5)  # comps, culture, summary (+ one repair each where needed)
     game = {
@@ -104,13 +105,16 @@ async def judge(
     }
 
     # 1-2. LLM names -> Qloo entities. The culture step may fail quietly; comps may not.
-    comp_names: Names | BaseException
-    anchors: Anchors | BaseException
-    comp_names, anchors = await asyncio.gather(
-        suggest(llm, budget, render("suggest_comps", **game), Names, timeout),
-        suggest(llm, budget, render("suggest_culture", **game), Anchors, timeout),
-        return_exceptions=True,
-    )
+    # A plan supplies every name (culture_ids set, even empty), so the LLM proposes none.
+    from_plan = culture_ids is not None
+    comp_names: Names | BaseException | None = None
+    anchors: Anchors | BaseException | None = None
+    if not from_plan:
+        comp_names, anchors = await asyncio.gather(
+            suggest(llm, budget, render("suggest_comps", **game), Names, timeout),
+            suggest(llm, budget, render("suggest_culture", **game), Anchors, timeout),
+            return_exceptions=True,
+        )
     picked, _ = await resolve.lookup_comps(run, comp_ids) if comp_ids else ([], [])
     dropped: list[str] = []
     found: list[Comp] = list(picked)
@@ -124,7 +128,7 @@ async def judge(
             for h in hits
             if h.resolved and h.resolved.entity_id not in have
         ]
-    elif not found:
+    elif not found and not from_plan:
         raise comp_names if isinstance(comp_names, LLMError) else LLMError(str(comp_names))
     comps = found[:5]
     if not comps:
@@ -133,8 +137,11 @@ async def judge(
             code="comp_unresolved",
             status=422,
         )
-    culture_ids: list[str] = []
     culture_names: list[str] = []
+    if culture_ids:
+        known, _ = await culture.lookup_culture(run, culture_ids)
+        culture_ids, culture_names = [a.entity_id for a in known], [a.name for a in known]
+    culture_ids = culture_ids or []
     if isinstance(anchors, Anchors) and anchors.anchors:
         pairs = list(
             dict.fromkeys((a.name.strip(), f"urn:entity:{a.type}") for a in anchors.anchors)
