@@ -1,0 +1,52 @@
+{
+ "generated_by": "apps/api/scripts/scenarios.py score",
+ "tuning": {
+  "n": 10,
+  "methods": [
+   {
+    "method": "Crowdspawn (Qloo spawn score)",
+    "n": 10,
+    "top1": 6,
+    "top3": 8,
+    "rho": 0.45
+   },
+   {
+    "method": "LLM only (gemma4:31b)",
+    "n": 10,
+    "top1": 6,
+    "top3": 7,
+    "rho": 0.61
+   },
+   {
+    "method": "Popularity (all gamers, no game signal)",
+    "n": 10,
+    "top1": 0,
+    "top3": 0,
+    "rho": -0.43
+   }
+  ],
+  "shipped_only": [
+   {
+    "method": "Crowdspawn (Qloo spawn score)",
+    "n": 9,
+    "top1": 5,
+    "top3": 7,
+    "rho": 0.45
+   },
+   {
+    "method": "LLM only (gemma4:31b)",
+    "n": 9,
+    "top1": 5,
+    "top3": 6,
+    "rho": 0.61
+   },
+   {
+    "method": "Popularity (all gamers, no game signal)",
+    "n": 9,
+    "top1": 0,
+    "top3": 0,
+    "rho": -0.43
+   }
+  ]
+ }
+}
