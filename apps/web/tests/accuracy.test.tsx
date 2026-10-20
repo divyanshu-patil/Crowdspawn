@@ -41,5 +41,6 @@ describe("accuracy evidence (J15)", () => {
     const readme = readFileSync(resolve(process.cwd(), "../../README.md"), "utf8");
     expect(readme).toContain(`ρ ${AUDIENCE.rho_qloo}`);
     expect(readme).toContain(`ρ ${AUDIENCE.rho_llm}`);
+    cleanup();
   });
 });

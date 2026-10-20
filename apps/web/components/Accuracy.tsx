@@ -3,7 +3,7 @@ import results from "../public/eval-results.json";
 import audience from "../public/audience-check.json";
 import { Notice } from "./ui";
 
-/** Written by apps/api/scripts/scenarios.py score: never edit these numbers by hand. */
+/** Written by apps/api/scripts/audience_check.py and scenarios.py score: never edit these numbers by hand. */
 export const AUDIENCE = audience;
 export const EVAL = results;
 
