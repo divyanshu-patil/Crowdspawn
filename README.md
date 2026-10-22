@@ -30,6 +30,7 @@ Describe your game and an agent builds a launch plan from [Qloo Taste AI](https:
 1. **Open the sample** (`/sample`): a saved plan for Long Haul, a trucking sim. The note at the top says what our evaluation found for this game.
 2. **Type a game into "Plan my launch"** on the home page, or click an example. Each agent step streams in; every claim in the answer has a chip that jumps to the step behind it.
 3. **Click a city, then "Scout this city"**: the region scout opens with your plan's games and judges that city against 8 world cities.
+4. **Press "Ask this plan"** (bottom right of any plan) and ask a question in your own words. The answer uses only that plan's Qloo data and cites it.
 
 If the day's Qloo budget runs out, new plans and scouts fail closed with a clear message. The samples (`/sample`, `/sample/delhi`), the accuracy page (`/accuracy`), the 50 pre-scouted places on `/scout`, and any input asked before (the demo inputs are warmed) still answer from cache. Press **Tour** in the nav for a one-minute walk-through.
 
@@ -39,9 +40,9 @@ Every claim below links to something you can open or run. Weak points are listed
 
 | Criterion | What to look at | Evidence |
 |---|---|---|
-| **Qloo integration and technical work** | 8-tool agent; 7 Qloo endpoint families; every number traced to its call | [Agent loop](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/src/crowdspawn_api/pipeline/agent.py) · [call trace of the sample](https://crowdspawn.vercel.app/sample/trace) · [verified API contract](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/qloo-contract.md) · kill switch: no Qloo key → no plan, and swapping the LLM changes only the wording ([tests](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/tests/test_api.py#L84)) · 141 API tests (94% coverage) + 30 web tests in CI |
+| **Qloo integration and technical work** | 8-tool agent; 7 Qloo endpoint families; every number traced to its call | [Agent loop](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/src/crowdspawn_api/pipeline/agent.py) · [call trace of the sample](https://crowdspawn.vercel.app/sample/trace) · [verified API contract](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/qloo-contract.md) · kill switch: no Qloo key → no plan, and swapping the LLM changes only the wording ([tests](https://github.com/divyanshu-patil/Crowdspawn/blob/main/apps/api/tests/test_api.py#L84)) · 144 API tests (94% coverage) + 35 web tests in CI |
 | **Does it beat an LLM alone?** | Partners: yes, an LLM gives the same names whatever the game. Audience: matches a survey, LLM nearly ties. Country ranking: no. All published, and every plan has a side-by-side "Qloo vs an LLM alone" | [Partner check](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/partner-check.md): on 20 games, 32% of the LLM's artists recur in 3+ games vs 5% of Qloo's (films 15% vs 3%; brands are the exception, 67% vs 51%) · [Audience check](https://crowdspawn.vercel.app/accuracy): Qloo's gender skew vs a 270,000-gamer survey, ρ 0.997 (LLM guess 0.991) · [held-out ranking test](https://crowdspawn.vercel.app/accuracy): LLM 4/23 vs Crowdspawn 1/23, plus the [fixes we tried](https://github.com/divyanshu-patil/Crowdspawn/blob/main/docs/scenario-results.md) |
-| **Design and usability** | One front door, live streamed steps, citation chips, guided Tour | [Live demo](https://crowdspawn.vercel.app) · [sample plan](https://crowdspawn.vercel.app/sample) · Lighthouse accessibility 100 on every page · works at 360 px |
+| **Design and usability** | One front door, live streamed steps, citation chips, guided Tour; plain-language charts with a one-line takeaway each; a chat that answers only from the plan's data; recent launches | [Live demo](https://crowdspawn.vercel.app) · [sample plan](https://crowdspawn.vercel.app/sample) · Lighthouse accessibility 100 on every page · works at 360 px |
 | **Impact** | Ends in decisions: languages, geo-targets, local partners, CSV | [Launch actions on the sample](https://crowdspawn.vercel.app/sample) · [how studios choose today](#who-its-for) |
 | **Originality** | Culture anchors turn films and music into geography; partners ranked by lift over all gamers, per city; "where to market first" ranks music, podcasts, films and brands by how much these fans stand out in each | [Spawn score](#how-it-works) · [Delhi Gullies sample](https://crowdspawn.vercel.app/sample/delhi): Mumbai first via culture fit 2.45 |
 
@@ -74,6 +75,21 @@ From the agent's hand-off, or by hand under "Advanced: pick comps yourself": you
 - **Launch actions: what to do in your top 3 cities.** Languages to localise into, a geo-target (centre and radius), the top local partners and the audience skew, as a checklist to copy or a CSV. Copied from the plan, with no AI.
 - **Battle plan: the brief.** Written only from the plan's facts. Each citation chip (`q12`) opens the Qloo call behind it.
 - **Gap view (optional):** tastes you share with your last game, and new ground.
+- **Recent launches** (`/recent`, in the nav): every plan you opened in this browser, newest first. Kept in the browser only; there are no accounts.
+
+**Your plan at a glance.** Right under the city ranking, five plain charts for a studio that doesn't read statistics. Each asks a question a developer would ask and ends with a one-line "In short":
+
+- *Why these cities?* What puts each city ahead: fans of games like yours, players on your platforms, fans of your setting, each shown as "+12% vs the average gamer". A factor that is the same everywhere (platform, when you pick PC, mobile and console) is left out and the chart says why.
+- *Where should my money go?* The suggested budget split.
+- *Where do I promote it?* Music, podcasts, films and brands ranked by how much more your fans like them, with "start here" on the best.
+- *Where are the hidden gems?* Cities that rank far higher for your game than for gamers overall.
+- *What happens after launch?* A roll-out in three waves (launch here, expand next, test small), ordered by rank and confidence. No dates or results are predicted; it says to track wishlists and sales per city and move budget to what works.
+
+![Your plan at a glance: what makes each city a good fit, the budget split, the best places to reach your fans, overlooked cities and a roll-out in waves](docs/screenshots/plan-charts.png)
+
+**Ask this plan.** A chat on every plan, marked with an AI icon. Ask "Why is Istanbul first?" or "Which podcasts stand out?" and the LLM answers from that plan's Qloo facts only, with citation chips. Each answer goes through the same grounding check as the brief: a city, name, number or citation that isn't in the plan gets one rewrite, then the answer is withheld. Questions the data can't answer, like revenue, get a plain "this plan doesn't answer that". It makes no Qloo calls.
+
+![Ask this plan: a question about Istanbul answered with the spawn score, taste lift and platform fit, each with its Qloo citation](docs/screenshots/plan-chat.png)
 
 ![Launch actions for Istanbul, Delhi and Warsaw: languages, geo-target, local partners and audience](docs/screenshots/plan-actions.png)
 
@@ -91,6 +107,8 @@ From the agent's hand-off, or by hand under "Advanced: pick comps yourself": you
 ![Qloo call trace: every call with step, endpoint, cache hit, status and time](docs/screenshots/trace.png)
 
 ![New plan form: title, description, genre tags and platforms](docs/screenshots/plan-new.png)
+
+![Recent launches: plans opened in this browser, with top spawn point, date and a remove button](docs/screenshots/recent.png)
 
 </details>
 
@@ -202,7 +220,8 @@ To put a demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup and con
 
 ## Trust and limits
 
-- **The LLM never supplies data.** It proposes names, which Qloo must resolve, and writes words that are checked against Qloo results.
+- **The LLM never supplies data.** It proposes names, which Qloo must resolve, and writes words that are checked against Qloo results. That includes "Ask this plan": an answer that leaves the plan's data is withheld.
+- **The charts are not a forecast.** They redraw the plan's own Qloo numbers. The roll-out waves are an order to try cities in, with no dates or outcomes.
 - **Fail closed.** Without a working Qloo key nothing is produced.
 - **No personal data.** Qloo's taste data is PII-free, Crowdspawn stores none, and keys never reach the browser.
 - **An affinity index, not a sales or wishlist forecast.** Scout verdicts (Legendary to Common) are spawn-score bands, not probabilities.
@@ -228,7 +247,7 @@ Browser (Next.js 16, apps/web)
    |  fetch + Server-Sent Events          no keys ever reach the browser
    v
 FastAPI (apps/api)
-   |-- routes --> plan S1..S8 · agent · scout · judge -- progress events --> SQLite event log --> SSE
+   |-- routes --> plan S1..S8 · agent · scout · judge · ask -- progress events --> SQLite event log --> SSE
    |       |-- QlooClient --(X-Api-Key)--> hackathon.api.qloo.com
    |       |       token bucket (4 rps), retries, SQLite cache, per-run call cap, call trace
    |       '-- LLMProvider --> Ollama Cloud | Gemini | any OpenAI-compatible | Fake
@@ -238,7 +257,7 @@ packages/contracts: TS types generated from apps/api/openapi.json
 
 ```
 apps/api      FastAPI: qloo/ (client, cache, trace), pipeline/ (S1-S8, agent, scout, judge), llm/ (providers, prompts), grounding.py
-apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, LaunchAgent, PlanView, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
+apps/web      Next.js: app/ routes, components/ (SpawnMap, RegionScout, LaunchAgent, PlanView, PlanCharts, PlanChat, RecentPlans, LivePlan, TraceView, NewPlanForm, TileField, Sfx), lib/
 packages/contracts   generated API types
 assets/readme        README art; the hero is generated from the app's own country map (source/build_hero.py)
 docs/         how it works, verified Qloo contract, accuracy results, deploy guide

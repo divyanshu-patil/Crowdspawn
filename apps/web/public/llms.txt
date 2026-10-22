@@ -7,9 +7,10 @@ Source: https://github.com/divyanshu-patil/Crowdspawn (MIT)
 ## Try it (no sign-in, no keys)
 
 - [Home: Plan my launch](https://crowdspawn.vercel.app/): describe a game; the agent picks from 8 Qloo tools step by step, streams each step, and cites the step behind every claim.
-- [Sample plan](https://crowdspawn.vercel.app/sample): Long Haul, a trucking sim. Spawn points, rivals, audience, partners ranked by lift, launch actions (languages, geo-targets, local partners, CSV), and a cited brief.
+- [Sample plan](https://crowdspawn.vercel.app/sample): Long Haul, a trucking sim. Spawn points, rivals, audience, partners ranked by lift, launch actions (languages, geo-targets, local partners, CSV), and a cited brief. "Your plan at a glance" redraws the plan in five plain-language charts, each with a one-line takeaway, ending in a roll-out in waves (an order, not a forecast). "Ask this plan" answers questions from the plan's Qloo facts only, with citations; answers that fail the grounding check are withheld.
 - [Sample call trace](https://crowdspawn.vercel.app/sample/trace): every Qloo call behind the sample plan.
 - [Second sample](https://crowdspawn.vercel.app/sample/delhi): Delhi Gullies, where culture anchors (films and music from the setting) put Mumbai first.
+- [Recent launches](https://crowdspawn.vercel.app/recent): plans opened in this browser.
 - [Region scout](https://crowdspawn.vercel.app/scout): a world map of gamer taste match, "what works here" for any place, and a verdict for your game.
 - [How accurate is it?](https://crowdspawn.vercel.app/accuracy): every evaluation, losses included.
 
@@ -18,7 +19,7 @@ Source: https://github.com/divyanshu-patil/Crowdspawn (MIT)
 - Held-out test (23 games, frozen before scoring; truth = Google Trends by country for a real similar game): the country ranking found the #1 country in 1 of 23, an LLM with no Qloo data in 4 of 23, plain popularity in 0 of 23. Follow-up fixes on all 33 games did not close the gap; the scorer is unchanged.
 - Partner check (20 games, design fixed before any call): an LLM with the same inputs repeats the same names across games. 32% of its artist picks recur in 3+ games vs 5% of Qloo's; films 15% vs 3%; podcasts 32% vs 20%; brands are the exception (Qloo 67% vs LLM 51%). Every plan has a side-by-side "Qloo vs an LLM alone" section.
 - Audience check (10 genres, design fixed before any call): Qloo's gender skew matches a survey of over 270,000 gamers, Spearman 0.997; an LLM's guess reached 0.991.
-- Tests: 141 API tests (94% coverage, recorded Qloo fixtures) and 30 web tests; a kill-switch test and an LLM-swap test show Qloo is load-bearing.
+- Tests: 144 API tests (94% coverage, recorded Qloo fixtures) and 35 web tests; a kill-switch test and an LLM-swap test show Qloo is load-bearing.
 
 ## Docs
 
