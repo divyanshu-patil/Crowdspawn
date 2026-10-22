@@ -4,7 +4,7 @@ import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { PlanCharts } from "../components/PlanCharts";
 import { PlanChat } from "../components/PlanChat";
-import { forgetPlan, recentPlans, rememberPlan } from "../lib/recent";
+import { recentPlans, rememberPlan } from "../lib/recent";
 
 const plan = sample as unknown as Plan;
 
@@ -38,8 +38,6 @@ describe("analytics and ask this plan", () => {
     rememberPlan({ ...plan, id: "other" });
     rememberPlan(plan);
     expect(recentPlans().map((r) => r.id)).toEqual([plan.id, "other"]);
-    forgetPlan("other");
-    expect(recentPlans()).toHaveLength(1);
   });
 
   it("sends the plan with the question and renders the cited answer", async () => {

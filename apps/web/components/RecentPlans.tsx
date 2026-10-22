@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { forgetPlan, recentPlans, type RecentPlan } from "../lib/recent";
+import { recentPlans, type RecentPlan } from "../lib/recent";
 
 export function RecentPlans() {
   const [list, setList] = useState<RecentPlan[] | null>(null);
@@ -41,16 +41,6 @@ export function RecentPlans() {
                 </span>
               </Link>
               <span className="label muted">{r.created_at.slice(0, 10)}</span>
-              <button
-                className="ghost"
-                aria-label={`Remove ${r.title} from this list`}
-                onClick={() => {
-                  forgetPlan(r.id);
-                  setList(recentPlans());
-                }}
-              >
-                Remove
-              </button>
             </li>
           ))}
         </ul>

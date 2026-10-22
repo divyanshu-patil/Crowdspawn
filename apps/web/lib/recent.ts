@@ -34,7 +34,3 @@ export function rememberPlan(p: Plan) {
   };
   save([entry, ...recentPlans().filter((r) => r.id !== p.id)]);
 }
-
-export function forgetPlan(id: string) {
-  save(recentPlans().filter((r) => r.id !== id));
-}

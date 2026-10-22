@@ -2686,7 +2686,7 @@ button.cite {
 }
 .recent-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
   align-items: center;
 }
@@ -2699,12 +2699,4 @@ button.cite {
 }
 .recent-main:hover b {
   text-decoration: underline;
-}
-@media (max-width: 520px) {
-  .recent-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .recent-row .label {
-    display: none;
-  }
 }

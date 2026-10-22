@@ -108,7 +108,7 @@ From the agent's hand-off, or by hand under "Advanced: pick comps yourself": you
 
 ![New plan form: title, description, genre tags and platforms](docs/screenshots/plan-new.png)
 
-![Recent launches: plans opened in this browser, with top spawn point, date and a remove button](docs/screenshots/recent.png)
+![Recent launches: plans opened in this browser, with top spawn point and date](docs/screenshots/recent.png)
 
 </details>
 
