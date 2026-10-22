@@ -39,6 +39,14 @@ class FakeProvider:
                         "summary": f"{facts['verdict']} with spawn score {facts['spawn score']} at {facts['confidence']} confidence."
                     }
                 )
+            elif '{"answer"' in joined and '"place"' in joined:  # ask about a scouted place
+                facts = json.loads(joined.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
+                g = facts["genres_vs_all_gamers_here"][0]
+                text = json.dumps(
+                    {
+                        "answer": f"{g['genre']} fans show up most in **{facts['place']}** (x{g['lift']})."
+                    }
+                )
             elif '{"answer"' in joined:  # ask the plan: quote the top city
                 facts = json.loads(joined.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
                 c = facts["cities"][0]

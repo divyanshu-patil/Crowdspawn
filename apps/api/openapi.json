@@ -335,6 +335,45 @@
         }
       }
     },
+    "/v1/scout/ask": {
+      "post": {
+        "summary": "Ask Scout",
+        "description": "Answer a question from one scouted place's Qloo readings only. No Qloo calls.",
+        "operationId": "ask_scout_v1_scout_ask_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskScoutIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/plans/{plan_id}/trace": {
       "get": {
         "summary": "Get Trace",
@@ -977,6 +1016,61 @@
         ],
         "title": "AskOut",
         "description": "An answer written only from the plan's Qloo facts, checked like the brief."
+      },
+      "AskScoutIn": {
+        "properties": {
+          "place": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Place"
+          },
+          "mix": {
+            "$ref": "#/components/schemas/PlatformMix"
+          },
+          "genres": {
+            "items": {
+              "$ref": "#/components/schemas/GenreHeat"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Genres"
+          },
+          "games": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Games"
+          },
+          "judge": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoutJudge"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 2,
+            "title": "Question"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place",
+          "mix",
+          "genres",
+          "games",
+          "question"
+        ],
+        "title": "AskScoutIn",
+        "description": "What the scout panel shows for one place: the area reading, and a verdict if one was asked for."
       },
       "Audience": {
         "properties": {

@@ -9,7 +9,8 @@ import { lift, pct, planToMarkdown, rarity, skew, usd } from "../lib/format";
 import { audienceLine, channels, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
 import { VersusLLM } from "./VersusLLM";
 import { PlanCharts } from "./PlanCharts";
-import { PlanChat } from "./PlanChat";
+import { AskAI } from "./AskAI";
+import { api } from "../lib/api";
 
 const TABS: { key: PartnerType; label: string }[] = [
   { key: "artist", label: "Artists" },
@@ -284,7 +285,18 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
       {/* 9. Actions */}
       <Actions plan={plan} traceHref={traceHref} />
 
-      <PlanChat plan={plan} traceHref={traceHref} />
+      <AskAI
+        title="Ask AI about this plan"
+        note="Answers use only this plan's Qloo data, with citations. No outside knowledge, no forecasts."
+        starters={[
+          top && `Why is ${top.name} the top spawn point?`,
+          "Which partner type should I market through first?",
+          plan.audience && "Who is my audience?",
+          plan.input.budget_usd != null && "How should I split the budget?",
+        ].filter((s): s is string => !!s)}
+        ask={(q) => api.ask(plan, q)}
+        traceHref={traceHref}
+      />
     </article>
   );
 }

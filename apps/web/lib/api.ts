@@ -4,6 +4,8 @@ import type {
   AgentRun,
   AskOut,
   EntityOut,
+  GenreHeat,
+  PlatformMix,
   PlaceHit,
   ScoutArea,
   ScoutFit,
@@ -112,6 +114,8 @@ export const api = {
   trace: (id: string) => request<TraceRow[]>(`/v1/plans/${id}/trace`),
   ask: (plan: Plan, question: string) =>
     request<AskOut>("/v1/ask", { method: "POST", body: JSON.stringify({ plan, question }) }),
+  askScout: (body: { place: string; mix: PlatformMix; genres: GenreHeat[]; games: string[]; judge: ScoutJudge | null; question: string }) =>
+    request<AskOut>("/v1/scout/ask", { method: "POST", body: JSON.stringify(body) }),
   llmOnly: (id: string) => request<LLMOnly>(`/v1/plans/${id}/llm-only`, { method: "POST" }),
 };
 

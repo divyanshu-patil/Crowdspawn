@@ -9,6 +9,8 @@ from .schemas import BriefSection
 CITE = re.compile(r"\[(q\d+(?:\s*,\s*q\d+)*)\]")  # [q3] or [q3, q4]
 BOLD = re.compile(r"\*\*(.+?)\*\*")
 NUMBER = re.compile(r"\$?\d+(?:,\d{3})*(?:\.\d+)?%?")
+# Qloo reports indexes, never headcounts: "3 million gamers" is invented even though 3 is a small count.
+HEADCOUNT = re.compile(r"\d[\d,.]*\s*(?:million|billion|thousand|mn|bn)\b", re.IGNORECASE)
 # Cities outside the candidate list, so an invented one is caught even if not bolded.
 EXTRA_CITIES = (
     "Amsterdam",
@@ -128,6 +130,7 @@ def validate(
     known_names: set[str],
     allowed_numbers: set[float],
     city_owners: dict[float, set[str]] | None = None,
+    cite: bool = True,  # False where the facts carry no result ids (scout answers)
 ) -> list[str]:
     errors: list[str] = []
     known = {normalize(n) for n in known_names | plan_cities}
@@ -148,6 +151,7 @@ def validate(
             if re.search(rf"\b{re.escape(city)}\b", plain):
                 errors.append(f"city not in results: {city}")
 
+        errors += [f"headcount not in results: {h}" for h in HEADCOUNT.findall(text)]
         if city_owners:
             errors += misattributed(CITE.sub(" ", s.body), city_owners, plan_cities)
         numbers = NUMBER.findall(BOLD.sub(" ", CITE.sub(" ", text)))
@@ -158,7 +162,9 @@ def validate(
                 errors.append(f"number not in results: {n}")
 
         if (
-            bolds or any(not _to_float(n).is_integer() or _to_float(n) > 10 for n in numbers)
-        ) and not cites:
+            cite
+            and (bolds or any(not _to_float(n).is_integer() or _to_float(n) > 10 for n in numbers))
+            and not cites
+        ):
             errors.append(f"section '{s.heading}' makes claims without a citation")
     return errors

@@ -169,6 +169,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/scout/ask": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Ask Scout
+         * @description Answer a question from one scouted place's Qloo readings only. No Qloo calls.
+         */
+        post: operations["ask_scout_v1_scout_ask_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/plans/{plan_id}/trace": {
         parameters: {
             query?: never;
@@ -456,6 +476,22 @@ export interface components {
             provider: string;
             /** Model */
             model: string;
+        };
+        /**
+         * AskScoutIn
+         * @description What the scout panel shows for one place: the area reading, and a verdict if one was asked for.
+         */
+        AskScoutIn: {
+            /** Place */
+            place: string;
+            mix: components["schemas"]["PlatformMix"];
+            /** Genres */
+            genres: components["schemas"]["GenreHeat"][];
+            /** Games */
+            games: string[];
+            judge?: components["schemas"]["ScoutJudge"] | null;
+            /** Question */
+            question: string;
         };
         /** Audience */
         Audience: {
@@ -1579,6 +1615,39 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["AskIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AskOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    ask_scout_v1_scout_ask_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AskScoutIn"];
             };
         };
         responses: {

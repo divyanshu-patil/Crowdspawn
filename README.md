@@ -30,7 +30,7 @@ Describe your game and an agent builds a launch plan from [Qloo Taste AI](https:
 1. **Open the sample** (`/sample`): a saved plan for Long Haul, a trucking sim. The note at the top says what our evaluation found for this game.
 2. **Type a game into "Plan my launch"** on the home page, or click an example. Each agent step streams in; every claim in the answer has a chip that jumps to the step behind it.
 3. **Click a city, then "Scout this city"**: the region scout opens with your plan's games and judges that city against 8 world cities.
-4. **Press "Ask this plan"** (bottom right of any plan) and ask a question in your own words. The answer uses only that plan's Qloo data and cites it.
+4. **Press "Ask AI about this plan"** (bottom right of any plan) and ask a question in your own words. The answer uses only that plan's Qloo data and cites it.
 
 If the day's Qloo budget runs out, new plans and scouts fail closed with a clear message. The samples (`/sample`, `/sample/delhi`), the accuracy page (`/accuracy`), the 50 pre-scouted places on `/scout`, and any input asked before (the demo inputs are warmed) still answer from cache. Press **Tour** in the nav for a one-minute walk-through.
 
@@ -87,9 +87,9 @@ From the agent's hand-off, or by hand under "Advanced: pick comps yourself": you
 
 ![Your plan at a glance: what makes each city a good fit, the budget split, the best places to reach your fans, overlooked cities and a roll-out in waves](docs/screenshots/plan-charts.png)
 
-**Ask this plan.** A chat on every plan, marked with an AI icon. Ask "Why is Istanbul first?" or "Which podcasts stand out?" and the LLM answers from that plan's Qloo facts only, with citation chips. Each answer goes through the same grounding check as the brief: a city, name, number or citation that isn't in the plan gets one rewrite, then the answer is withheld. Questions the data can't answer, like revenue, get a plain "this plan doesn't answer that". It makes no Qloo calls.
+**Ask AI.** A chat on every plan, marked with an AI icon. Ask "Why is Istanbul first?" or "Which podcasts stand out?" and the LLM answers from that plan's Qloo facts only, with citation chips. Each answer goes through the same grounding check as the brief: a city, name, number or citation that isn't in the plan gets one rewrite, then the answer is withheld. Questions the data can't answer, like revenue, get a plain "this plan doesn't answer that". It makes no Qloo calls.
 
-![Ask this plan: a question about Istanbul answered with the spawn score, taste lift and platform fit, each with its Qloo citation](docs/screenshots/plan-chat.png)
+![Ask AI about this plan: a question about Istanbul answered with the spawn score, taste lift and platform fit, each with its Qloo citation](docs/screenshots/plan-chat.png)
 
 ![Launch actions for Istanbul, Delhi and Warsaw: languages, geo-target, local partners and audience](docs/screenshots/plan-actions.png)
 
@@ -125,6 +125,10 @@ Click anywhere, search a town or hover a popular place to zoom to it. You see th
 **Will my game work here?** Describe your game (or arrive from a plan's "Scout this city", which brings the plan's games, so the LLM proposes no names) and get a loot-rarity verdict (Legendary, Epic, Rare, Uncommon, Common). Each word is a band of the spawn score, stricter when Qloo's data is thinner: Legendary needs 1.15 or more at high confidence. It is not a probability. You also get a ranking against 8 world cities and the names Qloo matched.
 
 ![Legendary verdict for a Delhi-set game in Mumbai, with the world ranking and what Qloo matched](docs/screenshots/scout-judge.jpg)
+
+**Ask AI about this place.** Once a place is scouted, the same chat answers questions like "What kind of game works best here?" or, after a verdict, "Why did my game get Rare?". It uses only that place's Qloo readings and your verdict. Scout readings have no Qloo call ids, so answers carry no citation chips, but the same check still rejects any place, game or number that isn't on screen, and any headcount (Qloo has none).
+
+![Ask AI about Mumbai: the best-fitting genres and the platform taste match, quoted from Qloo's readings](docs/screenshots/scout-chat.png)
 
 ## How it works
 
@@ -220,7 +224,7 @@ To put a demo online, see [`docs/DEPLOY.md`](docs/DEPLOY.md). Full setup and con
 
 ## Trust and limits
 
-- **The LLM never supplies data.** It proposes names, which Qloo must resolve, and writes words that are checked against Qloo results. That includes "Ask this plan": an answer that leaves the plan's data is withheld.
+- **The LLM never supplies data.** It proposes names, which Qloo must resolve, and writes words that are checked against Qloo results. That includes "Ask AI": an answer that leaves the plan's data is withheld.
 - **The charts are not a forecast.** They redraw the plan's own Qloo numbers. The roll-out waves are an order to try cities in, with no dates or outcomes.
 - **Fail closed.** Without a working Qloo key nothing is produced.
 - **No personal data.** Qloo's taste data is PII-free, Crowdspawn stores none, and keys never reach the browser.

@@ -7,11 +7,11 @@ Source: https://github.com/divyanshu-patil/Crowdspawn (MIT)
 ## Try it (no sign-in, no keys)
 
 - [Home: Plan my launch](https://crowdspawn.vercel.app/): describe a game; the agent picks from 8 Qloo tools step by step, streams each step, and cites the step behind every claim.
-- [Sample plan](https://crowdspawn.vercel.app/sample): Long Haul, a trucking sim. Spawn points, rivals, audience, partners ranked by lift, launch actions (languages, geo-targets, local partners, CSV), and a cited brief. "Your plan at a glance" redraws the plan in five plain-language charts, each with a one-line takeaway, ending in a roll-out in waves (an order, not a forecast). "Ask this plan" answers questions from the plan's Qloo facts only, with citations; answers that fail the grounding check are withheld.
+- [Sample plan](https://crowdspawn.vercel.app/sample): Long Haul, a trucking sim. Spawn points, rivals, audience, partners ranked by lift, launch actions (languages, geo-targets, local partners, CSV), and a cited brief. "Your plan at a glance" redraws the plan in five plain-language charts, each with a one-line takeaway, ending in a roll-out in waves (an order, not a forecast). "Ask AI about this plan" answers questions from the plan's Qloo facts only, with citations; answers that fail the grounding check are withheld.
 - [Sample call trace](https://crowdspawn.vercel.app/sample/trace): every Qloo call behind the sample plan.
 - [Second sample](https://crowdspawn.vercel.app/sample/delhi): Delhi Gullies, where culture anchors (films and music from the setting) put Mumbai first.
 - [Recent launches](https://crowdspawn.vercel.app/recent): plans opened in this browser.
-- [Region scout](https://crowdspawn.vercel.app/scout): a world map of gamer taste match, "what works here" for any place, and a verdict for your game.
+- [Region scout](https://crowdspawn.vercel.app/scout): a world map of gamer taste match, "what works here" for any place, a verdict for your game, and "Ask AI about this place", which answers from that place's Qloo readings only.
 - [How accurate is it?](https://crowdspawn.vercel.app/accuracy): every evaluation, losses included.
 
 ## Evaluation, as published

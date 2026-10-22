@@ -486,6 +486,17 @@ class AskIn(BaseModel):
     question: str = Field(min_length=2, max_length=300)
 
 
+class AskScoutIn(BaseModel):
+    """What the scout panel shows for one place: the area reading, and a verdict if one was asked for."""
+
+    place: str = Field(min_length=1, max_length=120)
+    mix: PlatformMix
+    genres: list[GenreHeat] = Field(max_length=20)
+    games: list[str] = Field(max_length=20)
+    judge: ScoutJudge | None = None
+    question: str = Field(min_length=2, max_length=300)
+
+
 class AskOut(BaseModel):
     """An answer written only from the plan's Qloo facts, checked like the brief."""
 

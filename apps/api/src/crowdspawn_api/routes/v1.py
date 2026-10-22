@@ -22,6 +22,7 @@ from ..schemas import (
     AgentRun,
     AskIn,
     AskOut,
+    AskScoutIn,
     CultureSuggestion,
     EntityOut,
     LLMOnly,
@@ -215,6 +216,16 @@ async def ask_plan(request: Request, body: AskIn) -> AskOut:
         raise LLMError("No LLM provider is configured")
     _limit(request, _ask_hits, d.settings.scouts_per_ip_per_hour)
     return await ask.answer(d.llm, body.plan, body.question, d.settings.llm_timeout_seconds)
+
+
+@router.post("/scout/ask", response_model=AskOut)
+async def ask_scout(request: Request, body: AskScoutIn) -> AskOut:
+    """Answer a question from one scouted place's Qloo readings only. No Qloo calls."""
+    d = deps(request)
+    if d.llm is None:
+        raise LLMError("No LLM provider is configured")
+    _limit(request, _ask_hits, d.settings.scouts_per_ip_per_hour)
+    return await ask.answer_scout(d.llm, body, d.settings.llm_timeout_seconds)
 
 
 @router.get("/plans/{plan_id}/trace", response_model=list[TraceRow])

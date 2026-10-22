@@ -3,7 +3,8 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { PlanCharts } from "../components/PlanCharts";
-import { PlanChat } from "../components/PlanChat";
+import { AskAI } from "../components/AskAI";
+import { api } from "../lib/api";
 import { recentPlans, rememberPlan } from "../lib/recent";
 
 const plan = sample as unknown as Plan;
@@ -45,9 +46,9 @@ describe("analytics and ask this plan", () => {
     const answer = `**${top.name}** leads [${top.result_ids[0]}].`;
     const fetch = vi.fn(async () => new Response(JSON.stringify({ answer, grounded: true, provider: "fake", model: "fake-1" })));
     vi.stubGlobal("fetch", fetch);
-    render(<PlanChat plan={plan} traceHref="/sample/trace" />);
+    render(<AskAI title="Ask AI" note="" starters={["Why first?"]} ask={(q) => api.ask(plan, q)} traceHref="/sample/trace" />);
     fireEvent.click(screen.getByTestId("chat-open"));
-    fireEvent.click(screen.getByText(`Why is ${top.name} the top spawn point?`));
+    fireEvent.click(screen.getByText("Why first?"));
     expect(await screen.findByText(top.name)).toBeTruthy();
     const body = JSON.parse((fetch.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
     expect(body.plan.id).toBe(plan.id);

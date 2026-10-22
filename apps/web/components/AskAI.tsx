@@ -1,14 +1,26 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Plan } from "@repo/contracts";
-import { api, ApiError } from "../lib/api";
+import type { AskOut } from "@repo/contracts";
+import { ApiError } from "../lib/api";
 import { AiIcon, RichText } from "./ui";
 
 type Msg = { who: "you" | "bot"; text: string; withheld?: boolean };
 
-/** Ask this plan: answers come only from the plan's Qloo facts, grounding-checked on the server like the brief. */
-export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string }) {
+/** Ask AI: answers come only from the Qloo data on screen, grounding-checked on the server like the brief. */
+export function AskAI({
+  title,
+  note,
+  starters,
+  ask,
+  traceHref = "",
+}: {
+  title: string;
+  note: string;
+  starters: string[];
+  ask: (question: string) => Promise<AskOut>;
+  traceHref?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [q, setQ] = useState("");
@@ -18,14 +30,6 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
     if (log.current) log.current.scrollTop = log.current.scrollHeight;
   }, [msgs, busy]);
 
-  const top = plan.cities[0]?.name;
-  const starters = [
-    top && `Why is ${top} the top spawn point?`,
-    "Which partner type should I market through first?",
-    plan.audience && "Who is my audience?",
-    plan.input.budget_usd != null && "How should I split the budget?",
-  ].filter((s): s is string => !!s);
-
   async function send(question: string) {
     const text = question.trim();
     if (text.length < 2 || busy) return;
@@ -33,7 +37,7 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
     setMsgs((m) => [...m, { who: "you", text }]);
     setBusy(true);
     try {
-      const out = await api.ask(plan, text);
+      const out = await ask(text);
       setMsgs((m) => [...m, { who: "bot", text: out.answer, withheld: !out.grounded }]);
     } catch (e) {
       setMsgs((m) => [...m, { who: "bot", text: e instanceof ApiError ? e.message : "Couldn't reach the API.", withheld: true }]);
@@ -45,20 +49,20 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
   if (!open)
     return (
       <button className="btn chat-fab no-print" onClick={() => setOpen(true)} data-testid="chat-open">
-        <AiIcon /> Ask this plan
+        <AiIcon /> {title}
       </button>
     );
   return (
-    <aside className="card chat no-print" aria-label="Ask this plan">
+    <aside className="card chat no-print" aria-label={title}>
       <div className="spread">
         <span className="label row" style={{ gap: 6 }}>
-          <AiIcon size={16} /> Ask this plan
+          <AiIcon size={16} /> {title}
         </span>
         <button className="ghost" onClick={() => setOpen(false)} aria-label="Close chat">
           ✕
         </button>
       </div>
-      <p className="hint">Answers use only this plan&apos;s Qloo data, with citations. No outside knowledge, no forecasts.</p>
+      <p className="hint">{note}</p>
       <div className="chat-log" aria-live="polite" ref={log}>
         {msgs.length === 0 && (
           <div className="row">
@@ -74,7 +78,7 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
             {m.who === "bot" ? <RichText text={m.text} traceHref={traceHref} /> : m.text}
           </p>
         ))}
-        {busy && <p className="chat-msg bot hint">Reading the plan…</p>}
+        {busy && <p className="chat-msg bot hint">Reading the data…</p>}
       </div>
       <form
         className="chat-form"
@@ -88,7 +92,7 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
           value={q}
           onChange={(e) => setQ(e.target.value)}
           maxLength={300}
-          placeholder="e.g. Which podcasts stand out?"
+          placeholder="Ask in your own words"
           aria-label="Your question"
         />
         <button className="btn" disabled={busy || q.trim().length < 2}>

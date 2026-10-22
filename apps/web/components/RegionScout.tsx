@@ -11,6 +11,7 @@ import { play } from "../lib/sfx";
 import { PLATFORMS, type Platform } from "../lib/validate";
 import { GameSearch } from "./NewPlanForm";
 import { ConfidenceBadge, Notice, Skeleton } from "./ui";
+import { AskAI } from "./AskAI";
 
 const W = GRID.cols;
 const H = GRID.rows;
@@ -125,6 +126,7 @@ export function RegionScout() {
   const [tab, setTab] = useState<"works" | "fit">("works");
   const [spot, setSpot] = useState<Spot | null>(null); // a popular place being hovered in the chip row
   const [prefill, setPrefill] = useState<Prefill | null>(null);
+  const [judged, setJudged] = useState<ScoutJudge | null>(null); // the verdict, if asked, so Ask AI can explain it
 
   // /scout?lat=..&lon=..&plan=<id>: open that city on "Will my game work here?" with the plan's names.
   useEffect(() => {
@@ -159,6 +161,7 @@ export function RegionScout() {
   }, []);
 
   async function scout(p: Pick, snapped = false) {
+    setJudged(null);
     const snap = snapshotNear(p.lat, p.lon);
     if (snap) {
       // Popular place: answer instantly from the bundled Qloo snapshot, no API call.
@@ -264,10 +267,33 @@ export function RegionScout() {
             {loading && <Skeleton h={220} />}
             {areaError && <Notice tone="warn">{areaError}</Notice>}
             {area && tab === "works" && <WhatWorks area={area} />}
-            {area && tab === "fit" && <Fit key={prefill ? "plan" : "free"} pick={pick} prefill={prefill} />}
+            {area && tab === "fit" && <Fit key={prefill ? "plan" : "free"} pick={pick} prefill={prefill} onResult={setJudged} />}
           </div>
         )}
       </section>
+      {pick && area && (
+        <AskAI
+          key={`${pick.lat},${pick.lon}`}
+          title="Ask AI about this place"
+          note="Answers use only the Qloo readings for this place and your verdict. No outside knowledge, no player counts."
+          starters={[
+            "What kind of game works best here?",
+            "Is this place stronger for PC, console or mobile?",
+            "What do locals love to play?",
+            judged && `Why did my game get ${judged.verdict}?`,
+          ].filter((s): s is string => !!s)}
+          ask={(question) =>
+            api.askScout({
+              place: pick.label,
+              mix: area.mix,
+              genres: area.genres,
+              games: area.games.map((g) => g.name),
+              judge: judged,
+              question,
+            })
+          }
+        />
+      )}
     </div>
   );
 }
@@ -736,7 +762,7 @@ const TONE: Record<string, string> = {
   Common: "common",
 };
 
-function Fit({ pick, prefill }: { pick: Pick; prefill: Prefill | null }) {
+function Fit({ pick, prefill, onResult }: { pick: Pick; prefill: Prefill | null; onResult: (r: ScoutJudge | null) => void }) {
   const [title, setTitle] = useState(prefill?.title ?? "");
   const [description, setDescription] = useState(prefill?.description ?? "");
   const [comps, setComps] = useState<EntityOut[]>(prefill?.comps ?? []);
@@ -763,6 +789,7 @@ function Fit({ pick, prefill }: { pick: Pick; prefill: Prefill | null }) {
         ...(prefill && { culture_entity_ids: prefill.culture.map((c) => c.entity_id) }),
       });
       setResult(r);
+      onResult(r);
       play(r.verdict === "Common" ? "error" : r.verdict === "Uncommon" ? "level" : "win");
     } catch (e) {
       setError((e as ApiError).message);
