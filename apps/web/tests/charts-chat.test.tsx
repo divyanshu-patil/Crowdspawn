@@ -22,6 +22,17 @@ describe("analytics and ask this plan", () => {
     expect(container.querySelectorAll(".takeaway").length).toBeGreaterThanOrEqual(3);
   });
 
+  it("drops the platform column when every platform is picked, since it is ×1.00 everywhere", () => {
+    const all = {
+      ...plan,
+      input: { ...plan.input, platforms: ["pc", "mobile", "console"] },
+      cities: plan.cities.map((c) => ({ ...c, platform_fit: 1 })),
+    } as Plan;
+    render(<PlanCharts plan={all} />);
+    expect(screen.queryByText("Play on your platforms")).toBeNull();
+    expect(screen.getByText(/platform doesn.t change the ranking/)).toBeTruthy();
+  });
+
   it("remembers opened plans, newest first, without duplicates", () => {
     rememberPlan(plan);
     rememberPlan({ ...plan, id: "other" });

@@ -19,7 +19,7 @@ export function PlanCharts({ plan }: { plan: Plan }) {
         <span className="label muted">Qloo data only · a guide, not a sales forecast</span>
       </div>
       <div className="charts-grid">
-        <WhyCities cities={plan.cities.slice(0, 6)} />
+        <WhyCities cities={plan.cities.slice(0, 6)} allPlatforms={plan.input.platforms.length === 3} />
         <Budget plan={plan} />
         <Channels plan={plan} />
         <Overlooked plan={plan} />
@@ -73,8 +73,10 @@ const FACTORS: { k: string; v: (c: City) => number | null | undefined; why: stri
   { k: "Like your setting", v: (c) => c.culture_fit, why: "fans of your setting's films, shows and music" },
 ];
 
-function WhyCities({ cities }: { cities: City[] }) {
-  const cols = FACTORS.filter((f) => cities.some((c) => f.v(c) != null));
+function WhyCities({ cities, allPlatforms }: { cities: City[]; allPlatforms: boolean }) {
+  // A factor that is ×1.00 everywhere (platform fit when every platform is picked) explains nothing: leave it out.
+  const cols = FACTORS.filter((f) => cities.some((c) => f.v(c) != null && Math.abs(f.v(c)! - 1) >= 0.005));
+  if (!cols.length) return null;
   const max = Math.max(0.01, ...cities.flatMap((c) => cols.map((f) => Math.abs((f.v(c) ?? 1) - 1))));
   const top = cities[0]!;
   const best = cols.reduce((a, b) => ((b.v(top) ?? 0) > (a.v(top) ?? 0) ? b : a));
@@ -85,6 +87,9 @@ function WhyCities({ cities }: { cities: City[] }) {
       takeaway={`${top.name} leads mostly thanks to ${best.why} (${vsAvg(best.v(top)!)} vs the average gamer).`}
     >
       <p className="hint">Compared with the average gamer in each city. Bars to the right are better than average.</p>
+      {allPlatforms && (
+        <p className="hint">You picked PC, mobile and console, so platform doesn&apos;t change the ranking: every city is average on it.</p>
+      )}
       <div className="factors" style={{ ["--cols" as string]: cols.length }}>
         <span />
         {cols.map((f) => (
