@@ -39,6 +39,14 @@ class FakeProvider:
                         "summary": f"{facts['verdict']} with spawn score {facts['spawn score']} at {facts['confidence']} confidence."
                     }
                 )
+            elif '{"answer"' in joined:  # ask the plan: quote the top city
+                facts = json.loads(joined.split(FACTS_START, 1)[1].split(FACTS_END, 1)[0])
+                c = facts["cities"][0]
+                text = json.dumps(
+                    {
+                        "answer": f"**{c['name']}** leads with spawn score {c['spawn_score']} [{c['result_ids'][0]}]."
+                    }
+                )
             elif FACTS_START in joined:
                 text = self._brief(joined)
             elif '"anchors"' in joined:

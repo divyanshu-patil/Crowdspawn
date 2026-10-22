@@ -8,6 +8,8 @@ import { Cite, ConfidenceBadge, CONFIDENCE_HELP, CountUp, Notice, RichText, Stat
 import { lift, pct, planToMarkdown, rarity, skew, usd } from "../lib/format";
 import { audienceLine, channels, launchCsv, launchMarkdown, launchRows } from "../lib/launch";
 import { VersusLLM } from "./VersusLLM";
+import { PlanCharts } from "./PlanCharts";
+import { PlanChat } from "./PlanChat";
 
 const TABS: { key: PartnerType; label: string }[] = [
   { key: "artist", label: "Artists" },
@@ -219,6 +221,9 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
       {/* 5b. Launch actions: deterministic, copied from the plan */}
       <LaunchActions plan={plan} />
 
+      {/* 5c. Analytics: charts of the same Qloo numbers */}
+      <PlanCharts plan={plan} />
+
       {/* 6. Gap view */}
       {plan.gap && (
         <section className="section stack" aria-labelledby="gap-h">
@@ -278,6 +283,8 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
 
       {/* 9. Actions */}
       <Actions plan={plan} traceHref={traceHref} />
+
+      <PlanChat plan={plan} traceHref={traceHref} />
     </article>
   );
 }

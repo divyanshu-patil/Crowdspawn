@@ -34,6 +34,7 @@ export type AgentRun = S["AgentRun"];
 export type AgentStep = S["AgentStepOut"];
 export type PlanDraft = S["PlanDraft"];
 export type LLMOnly = S["LLMOnly"];
+export type AskOut = S["AskOut"];
 export type LLMOnlyKind = S["LLMOnlyKind"];
 export type LLMPick = S["LLMPick"];
 

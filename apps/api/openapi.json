@@ -296,6 +296,45 @@
         }
       }
     },
+    "/v1/ask": {
+      "post": {
+        "summary": "Ask Plan",
+        "description": "Answer a question from one plan's Qloo facts only. No Qloo calls; the answer is grounding-checked.",
+        "operationId": "ask_plan_v1_ask_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/plans/{plan_id}/trace": {
       "get": {
         "summary": "Get Trace",
@@ -890,6 +929,54 @@
           "mix"
         ],
         "title": "AreaActivity"
+      },
+      "AskIn": {
+        "properties": {
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 2,
+            "title": "Question"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan",
+          "question"
+        ],
+        "title": "AskIn"
+      },
+      "AskOut": {
+        "properties": {
+          "answer": {
+            "type": "string",
+            "title": "Answer"
+          },
+          "grounded": {
+            "type": "boolean",
+            "title": "Grounded"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "answer",
+          "grounded",
+          "provider",
+          "model"
+        ],
+        "title": "AskOut",
+        "description": "An answer written only from the plan's Qloo facts, checked like the brief."
       },
       "Audience": {
         "properties": {

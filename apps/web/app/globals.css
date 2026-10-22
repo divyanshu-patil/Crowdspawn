@@ -2474,3 +2474,146 @@ button.cite {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Analytics charts */
+.charts-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gap);
+}
+.chart figcaption {
+  display: grid;
+  gap: 4px;
+}
+.chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.chart-svg .tick {
+  font: 11px var(--font-mono);
+  fill: var(--ink-soft);
+}
+.chart-svg .tick.strong {
+  fill: var(--ink);
+}
+.chart-svg .ref {
+  stroke: var(--ink-soft);
+  stroke-dasharray: 3 4;
+}
+.chart-svg .axis {
+  stroke: var(--hairline);
+}
+.chart-svg .dot circle:not(.hit) {
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+.chart-svg .dot.hot circle:not(.hit) {
+  fill: var(--forest);
+}
+.chart-svg .dot .ringed {
+  fill-opacity: 0.75;
+}
+.chart-svg .hit {
+  fill: transparent;
+}
+.chart-svg .dot:hover circle:not(.hit) {
+  stroke: var(--ink);
+}
+.chart-svg .median {
+  stroke: var(--forest);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.chart-svg .slope line {
+  stroke: var(--hairline);
+  stroke-width: 2;
+}
+.chart-svg .slope circle {
+  fill: var(--ink-soft);
+}
+.chart-svg .slope.hot line {
+  stroke: var(--forest);
+}
+.chart-svg .slope.hot circle {
+  fill: var(--forest);
+}
+.chart-svg .slope:hover line {
+  stroke: var(--ink);
+}
+.factors {
+  display: grid;
+  grid-template-columns: minmax(70px, 1fr) repeat(var(--cols), minmax(0, 1.4fr));
+  gap: 10px 12px;
+  align-items: center;
+}
+.factors-row {
+  display: contents;
+}
+.factors-name {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.factors-cell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+}
+@media (max-width: 860px) {
+  .charts-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Ask this plan */
+.chat-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+}
+.chat {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: min(400px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 32px));
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+  box-shadow: 0 12px 40px rgba(20, 20, 20, 0.18);
+}
+.chat-log {
+  overflow-y: auto;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.chat-msg {
+  padding: 8px 12px;
+  border-radius: var(--r-btn);
+  max-width: 90%;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.chat-msg.you {
+  justify-self: end;
+  background: var(--ink);
+  color: var(--paper);
+}
+.chat-msg.bot {
+  background: var(--mist);
+}
+.chat-msg.withheld {
+  border: 1px dashed var(--ink-soft);
+  background: transparent;
+}
+.chat-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}

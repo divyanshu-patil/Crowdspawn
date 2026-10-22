@@ -479,3 +479,17 @@ class AgentRun(BaseModel):
     model: str | None = None
     error: Problem | None = None
     calls: Calls = Calls(live=0, cached=0)
+
+
+class AskIn(BaseModel):
+    plan: Plan  # the client sends the plan it shows, so saved sample plans work too
+    question: str = Field(min_length=2, max_length=300)
+
+
+class AskOut(BaseModel):
+    """An answer written only from the plan's Qloo facts, checked like the brief."""
+
+    answer: str
+    grounded: bool  # False: the LLM's answer broke the grounding rules and was withheld
+    provider: str
+    model: str

@@ -2,6 +2,7 @@ import type {
   ActivityOut,
   AgentEvent,
   AgentRun,
+  AskOut,
   EntityOut,
   PlaceHit,
   ScoutArea,
@@ -109,6 +110,8 @@ export const api = {
       body: JSON.stringify({ lat, lon, comp_entity_ids, platforms }),
     }),
   trace: (id: string) => request<TraceRow[]>(`/v1/plans/${id}/trace`),
+  ask: (plan: Plan, question: string) =>
+    request<AskOut>("/v1/ask", { method: "POST", body: JSON.stringify({ plan, question }) }),
   llmOnly: (id: string) => request<LLMOnly>(`/v1/plans/${id}/llm-only`, { method: "POST" }),
 };
 

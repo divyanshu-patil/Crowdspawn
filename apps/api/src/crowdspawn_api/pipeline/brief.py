@@ -67,11 +67,20 @@ def facts(plan: Plan) -> dict[str, Any]:
         else None,
         "partners": {
             k: [
-                {"name": p.name, "city": p.city, "result_id": p.result_id}
+                {
+                    "name": p.name,
+                    "city": p.city,
+                    **({"lift": lift(p.lift)} if p.lift is not None else {}),
+                    "result_id": p.result_id,
+                }
                 for p in getattr(plan.partners, k)[:5]
             ]
             for k in ("artist", "podcast", "movie", "brand")
         },
+        "hidden_markets": [
+            {"name": h.name, "rank_for_game": h.rank, "rank_for_gamers_overall": h.gamer_rank}
+            for h in plan.hidden_markets
+        ],
         "budget_total": usd(plan.input.budget_usd) if plan.input.budget_usd else None,
     }
 

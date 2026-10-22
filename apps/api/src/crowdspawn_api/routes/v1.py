@@ -14,12 +14,14 @@ from pydantic import BaseModel, Field
 from ..errors import NotFound, QlooError, QlooUnconfigured, RateLimited
 from ..llm.base import LLMError, LLMProvider
 from ..llm.structured import CallBudget, complete_json, render
-from ..pipeline import agent, cities, culture, judge, llm_only, resolve, scout
+from ..pipeline import agent, ask, cities, culture, judge, llm_only, resolve, scout
 from ..pipeline.orchestrator import LIMITS, Deps, created_iso, run_plan
 from ..schemas import (
     ActivityOut,
     AgentIn,
     AgentRun,
+    AskIn,
+    AskOut,
     CultureSuggestion,
     EntityOut,
     LLMOnly,
@@ -46,6 +48,7 @@ SSE_POLL_SECONDS = 0.25
 SSE_HEARTBEAT_SECONDS = 15
 _plan_hits: dict[str, deque[float]] = defaultdict(deque)
 _scout_hits: dict[str, deque[float]] = defaultdict(deque)
+_ask_hits: dict[str, deque[float]] = defaultdict(deque)
 
 
 def _limit(request: Request, book: dict[str, deque[float]], per_hour: int) -> None:
@@ -202,6 +205,16 @@ async def plan_llm_only(request: Request, plan_id: str) -> LLMOnly:
     out = await llm_only.compare(llm, run, plan, d.settings.llm_timeout_seconds)
     await d.store.cache_put(key, out.model_dump(mode="json"), 30 * 86400)
     return out
+
+
+@router.post("/ask", response_model=AskOut)
+async def ask_plan(request: Request, body: AskIn) -> AskOut:
+    """Answer a question from one plan's Qloo facts only. No Qloo calls; the answer is grounding-checked."""
+    d = deps(request)
+    if d.llm is None:
+        raise LLMError("No LLM provider is configured")
+    _limit(request, _ask_hits, d.settings.scouts_per_ip_per_hour)
+    return await ask.answer(d.llm, body.plan, body.question, d.settings.llm_timeout_seconds)
 
 
 @router.get("/plans/{plan_id}/trace", response_model=list[TraceRow])
