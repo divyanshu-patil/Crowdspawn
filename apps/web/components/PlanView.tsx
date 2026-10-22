@@ -135,6 +135,9 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
         )}
       </section>
 
+      {/* 3b. The plan at a glance: plain-language charts of the same Qloo numbers */}
+      <PlanCharts plan={plan} />
+
       {/* Expanded comps with Qloo's explanations */}
       <section className="section stack" aria-labelledby="comps-h">
         <h2 id="comps-h" className="h2">
@@ -220,9 +223,6 @@ export function PlanView({ plan, traceHref }: { plan: Plan; traceHref: string })
 
       {/* 5b. Launch actions: deterministic, copied from the plan */}
       <LaunchActions plan={plan} />
-
-      {/* 5c. Analytics: charts of the same Qloo numbers */}
-      <PlanCharts plan={plan} />
 
       {/* 6. Gap view */}
       {plan.gap && (

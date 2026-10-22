@@ -4,6 +4,7 @@ import type { Plan } from "@repo/contracts";
 import sample from "../public/sample-plan.json";
 import { PlanCharts } from "../components/PlanCharts";
 import { PlanChat } from "../components/PlanChat";
+import { forgetPlan, recentPlans, rememberPlan } from "../lib/recent";
 
 const plan = sample as unknown as Plan;
 
@@ -13,11 +14,21 @@ describe("analytics and ask this plan", () => {
     vi.unstubAllGlobals();
   });
 
-  it("charts every city in the scatter and the rank shift", () => {
+  it("explains the plan in plain charts with a takeaway each", () => {
     const { container } = render(<PlanCharts plan={plan} />);
-    expect(screen.getByText("Why each city ranks")).toBeTruthy();
-    expect(container.querySelectorAll(".slope")).toHaveLength(plan.cities.length);
-    expect(container.querySelectorAll('[aria-label^="Scatter"] .dot')).toHaveLength(plan.cities.length);
+    expect(screen.getByText("What makes each city a good fit")).toBeTruthy();
+    expect(container.querySelectorAll(".factors-row")).toHaveLength(Math.min(6, plan.cities.length));
+    expect(screen.getByText("Launch here")).toBeTruthy();
+    expect(container.querySelectorAll(".takeaway").length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("remembers opened plans, newest first, without duplicates", () => {
+    rememberPlan(plan);
+    rememberPlan({ ...plan, id: "other" });
+    rememberPlan(plan);
+    expect(recentPlans().map((r) => r.id)).toEqual([plan.id, "other"]);
+    forgetPlan("other");
+    expect(recentPlans()).toHaveLength(1);
   });
 
   it("sends the plan with the question and renders the cited answer", async () => {

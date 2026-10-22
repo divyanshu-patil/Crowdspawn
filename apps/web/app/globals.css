@@ -2475,7 +2475,7 @@ button.cite {
   }
 }
 
-/* Analytics charts */
+/* Plan at a glance: plain charts */
 .charts-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -2485,62 +2485,92 @@ button.cite {
   display: grid;
   gap: 4px;
 }
-.chart-svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
+.takeaway {
+  margin-top: auto;
+  padding: 10px 12px;
+  background: var(--canvas);
+  border-left: 3px solid var(--marker);
+  border-radius: var(--r-link);
+  font-size: 15px;
 }
-.chart-svg .tick {
-  font: 11px var(--font-mono);
-  fill: var(--ink-soft);
+.bars,
+.jumps {
+  display: grid;
+  gap: 10px;
 }
-.chart-svg .tick.strong {
-  fill: var(--ink);
+.bar-row,
+.jump-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(0, 2fr) auto;
+  gap: 12px;
+  align-items: center;
 }
-.chart-svg .ref {
-  stroke: var(--ink-soft);
-  stroke-dasharray: 3 4;
+.bar-name {
+  font-size: 14px;
+  overflow-wrap: anywhere;
 }
-.chart-svg .axis {
-  stroke: var(--hairline);
+.bar-val {
+  font-size: 13px;
+  text-align: right;
 }
-.chart-svg .dot circle:not(.hit) {
-  fill: var(--ink);
-  stroke: var(--paper);
-  stroke-width: 2;
+.bar-track {
+  height: 14px;
+  background: var(--mist);
+  border-radius: var(--r-link);
 }
-.chart-svg .dot.hot circle:not(.hit) {
-  fill: var(--forest);
+.bar-track > i {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  border-radius: var(--r-link);
+  transform-origin: left;
+  animation: fill 800ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 200ms);
 }
-.chart-svg .dot .ringed {
-  fill-opacity: 0.75;
+.bar-track > i.hot {
+  background: var(--forest);
 }
-.chart-svg .hit {
-  fill: transparent;
+.jump-track {
+  position: relative;
+  height: 14px;
+  margin: 0 7px;
 }
-.chart-svg .dot:hover circle:not(.hit) {
-  stroke: var(--ink);
+.jump-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 2px;
+  background: var(--mist);
 }
-.chart-svg .median {
-  stroke: var(--forest);
-  stroke-width: 3;
-  stroke-linecap: round;
+.jump-line {
+  position: absolute;
+  top: 6px;
+  height: 2px;
+  background: var(--forest);
 }
-.chart-svg .slope line {
-  stroke: var(--hairline);
-  stroke-width: 2;
+.jump-dot,
+.dot-key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--paper);
 }
-.chart-svg .slope circle {
-  fill: var(--ink-soft);
+.jump-dot {
+  position: absolute;
+  top: 1px;
+  transform: translateX(-50%);
 }
-.chart-svg .slope.hot line {
-  stroke: var(--forest);
+.dot-key {
+  vertical-align: -1px;
 }
-.chart-svg .slope.hot circle {
-  fill: var(--forest);
+.grey {
+  background: var(--ink-soft);
 }
-.chart-svg .slope:hover line {
-  stroke: var(--ink);
+.green {
+  background: var(--forest);
 }
 .factors {
   display: grid;
@@ -2562,6 +2592,30 @@ button.cite {
   align-items: center;
   font-size: 12px;
 }
+.waves {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap);
+}
+.wave {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+.wave-n {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font: 700 14px var(--font-mono);
+}
+.wave:first-child .wave-n {
+  background: var(--forest);
+}
 @media (max-width: 860px) {
   .charts-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -2570,6 +2624,9 @@ button.cite {
 
 /* Ask this plan */
 .chat-fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   position: fixed;
   right: 16px;
   bottom: 16px;
@@ -2616,4 +2673,38 @@ button.cite {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px;
+}
+.ai-icon {
+  flex: none;
+}
+
+/* Recent launches */
+.recent {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.recent-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 16px;
+  align-items: center;
+}
+.recent-main {
+  display: grid;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.recent-main:hover b {
+  text-decoration: underline;
+}
+@media (max-width: 520px) {
+  .recent-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .recent-row .label {
+    display: none;
+  }
 }

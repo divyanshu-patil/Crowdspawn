@@ -8,6 +8,7 @@ import { api, ApiError, streamPlan } from "../lib/api";
 import { play } from "../lib/sfx";
 import { initialProgress, reduce, STEPS, xp, type Progress } from "../lib/progress";
 import { PlanView } from "./PlanView";
+import { rememberPlan } from "../lib/recent";
 import { CountUp, ErrorScreen, Notice, Skeleton } from "./ui";
 
 type Action = { kind: "event"; ev: PlanEvent & { id: number } } | { kind: "reset" };
@@ -57,6 +58,7 @@ export function LivePlan({ id }: { id: string }) {
       .plan(id)
       .then((p) => {
         if (cancelled) return;
+        rememberPlan(p);
         if (p.status === "done") return setPlan(p);
         stop = streamPlan(
           id,
@@ -66,7 +68,10 @@ export function LivePlan({ id }: { id: string }) {
             if (ev.type === "failed") play("error");
             if (ev.type === "done") {
               play("win");
-              api.plan(id).then((full) => !cancelled && setPlan(full));
+              api.plan(id).then((full) => {
+                rememberPlan(full);
+                if (!cancelled) setPlan(full);
+              });
             }
           },
           setConn,

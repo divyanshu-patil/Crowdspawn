@@ -42,6 +42,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link className="label" href="/scout">
                 Explore map
               </Link>
+              <Link className="label" href="/recent">
+                Recent
+              </Link>
             </div>
           </nav>
           <ServerStatus />

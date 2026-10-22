@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Plan } from "@repo/contracts";
 import { api, ApiError } from "../lib/api";
-import { RichText } from "./ui";
+import { AiIcon, RichText } from "./ui";
 
 type Msg = { who: "you" | "bot"; text: string; withheld?: boolean };
 
@@ -45,13 +45,15 @@ export function PlanChat({ plan, traceHref }: { plan: Plan; traceHref: string })
   if (!open)
     return (
       <button className="btn chat-fab no-print" onClick={() => setOpen(true)} data-testid="chat-open">
-        Ask this plan
+        <AiIcon /> Ask this plan
       </button>
     );
   return (
     <aside className="card chat no-print" aria-label="Ask this plan">
       <div className="spread">
-        <span className="label">Ask this plan</span>
+        <span className="label row" style={{ gap: 6 }}>
+          <AiIcon size={16} /> Ask this plan
+        </span>
         <button className="ghost" onClick={() => setOpen(false)} aria-label="Close chat">
           ✕
         </button>

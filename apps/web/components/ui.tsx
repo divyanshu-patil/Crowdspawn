@@ -149,3 +149,14 @@ export function RichText({
     </>
   );
 }
+
+/** Sparkles: marks the parts an AI writes. */
+export function AiIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg className="ai-icon" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M10 2.5 12.2 8.8 18.5 11 12.2 13.2 10 19.5 7.8 13.2 1.5 11 7.8 8.8Z" />
+      <path d="M19 1.5 19.9 4.1 22.5 5 19.9 5.9 19 8.5 18.1 5.9 15.5 5 18.1 4.1Z" />
+      <path d="M18.5 15 19.3 17.2 21.5 18 19.3 18.8 18.5 21 17.7 18.8 15.5 18 17.7 17.2Z" />
+    </svg>
+  );
+}

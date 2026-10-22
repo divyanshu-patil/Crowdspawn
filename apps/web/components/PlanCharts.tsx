@@ -1,77 +1,109 @@
 import type { City, PartnerType, Plan } from "@repo/contracts";
-import { lift } from "../lib/format";
+import { pct, usd } from "../lib/format";
+import { channels } from "../lib/launch";
 
-const KIND: Record<PartnerType, string> = { artist: "Artists", podcast: "Podcasts", movie: "Films", brand: "Brands" };
-const median = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
-  const m = s.length >> 1;
-  return s.length % 2 ? s[m]! : (s[m - 1]! + s[m]!) / 2;
-};
-const scale = (d0: number, d1: number, r0: number, r1: number) => (v: number) => r0 + ((v - d0) / (d1 - d0)) * (r1 - r0);
+const KIND: Record<PartnerType, string> = { artist: "Music artists", podcast: "Podcasts", movie: "Films", brand: "Brands" };
 
-/** Charts drawn only from the plan's Qloo numbers. Hover a mark for its values. */
+/** ×1.21 → "+21%": how far above (or below) the average gamer, in plain words. */
+export const vsAvg = (x: number) => `${x >= 1 ? "+" : "−"}${Math.round(Math.abs(x - 1) * 100)}%`;
+
+/** Plain-language charts of the plan's Qloo numbers, for studios that don't read stats. */
 export function PlanCharts({ plan }: { plan: Plan }) {
   if (plan.cities.length < 3) return null;
   return (
     <section className="section stack" aria-labelledby="charts-h">
       <div className="spread">
         <h2 id="charts-h" className="h2">
-          Analytics<span className="h-sub">: the numbers behind the ranking</span>
+          Your plan at a glance<span className="h-sub">: what the data says, in pictures</span>
         </h2>
-        <span className="label muted">Qloo data only · affinity index, not a sales forecast</span>
+        <span className="label muted">Qloo data only · a guide, not a sales forecast</span>
       </div>
       <div className="charts-grid">
-        <Factors cities={plan.cities.slice(0, 8)} />
-        <TastePlatform cities={plan.cities} />
-        <PartnerLift plan={plan} />
-        <RankShift plan={plan} />
+        <WhyCities cities={plan.cities.slice(0, 6)} />
+        <Budget plan={plan} />
+        <Channels plan={plan} />
+        <Overlooked plan={plan} />
       </div>
+      <Rollout plan={plan} />
     </section>
   );
 }
 
-function Chart({ title, note, children }: { title: string; note: string; children: React.ReactNode }) {
+function Chart({ title, ask, takeaway, children }: { title: string; ask: string; takeaway?: string; children: React.ReactNode }) {
   return (
     <figure className="card stack chart">
       <figcaption>
+        <span className="label muted">{ask}</span>
         <h3 className="h3">{title}</h3>
-        <span className="hint">{note}</span>
       </figcaption>
       {children}
+      {takeaway && (
+        <p className="takeaway">
+          <b>In short:</b> {takeaway}
+        </p>
+      )}
     </figure>
   );
 }
 
-/** Each factor of the spawn score as a bar from ×1.00 (log scale): right of centre helps, left hurts. */
-function Factors({ cities }: { cities: City[] }) {
-  const cols: { k: string; v: (c: City) => number | null | undefined }[] = [
-    { k: "Taste", v: (c) => c.lift },
-    { k: "Platform", v: (c) => c.platform_fit },
-  ];
-  if (cities.some((c) => c.culture_fit != null)) cols.push({ k: "Culture", v: (c) => c.culture_fit });
-  const max = Math.max(0.01, ...cities.flatMap((c) => cols.map((col) => Math.abs(Math.log(col.v(c) ?? 1)))));
+/** One plain bar per row; length is the share of the biggest value. */
+function Bars({ rows }: { rows: { key: string; name: string; v: number; text: string; hot?: boolean; sub?: string }[] }) {
+  const max = Math.max(...rows.map((r) => r.v), 0.0001);
   return (
-    <Chart title="Why each city ranks" note="Spawn score factors for the top 8. Bars grow from ×1.00: right is above the gamer average.">
+    <div className="bars">
+      {rows.map((r, i) => (
+        <div key={r.key} className="bar-row" title={`${r.name}: ${r.text}`}>
+          <span className="bar-name">
+            {r.name}
+            {r.sub && <span className="hint"> {r.sub}</span>}
+          </span>
+          <span className="bar-track" aria-hidden>
+            <i className={r.hot ? "hot" : ""} style={{ width: `${Math.max(2, (r.v / max) * 100)}%`, ["--i" as string]: i }} />
+          </span>
+          <span className="num bar-val">{r.text}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const FACTORS: { k: string; v: (c: City) => number | null | undefined; why: string }[] = [
+  { k: "Like your kind of game", v: (c) => c.lift, why: "fans of games like yours" },
+  { k: "Play on your platforms", v: (c) => c.platform_fit, why: "players on your platforms" },
+  { k: "Like your setting", v: (c) => c.culture_fit, why: "fans of your setting's films, shows and music" },
+];
+
+function WhyCities({ cities }: { cities: City[] }) {
+  const cols = FACTORS.filter((f) => cities.some((c) => f.v(c) != null));
+  const max = Math.max(0.01, ...cities.flatMap((c) => cols.map((f) => Math.abs((f.v(c) ?? 1) - 1))));
+  const top = cities[0]!;
+  const best = cols.reduce((a, b) => ((b.v(top) ?? 0) > (a.v(top) ?? 0) ? b : a));
+  return (
+    <Chart
+      ask="Why these cities?"
+      title="What makes each city a good fit"
+      takeaway={`${top.name} leads mostly thanks to ${best.why} (${vsAvg(best.v(top)!)} vs the average gamer).`}
+    >
+      <p className="hint">Compared with the average gamer in each city. Bars to the right are better than average.</p>
       <div className="factors" style={{ ["--cols" as string]: cols.length }}>
         <span />
-        {cols.map((c) => (
-          <span key={c.k} className="label muted">
-            {c.k}
+        {cols.map((f) => (
+          <span key={f.k} className="label muted">
+            {f.k}
           </span>
         ))}
         {cities.map((c, i) => (
           <div key={c.region_id} className="factors-row">
             <span className="factors-name">{c.name}</span>
-            {cols.map((col) => {
-              const v = col.v(c);
-              if (v == null) return <span key={col.k} className="hint">–</span>;
-              const w = (Math.abs(Math.log(v)) / max) * 50;
+            {cols.map((f) => {
+              const v = f.v(c);
+              if (v == null) return <span key={f.k} className="hint">–</span>;
               return (
-                <span key={col.k} className="factors-cell" title={`${c.name} · ${col.k} ×${lift(v)}`}>
+                <span key={f.k} className="factors-cell" title={`${c.name}: ${vsAvg(v)} ${f.why}`}>
                   <span className="skew-track" aria-hidden>
-                    <i className={v >= 1 ? "pos" : "neg"} style={{ width: `${w}%`, ["--i" as string]: i }} />
+                    <i className={v >= 1 ? "pos" : "neg"} style={{ width: `${(Math.abs(v - 1) / max) * 50}%`, ["--i" as string]: i }} />
                   </span>
-                  <span className="num">{lift(v)}</span>
+                  <span className="num">{vsAvg(v)}</span>
                 </span>
               );
             })}
@@ -82,153 +114,126 @@ function Factors({ cities }: { cities: City[] }) {
   );
 }
 
-const W = 460;
-const H = 300;
-const PAD = { l: 44, r: 16, t: 14, b: 36 };
-
-/** Taste lift against platform fit: top-right cities win on both. Top 3 labelled. */
-function TastePlatform({ cities }: { cities: City[] }) {
-  const xs = cities.map((c) => c.lift);
-  const ys = cities.map((c) => c.platform_fit);
-  const pad = (lo: number, hi: number) => [Math.min(lo, 1) - 0.03, Math.max(hi, 1) + 0.03] as const;
-  const [x0, x1] = pad(Math.min(...xs), Math.max(...xs));
-  const [y0, y1] = pad(Math.min(...ys), Math.max(...ys));
-  const x = scale(x0, x1, PAD.l, W - PAD.r);
-  const y = scale(y0, y1, H - PAD.b, PAD.t);
-  const top = new Set(cities.slice(0, 3).map((c) => c.region_id));
+function Budget({ plan }: { plan: Plan }) {
+  const funded = plan.cities.filter((c) => c.budget_share > 0).slice(0, 6);
+  if (!funded.length) return null;
+  const top3 = plan.cities.slice(0, 3).reduce((s, c) => s + c.budget_share, 0);
   return (
-    <Chart title="Taste vs platform" note="Each dot is a city. Dashed lines mark ×1.00, the gamer average. Top 3 in green.">
-      <svg viewBox={`0 0 ${W} ${H}`} className="chart-svg" role="img" aria-label="Scatter of taste lift against platform fit by city">
-        <line x1={x(1)} x2={x(1)} y1={PAD.t} y2={H - PAD.b} className="ref" />
-        <line x1={PAD.l} x2={W - PAD.r} y1={y(1)} y2={y(1)} className="ref" />
-        <line x1={PAD.l} x2={W - PAD.r} y1={H - PAD.b} y2={H - PAD.b} className="axis" />
-        <text x={W - PAD.r} y={H - 6} textAnchor="end" className="tick">
-          Taste lift →
-        </text>
-        <text x={PAD.l - 8} y={PAD.t + 4} textAnchor="end" className="tick">
-          {lift(y1)}
-        </text>
-        <text x={PAD.l - 8} y={H - PAD.b} textAnchor="end" className="tick">
-          {lift(y0)}
-        </text>
-        <text x={PAD.l} y={H - PAD.b + 16} className="tick">
-          {lift(x0)}
-        </text>
-        <text transform={`translate(12 ${PAD.t}) rotate(90)`} className="tick">
-          Platform fit →
-        </text>
-        <text x={W - PAD.r - 4} y={PAD.t + 12} textAnchor="end" className="tick strong">
-          strong on both
-        </text>
-        {[...cities].reverse().map((c) => {
-          const hot = top.has(c.region_id);
-          return (
-            <g key={c.region_id} className={hot ? "dot hot" : "dot"}>
-              <title>{`${c.name}: spawn ×${lift(c.score)} · taste ×${lift(c.lift)} · platform ×${lift(c.platform_fit)} · ${c.confidence} confidence`}</title>
-              <circle cx={x(c.lift)} cy={y(c.platform_fit)} r={12} className="hit" />
-              <circle cx={x(c.lift)} cy={y(c.platform_fit)} r={hot ? 6 : 4.5} />
-              {hot && (
-                <text x={x(c.lift) + 9} y={y(c.platform_fit) + 4} className="tick strong">
-                  {c.name}
-                </text>
-              )}
-            </g>
-          );
-        })}
-      </svg>
+    <Chart
+      ask="Where should my money go?"
+      title="Suggested ad budget split"
+      takeaway={`About ${Math.round(top3)}% of your budget goes to your top 3 cities. Spend there first.`}
+    >
+      <Bars
+        rows={funded.map((c, i) => ({
+          key: c.region_id,
+          name: c.name,
+          v: c.budget_share,
+          text: c.budget_usd != null ? `${pct(c.budget_share)} · ${usd(c.budget_usd)}` : pct(c.budget_share),
+          hot: i < 3,
+        }))}
+      />
     </Chart>
   );
 }
 
-/** Every global partner's lift, one row per medium, with the median marked: where these fans stand out most. */
-function PartnerLift({ plan }: { plan: Plan }) {
-  const rows = (Object.keys(KIND) as PartnerType[])
-    .map((k) => ({ k, items: (plan.partners[k] ?? []).filter((p) => !p.city && p.lift != null) }))
-    .filter((r) => r.items.length > 0);
-  if (!rows.length) return null;
-  const all = rows.flatMap((r) => r.items.map((p) => p.lift!));
-  const x0 = Math.min(1, ...all) - 0.05;
-  const x1 = Math.max(...all) + 0.05;
-  const rh = 46;
-  const h = rows.length * rh + 30;
-  const x = scale(x0, x1, 90, W - 60);
+function Channels({ plan }: { plan: Plan }) {
+  const ranked = channels(plan);
+  if (!ranked.length) return null;
+  const first = ranked[0]!;
   return (
-    <Chart title="Partner lift by medium" note="Each dot is a global partner; the green tick is the median. Further right: fans like it more than gamers do.">
-      <svg viewBox={`0 0 ${W} ${h}`} className="chart-svg" role="img" aria-label="Partner lift by medium">
-        <line x1={x(1)} x2={x(1)} y1={4} y2={h - 26} className="ref" />
-        <text x={x(1)} y={h - 8} textAnchor="middle" className="tick">
-          ×1.00
-        </text>
-        <text x={W - 60} y={h - 8} textAnchor="end" className="tick">
-          ×{lift(x1)}
-        </text>
-        {rows.map((r, i) => {
-          const cy = i * rh + rh / 2 + 4;
-          const m = median(r.items.map((p) => p.lift!));
-          return (
-            <g key={r.k}>
-              <text x={0} y={cy + 4} className="tick strong">
-                {KIND[r.k]}
-              </text>
-              <line x1={90} x2={W - 60} y1={cy} y2={cy} className="axis" />
-              {r.items.map((p) => (
-                <g key={p.entity_id} className="dot">
-                  <title>{`${p.name}: ×${lift(p.lift!)} vs all gamers · affinity ${(p.affinity * 100).toFixed(1)}`}</title>
-                  <circle cx={x(p.lift!)} cy={cy} r={12} className="hit" />
-                  <circle cx={x(p.lift!)} cy={cy} r={5} className="ringed" />
-                </g>
-              ))}
-              <line x1={x(m)} x2={x(m)} y1={cy - 13} y2={cy + 13} className="median" />
-              <text x={W} y={cy + 4} textAnchor="end" className="tick num">
-                ×{lift(m)}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+    <Chart
+      ask="Where do I promote it?"
+      title="Best places to reach your fans"
+      takeaway={`${KIND[first.kind]} work best: your fans like the top picks ${Math.round((first.lift - 1) * 100)}% more than the average gamer does.`}
+    >
+      <p className="hint">How much more your fans like the top picks in each medium than the average gamer does.</p>
+      <Bars
+        rows={ranked.map((c, i) => ({
+          key: c.kind,
+          name: KIND[c.kind],
+          v: Math.max(0, c.lift - 1),
+          text: vsAvg(c.lift),
+          hot: i === 0,
+          sub: i === 0 ? "· start here" : undefined,
+        }))}
+      />
     </Chart>
   );
 }
 
-/** Rank among gamers overall (left) against rank for this game (right). Green lines climb: hidden markets. */
-function RankShift({ plan }: { plan: Plan }) {
-  const cities = plan.cities;
-  const byGamers = [...cities].sort((a, b) => b.baseline_score - a.baseline_score || a.region_id.localeCompare(b.region_id));
-  const gamerRank = new Map(byGamers.map((c, i) => [c.region_id, i + 1]));
+/** Cities that rank far higher for this game than for gamers overall: usually cheaper attention. */
+function Overlooked({ plan }: { plan: Plan }) {
+  const hidden = (plan.hidden_markets ?? []).slice(0, 5);
+  if (!hidden.length) return null;
+  const n = plan.cities.length;
+  const at = (rank: number) => `${((rank - 1) / Math.max(1, n - 1)) * 100}%`;
+  const h = hidden[0]!;
+  return (
+    <Chart
+      ask="Where are the hidden gems?"
+      title="Cities other games overlook"
+      takeaway={`${h.name} is only #${h.gamer_rank} for gamers overall but #${h.rank} for your game. It's easy to miss if you only follow where most gamers are.`}
+    >
+      <p className="hint">
+        <span className="dot-key grey" /> rank among all gamers → <span className="dot-key green" /> rank for your game (#1 is best)
+      </p>
+      <div className="jumps">
+        {hidden.map((m) => (
+          <div key={m.region_id} className="jump-row" title={`${m.name}: #${m.gamer_rank} for all gamers, #${m.rank} for your game`}>
+            <span className="bar-name">{m.name}</span>
+            <span className="jump-track" aria-hidden>
+              <i className="jump-line" style={{ left: at(m.rank), right: `calc(100% - ${at(m.gamer_rank)})` }} />
+              <i className="jump-dot grey" style={{ left: at(m.gamer_rank) }} />
+              <i className="jump-dot green" style={{ left: at(m.rank) }} />
+            </span>
+            <span className="num bar-val">
+              #{m.gamer_rank} → #{m.rank}
+            </span>
+          </div>
+        ))}
+      </div>
+    </Chart>
+  );
+}
+
+/** A roll-out order built from rank and confidence. No dates or results are predicted. */
+function Rollout({ plan }: { plan: Plan }) {
   const hidden = new Set((plan.hidden_markets ?? []).map((h) => h.region_id));
-  const step = 18;
-  const h = cities.length * step + 34;
-  const y = (rank: number) => 26 + (rank - 1) * step;
-  const [lx, rx] = [70, 250];
+  const first = plan.cities.slice(0, 3);
+  const next = plan.cities.slice(3, 6);
+  const test = plan.cities.slice(6).filter((c) => hidden.has(c.region_id) || c.score > 1).slice(0, 4);
+  const waves = [
+    { n: "1", title: "Launch here", note: "Your strongest cities. Put most of your effort here on day one.", cities: first },
+    { n: "2", title: "Expand next", note: "Add these once the first wave shows what works.", cities: next },
+    { n: "3", title: "Test small", note: "Still above average. Try a small ad spend before committing.", cities: test },
+  ].filter((w) => w.cities.length);
   return (
-    <Chart title="Rank shift" note="Left: rank among gamers overall. Right: rank for your game. Green climbs 3+ places: a hidden market.">
-      <svg viewBox={`0 0 ${W} ${h}`} className="chart-svg" role="img" aria-label="Rank among all gamers versus rank for this game">
-        <text x={lx} y={10} textAnchor="middle" className="tick">
-          All gamers
-        </text>
-        <text x={rx} y={10} textAnchor="middle" className="tick">
-          Your game
-        </text>
-        {[...cities].reverse().map((c) => {
-          const i = cities.indexOf(c) + 1;
-          const g = gamerRank.get(c.region_id)!;
-          const hot = hidden.has(c.region_id);
-          return (
-            <g key={c.region_id} className={hot ? "slope hot" : "slope"}>
-              <title>{`${c.name}: #${g} for gamers overall, #${i} for your game`}</title>
-              <line x1={lx} x2={rx} y1={y(g)} y2={y(i)} />
-              <circle cx={lx} cy={y(g)} r={3.5} />
-              <circle cx={rx} cy={y(i)} r={3.5} />
-              <text x={lx - 10} y={y(g) + 4} textAnchor="end" className="tick num">
-                {g}
-              </text>
-              <text x={rx + 10} y={y(i) + 4} className={hot ? "tick strong" : "tick"}>
-                {i}. {c.name}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    </Chart>
+    <figure className="card stack chart">
+      <figcaption>
+        <span className="label muted">What happens after launch?</span>
+        <h3 className="h3">A roll-out in waves</h3>
+      </figcaption>
+      <ol className="waves">
+        {waves.map((w) => (
+          <li key={w.n} className="wave">
+            <span className="wave-n">{w.n}</span>
+            <b>{w.title}</b>
+            <span className="hint">{w.note}</span>
+            <span className="row">
+              {w.cities.map((c) => (
+                <span key={c.region_id} className="chip" style={{ paddingRight: 14 }} title={`${c.confidence} confidence`}>
+                  {c.name}
+                </span>
+              ))}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <p className="takeaway">
+        <b>After launch:</b> track wishlists and sales per city. If a city does better or worse than its place here, move
+        budget towards what works. This order comes from taste data, so treat it as your starting bet, not a forecast.
+      </p>
+    </figure>
   );
 }
